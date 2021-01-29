@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewData["Title"] = "FoodItem";
+}
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="row">
+            <div class="col-md-12 col-xl-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                       
+                        <div class="row widget-content p-0" style="background-color: #fff; margin-bottom: 0px">
+                            <div class="col-md-3">
+                                <h1 class="card-title">Food Item</h1>
+                            </div>
+                            <div class="col-md-2">
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="search-wrapper" style="margin-bottom: 15px">
+                                    <div class="input-holder">
+                                        <input type="text" id="searchField" class="search-input" placeholder="Type fooditem to search">
+                                        <button class="search-icon" id="search"><span></span></button>
+                                    </div>
+                                    <button class="close"></button>
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-1">
+                                <button class="btn btn-lg btn-primary pull-right" style="margin-bottom: 15px" id="foodModal">Add Food</button>
+                            </div>
+                        </div>
+                        <div class="table-responsive tableFixHead" style="height: 480px; overflow:auto">
+                            <table class="mb-0 table table-striped table-hover">
+                                <thead>
+                                    <tr style="background-color: #063970; color: white;">
+                                        <th width="25%">Food</th>
+                                        <th width="15%">Type</th>
+                                        <th width="20">Vendor</th>
+                                        <th width="15%" style="z-index: 10000 !important;">Status</th>
+                                        <th width="5%">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="foodItemTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Modals{
+    <div class="modal" id="foodItemModal" tabindex="-1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Food</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="far fa-times-circle text-danger"></i> </button>
+                </div>
+                <form class="form-horizontal" id="appForm">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="food" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Food  <span class="text-danger">*</span> </label>
+                                <input type="text" class="form-control required" id="foodItem">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="type" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Type  <span class="text-danger">*</span> </label>
+                                <br />
+                                <select class="form-control required" id="foodType">
+                                    <option value="-1" selected>Select Food Type</option>
+                                    <option >Main Dish</option>
+                                    <option>Side Dish</option>
+                                    <option >Condiment</option>
+                                    <option>Beverage</option>
+                                    <option>Sauce</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="status" class="control-label" style="margin-bottom: 0px; margin-top: 3px" >Status  <span class="text-danger">*</span> </label>
+                                <br />
+                                <select class="form-control required" id="status" style="padding-right: 5px!important">
+                                    <option value="-1" selected disabled>Select Status</option>
+                                    <option value="1">Active</option>
+                                    <option value="2">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="vendor" class="control-label" style="margin-bottom: 0px; margin-top: 3px">Vendor  <span class="text-danger">*</span> </label>
+                                <br />
+                                <select multiple class="form-control vendor required" id="vendor" style="padding-right: 5px !important;width: 100% !important; width:100% !important; border-radius: 0.25rem!important ;border: 1px solid #ced4da !important;
+">
+                                    <option>Champion Dishes</option>
+                                    <option>My Best Restaurant</option>
+                                    <option>Don't Mind Your Wife Kitchen</option>
+                                    <option>Aduane Fie </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="saveFoodItem" disabled>Save  <i class="fa fa-save"></i></button>
+                        <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section Scripts{
+    <script src="~/js/fooditem.js"></script>
+}
+
+
+
+

@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "Vendor";
+}
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="row">
+            <div class="col-md-12 col-xl-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h3 class="card-title" style="margin-top: 5px">Vendor</h3>
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-wrapper" style=" margin-top: -5px;" >
+                                    <div class="input-holder">
+                                        <input type="text" class="search-input" placeholder="Type vendor name to search">
+                                        <button id="search" class="search-icon"><span></span></button>
+                                    </div>
+                                    <button  class="close"></button>
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-1" style="margin-top:0px">
+                                <button class="btn btn-lg btn-outline-primary pull-right" style="margin-bottom: 15px;" id="btnAddVendor">Add Vendor</button>
+                            </div>
+                        </div>
+                        <div class="table-responsive tableFixHead" style="height: 480px; overflow:auto; min-height: 250px">
+                            <table class="mb-0 table table-striped table-hover">
+                                <thead class="">
+                                    <tr style="background-color: #063970; color: white;">
+                                        <th width="25%">Name</th>
+                                        <th width="17%">Phone №</th>
+                                        <th width="25%">Email</th>
+                                        <th width="11%" style="z-index: 10000 !important;">Status</th>
+                                        <th width="3%">Actions</th>
+                                    </tr>
+                                </thead> 
+                                <tbody id="vendorTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Modals{
+    <div class="modal" id="vendorModal" tabindex="-1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Vendor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="far fa-times-circle text-danger"></i> </button>
+                </div>
+                <form class="form-horizontal" id="appForm">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label for="Name" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Name  <span class="text-danger">*</span> </label>
+                                <input type="text" class="form-control required" id="vendorName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="phone1" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Phone №1  <span class="text-danger">*</span> </label>
+                                <input type="tel" class="form-control required" id="phone1">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="phone2" class="form-label" style="margin-bottom: 0px; margin-top: 10px">Phone №2(Optional)</label>
+                                <input type="tel" class="form-control" id="phone2">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label for="Email" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Email   <span class="text-danger">*</span> </label>
+                                <input type="email" class="form-control required rem" id="vendorEmail" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label">Status   <span class="text-danger">*</span> </label>
+                                <select class="form-control required" id="status">
+                                    <option value="-1" selected disabled>Select Status</option>
+                                    <option value="1">Active</option>
+                                    <option value="2">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="saveVendor" disabled>Save  <i class="fa fa-save"></i></button>
+                        <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="~/js/vendor.js"></script>
+}
+
+
+
+

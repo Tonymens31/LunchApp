@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewData["Title"] = "Menu";
+}
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="row">
+            <div class="col-md-12 col-xl-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h3 class="card-title" style="margin-top: 5px">Menu</h3>
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-wrapper" style=" margin-top: -5px;">
+                                    <div class="input-holder">
+                                        <input type="text" class="search-input" placeholder="Type menu to search">
+                                        <button class="search-icon"><span></span></button>
+                                    </div>
+                                    <button class="close"></button>
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-1" style="margin-top: 5px">
+                                <button class="btn btn-lg btn-outline-primary pull-right" style="margin-bottom: 15px" id="btnAddMenu">Add Menu</button>
+                            </div>
+                        </div>
+                        <div class="table-responsive tableFixHead" style="height: 480px; overflow:auto">
+                            <table class="mb-0 table table-striped table-hover">
+                                <thead>
+                                    <tr style="background-color: #063970; color: white;">
+                                        <th width="10%">Date</th>
+                                        <th width="20%">Main Dish</th>
+                                        <th width="15%">Side Dish</th>
+                                        <th width="13%">Condiment</th>
+                                        <th width="10%">Price(GH₵)</th>
+                                        <th width="13%">Expiry Date</th>
+                                        <th width="2%">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="menuTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Modals{
+    <div class="modal" id="menuModal">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Menu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="far fa-times-circle text-danger"></i> </button>
+                </div>
+                <form class="form-horizontal" id="appForm">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="Date" style="margin-bottom: 0px;margin-top: 10px;" class="form-label">Date  <span class="text-danger">*</span> </label>
+                                <input type="text" style="background-color: white" placeholder="Date.." class="form-control required" id="menuDate">
+                            </div>
+                            <div class="col-md-7">
+                                <label for="main dish" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Main Dish  <span class="text-danger">*</span> </label>
+                                <br />
+                                <select class="form-control required " id="menuMainDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
+                                    <option class="text-muted" value="1" selected style="padding-left: 10px; text-decoration-color:red !important" disabled>Select Main Dish</option>
+                                    <option>Palmnut Soup with Goat Meat</option>
+                                    <option>Egg Stew with Fish</option>
+                                    <option>Palmnut Soup with Fish</option>
+                                    <option>Okro Stew with Cow Meat</option>
+                                    <option>Light Soup with Chicken</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="side dish" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Side Dish  <span class="text-danger">*</span> </label>
+                                <br />
+                                <select class="form-control required" id="menuSideDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
+                                    <option value="-1" selected style="padding-left: 10px" disabled> Select Side Dish</option>
+                                    <option>Plain Rice</option>
+                                    <option>Banku</option>
+                                    <option>Konkonte</option>
+                                    <option>Waakye</option>
+                                    <option>Fufu</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-7">
+                                <label for="condiment" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Condiment</label>
+                                <br />
+                                <select class="form-control" id="menuCondiment" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
+                                    <option value="-1" selected style="padding-left: 10px" disabled>Select Condiment</option>
+                                    <option>Extra Meat</option>
+                                    <option>Extra Shito</option>
+                                    <option>More Pepper</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 ">
+                                <label for="pricing" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Price  <span class="text-danger">*</span> </label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">GH₵</span>
+                                    </div>
+                                    <input type="number" min="0" style="background-color: white" placeholder="Pricing" class="form-control required" id="price">
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <label for="Date" style="margin-bottom: 0px; margin-top: 10px;" class="form-label">Expiry Date  <span class="text-danger">*</span> </label>
+                                <input type="datetime-local" style="background-color: white" placeholder="Expiry Date.." class="form-control required" id="expiryDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="saveMenu" disabled>Save  <i class="fa fa-save"></i></button>
+                        <button type="button" id="closeBtn" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+}
+
+@section Scripts{
+    <script src="~/js/menu.js"></script>
+
+}
+
+
+
+

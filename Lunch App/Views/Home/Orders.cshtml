@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewData["Title"] = "Orders";
+}
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="row">
+            <div class="col-md-12 col-xl-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h3 class="card-title" style="margin-top: 5px">ORDERS</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <input type="text" style="width: 100%; margin-top: 5px; background-color: white" id="orderdate" class="form-control" placeholder="Select Order Date..">
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-4" style="margin-top: 5px !important">
+                                <div class="search-wrapper">
+                                    <div class="input-holder">
+                                        <input type="text" id="searchField" class="search-input" placeholder="Type  an order to search">
+                                        <button id="searchIcon" class="search-icon searchIcon"><span></span></button>
+                                    </div>
+                                    <button class="close"></button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-md btn-outline-primary pull-right" style="float:right!important; margin-bottom: 15px;height: 40px;margin-top: 5px" id="btnAddStaff"><span><i class="fa fa-bell"></i></span></button>
+                                <span>
+                                    <button type="button" class="btn btn-outline-primary btn-sm pull-right" style="height: 40px;margin-top: 5px; float: right !important">
+                                        Orders: <span class="badge badge-light" id="count"><strong>0</strong></span> Out of<span class="badge badge-light"><strong>75</strong></span>
+                                        <span class="sr-only">unread messages</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="table-responsive tableFixHead" style="height: 410px; overflow:auto">
+                            <table class="mb-0 table table-striped table-hover">
+                                <thead>
+                                    <tr style="background-color: #063970; color: white;">
+                                        <th width="13%">Date</th>
+                                        <th width="22%">Name</th>
+                                        <th width="25%">Main Dish</th>
+                                        <th width="20%">Side Dish</th>
+                                        <th width="15%">Condiment</th>
+                                        <th width="5%">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderTable">
+                                </tbody>
+                            </table>
+                            <br />
+
+                        </div>
+                        <div>
+                            <button class="btn btn-lg btn-outline-primary pull-left" id="btnAddOrder">Add Order</button>
+                            <button class="btn btn-lg btn-outline-primary pull-right" onclick="window.print()" id="btnPrintOrders"> <i class="pe-7s-print"></i>Print Orders</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Modals{
+    <div class="modal" id="orderModal" tabindex="-1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="far fa-times-circle text-danger"></i> </button>
+                </div>
+                <form class="form-horizontal" id="appForm">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label for="Date" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Date  <span class="text-danger">*</span> </label>
+                                <input type="date" style="background-color: white" placeholder="Select Date" class="form-control required" id="orderDate">
+                            </div>
+                            <div class="col-md-7">
+                                <label for="main dish" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Main Dish  <span class="text-danger">*</span> </label>
+                                <br />
+                                <select class="form-control required" id="orderMainDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
+                                    <option selected style="padding-left: 10px" disabled>Select Main Dish</option>
+                                    <option>Egg Stew with Fish</option>
+                                    <option>Okro Stew with Meat</option>
+                                    <option>Light Soup with Chicken</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-5">
+                                <label for="side dish" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Side Dish  <span class="text-danger">*</span> </label>
+                                <br />
+                                <select class="form-control required transfer-input-check" id="orderSideDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
+                                    <option selected value="-1" style="padding-left: 10px" disabled>Select Side Dish</option>
+                                    <option>Plain Rice</option>
+                                    <option>Banku</option>
+                                    <option>Konkonte</option>
+                                    <option>Waakye</option>
+                                </select>
+                            </div>
+                            <div class="col-md-7">
+                                <label for="condiment" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Condiment</label>
+                                <br />
+                                <select class="form-control" id="orderCondiment" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
+                                    <option selected style="padding-left: 10px" disabled>Select Condiment</option>
+                                    <option>Extra Meat</option>
+                                    <option>Extra Shito</option>
+                                    <option>More Pepper</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-5">
+                                <label for="beverage" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Order for   <span class="text-danger">*</span> </label>
+                                <br />
+                                <select class="form-control required" id="orderFor" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
+                                    <option value="-1" selected style="padding-left: 10px" disabled>Choose</option>
+                                    <option value="staff">Staff</option>
+                                    <option value="quest">Guest</option>
+                                </select>
+                            </div>
+                            <div class="col-md-7">
+                                <div id="orderingForField">
+                                    <label for="guestName" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Name   <span class="text-danger">*</span> </label>
+                                    <input hidden type="text" class="form-control  required" placeholder="Enter Guest Name" id="name">
+                                    <select  class="form-control required" id="orderForStaff" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
+                                        <option value="-1" selected style="padding-left: 10px" disabled>Select Staff</option>
+                                        <option>Tony Mens</option>
+                                        <option>Mickey Mouse</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="saveOrder" class="btn btn-primary" disabled>Save  <i class="fa fa-save"></i></button>
+                        <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+}
+@section Scripts{
+    <script src="~/js/orders.js" asp-append-version="true"></script>
+}
+
+
+
+
