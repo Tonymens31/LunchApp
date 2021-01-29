@@ -17,44 +17,25 @@ $(document).ready(function () {
             id: 1,
             foodItem: "Jollof Rice",
             type: "Side Dish",
-            vendor: "Champion Dishes",
+            vendor: ["Champion Dishes", "Sweet Dishes"],
             status: 1
         },
         {
             id: 2,
             foodItem: "Groundnut Soup with Dry Fish",
             type: "Main Dish",
-            vendor: "tonyInterdi@gmail.com",
+            vendor: ["Tonymens International Dishes"],
             status: 1
         },
         {
             id: 3,
             foodItem: "Palava Sauce with Chicken",
             type: "Main Dish",
-            vendor: "Michael Nartey's Typical Local Chopbar",
+            vendor: ["Michael Nartey's Typical Local Chopbar"],
             status: 2
         },
-        {
-            id: 1,
-            foodItem: "Jollof Rice",
-            type: "Side Dish",
-            vendor: "Champion Dishes",
-            status: 1
-        },
-        {
-            id: 2,
-            foodItem: "Groundnut Soup with Dry Fish",
-            type: "Main Dish",
-            vendor: "tonyInterdi@gmail.com",
-            status: 1
-        },
-        {
-            id: 3,
-            foodItem: "Palava Sauce with Chicken",
-            type: "Main Dish",
-            vendor: "Michael Nartey's Typical Local Chopbar",
-            status: 2
-        }
+       
+       
     ]
 
     loadFoodItemData(foodItemsData);
@@ -65,11 +46,13 @@ $(document).ready(function () {
         data = [...new Map(foodItemsData.map(item => [item.id, item])).values()];
 
         data.map(item => {
+            let vendors = item.vendor
+          
             view += `
                     <tr id="${item.id}">
                         <td>${item.foodItem}</td>
                         <td>${item.type}</td>
-                        <td>${item.vendor}</td>
+                        <td><select placeholder="Vendors" class="form-control" style="border:none; width: 70%;height: 33px;padding-bottom: 5px;padding-top: 0px !important;">${vendors.map(x=>(`<option>${x}</option>`))}</select></td>
                          <td>
                             <span class="badge badge-dot mr-4" style="background-color:transparent;padding: 0px;">
                                 <i class="bg-${item.status == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.status].color} btn-sm" disabled>${sub[item.status].state}</span>
@@ -154,7 +137,6 @@ $(document).ready(function () {
     $("#saveFoodItem").click(() => {
         foodItemsList();
         clearFields();
-       
         validation();
 
         iziToast.success({
@@ -204,15 +186,12 @@ $(document).ready(function () {
         })(i);
     }
 
-    //$("#vendorid").change(function () {
-    //    $("#foodModal").prop("disabled", false);
-    //})
+   
 
     $("#saveFoodItem").css('cursor', 'not-allowed');
     function validation() {
         $("#foodItem").val().length !== 0 &&
             $("#foodType").val().length !== 0 &&
-            $("#vendor").val() > 0 &&
             $("#status").val() > 0 ?
             ($("#saveFoodItem").prop('disabled', false), $("#saveFoodItem").css('cursor', 'pointer')) :
             ($("#saveFoodItem").prop('disabled', true), $("#saveFoodItem").css('cursor', 'not-allowed'))

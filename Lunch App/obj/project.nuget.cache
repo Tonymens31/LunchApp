@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VX+9m3aqcZLkl25qcM4ORk1/8AQFcsnLAdcgqbPERo+0kFHoQNON27il0WL02kdwz/FTcsb7mx6YL/FznJH1PQ==",
+  "dgSpecHash": "QOZP9iaE5Jj3GUkjegxj4ML1ItLYHFV0bMr8Cs54gmVV9RdZZwoJA/q/jl6aRVRox+U5yQ9VIKQU6YwmNtRPfw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc trials\\Lunch App\\Lunch App\\Lunch App.csproj",
+  "projectFilePath": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\Lunch App.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mensah\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Mensah\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",

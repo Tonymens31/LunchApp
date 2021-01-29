@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc trials\\Lunch App\\Lunch App\\Lunch App.csproj": {}
+    "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\Lunch App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc trials\\Lunch App\\Lunch App\\Lunch App.csproj": {
+    "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\Lunch App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc trials\\Lunch App\\Lunch App\\Lunch App.csproj",
+        "projectUniqueName": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\Lunch App.csproj",
         "projectName": "Lunch App",
-        "projectPath": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc trials\\Lunch App\\Lunch App\\Lunch App.csproj",
+        "projectPath": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\Lunch App.csproj",
         "packagesPath": "C:\\Users\\Mensah\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc trials\\Lunch App\\Lunch App\\obj\\",
+        "outputPath": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mensah\\AppData\\Roaming\\NuGet\\NuGet.Config",
