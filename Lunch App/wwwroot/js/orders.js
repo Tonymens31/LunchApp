@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿                                                                                                                                                                                                                                                                                                                                                                                     $(document).ready(function () {
     let dt = new DateHandler();
     btnState = 0;
     fmtDate = (s) => {
@@ -224,7 +224,8 @@
 
     function populateInputFields(data) {
         let { name, date, maindish, sidedish, condiment, orderFor, orderForStaff } = data;
-        console.log(orderFor);
+        console.log(orderForStaff);
+        console.log(name);
 
         $('#orderDate').val(date)
         $('#name').val(name)

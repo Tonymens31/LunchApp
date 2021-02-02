@@ -1,5 +1,7 @@
 ﻿
 $(document).ready(function () {
+    $('#myTable').DataTable();
+
     let btnState = 0;
     let sub = {
         1: { color: 'success', state: 'Active' },
@@ -17,7 +19,7 @@ $(document).ready(function () {
             id: 1,
             foodItem: "Jollof Rice",
             type: "Side Dish",
-            vendor: ["Champion Dishes", "Sweet Dishes"],
+            vendor: ["Champion Dishes", "Sweet Dishes", "Lovely Foods"],
             status: 1
         },
         {
@@ -34,8 +36,8 @@ $(document).ready(function () {
             vendor: ["Michael Nartey's Typical Local Chopbar"],
             status: 2
         },
-       
-       
+
+
     ]
 
     loadFoodItemData(foodItemsData);
@@ -47,13 +49,17 @@ $(document).ready(function () {
 
         data.map(item => {
             let vendors = item.vendor
-          
+
             view += `
                     <tr id="${item.id}">
                         <td>${item.foodItem}</td>
                         <td>${item.type}</td>
-                        <td><select placeholder="Vendors" class="form-control" style="border:none; width: 70%;height: 33px;padding-bottom: 5px;padding-top: 0px !important;">${vendors.map(x=>(`<option>${x}</option>`))}</select></td>
-                         <td>
+                        <td>
+                            <select placeholder="Vendors" class="form-control" style="border:none; width: 70%;height: 33px;padding-bottom: 5px;padding-top: 0px !important;">
+                                ${vendors.map(i =>(`<option>${i}</option>`))}
+                            </select>
+                        </td>
+                        <td>
                             <span class="badge badge-dot mr-4" style="background-color:transparent;padding: 0px;">
                                 <i class="bg-${item.status == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.status].color} btn-sm" disabled>${sub[item.status].state}</span>
                             </span>
@@ -80,14 +86,13 @@ $(document).ready(function () {
             foodItem: $("#foodItem").val(),
             type: $("#foodType").val(),
             vendor: $("#vendor").val(),
-           // pricing: $("#pricing").val(),
+            // pricing: $("#pricing").val(),
             status: parseInt($("#status").val())
         }
 
         console.log(formData)
-      
+
         foodItemsData.push(formData)
-        //console.log($("#status").val())
         loadFoodItemData(foodItemsData);
         $('#foodItemModal').modal('hide');
         clearFields()
@@ -186,7 +191,7 @@ $(document).ready(function () {
         })(i);
     }
 
-   
+
 
     $("#saveFoodItem").css('cursor', 'not-allowed');
     function validation() {
@@ -198,7 +203,7 @@ $(document).ready(function () {
     }
 
 
-    moneyInTxt( $("#pricing").val())
+    moneyInTxt($("#pricing").val())
     function moneyInTxt(value, standard = 'en', dec = 2) {
         //value = moneyInNum(value, standard);
         nf = new Intl.NumberFormat(standard, {

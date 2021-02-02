@@ -66,6 +66,7 @@ $(document).ready(function () {
     })
 
     function loadVendorData() {
+
         let view = ``;
 
         vendorData = [...new Map(vendorData.map(item => [item.id, item])).values()];
@@ -74,7 +75,7 @@ $(document).ready(function () {
         vendorData.map(item => {
             view += `<tr id=${item.id} >
                             <td>${item.vendorName}</td>
-                            <td>${item.phone1}</td>
+                            <td>${item.phone1.replace(/\s+/g, '')}</td>
                             <td>${item.vendorEmail}</td>
                             <td>
                                 <span class="badge badge-dot mr-4" style="background-color:transparent; padding: 0px;">
@@ -144,7 +145,7 @@ $(document).ready(function () {
                 btnState = 1
                 $("#saveVendor").html(`Update`)
                 $('#vendorModal').modal('show');
-
+               
             });
         }
     }
@@ -166,6 +167,7 @@ $(document).ready(function () {
         $('#vendorEmail').val(vendorEmail)
         $('#status').val(status)
         $('#vendorModal').modal('show');
+        $("btnAddVendor").html(`Update`)
 
     };
 

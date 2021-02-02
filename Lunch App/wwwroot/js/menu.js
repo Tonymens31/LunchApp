@@ -73,39 +73,41 @@
     ];
 
 
+
+
+    flatpickr('#menuDate', {
+        "minDate": new Date().fp_incr(1),
+        "dateFormat": "d-m-Y",
+        "disable": [
+            function (date) {
+                // return true to disable
+                return (date.getDay() === 0 || date.getDay() === 6);
+            }
+        ],
+        "locale": {
+            "firstDayOfWeek": 1 // start week on Monday
+        }
+    });
+
+    flatpickr('#expiryDate', {
+        "minDate": new Date().fp_incr(1),
+        "enableTime": true,
+        "dateFormat": "d-m-Y H:i",
+        "disable": [
+            function (date) {
+                // return true to disable
+                return (date.getDay() === 0 || date.getDay() === 6);
+            }
+        ],
+        "locale": {
+            "firstDayOfWeek": 1 // start week on Monday
+        }
+    });
     loadMenuData()
 
     function loadMenuData() {
         let view = ``;
 
-        flatpickr('#menuDate', {
-            "minDate": new Date().fp_incr(1),
-            "dateFormat": "d-m-Y",
-            "disable": [
-                function (date) {
-                    // return true to disable
-                    return (date.getDay() === 0 || date.getDay() === 6);
-                }
-            ],
-            "locale": {
-                "firstDayOfWeek": 1 // start week on Monday
-            }
-        });
-
-        flatpickr('#expiryDate', {
-            "minDate": new Date().fp_incr(1),
-            "enableTime": true,
-            "dateFormat": "d-m-Y H:i",
-            "disable": [
-                function (date) {
-                    // return true to disable
-                    return (date.getDay() === 0 || date.getDay() === 6);
-                }
-            ],
-            "locale": {
-                "firstDayOfWeek": 1 // start week on Monday
-            }
-        });
 
 
 

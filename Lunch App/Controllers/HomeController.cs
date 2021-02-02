@@ -36,6 +36,10 @@ namespace Lunch_App.Controllers
         {
             return View();
         }
+          public IActionResult Example()
+        {
+            return View();
+        }
 
           public IActionResult Menu()
         {
