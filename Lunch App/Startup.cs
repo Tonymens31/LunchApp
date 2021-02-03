@@ -36,6 +36,37 @@ namespace Lunch_App
                options.BaseAddress = new Uri(config.LunchAppUrl);
                 options.DefaultRequestHeaders.Accept.Clear();
             });
+
+            ConfigureIdentityServer(services);
+        }
+
+        private void ConfigureIdentityServer(IServiceCollection services)
+        {
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            .AddCookie("Cookies")
+            .AddOpenIdConnect("oidc", options =>
+            {
+                options.Authority = "";
+
+
+
+                options.SignedOutRedirectUri = "";
+                options.ClientId ="";
+                options.RequireHttpsMetadata = false;
+                options.Scope.Add("email");
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
+                options.Scope.Add("address");
+                options.Scope.Add(Configuration["IDPSETTINGS:ApiId"]);
+                options.ResponseType = "code";
+                options.CallbackPath ="";
+                options.SaveTokens = true;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

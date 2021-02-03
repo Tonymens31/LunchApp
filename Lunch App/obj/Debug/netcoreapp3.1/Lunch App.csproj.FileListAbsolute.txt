@@ -233,3 +233,10 @@ C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Deb
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.pdb
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.genruntimeconfig.cache
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Example.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

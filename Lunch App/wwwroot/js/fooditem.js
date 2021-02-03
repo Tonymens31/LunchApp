@@ -197,7 +197,8 @@ $(document).ready(function () {
     function validation() {
         $("#foodItem").val().length !== 0 &&
             $("#foodType").val().length !== 0 &&
-            $("#status").val() > 0 ?
+            $("#status").val() > 0 &&
+            $("#vendor").val().length > 0 ?
             ($("#saveFoodItem").prop('disabled', false), $("#saveFoodItem").css('cursor', 'pointer')) :
             ($("#saveFoodItem").prop('disabled', true), $("#saveFoodItem").css('cursor', 'not-allowed'))
     }
