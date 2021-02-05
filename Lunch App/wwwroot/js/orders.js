@@ -1,4 +1,4 @@
-﻿                                                                                                                                                                                                                                                                                                                                                                                     $(document).ready(function () {
+﻿$(document).ready(function () {
     let dt = new DateHandler();
     btnState = 0;
     fmtDate = (s) => {
@@ -7,7 +7,7 @@
         return fmt.replace("GMT", "")
     }
 
-   
+
 
     $('#btnAddOrder').click(function () {
         btnState = 0
@@ -105,7 +105,7 @@
     function loadOrderData() {
         let view = ``;
 
-        
+
         orderData = [...new Map(orderData.map(item => [item.id, item])).values()];
 
         orderData.map(item => {
@@ -128,7 +128,7 @@
         })
         $('#orderTable').html(view);
         bindButtonsToDOM()
-         $('#count').text(orderData.length);
+        $('#count').text(orderData.length);
     }
 
     $("#saveOrder").click(() => {
@@ -140,11 +140,11 @@
         });
         $("#name").prop('disabled', true)
         $('#orderingForField').hide()
-       // message('success', 'Order added sucessfully ');
+        // message('success', 'Order added sucessfully ');
     })
 
     function orderFood() {
-      
+
         let formdata = {
             id: uuidv4(),
             date: $("#orderDate").val(),
@@ -170,7 +170,7 @@
         $('#orderingForField').hide();
     })
 
-   
+
 
     //function addToTable(data) {
     //    let { date, name, maindish, sidedish, condiment, orderFor } = data;
@@ -224,7 +224,7 @@
 
     function populateInputFields(data) {
         let { name, date, maindish, sidedish, condiment, orderFor, orderForStaff } = data;
-      
+
         $('#orderDate').val(date)
         $('#name').val(name)
         $('#orderMainDish').val(maindish)
@@ -245,7 +245,7 @@
         $('#orderMainDish').val("")
         $('#orderSideDish').val("")
         $('#orderCondiment').val("")
-        $('#orderFor').val(-1) 
+        $('#orderFor').val(-1)
         $('#orderForStaff').val(-1)
     }
 
@@ -253,8 +253,8 @@
 
     $("#orderFor").change(function () {
 
-       //$("#name").prop('hidden', false)
-       
+        //$("#name").prop('hidden', false)
+
 
         if ($(this).val() == "staff") {
             orderForState = 0;
@@ -270,14 +270,14 @@
             $('#orderingForField').show()
             $("#orderForStaff").prop('hidden', true)
             $("#name").prop('hidden', false)
-            $("#name").prop('disabled',false)
+            $("#name").prop('disabled', false)
 
         }
     })
 
     $('#orderingForField').hide()
-  
-     
+
+
 
 
     //function validateSubmitFields() {
@@ -312,7 +312,7 @@
         }
         else if (orderForState === 0) {
             $("#orderDate").val() != '' &&
-                $("#orderForStaff").val().length > 0  &&
+                $("#orderForStaff").val().length > 0 &&
                 $("#orderMainDish").val().length != '' &&
                 $("#orderFor").val().length != '' &&
                 $("#orderSideDish").val().length != '' ?
@@ -329,7 +329,7 @@
                 ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
         }
 
-        
+
     }
 
     let findOrder = (id) => {
@@ -346,6 +346,33 @@
             return v.toString(16);
         });
     }
+
+    $("searchIcon").click(function () {
+        myFunction();
+        console.log(input)
+    })
+
+    function myFunction() {
+        var td, i, txtValue;
+        let input = document.getElementById("myInput");
+        let filter = input.value.toUpperCase();
+        let table = document.getElementById("myTable");
+        let tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    
 
     //var id = 0;
     //$(".searchIcon").click(function (e) {
