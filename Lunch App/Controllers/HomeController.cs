@@ -18,16 +18,16 @@ namespace Lunch_App.Controllers
             _logger = logger;
         }
 
-        
-        public IActionResult Index()
-        {
-            return View();
-        }
-        [Route("Dashboard")]
         public IActionResult Dashboard()
         {
             return View();
         }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+       
          public IActionResult FoodItem()
         {
             return View();

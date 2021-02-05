@@ -224,9 +224,7 @@
 
     function populateInputFields(data) {
         let { name, date, maindish, sidedish, condiment, orderFor, orderForStaff } = data;
-        console.log(orderForStaff);
-        console.log(name);
-
+      
         $('#orderDate').val(date)
         $('#name').val(name)
         $('#orderMainDish').val(maindish)
@@ -237,11 +235,9 @@
 
 
         $('#orderingForField').show()
-        $("#name").prop('disabled', false)
+        $('#name').prop('disabled', false)
         $('#orderModal').modal('show');
     };
-
-
 
     function clearFields() {
         $('#orderDate').val("")
@@ -249,7 +245,7 @@
         $('#orderMainDish').val("")
         $('#orderSideDish').val("")
         $('#orderCondiment').val("")
-        $('#orderFor').val(-1)
+        $('#orderFor').val(-1) 
         $('#orderForStaff').val(-1)
     }
 
@@ -265,8 +261,8 @@
             $('#orderingForField').show()
             $("#name").show();
             $("#orderForStaff").prop('hidden', false)
-            $("#name").prop('hidden', true)
             $("#name").prop('disabled', false)
+            //console.log('name')
         }
         else if
             ($(this).val() == "quest") {

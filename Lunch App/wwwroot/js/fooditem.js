@@ -121,7 +121,8 @@ $(document).ready(function () {
     }
 
     function populateInputFields(data) {
-        let = { foodItem, type, pricing, status } = data;
+        let = { foodItem, type, pricing, status, vendor } = data;
+        console.log(vendor)
         $('#foodItem').val(foodItem)
         $('#foodType').val(type)
         $('#status').val(status)
@@ -198,7 +199,7 @@ $(document).ready(function () {
         $("#foodItem").val().length !== 0 &&
             $("#foodType").val().length !== 0 &&
             $("#status").val() > 0 &&
-            $("#vendor").val().length > 0 ?
+            $("#vendor").val() > 0 ?
             ($("#saveFoodItem").prop('disabled', false), $("#saveFoodItem").css('cursor', 'pointer')) :
             ($("#saveFoodItem").prop('disabled', true), $("#saveFoodItem").css('cursor', 'not-allowed'))
     }
