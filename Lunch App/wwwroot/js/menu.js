@@ -166,8 +166,8 @@
         $('#menuModal').modal('hide');
         clearFields()
     }
-    $("#expiryDate").change(function () {
-    })
+
+    //$("#expiryDate").change(function () {})
 
     function bindButtonsToDOM() {
         let elements = document.getElementsByClassName('editButton');
@@ -178,7 +178,6 @@
                 btnState = 1
                 $("#saveMenu").html(`Update`)
                 $('#menuModal').modal('show');
-
             });
         }
     }
@@ -244,8 +243,6 @@
     //    $('#menuTable').prepend(tem);
     //    $('#menuModal').modal('hide');
     //}
-
-
 
 
     $("#saveMenu").css('cursor', 'not-allowed');
