@@ -40,9 +40,9 @@ $(document).ready(function () {
 
     ]
 
-    loadFoodItemData(foodItemsData);
+    CreateFoodItemTable(foodItemsData);
 
-    function loadFoodItemData(data) {
+    function CreateFoodItemTable(data) {
         let view = ``;
 
         data = [...new Map(foodItemsData.map(item => [item.id, item])).values()];
@@ -93,7 +93,7 @@ $(document).ready(function () {
         console.log(formData)
 
         foodItemsData.push(formData)
-        loadFoodItemData(foodItemsData);
+        CreateFoodItemTable(foodItemsData);
         $('#foodItemModal').modal('hide');
         clearFields()
     }

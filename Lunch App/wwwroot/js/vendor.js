@@ -232,9 +232,6 @@ $(document).ready(function () {
 
     emailAddress.addEventListener('focusout', () => {
         NoEmptyField(emailAddress.value) ? validateEmail(emailAddress.value) ?
-
-
-
             (emailAddress.style.border = "1px solid #e1e5ef") :
             (emailAddress.style.border = "1px solid red", emailAddress.focus()) :
             (emailAddress.style.border = "1px solid red", emailAddress.focus());
@@ -253,8 +250,6 @@ $(document).ready(function () {
 
     phoneNumber.addEventListener('focusout', () => {
         NoEmptyField(phoneNumber.value) ? validatePhone(phoneNumber.value) ?
-
-
 
             (phoneNumber.style.border = "1px solid #e1e5ef") :
             (phoneNumber.style.border = "1px solid red", phoneNumber.focus()) :
