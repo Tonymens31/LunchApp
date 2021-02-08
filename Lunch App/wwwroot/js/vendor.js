@@ -272,7 +272,6 @@ $(document).ready(function () {
             evt.preventDefault();
         }
     });
-   
 
     $("#phone2").on("keypress", function (evt) {
         var self = $(this);

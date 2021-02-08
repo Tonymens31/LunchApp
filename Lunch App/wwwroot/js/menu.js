@@ -148,7 +148,7 @@
         validation();
     })
 
-
+    //$( "#myselect option:selected" ).text();
     function MenuFood() {
         let formData = {
             id: uuidv4(),
