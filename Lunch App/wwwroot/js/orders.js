@@ -302,29 +302,29 @@
     $("#saveOrder").css('cursor', 'not-allowed');
     function validation() {
         if (orderForState === 1) {
-            $("#orderDate").val() != '' &&
-                $("#name").val().length != '' &&
-                $("#orderMainDish").val().length != '' &&
-                $("#orderFor").val().length != '' &&
-                $("#orderSideDish").val().length != '' ?
+            $("#orderDate").val().length > 0 &&
+                $("#name").val().length !== '' &&
+                $("#orderMainDish").val().length !== '' &&
+                $("#orderFor").val().length !== '' &&
+                $("#orderSideDish").val().length !== '' ?
                 ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
                 ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
         }
         else if (orderForState === 0) {
-            $("#orderDate").val() != '' &&
-                $("#orderForStaff").val().length > 0 &&
-                $("#orderMainDish").val().length != '' &&
-                $("#orderFor").val().length != '' &&
-                $("#orderSideDish").val().length != '' ?
+            $("#orderDate").val().length > 0 &&
+                $("#orderForStaff").val().length !== '' &&
+                $("#orderMainDish").val().length !== '' &&
+                $("#orderFor").val().length !== '' &&
+                $("#orderSideDish").val().length !== '' ?
                 ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
                 ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
         } else {
-            $("#orderDate").val() != '' &&
-                $("#name").val().length != '' &&
-                $("#orderForStaff").val().length != '' &&
-                $("#orderMainDish").val().length != '' &&
-                $("#orderFor").val().length != '' &&
-                $("#orderSideDish").val().length != '' ?
+            $("#orderDate").val().length > 0 &&
+                $("#name").val().length !== '' &&
+                $("#orderForStaff").val().length !== '' &&
+                $("#orderMainDish").val().length !== '' &&
+                $("#orderFor").val().length !== '' &&
+                $("#orderSideDish").val().length !== '' ?
                 ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
                 ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
         }

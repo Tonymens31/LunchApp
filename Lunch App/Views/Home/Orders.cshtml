@@ -22,7 +22,7 @@
                             <div class="col-md-4" style="margin-top: 5px !important">
                                 <div class="search-wrapper">
                                     <div class="input-holder">
-                                        <input type="text" id="myInput"  class="search-input" placeholder="Type  an order to search">
+                                        <input type="text" id="myInput" class="search-input" placeholder="Type  an order to search">
                                         <button id="searchIcon" class="search-icon searchIcon"><span></span></button>
                                     </div>
                                     <button class="close"></button>
@@ -86,16 +86,14 @@
                                 <label for="main dish" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Main Dish  <span class="text-danger">*</span> </label>
                                 <br />
                                 <select class="form-control required" id="orderMainDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
-                                    <option selected style="padding-left: 10px" disabled>Select Main Dish</option>
+                                    <option selected style="padding-left: 10px" value="-1" disabled>Select Main Dish</option>
                                     <option>Egg Stew with Fish</option>
                                     <option>Okro Stew with Meat</option>
                                     <option>Light Soup with Chicken</option>
                                 </select>
                             </div>
                         </div>
-
                         <div class="row">
-
                             <div class="col-md-5">
                                 <label for="side dish" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Side Dish  <span class="text-danger">*</span> </label>
                                 <br />
@@ -111,7 +109,7 @@
                                 <label for="condiment" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Condiment</label>
                                 <br />
                                 <select class="form-control" id="orderCondiment" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
-                                    <option selected style="padding-left: 10px" disabled>Select Condiment</option>
+                                    <option value="-1" selected style="padding-left: 10px" disabled>Select Condiment</option>
                                     <option>Extra Meat</option>
                                     <option>Extra Shito</option>
                                     <option>More Pepper</option>
@@ -119,12 +117,11 @@
                             </div>
                         </div>
                         <div class="row">
-
                             <div class="col-md-5">
                                 <label for="beverage" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Order for   <span class="text-danger">*</span> </label>
                                 <br />
                                 <select class="form-control required" id="orderFor" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
-                                    <option value="-1" selected style="padding-left: 10px" disabled>Choose</option>
+                                    <option value="0" selected style="padding-left: 10px" disabled>Choose</option>
                                     <option value="staff">Staff</option>
                                     <option value="quest">Guest</option>
                                 </select>
@@ -133,7 +130,7 @@
                                 <div id="orderingForField">
                                     <label for="guestName" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Name   <span class="text-danger">*</span> </label>
                                     <input hidden type="text" class="form-control  required" placeholder="Enter Guest Name" id="name">
-                                    <select  class="form-control required" id="orderForStaff" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
+                                    <select class="form-control required" id="orderForStaff" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
                                         <option value="-1" selected style="padding-left: 10px" disabled>Select Staff</option>
                                         <option>Tony Mens</option>
                                         <option>Mickey Mouse</option>
@@ -141,16 +138,13 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="saveOrder" class="btn btn-primary" disabled>Save  <i class="fa fa-save"></i></button>
                         <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
                     </div>
                 </form>
-
             </div>
-
         </div>
     </div>
 }
