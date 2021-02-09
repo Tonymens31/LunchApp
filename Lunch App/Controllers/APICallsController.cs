@@ -24,13 +24,25 @@ namespace Lunch_App.Controllers
 
        
 
-        [HttpGet("GetVendor")]
+        [HttpGet("api/")]
         public async Task<object> GetFoodMenu()
         {
-            var endpoint = $"{Configuration["APISETTINGS:HCMMenuBuilderMicroservice"]}Projects/GetAllProjects";
+            var endpoint = $"{Configuration["APISETTINGS:LunchAppMicroservice"]}Vendor/GetAllVendors";
             return await MethodAPIRequest.MakeRequestAsync(endpoint, "GET", null);
         }
 
+        [HttpPost("api/")]
+        public async Task<object> PostProject([FromBody] object data)
+        {
+            var endpoint = $"{Configuration["APISETTINGS:LunchAppMicroservice"]}Vendors/CreateVendor";
+            return await MethodAPIRequest.MakeRequestAsync(endpoint, "POST", data);
+        }
 
+        [HttpPut("api/putvendor/{vendorId}")]
+        public async Task<object> PutProject([FromBody] object data, string vendorId)
+        {
+            var endpoint = $"{Configuration["APISETTINGS:LunchAppMicroservice"]}Vendors/{vendorId}";
+            return await MethodAPIRequest.MakeRequestAsync(endpoint, "PUT", data);
+        }
     }
 }
