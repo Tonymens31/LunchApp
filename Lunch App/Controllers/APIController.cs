@@ -14,7 +14,7 @@ namespace Lunch_App.Controllers
     [ApiController]
     public class APIController : ControllerBase
     {
-        LunchAppService lunchAppService = new LunchAppService();
+        MethodAPIRequest lunchAppService = new MethodAPIRequest();
 
         public IConfiguration Configuration { get; set; }
         public APIController(IConfiguration configuration)

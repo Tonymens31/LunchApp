@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Lunch_App.HTTPServices
 {
-    public class LunchAppService : ILunchAppService
+    public class MethodAPIRequest : HelperInterface
     {
         static readonly HttpClient client = new HttpClient();
         public IConfiguration Configuration { get; set; }
-        public LunchAppService() { }
-        public LunchAppService(IConfiguration configuration)
+        public MethodAPIRequest() { }
+        public MethodAPIRequest(IConfiguration configuration)
         {
             Configuration = configuration;
         }

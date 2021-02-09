@@ -6,7 +6,6 @@
         return d.toUTCString().replace("GMT", "")
     }
 
-
     $('#btnAddMenu').click(function () {
         btnState = 0;
         $("#saveMenu").html(`<i class="fa fa-save"></i> Save`)
@@ -22,7 +21,6 @@
             condiment: "More Pepper",
             expiryDate: "20-01-2021 11:00",
             price: moneyInTxt("4", "en", 2)
-
         },
         {
             id: 2,
@@ -50,7 +48,6 @@
             condiment: "More Pepper",
             expiryDate: "20-01-2021 11:00",
             price: moneyInTxt("4", "en", 2)
-
         },
         {
             id: 2,
@@ -105,7 +102,6 @@
 
     function loadMenuData() {
         let view = ``;
-
         menuData = [...new Map(menuData.map(item => [item.id, item])).values()];
         menuData.map(item => {
             view += `

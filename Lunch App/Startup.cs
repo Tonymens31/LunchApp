@@ -31,7 +31,7 @@ namespace Lunch_App
 
 
 
-            services.AddHttpClient<ILunchAppService, LunchAppService>(options =>
+            services.AddHttpClient<HelperInterface, MethodAPIRequest>(options =>
             {
                options.BaseAddress = new Uri(config.LunchAppUrl);
                 options.DefaultRequestHeaders.Accept.Clear();
