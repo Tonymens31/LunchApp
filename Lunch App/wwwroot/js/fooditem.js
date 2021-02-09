@@ -56,7 +56,7 @@ $(document).ready(function () {
                         <td>${item.type}</td>
                         <td>
                             <select placeholder="Vendors" class="form-control" style="border:none; width: 70%;height: 33px;padding-bottom: 5px;padding-top: 0px !important;">
-                                ${vendors.map(i =>(`<option>${i}</option>`))}
+                                ${vendors.map(i => (`<option>${i}</option>`))}
                             </select>
                         </td>
                         <td>
@@ -107,16 +107,13 @@ $(document).ready(function () {
                 btnState = 1;
                 $("#saveFoodItem").html(`Update`)
                 $('#foodItemModal').modal('show');
-
             });
         }
-
     }
 
     function getRowData(rowId) {
         let data = foodItemsData.filter(ele => ele.id.toString() === rowId)[0];
         populateInputFields(data);
-
         // saveOrUpdate = 1;
     }
 
@@ -196,12 +193,12 @@ $(document).ready(function () {
 
     $("#saveFoodItem").css('cursor', 'not-allowed');
     function validation() {
-        $("#foodItem").val().length !== 0 &&
-            $("#foodType").val().length !== 0 &&
-            $("#status").val() > 0 &&
-            $("#vendor").val() > 0 ?
-            ($("#saveFoodItem").prop('disabled', false), $("#saveFoodItem").css('cursor', 'pointer')) :
-            ($("#saveFoodItem").prop('disabled', true), $("#saveFoodItem").css('cursor', 'not-allowed'))
+        $("#vendor").val() > 0 &&
+            $("#foodType").val().length > 0 &&
+            $("#foodItem").val().length !== 0 &&
+            $("#status").val() > 0 ?
+            ($("#saveFoodItem").prop('disabled', false), $("#saveFoodItem").css('cursor', 'not-allowed')) :
+            ($("#saveFoodItem").prop('disabled', true), $("#saveFoodItem").css('cursor', 'pointer'))
     }
 
 

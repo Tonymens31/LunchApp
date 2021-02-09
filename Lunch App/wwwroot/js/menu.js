@@ -73,8 +73,6 @@
     ];
 
 
-
-
     flatpickr('#menuDate', {
         "minDate": new Date().fp_incr(1),
         "dateFormat": "d-m-Y",
@@ -107,9 +105,6 @@
 
     function loadMenuData() {
         let view = ``;
-
-
-
 
         menuData = [...new Map(menuData.map(item => [item.id, item])).values()];
         menuData.map(item => {
