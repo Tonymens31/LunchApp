@@ -12,23 +12,23 @@ namespace Lunch_App.Controllers
    
     [Route("api/[controller]")]
     [ApiController]
-    public class APIController : ControllerBase
+    public class APICallsController : ControllerBase
     {
-        MethodAPIRequest lunchAppService = new MethodAPIRequest();
+        MethodAPIRequest MethodAPIRequest = new MethodAPIRequest();
 
         public IConfiguration Configuration { get; set; }
-        public APIController(IConfiguration configuration)
+        public APICallsController(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
        
 
-        [HttpGet("GetFoodMenu")]
+        [HttpGet("GetVendor")]
         public async Task<object> GetFoodMenu()
         {
             var endpoint = $"{Configuration["APISETTINGS:HCMMenuBuilderMicroservice"]}Projects/GetAllProjects";
-            return await lunchAppService.MakeRequestAsync(endpoint, "GET", null);
+            return await MethodAPIRequest.MakeRequestAsync(endpoint, "GET", null);
         }
 
 
