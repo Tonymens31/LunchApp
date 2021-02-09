@@ -312,7 +312,7 @@
         }
         else if (orderForState === 0) {
             $("#orderDate").val().length > 0 &&
-                $("#orderForStaff").val().length !== '' &&
+                $("#orderForStaff").val().length !== 0 &&
                 $("#orderMainDish").val().length !== '' &&
                 $("#orderFor").val().length !== '' &&
                 $("#orderSideDish").val().length !== '' ?

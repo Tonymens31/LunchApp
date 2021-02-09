@@ -1,10 +1,10 @@
 ﻿$(document).ready(function () {
     btnState = 0;
     let dt = new DateHandler();
-    //fmtDate = (s) => {
-    //    let d = new Date(Date.parse(s));
-    //    return d.toUTCString().replace("GMT", "")
-    //}
+    fmtDate = (s) => {
+        let d = new Date(Date.parse(s));
+        return d.toUTCString().replace("GMT", "")
+    }
 
 
     $('#btnAddMenu').click(function () {
@@ -140,7 +140,6 @@
             position: 'topRight',
             message: 'Menu saved successfully',
         });
-
     })
 
     $('#closeBtn').click(function () {
