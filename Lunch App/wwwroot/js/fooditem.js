@@ -189,17 +189,33 @@ $(document).ready(function () {
         })(i);
     }
 
+    $("#vendor").on('change', function () {
+        validation();
+    });
 
 
     $("#saveFoodItem").css('cursor', 'not-allowed');
+
     function validation() {
-        $("#vendor").val() > 0 &&
-            $("#foodType").val().length > 0 &&
-            $("#foodItem").val().length !== 0 &&
-            $("#status").val() > 0 ?
-            ($("#saveFoodItem").prop('disabled', false), $("#saveFoodItem").css('cursor', 'not-allowed')) :
-            ($("#saveFoodItem").prop('disabled', true), $("#saveFoodItem").css('cursor', 'pointer'))
+        var vendor = $("#vendor").val() ? true : false;
+        if (vendor && $("#foodType").val().length > 0 &&
+            $("#foodItem").val().length !== 0 && $("#status").val() > 0) {
+            $("#saveFoodItem").prop('disabled', false);
+            $("#saveFoodItem").css('cursor', 'pointer')
+        } else {
+            $("#saveFoodItem").prop('disabled', true);
+            $("#saveFoodItem").css('cursor', 'not-allowed')
+        }
     }
+
+    $("#foodItemModal").on('hidden.bs.modal', function () {
+        $("#vendor").val([]); 
+        $("#foodItem").val("");
+        $("#foodType").val("");
+        $("#status").val(0);
+        $("#saveFoodItem").prop('disabled', true);
+        $("#saveFoodItem").css('cursor', 'not-allowed')
+    })
 
 
     moneyInTxt($("#pricing").val())
