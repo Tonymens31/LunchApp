@@ -35,9 +35,7 @@ $(document).ready(function () {
             type: "Main Dish",
             vendor: ["Michael Nartey's Typical Local Chopbar"],
             status: 2
-        },
-
-
+        }
     ]
 
     CreateFoodItemTable(foodItemsData);
@@ -89,9 +87,6 @@ $(document).ready(function () {
             // pricing: $("#pricing").val(),
             status: parseInt($("#status").val())
         }
-
-        console.log(formData)
-
         foodItemsData.push(formData)
         CreateFoodItemTable(foodItemsData);
         $('#foodItemModal').modal('hide');
@@ -114,7 +109,6 @@ $(document).ready(function () {
     function getRowData(rowId) {
         let data = foodItemsData.filter(ele => ele.id.toString() === rowId)[0];
         populateInputFields(data);
-        // saveOrUpdate = 1;
     }
 
     function populateInputFields(data) {
@@ -126,7 +120,6 @@ $(document).ready(function () {
         $('#vendor').val(vendor)
         $('#foodItemModal').modal('show');
     };
-
 
     function clearFields() {
         $('#foodItem').val("");
@@ -148,26 +141,7 @@ $(document).ready(function () {
             message: 'Food item saved successfully',
         });
     })
-
-    //function addToTable(data) {
-    //    let { foodItem, foodType, status } = data;
-    //    let tem = `<tr id="">
-    //                <td>${foodItem}</td>
-    //                <td>${foodType}</td>
-    //                <td>
-    //                    <span class="badge badge-dot mr-4">
-    //                        <i class="bg-${status == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[status].color} btn-sm" disabled>${sub[status].state}</span>
-    //                    </span>
-    //                </td>
-    //                <td class="">
-    //                        <a href="#" class="text-inverse editButton" id="${item.id}"  title="Edit"><i class="fas fa-edit"></i></a>
-    //                        <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
-    //                    </td>
-    //            </tr>`;
-
-    //    $('#foodItemTable').prepend(tem);
-    //    $('#foodItemModal').modal('hide');
-    //}
+   
 
     function uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -221,7 +195,6 @@ $(document).ready(function () {
 
     moneyInTxt($("#pricing").val())
     function moneyInTxt(value, standard = 'en', dec = 2) {
-        //value = moneyInNum(value, standard);
         nf = new Intl.NumberFormat(standard, {
             minimumFractionDigits: dec,
             maximumFractionDigits: 2
