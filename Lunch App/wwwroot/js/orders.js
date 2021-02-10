@@ -242,11 +242,11 @@
     function clearFields() {
         $('#orderDate').val("")
         $('#name').val("")
-        $('#orderMainDish').val("")
-        $('#orderSideDish').val("")
-        $('#orderCondiment').val("")
-        $('#orderFor').val(-1)
-        $('#orderForStaff').val(-1)
+        $('#orderMainDish').val(0)
+        $('#orderSideDish').val(0)
+        $('#orderCondiment').val(0)
+        $('#orderFor').val(0)
+        $('#orderForStaff').val(0)
     }
 
     let orderForState = 0;
@@ -312,7 +312,7 @@
         }
         else if (orderForState === 0) {
             $("#orderDate").val().length > 0 &&
-                $("#orderForStaff").val().length !== 0 &&
+                $("#orderForStaff").val() > 0 &&
                 $("#orderMainDish").val().length !== '' &&
                 $("#orderFor").val().length !== '' &&
                 $("#orderSideDish").val().length !== '' ?
@@ -320,25 +320,23 @@
                 ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
         } else {
             $("#orderDate").val().length > 0 &&
-                $("#name").val().length !== '' &&
-                $("#orderForStaff").val().length !== '' &&
+                $("#name").val().length !== 0 &&
+                $("#orderForStaff").val() > 0 &&
                 $("#orderMainDish").val().length !== '' &&
                 $("#orderFor").val().length !== '' &&
                 $("#orderSideDish").val().length !== '' ?
                 ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
                 ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
         }
-
-
     }
 
-    let findOrder = (id) => {
-        let getOrder = $.grep(orderData, (order) => {
-            return order.id == id;
-        });
-        console.log(getOrder)
-        return getOrder[0] ? getOrder[0] : null;
-    }
+    //let findOrder = (id) => {
+    //    let getOrder = $.grep(orderData, (order) => {
+    //        return order.id == id;
+    //    });
+    //    console.log(getOrder)
+    //    return getOrder[0] ? getOrder[0] : null;
+    //}
 
     function uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
