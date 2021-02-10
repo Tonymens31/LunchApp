@@ -28,7 +28,7 @@
                                 <button class="btn btn-lg btn-outline-primary pull-right" style="margin-bottom: 15px;" id="holidayBtn">Add Holiday</button>
                             </div>
                         </div>
-                        <div  class="table-responsive tableFixHead" style="height: 480px; overflow:auto" >
+                        <div class="table-responsive tableFixHead" style="height: 480px; overflow:auto">
                             <table class="mb-0 table table-striped table-hover">
                                 <thead>
                                     <tr style="background-color: #063970; color: white;">
@@ -53,14 +53,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Add Holiday</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="far fa-times-circle text-danger"></i> </button>
+                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="far fa-times-circle text-danger"></i> </button>*@
                 </div>
                 <form class="form-horizontal" id="appForm">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-5">
                                 <label for="Date" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Date   <span class="text-danger">*</span></label>
-                                <input type="text" placeholder="Select Date"style="background-color: white" class="form-control required" id="date">
+                                <input type="text" placeholder="Select Date" style="background-color: white" class="form-control required" id="date">
                             </div>
                             <div class="col-lg-7">
                                 <label for="name" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Name   <span class="text-danger">*</span></label>
@@ -68,16 +68,16 @@
                             </div>
                         </div>
                         @*<div class="row">
-                            <div class="form-check col-md-6">
-                                <label class="form-check-label" for="repeating">Repeating
-                                </label>
-                                <input class="form-check-input" style="" type="checkbox" value="" id="">
-                            </div>
-                        </div>*@
-                    <div class="modal-footer">
-                        <button type="button" id="saveHoliday" class="btn btn-primary" disabled>Save  <i class="fa fa-save"></i></button>
-                        <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
-                    </div>
+                                <div class="form-check col-md-6">
+                                    <label class="form-check-label" for="repeating">Repeating
+                                    </label>
+                                    <input class="form-check-input" style="" type="checkbox" value="" id="">
+                                </div>
+                            </div>*@
+                        <div class="modal-footer">
+                            <button type="button" id="saveHoliday" class="btn btn-primary" disabled>Save  <i class="fa fa-save"></i></button>
+                            <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </form>
 

@@ -179,6 +179,14 @@ $(document).ready(function () {
         $('#status').val(-1)
     }
 
+    $('#close').on('click', function () {
+        console.log('Accra')
+        $('#vendorName').val("")
+        $('#phone1').val("")
+        $('#phone2').val("")
+        $('#vendorEmail').val("")
+        $('#status').val(-1)
+    });
 
     function uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
