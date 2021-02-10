@@ -132,7 +132,7 @@ $(document).ready(function () {
         $('#foodItem').val("");
         $('#foodType').val(-1);
         $('#status').val(-1);
-        $('#vendor').val(0);
+        $('#vendor')[0].sumo.unSelectAll();
         $("#saveFoodItem").prop('disabled', true)
         $("#saveFoodItem").css('cursor', 'not-allowed');
     }
