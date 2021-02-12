@@ -43,7 +43,7 @@ $(document).ready(function () {
     function CreateFoodItemTable(data) {
         let view = ``;
 
-        data = [...new Map(foodItemsData.map(item => [item.id, item])).values()];
+        //data = [...new Map(foodItemsData.map(item => [item.id, item])).values()];
 
         data.map(item => {
             let vendors = item.vendor

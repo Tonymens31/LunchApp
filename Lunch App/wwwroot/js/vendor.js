@@ -1,9 +1,11 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     btnState = 0;
+    let companyId = "00000000-0000-0000-0000-000000000000";
+    let saveOrUpdate = 0;
+    saveLoadedData = [];
     let sub = {
         1: { color: 'success', state: 'Active' },
-        2: { color: 'danger', state: 'Inactive' }
+        0: { color: 'danger', state: 'Inactive' }
     };
 
     $('#btnAddVendor').click(function () {
@@ -12,6 +14,26 @@ $(document).ready(function () {
         $('#vendorModal').modal('show');
       
     });
+
+    
+
+    loadVendors();
+
+    function loadVendors() {
+        makeAPIRequest(`${_path_url}APICalls/GetAllVendor/${companyId}`, 'GET', '', function (data) {
+            console.log(data)
+            if (data) {
+                createVendorTable(JSON.parse(data), '#vendorTable');
+            }
+        });
+    }
+
+    //function loadAPIData(data) {
+    //    if (data) {
+    //        data = JSON.parse(data);
+    //        createVendorTable(data, '#vendorTable');
+    //    }
+    //}
 
     let vendorData = [
         {
@@ -58,28 +80,23 @@ $(document).ready(function () {
         }
     ];
 
-    loadVendorData();
+    createVendorTable();
 
     $('#closeBtn').click(function () {
         clearFields();
         validation();
     })
 
-    function loadVendorData() {
-
-        let view = ``;
-
-        vendorData = [...new Map(vendorData.map(item => [item.id, item])).values()];
-
-
-        vendorData.map(item => {
-            view += `<tr id=${item.id} >
-                            <td>${item.vendorName}</td>
-                            <td>${item.phone1.replace(/\s+/g, '')}</td>
-                            <td>${item.vendorEmail}</td>
+    function createVendorTable(data, tableId) {
+      
+       
+        let tem = data.map(item => (`<tr id=${item.id} >
+                            <td>${item.name}</td>
+                            <td>${item.phone.replace(/\s+/g, '')}</td>
+                            <td>${item.email}</td>
                             <td>
                                 <span class="badge badge-dot mr-4" style="background-color:transparent; padding: 0px;">
-                                <i class="bg-${item.status == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.status].color} btn-sm" disabled>${sub[item.status].state}</span>
+                                <i class="bg-${item.isActive == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.isActive].color} btn-sm" disabled>${sub[item.isActive].state}</span>
                             </span>
                            </td>
                            <td class="">
@@ -87,20 +104,18 @@ $(document).ready(function () {
                               
                            </td>
                         </tr>
-                    `
-        })
-        $('#vendorTable').html(view);
+                    `));
+      
+        $(tableId).html(tem);
         bindButtonsToDOM() 
     }
 
     $("#saveVendor").click(() => {
         vendorList();
         validation();
-        iziToast.success({
-            position: 'topRight',
-            message: 'Vendor saved successfully',
-        });
-        //message('success', 'Vendor added sucessfully ');
+        $('#vendorModal').modal('hide'); ///getallvendor/{companyid}lunch-general-api/CreateVendors
+
+        saveOrUpdate != 1 ? createVendor('APICalls/GetAllVendor/00000000-0000-0000-0000-000000000000', loadVendors) : console.log('hello')
     })
 
     function vendorList() {
@@ -112,10 +127,9 @@ $(document).ready(function () {
             vendorEmail: $("#vendorEmail").val(),
             status: parseInt($("#status").val())
         }
-        console.log(formdata);
 
-        vendorData.push(formdata)
-        loadVendorData();
+        saveLoadedData.push(formdata)
+        createVendorTable();
         $('#vendorModal').modal('hide');
         clearFields()
         
@@ -153,7 +167,7 @@ $(document).ready(function () {
     function getRowData(rowId) {
         let data = vendorData.filter(ele => ele.id.toString() === rowId)[0];
         populateInputFields(data);
-        // saveOrUpdate = 1;
+         saveOrUpdate = 1;
     }
 
     function populateInputFields(data) {
@@ -296,6 +310,30 @@ $(document).ready(function () {
             evt.preventDefault();
         }
     });
+
+    function reloadVendors() {
+        makeAPIRequest('/api/application/getapplicationbyprojectid/', 'GET', '', function (data) {
+            if (data) {
+                createVendorTable(JSON.parse(data), '#vendorTable');
+            }
+        });
+    }
+
+    
+
+    function createVendor(url, data) {
+        makeAPIRequest(url, 'POST', data, function (response) {
+            reloadVendors()
+           
+        });
+    }
+
+    function updateVendor(url, data) {
+        makeAPIRequest(url, 'PUT', data, function (response) {
+            reloadVendors()
+           
+        });
+    }
    
 });
 

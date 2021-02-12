@@ -1,5 +1,11 @@
-﻿function readExternalFile(file, mime, callback) {
+﻿
+window.location.href.indexOf("localhost") > -1 ? _path_url = `${window.location.origin}/` :
+    _path_url = `${window.location.origin}/`;
+
+function readExternalFile(file, mime, callback) {
     let overrideMime = ''
+
+
 
     mime === 'json' ? overrideMime = "application/json" : mime === 'html' ? overrideMime = "text/html" : overrideMime = "text/plain"
 
@@ -14,14 +20,19 @@
     dataFile.send(null);
 }
 
+
+
+
 function makeAPIRequest(url, method, data = "", callback) {
+
     switch (method) {
         case 'GET':
             getRequest(url, callback)
             break;
         case 'POST':
+            postRequest(url, method, data, callback)
         case 'PUT':
-            postOtPutRequest(url, method, data, callback)
+            putRequest(url, method, data, callback)
             break
         case 'DELETE':
             deleteRequest(url, callback)
@@ -38,7 +49,7 @@ function makeAPIRequest(url, method, data = "", callback) {
         }).then(res => res.text()).then(data => callback(data)).catch((error) => callback(error));
     }
 
-    function postOtPutRequest(url, method, data, callback) {
+    function postRequest(url, method, data, callback) {
         fetch(url, {
             method: method,
             headers: {
@@ -47,6 +58,16 @@ function makeAPIRequest(url, method, data = "", callback) {
             body: JSON.stringify(data),
         }).then(data => data.text()).then(data => callback(data));
     }
+    function putRequest(url, method, data, callback) {
+        fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }).then(data => data.text()).then(data => callback(data));
+    }
+
 }
 
 function uuidv4() {
@@ -57,12 +78,12 @@ function uuidv4() {
 }
 
 function setColorToToastr(state) {
-    if (state == true){
+    if (state == true) {
         $('.iziToast-theme-light').addClass('success-color');
     } else {
         $('.iziToast-theme-light').removeClass('success-color');
     }
-}   
+}
 
 function messenger(message) {
     switch (message.toLowerCase()) {
@@ -138,7 +159,7 @@ function validatePhone(data) {
     else if (data.length > 10) {
         return false
     }
-   return false
+    return false
 }
 
 function message(type, mess) {

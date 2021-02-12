@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Lunch_App.Controllers
 {
    
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class APICallsController : ControllerBase
     {
@@ -24,17 +24,17 @@ namespace Lunch_App.Controllers
 
        
 
-        [HttpGet("api/")]
-        public async Task<object> GetFoodMenu()
+        [HttpGet("GetAllVendor/{companyid}")]
+        public async Task<object> GetAllVendors(string companyid)
         {
-            var endpoint = $"{Configuration["APISETTINGS:LunchAppMicroservice"]}Vendor/GetAllVendors";
+            var endpoint = Config.Current.LunchAppUrl+"GetAllVendor/"+companyid;
             return await MethodAPIRequest.MakeRequestAsync(endpoint, "GET", null);
         }
 
-        [HttpPost("api/")]
-        public async Task<object> PostProject([FromBody] object data)
+        [HttpPost("api/createVendors/{companyId}")]
+        public async Task<object> PostVendor([FromBody] object data)
         {
-            var endpoint = $"{Configuration["APISETTINGS:LunchAppMicroservice"]}Vendors/CreateVendor";
+            var endpoint =$"{Configuration["APISETTINGS:LunchAppMicroservice"]}Vendors/CreateVendor";
             return await MethodAPIRequest.MakeRequestAsync(endpoint, "POST", data);
         }
 
