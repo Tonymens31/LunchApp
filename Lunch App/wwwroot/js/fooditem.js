@@ -3,7 +3,6 @@ $(document).ready(function () {
     $('#myTable').DataTable();
     let saveOrUpdate = 0;
     let btnState = 0;
-
     let sub = {
         1: { color: 'success', state: 'Active' },
         0: { color: 'danger', state: 'Inactive' }
@@ -19,7 +18,7 @@ $(document).ready(function () {
         $('#Foodtable').DataTable({
             data: data,
             searching: true,
-            scrollY: '50vh',
+            scrollY: '48vh',
             pagingType: "simple_numbers",
             className: "blue",
             fixedHeader: {
@@ -42,9 +41,18 @@ $(document).ready(function () {
                 },
                 {
                     title: "Status",
-                    data: "isActive"
+                    data: "isActive",
+                    render: function (data) {
+                        return data === 1 ? `<button class="btn btn-success btn-sm">Active</button>` : `<button class="btn btn-sm btn-danger">Inactive</button>`;
+                    }
                 },
-                { title: "Actions" },
+                {
+                    title: "Actions", render: function () {
+                        return ` <a href="#" class="text-inverse editButton" title="Edit"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
+                        `;
+                    }
+                },
             ]
         });
     }
@@ -56,35 +64,36 @@ $(document).ready(function () {
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)                                                               
                 loadDataTable(data);
-                if (data) {
-                    createFoodItemTable(data, '#foodItemTable');
-                }
+                console.log(data)
+                //if (data) {
+                //    createFoodItemTable(data, '#foodItemTable');
+                //}
             });
     };
     loadFoodItems();
 
    
    
-    function createFoodItemTable(data, tableId) {
-        let tem = data.map(item => (`<tr id=${item.id} >
-                            <td>${item.name}</td>
-                            <td>${item.typeId}</td>
-                            <td>${item.vendorId}</td>
-                            <td>
-                                <span class="badge badge-dot mr-4" style="background-color:transparent; padding: 0px;">
-                                <i class="bg-${item.isActive == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.isActive].color} btn-sm" disabled>${sub[item.isActive].state}</span>
-                            </span>
-                           </td>
-                           <td class="">
-                                <a href="#" class="text-inverse editButton"  id="${item.id}"   title="Edit"><i class="fas fa-edit fa-1x"></i></a>
+    //function createFoodItemTable(data, tableId) {
+    //    let tem = data.map(item => (`<tr id=${item.id} >
+    //                        <td>${item.name}</td>
+    //                        <td>${item.typeId}</td>
+    //                        <td>${item.vendorId}</td>
+    //                        <td>
+    //                            <span class="badge badge-dot mr-4" style="background-color:transparent; padding: 0px;">
+    //                            <i class="bg-${item.isActive == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.isActive].color} btn-sm" disabled>${sub[item.isActive].state}</span>
+    //                        </span>
+    //                       </td>
+    //                       <td class="">
+    //                            <a href="#" class="text-inverse editButton"  id="${item.id}"   title="Edit"><i class="fas fa-edit fa-1x"></i></a>
                               
-                           </td>
-                        </tr>
-                    `));
+    //                       </td>
+    //                    </tr>
+    //                `));
 
-        $(tableId).html(tem);
-        bindButtonsToDOM()
-    }
+    //    $(tableId).html(tem);
+    //    bindButtonsToDOM()
+    //}
 
 
     makeAPIRequest(``, 'GET', '', loadForSelectBox);

@@ -72,9 +72,9 @@
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
                 loadDataTable(data);
-                if (data) {
-                    createVendorTable(data, '#vendorTable');
-                }
+                //if (data) {
+                //    createVendorTable(data, '#vendorTable');
+                //}
             });
     };
     loadVendors();
@@ -88,9 +88,9 @@
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
                 console.log(data);
-                if (data) {
-                    createVendorTable(data, '#vendorTable');
-                }
+                //if (data) {
+                //    createVendorTable(data, '#vendorTable');
+                //}
             });
     }
 
@@ -103,9 +103,9 @@
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
                 console.log(data);
-                if (data) {
-                    createVendorTable(data, '#vendorTable');
-                }
+                ////if (data) {
+                ////    createVendorTable(data, '#vendorTable');
+                ////}
             });
     }
 
@@ -125,26 +125,26 @@
         validation();
     })
 
-    function createVendorTable(data, tableId) {
-        let tem = data.map(item => (`<tr id=${item.id} >
-                            <td>${item.name}</td>
-                            <td>${item.phone.replace(/\s+/g, '')}</td>
-                            <td>${item.email}</td>
-                            <td>
-                                <span class="badge badge-dot mr-4" style="background-color:transparent; padding: 0px;">
-                                <i class="bg-${item.isActive == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.isActive].color} btn-sm" disabled>${sub[item.isActive].state}</span>
-                            </span>
-                           </td>
-                           <td class="">
-                                <a href="#" class="text-inverse editButton"  id="${item.id}"  title="Edit"><i class="fas fa-edit fa-1x"></i></a>
-                                <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
-                           </td>
-                        </tr>
-                    `));
+    //function createVendorTable(data, tableId) {
+    //    let tem = data.map(item => (`<tr id=${item.id} >
+    //                        <td>${item.name}</td>
+    //                        <td>${item.phone.replace(/\s+/g, '')}</td>
+    //                        <td>${item.email}</td>
+    //                        <td>
+    //                            <span class="badge badge-dot mr-4" style="background-color:transparent; padding: 0px;">
+    //                            <i class="bg-${item.isActive == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.isActive].color} btn-sm" disabled>${sub[item.isActive].state}</span>
+    //                        </span>
+    //                       </td>
+    //                       <td class="">
+    //                            <a href="#" class="text-inverse editButton"  id="${item.id}"  title="Edit"><i class="fas fa-edit fa-1x"></i></a>
+    //                            <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
+    //                       </td>
+    //                    </tr>
+    //                `));
 
-        $(tableId).html(tem);
-        bindButtonsToDOM(data)
-    }
+    //    $(tableId).html(tem);
+    //    bindButtonsToDOM(data)
+    //}
 
 
     function bindButtonsToDOM(data) {
