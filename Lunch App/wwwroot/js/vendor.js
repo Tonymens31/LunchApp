@@ -44,9 +44,19 @@
                 },
                 {
                     title: "Status",
-                    data: "isActive"
+                    data: "isActive",
+                    render: function (data) {
+                        return data === 1 ? `<button class="btn btn-success btn-sm">Active</button>` : `<button class="btn btn-sm btn-danger">Inactive</button>`;
+                    }
                 },
-                { title: "Actions" },
+                {
+                    title: "Actions",
+                    render: function () {
+                        return ` <a href="#" class="text-inverse editButton" id="id" title="Edit"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
+                        `;
+                    }
+                }
             ]
         });
 

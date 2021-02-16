@@ -54,7 +54,7 @@ $(document).ready(function () {
         makeAPIRequest(`${_path_url}FoodItems/GetAllFoodItem`, data)
             .done(function (data) {
                 data = JSON.parse(data)
-                data = JSON.parse(data.Body)
+                data = JSON.parse(data.Body)                                                               
                 loadDataTable(data);
                 if (data) {
                     createFoodItemTable(data, '#foodItemTable');
