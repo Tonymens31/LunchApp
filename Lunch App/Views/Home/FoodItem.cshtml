@@ -1,6 +1,12 @@
 ﻿
 @{
     ViewData["Title"] = "FoodItem";
+    <style>
+        th {
+            color: white !important
+        }
+    </style>
+}
 }
 <div class="app-main__outer">
     <div class="app-main__inner">
@@ -28,24 +34,24 @@
                                 <button class="btn btn-md btn-outline-primary pull-right" style="margin-bottom: 15px" id="foodModal">Add Food</button>
                             </div>
                         </div>
-                        <table id="Foodtable" class="mb-0 table table-striped table-hover" width="100%"></table>
+                        <table id="table" class="mb-0 table table-striped table-hover" width="100%"></table>
 
 
                         @*<div class="table-responsive tableFixHead" style="height: 480px;">
-            <table class="mb-0 table fluid table table-striped table-hover">
-                <thead>
-                    <tr style="background-color: #063970; color: white;">
-                        <th width="25%">Food</th>
-                        <th width="15%">Type</th>
-                        <th width="5">Vendor(s)</th>
-                        <th width="15%" style="z-index: 10000 !important;">Status</th>
-                        <th width="5%">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="foodItemTable">
-                </tbody>
-            </table>
-        </div>*@
+                                <table class="mb-0 table fluid table table-striped table-hover">
+                                    <thead>
+                                        <tr style="background-color: #063970; color: white;">
+                                            <th width="25%">Food</th>
+                                            <th width="15%">Type</th>
+                                            <th width="5">Vendor(s)</th>
+                                            <th width="15%" style="z-index: 10000 !important;">Status</th>
+                                            <th width="5%">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="foodItemTable">
+                                    </tbody>
+                                </table>
+                            </div>*@
                     </div>
                 </div>
             </div>
@@ -116,7 +122,7 @@
 }
 
 @section Scripts{
-    <script src="~/js/fooditem.js"></script>
+    <script src="~/js/fooditem.js" asp-append-version="true"></script>
 }
 
 

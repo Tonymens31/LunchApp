@@ -25,9 +25,6 @@
                 header: true,
                 headerOffset: $('#header').height()
             },
-            dataTables_filter: {
-                float: screenLeft
-            },
             responsive: true,
             columns: [
                 {
@@ -50,9 +47,9 @@
                     }
                 },
                 {
-                    title: "Actions",
-                    render: function () {
-                        return ` <a href="#" class="text-inverse editButton" id="id" title="Edit"><i class="fas fa-edit"></i></a>
+                    data: "id",
+                    title: "Actions", render: function (data) {
+                        return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
                                 <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
                         `;
                     }

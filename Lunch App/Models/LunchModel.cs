@@ -13,8 +13,8 @@ namespace Lunch_App.Models
         public string phone { get; set; }
         public string tel { get; set; }
         public int isActive { get; set; }
-        public string pkId { get; set; }
+        public string pkId { get; set; } 
+        
     }
-
-
+   
 }

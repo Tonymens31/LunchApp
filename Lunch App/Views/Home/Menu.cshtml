@@ -1,6 +1,11 @@
 ﻿
 @{
     ViewData["Title"] = "Menu";
+    <style>
+        th {
+            color: white !important
+        }
+    </style>
 }
 <div class="app-main__outer">
     <div class="app-main__inner">
@@ -28,7 +33,9 @@
                                 <button class="btn btn-lg btn-outline-primary pull-right" style="margin-bottom: 15px" id="btnAddMenu">Add Menu</button>
                             </div>
                         </div>
-                        <div class="table-responsive tableFixHead" style="height: 480px; overflow:auto">
+                        <table id="table" class="mb-0 table table-striped table-hover" width="100%"></table>
+
+                        @*<div class="table-responsive tableFixHead" style="height: 480px; overflow:auto">
                             <table class="mb-0 table table-striped table-hover">
                                 <thead>
                                     <tr style="background-color: #063970; color: white;">
@@ -43,13 +50,13 @@
                                 </thead>
                                 <tbody id="menuTable">
                                 </tbody>
-                            </table>
-                        </div>
+                            </table>*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 @section Modals{
@@ -108,12 +115,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-5 ">
-                                <label for="pricing" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Price  <span class="text-danger">*</span> </label>
+                                <label for="pricing" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Price  </label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3"><strong>GH₵                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </strong></span>
                                     </div>
-                                    <input type="number" min="0" style="background-color: white" placeholder="Pricing" class="form-control required" id="price">
+                                    <input type="number" min="0" style="background-color: white" placeholder="Pricing" class="form-control" id="price">
                                 </div>
                             </div>
                             <div class="col-md-7">
@@ -133,7 +140,7 @@
 }
 
 @section Scripts{
-    <script src="~/js/menu.js"></script>
+    <script src="~/js/menu.js" asp-append-version="true"></script>
 }
 
 

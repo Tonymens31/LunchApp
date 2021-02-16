@@ -7,6 +7,9 @@ $(document).ready(function () {
         1: { color: 'success', state: 'Active' },
         0: { color: 'danger', state: 'Inactive' }
     };
+    let mtTab;
+
+    //var table = $('#table').DataTable();
 
     $('#foodModal').click(function () {
         btnState = 0;
@@ -15,7 +18,7 @@ $(document).ready(function () {
     })
 
     function loadDataTable(data) {
-        $('#Foodtable').DataTable({
+       mtTab =   $('#table').DataTable({
             data: data,
             searching: true,
             scrollY: '48vh',
@@ -33,11 +36,11 @@ $(document).ready(function () {
                 },
                 {
                     title: "Type",
-                    data: "typeId"
+                    data: "type"
                 },
                 {
                     title: "Vender",
-                    data: "vendorId"
+                    data: "vendor"
                 },
                 {
                     title: "Status",
@@ -47,8 +50,9 @@ $(document).ready(function () {
                     }
                 },
                 {
-                    title: "Actions", render: function () {
-                        return ` <a href="#" class="text-inverse editButton" title="Edit"><i class="fas fa-edit"></i></a>
+                    data: "id",
+                    title: "Actions", render: function (data) {
+                        return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
                                 <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
                         `;
                     }
@@ -57,137 +61,102 @@ $(document).ready(function () {
         });
     }
 
+    //$(".editButton").click(() => {
+    //    alert("ok")
+    //})
+    $(document).on("click", ".editButton", function () {
+       console.log($(this).val())
+    })
+    //$(".editButton").on('click', 'tr', function() {
+    //    console.log(mtTab.row(this).data());
+    //});
+
     function loadFoodItems() {
         let data = { companyId: companyId };
-        makeAPIRequest(`${_path_url}FoodItems/GetAllFoodItem`, data)
+        makeAPIRequest(`${_path_url}FoodItems/GetAllFoodItems`, data)
             .done(function (data) {
-                data = JSON.parse(data)
-                data = JSON.parse(data.Body)                                                               
-                loadDataTable(data);
                 console.log(data)
-                //if (data) {
-                //    createFoodItemTable(data, '#foodItemTable');
-                //}
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                loadDataTable(data);
+
             });
     };
     loadFoodItems();
 
-   
-   
-    //function createFoodItemTable(data, tableId) {
-    //    let tem = data.map(item => (`<tr id=${item.id} >
-    //                        <td>${item.name}</td>
-    //                        <td>${item.typeId}</td>
-    //                        <td>${item.vendorId}</td>
-    //                        <td>
-    //                            <span class="badge badge-dot mr-4" style="background-color:transparent; padding: 0px;">
-    //                            <i class="bg-${item.isActive == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.isActive].color} btn-sm" disabled>${sub[item.isActive].state}</span>
-    //                        </span>
-    //                       </td>
-    //                       <td class="">
-    //                            <a href="#" class="text-inverse editButton"  id="${item.id}"   title="Edit"><i class="fas fa-edit fa-1x"></i></a>
-                              
-    //                       </td>
-    //                    </tr>
-    //                `));
 
-    //    $(tableId).html(tem);
-    //    bindButtonsToDOM()
+
+
+    //makeAPIRequest(``, 'GET', '', loadForSelectBox);
+
+    //function loadForSelectBox(data) {
+    //    data = JSON.parse(data);
+
+    //    var options = '<option value="-1" disabled selected >Select Project</option>';
+    //    data.forEach((element) => {
+    //        options += '<option value="' + element.id + '">' + element.projectName + '</option>';
+    //    });
+
+    //    document.querySelector('#slctProject').innerHTML = options;
     //}
 
 
-    makeAPIRequest(``, 'GET', '', loadForSelectBox);
-
-    function loadForSelectBox(data) {
-        data = JSON.parse(data);
-
-        var options = '<option value="-1" disabled selected >Select Project</option>';
-        data.forEach((element) => {
-            options += '<option value="' + element.id + '">' + element.projectName + '</option>';
-        });
-
-        document.querySelector('#slctProject').innerHTML = options;
-    }
 
 
-    let foodItemsData = [
-        {
-            id: 1,
-            foodItem: "Jollof Rice",
-            type: "Side Dish",
-            vendor: ["Champion Dishes", "Sweet Dishes", "Lovely Foods"],
-            status: 1
-        },
-        {
-            id: 2,
-            foodItem: "Groundnut Soup with Dry Fish",
-            type: "Main Dish",
-            vendor: ["Tonymens International Dishes"],
-            status: 1
-        },
-        {
-            id: 3,
-            foodItem: "Palava Sauce with Chicken",
-            type: "Main Dish",
-            vendor: ["Michael Nartey's Typical Local Chopbar"],
-            status: 2
-        }
-    ]
+    //CreateFoodItemTable(foodItemsData);
 
-    CreateFoodItemTable(foodItemsData);
+    //function CreateFoodItemTable(data) {
+    //    let view = ``;
 
-    function CreateFoodItemTable(data) {
-        let view = ``;
+    //    //data = [...new Map(foodItemsData.map(item => [item.id, item])).values()];
 
-        //data = [...new Map(foodItemsData.map(item => [item.id, item])).values()];
+    //    data.map(item => {
+    //        let vendors = item.vendor
 
-        data.map(item => {
-            let vendors = item.vendor
-
-            view += `
-                    <tr id="${item.id}">
-                        <td>${item.foodItem}</td>
-                        <td>${item.type}</td>
-                        <td>
-                            <select placeholder="Vendors" class="form-control" style="border:none; width: 70%;height: 33px;padding-bottom: 5px;padding-top: 0px !important;">
-                                ${vendors.map(i => (`<option>${i}</option>`))}
-                            </select>
-                        </td>
-                        <td>
-                            <span class="badge badge-dot mr-4" style="background-color:transparent;padding: 0px;">
-                                <i class="bg-${item.status == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.status].color} btn-sm" disabled>${sub[item.status].state}</span>
-                            </span>
-                        </td>
-                         <td class="">
-                            <a href="#" class="text-inverse editButton" id="${item.id}"  title="Edit"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-            `
-        })
-        $("#foodItemTable").html(view)
-        bindButtonsToDOM();
-    }
+    //        view += `
+    //                <tr id="${item.id}">
+    //                    <td>${item.foodItem}</td>
+    //                    <td>${item.type}</td>
+    //                    <td>
+    //                        <select placeholder="Vendors" class="form-control" style="border:none; width: 70%;height: 33px;padding-bottom: 5px;padding-top: 0px !important;">
+    //                            ${vendors.map(i => (`<option>${i}</option>`))}
+    //                        </select>
+    //                    </td>
+    //                    <td>
+    //                        <span class="badge badge-dot mr-4" style="background-color:transparent;padding: 0px;">
+    //                            <i class="bg-${item.status == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.status].color} btn-sm" disabled>${sub[item.status].state}</span>
+    //                        </span>
+    //                    </td>
+    //                     <td class="">
+    //                        <a href="#" class="text-inverse editButton" id="${item.id}"  title="Edit"><i class="fas fa-edit"></i></a>
+    //                        <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
+    //                    </td>
+    //                </tr>
+    //        `
+    //    })
+    //    $("#foodItemTable").html(view)
+    //    bindButtonsToDOM();
+    //}
 
     $('#closeBtn').click(function () {
         clearFields();
         validation();
     })
 
-    function foodItemsList() {
-        let formData = {
-            id: uuidv4(),
-            foodItem: $("#foodItem").val(),
-            type: $("#foodType").val(),
-            vendor: $("#vendor").val(),
-            // pricing: $("#pricing").val(),
-            status: parseInt($("#status").val())
-        }
-        foodItemsData.push(formData)
-        CreateFoodItemTable(foodItemsData);
-        $('#foodItemModal').modal('hide');
-        clearFields()
-    }
+    //function foodItemsList() {
+    //    let formData = {
+    //        id: uuidv4(),
+    //        foodItem: $("#foodItem").val(),
+    //        type: $("#foodType").val(),
+    //        vendor: $("#vendor").val(),
+    //        // pricing: $("#pricing").val(),
+    //        status: parseInt($("#status").val())
+    //    }
+    //    foodItemsData.push(formData)
+    //    //CreateFoodItemTable(foodItemsData);
+    //    $('#foodItemModal').modal('hide');
+    //    clearFields()
+    //}
 
     function bindButtonsToDOM() {
         let elements = document.getElementsByClassName('editButton');
@@ -227,17 +196,8 @@ $(document).ready(function () {
         $("#saveFoodItem").css('cursor', 'not-allowed');
     }
 
-    $("#saveFoodItem").click(() => {
-        foodItemsList();
-        clearFields();
-        validation();
 
-        iziToast.success({
-            position: 'topRight',
-            message: 'Food item saved successfully',
-        });
-    })
-   
+
 
     function uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -280,7 +240,7 @@ $(document).ready(function () {
     }
 
     $("#foodItemModal").on('hidden.bs.modal', function () {
-        $("#vendor").val([]); 
+        $("#vendor").val([]);
         $("#foodItem").val("");
         $("#foodType").val("");
         $("#status").val(0);
@@ -298,6 +258,36 @@ $(document).ready(function () {
         return nf.format(value);
     }
 
+
+    $("#saveFoodItem").click(() => {
+        let postDatasArr = [];
+        let formdata = {
+            "name": $("#vendorName").val(),
+            "typeId": $("#vendorEmail").val(),
+            "vendorId": $("#phone1").val(),
+            "isActive": parseInt($("#status").val()),
+            "companyId": '00000000-0000-0000-0000-000000000000'
+        }
+
+
+        if (saveOrUpdate == 1) {
+            updateFoodItem(`${_path_url}FoodItems/UpdateFoodItems`, formdata)
+        } else {
+            postDatasArr.push(formdata);
+            createFoodItem(`${_path_url}FoodItems/PostFoodItems`, postDatasArr)
+        }
+
+        foodItemsList();
+        clearFields();
+        $('#foodItemModal').modal('hide');
+
+        iziToast.success({
+            position: 'topRight',
+            message: 'Food item saved successfully',
+        });
+    })
+
+   
     //$('#vendor').SumoSelect({ placeholder: 'Select Vendor' });
 
     $('.vendor').SumoSelect();

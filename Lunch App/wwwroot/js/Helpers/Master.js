@@ -33,7 +33,8 @@ function makeAPIRequest(URL, data = "") {
     })
         .done(function (e) {
             //pageLoader("hide");
-            e = JSON.parse(e);
+            //e = JSON.parse(e);
+            e = JSON.stringify
 
             if (Number(e.Status) === 401) {
                 //location.href = `${_path_url}home/logout`;

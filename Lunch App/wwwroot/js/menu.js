@@ -1,9 +1,15 @@
 ﻿$(document).ready(function () {
     btnState = 0;
     let dt = new DateHandler();
+    //fmtDate = (s) => {
+    //    let d = new Date(Date.parse(s));
+    //    return d.toUTCString().replace("GMT", "")
+    //}
+
     fmtDate = (s) => {
         let d = new Date(Date.parse(s));
-        return d.toUTCString().replace("GMT", "")
+        let fmt = d.toUTCString().replace("00:00:00", "")
+        return fmt.replace("GMT", "")
     }
 
     $('#btnAddMenu').click(function () {
@@ -12,76 +18,93 @@
         $('#menuModal').modal('show');
     })
 
-    let menuData = [
-        {
-            id: 1,
-            date: "19-01-2021",
-            maindish: "Palmnut Soup with Goat Meat",
-            sidedish: "Fufu",
-            condiment: "More Pepper",
-            expiryDate: "20-01-2021 11:00",
-            price: moneyInTxt("4", "en", 2)
-        },
-        {
-            id: 2,
-            date: "20-01-2021",
-            maindish: "Palmnut Soup with Fish",
-            sidedish: "Konkonte",
-            condiment: "Extra Meat",
-            expiryDate: "21-01-2021 10:00",
-            price: moneyInTxt("4", "en", 2)
-        },
-        {
-            id: 3,
-            date: "21-01-2021",
-            maindish: "Palava Sauce with Tuna and Egg",
-            sidedish: "Apem",
-            condiment: "Extra Meat",
-            expiryDate: "22-01-2021 10:00",
-            price: moneyInTxt("3", "en", 2)
-        },
-        {
-            id: 1,
-            date: "19-01-2021",
-            maindish: "Palmnut Soup with Goat Meat",
-            sidedish: "Fufu",
-            condiment: "More Pepper",
-            expiryDate: "20-01-2021 11:00",
-            price: moneyInTxt("4", "en", 2)
-        },
-        {
-            id: 2,
-            date: "20-01-2021",
-            maindish: "Palmnut Soup with Fish",
-            sidedish: "Konkonte",
-            condiment: "Extra Meat",
-            expiryDate: "21-01-2021 10:00",
-            price: moneyInTxt("4", "en", 2)
-        },
-        {
-            id: 3,
-            date: "21-01-2021",
-            maindish: "Palava Sauce with Tuna and Egg",
-            sidedish: "Apem",
-            condiment: "Extra Meat",
-            expiryDate: "22-01-2021 10:00",
-            price: moneyInTxt("3","en",2)
-        },
-    ];
+    function loadDataTable(data) {
+        mtTab = $('#table').DataTable({
+            data: data,
+            searching: true,
+            scrollY: '48vh',
+            pagingType: "simple_numbers",
+            className: "blue",
+            fixedHeader: {
+                header: true,
+                headerOffset: $('#header').height()
+            },
+            responsive: true,
+            columns: [
+                {
+                    title: "Date",
+                    data: "startAt",
+                    render: function (data) {
+                        return fmtDate(data);
+                    }
+                },
+                {
+                    title: "Main Dish",
+                    data: "mainDish"
+                },
+                {
+                    title: "Side Dish",
+                    data: "sideDish"
+                },
+                {
+                    title: "Condiment",
+                    data: "condiDish"
+                },
+                //{
+                //    title: "Pricing",
+                //    data:"3"
+                //},
+                  {
+                    title: "Order Ending",
+                      data: "endAt",
+                      render: function (data) {
+                          return fmtDate(data);
+                      }
+                },
 
+                //{
+                //    title: "Status",
+                //    data: "isActive",
+                //    render: function (data) {
+                //        return data === 1 ? `<button class="btn btn-success btn-sm">Active</button>` : `<button class="btn btn-sm btn-danger">Inactive</button>`;
+                //    }
+                //},
+                {
+                    //data: "id",
+                    title: "Actions", render: function () {
+                        return `<button style="border:none; background:transparent" class="editButton" value=""><i class="fas fa-edit text-info"></i></button> 
+                        `;
+                    }
+                },
+            ]
+        });
+    }
 
-    function loadMenus() {
+    //"mainDishId": "8160896a-41bb-4b3b-b7cc-23b4244511fb",
+    //    "sideDishId": "e76d9349-ba51-4bfe-aa32-f190c2482609",
+    //        "condiDishId": "3ab53303-15f4-48ac-b75d-c244d5633be4",
+    //            "mainDish": "Palmnut Soup with Goat Meat",
+    //                "sideDish": "Banku",
+    //                    "condiDish": "Extra Banku",
+    //                        "startAt": "2021-02-16T13:58:09.313",
+    //                            "endAt": "2021-02-16T13:58:09.313",
+
+   
+
+    function loadMenuData() {
         let data = { companyId: companyId };
-        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
+        makeAPIRequest(`${_path_url}Menu/GetAllMenus`, data)
             .done(function (data) {
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
+                loadDataTable(data)
                 //console.log(data);
-                if (data) {
-                    createVendorTable(data, '#vendorTable');
-                }
+                //if (data) {
+                //    createMenuTable(data, '#vendorTable');
+                //}
             });
     }
+    loadMenuData()
 
     flatpickr('#menuDate', {
         "minDate": new Date().fp_incr(1),
@@ -111,64 +134,65 @@
             "firstDayOfWeek": 1 // start week on Monday
         }
     });
-    loadMenuData()
+    
 
-    function loadMenuData() {
-        let view = ``;
-        menuData = [...new Map(menuData.map(item => [item.id, item])).values()];
-        menuData.map(item => {
-            view += `
-            <tr id=${item.id}>
-                <td>${item.date}</td>
-                <td>${item.maindish}</td>
-                <td>${item.sidedish}</td>
-                <td>${item.condiment}</td> 
-                <td>${item.price}</td>
-                <td class="">
-                     ${item.expiryDate}
-                </td>
-                <td class="">
-                    <a href="#" class="text-inverse editButton" id="${item.id}"  title="Edit"><i class="fas fa-edit"></i></a>
-                </td>
-            </tr>
-        `
-        })
-        $('#menuTable').html(view);
-        bindButtonsToDOM()
-    }
-    $("#saveMenu").click(() => {
-        MenuFood();
-        validation();
+    //function loadMenuData() {
+    //    let view = ``;
+    //    menuData = [...new Map(menuData.map(item => [item.id, item])).values()];
+    //    menuData.map(item => {
+    //        view += `
+    //        <tr id=${item.id}>
+    //            <td>${item.date}</td>
+    //            <td>${item.maindish}</td>
+    //            <td>${item.sidedish}</td>
+    //            <td>${item.condiment}</td> 
+    //            <td>${item.price}</td>
+    //            <td class="">
+    //                 ${item.expiryDate}
+    //            </td>
+    //            <td class="">
+    //                <a href="#" class="text-inverse editButton" id="${item.id}"  title="Edit"><i class="fas fa-edit"></i></a>
+    //            </td>
+    //        </tr>
+    //    `
+    //    })
+    //    $('#menuTable').html(view);
+    //    bindButtonsToDOM()
+    //}
 
-        iziToast.success({
-            position: 'topRight',
-            message: 'Menu saved successfully',
-        });
-    })
-
+   
     $('#closeBtn').click(function () {
         clearFields();
         validation();
     })
 
     //$( "#myselect option:selected" ).text();
-    function MenuFood() {
-        let formData = {
-            id: uuidv4(),
-            date: $("#menuDate").val(),
-            maindish: $("#menuMainDish").val(),
-            sidedish: $("#menuSideDish").val(),
-            condiment: $("#menuCondiment").val(),
-            expiryDate: $("#expiryDate").val(), 
-            price:moneyInTxt($("#price").val(),"en",2)
-        }
-        console.log(formData)
 
-        menuData.push(formData)
-        loadMenuData()
-        $('#menuModal').modal('hide');
-        clearFields()
-    }
+
+
+    //"mainDish": "Palmnut Soup with Goat Meat",
+    //    "sideDish": "Banku",
+    //        "condiDish": "Extra Banku",
+    //            "startAt": "2021-02-16T13:58:09.313",
+    //                "endAt": "2021-02-16T13:58:09.313",
+    //                    "createdAt"
+
+    //function MenuFood() {
+    //    let formData = {
+    //        id: uuidv4(),
+    //        date: 
+    //        maindish: ,
+    //        sidedish:
+    //        condiment: 
+    //        expiryDate: 
+    //        price:moneyInTxt($("#price").val(),"en",2)
+    //    }
+    //    console.log(formData)
+
+    //    menuData.push(formData)
+    //    loadMenuData()
+       
+    //}
 
     //$("#expiryDate").change(function () {})
 
@@ -257,5 +281,43 @@
             $("#price").val().length > 0 ?
             ($("#saveMenu").prop('disabled', false), $("#saveMenu").css('cursor', 'pointer')) :
             ($("#saveMenu").prop('disabled', true), $("#saveMenu").css('cursor', 'not-allowed'))
+    }
+
+
+
+    $("#saveVendor").click(() => {
+        let postDatasArr = [];
+        let formdata = {
+            "startAt": $("#menuDate").val(),
+            "mainDish": $("#menuMainDish").val(),
+            "sideDish": $("#menuSideDish").val(),
+            "condiDish": $("#menuCondiment").val(),
+            "endAt": $("#expiryDate").val(),
+            "companyId": '00000000-0000-0000-0000-000000000000'
+        }
+
+
+        if (saveOrUpdate == 1) {
+            updateMenu(`${_path_url}Menu/PutMenu`, formdata)
+        } else {
+            postDatasArr.push(formdata);
+            createMenu(`${_path_url}Menu/PostMenu`, postDatasArr)
+        }
+        $('#menuModal').modal('hide');
+        clearFields()
+    })
+
+
+    function createMenu(url, data) {
+        makeAPIRequest(url, data)
+            .done(function (response) {
+                console.log(response)
+            });
+    }
+
+    function updateMenu(url, data) {
+        makeAPIRequest(url, data)
+            .done(function (response) {
+            });
     }
 });           

@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace Lunch_App.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+
     public class FoodItemsController : ControllerBase
     {
         public IHelperInterface helperInterface;
@@ -26,24 +25,25 @@ namespace Lunch_App.Controllers
             _hcmAdminClient = hcmAdminClient;
         }
 
-        [HttpPost]
-        public async Task<string> GetAllFoodItems([FromBody] LunchModel mdl)
-        {
-            var url = $"{LunchAppUrl}/GetAllFoodItem/{mdl.companyId}";
-            return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
-        }
 
         [HttpPost]
-        public async Task<string> PostFoodItems([FromBody] List<LunchModel> mdl)
+        public async Task<string> GetAllFoodItems([FromBody] FoodItemModel mdl)
+        {
+            var url = $"{LunchAppUrl}GetAllFoodItem/{mdl.companyId}";
+            return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
+        }
+       
+        [HttpPost]
+        public async Task<string> PostFoodItems([FromBody] List<FoodItemModel> mdl)
         {
             var url = $"{LunchAppUrl}CreateFoodItems/{mdl[0].companyId}";
             return await _hcmAdminClient.SendDataToAPI(url, "POST", false, mdl);
         }
 
         [HttpPost]
-        public async Task<object> PutFoodItems([FromBody] LunchModel mdl)
+        public async Task<object> UpdateFoodItems([FromBody] List<FoodItemModel> mdl)
         {
-            var endpoint = $"{LunchAppUrl}/UpdateVendors/{mdl.pkId}/{mdl.companyId}";
+            var endpoint = $"{LunchAppUrl}UpdateFoodItems/{mdl[0].pkId}/{mdl[0].companyId}";
             return await _hcmAdminClient.SendDataToAPI(endpoint, "PUT", false);
         }
 
