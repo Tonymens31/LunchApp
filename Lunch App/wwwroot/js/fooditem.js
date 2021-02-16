@@ -1,11 +1,12 @@
 ﻿
 $(document).ready(function () {
     $('#myTable').DataTable();
-
+    let saveOrUpdate = 0;
     let btnState = 0;
+
     let sub = {
         1: { color: 'success', state: 'Active' },
-        2: { color: 'danger', state: 'Inactive' }
+        0: { color: 'danger', state: 'Inactive' }
     };
 
     $('#foodModal').click(function () {
@@ -13,6 +14,92 @@ $(document).ready(function () {
         $("#saveFoodItem").html(`<i class="fa fa-save"></i> Save`)
         $('#foodItemModal').modal('show');
     })
+
+    function loadDataTable(data) {
+        $('#Foodtable').DataTable({
+            data: data,
+            searching: true,
+            scrollY: '50vh',
+            pagingType: "simple_numbers",
+            className: "blue",
+            fixedHeader: {
+                header: true,
+                headerOffset: $('#header').height()
+            },
+            responsive: true,
+            columns: [
+                {
+                    title: "FoodItem",
+                    data: "name"
+                },
+                {
+                    title: "Type",
+                    data: "typeId"
+                },
+                {
+                    title: "Vender",
+                    data: "vendorId"
+                },
+                {
+                    title: "Status",
+                    data: "isActive"
+                },
+                { title: "Actions" },
+            ]
+        });
+    }
+
+    function loadFoodItems() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}FoodItems/GetAllFoodItem`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                loadDataTable(data);
+                if (data) {
+                    createFoodItemTable(data, '#foodItemTable');
+                }
+            });
+    };
+    loadFoodItems();
+
+   
+   
+    function createFoodItemTable(data, tableId) {
+        let tem = data.map(item => (`<tr id=${item.id} >
+                            <td>${item.name}</td>
+                            <td>${item.typeId}</td>
+                            <td>${item.vendorId}</td>
+                            <td>
+                                <span class="badge badge-dot mr-4" style="background-color:transparent; padding: 0px;">
+                                <i class="bg-${item.isActive == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.isActive].color} btn-sm" disabled>${sub[item.isActive].state}</span>
+                            </span>
+                           </td>
+                           <td class="">
+                                <a href="#" class="text-inverse editButton"  id="${item.id}"   title="Edit"><i class="fas fa-edit fa-1x"></i></a>
+                              
+                           </td>
+                        </tr>
+                    `));
+
+        $(tableId).html(tem);
+        bindButtonsToDOM()
+    }
+
+
+    makeAPIRequest(``, 'GET', '', loadForSelectBox);
+
+    function loadForSelectBox(data) {
+        data = JSON.parse(data);
+
+        var options = '<option value="-1" disabled selected >Select Project</option>';
+        data.forEach((element) => {
+            options += '<option value="' + element.id + '">' + element.projectName + '</option>';
+        });
+
+        document.querySelector('#slctProject').innerHTML = options;
+    }
+
 
     let foodItemsData = [
         {
@@ -202,7 +289,22 @@ $(document).ready(function () {
         return nf.format(value);
     }
 
-    $('.vendor').SumoSelect({ placeholder: 'Select Vendor' });
+    //$('#vendor').SumoSelect({ placeholder: 'Select Vendor' });
+
+    $('.vendor').SumoSelect();
+
+    function createFoodItem(url, data) {
+        makeAPIRequest(url, data)
+            .done(function (response) {
+                console.log(response)
+            });
+    }
+
+    function updateFoodItem(url, data) {
+        makeAPIRequest(url, data)
+            .done(function (response) {
+            });
+    }
 });
 
 

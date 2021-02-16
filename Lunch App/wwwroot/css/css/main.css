@@ -19,5 +19,8 @@
 #layoutBody {
    opacity: 0.5;
 }
+.blue{
+   color: white !important;
+}
 
 /*style="background-image: url('@Url.Content(" ~ /dist/img/backgr.jpg")'); "*/

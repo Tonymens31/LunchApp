@@ -2,6 +2,8 @@
     let btnState = 0;
     let dt = new DateHandler();
 
+    $('#tableId').DataTable();
+
     $('#holidayBtn').click(function () {
         btnState = 0
         $("#saveHoliday").html(`<i class="fa fa-save"></i> Save`)

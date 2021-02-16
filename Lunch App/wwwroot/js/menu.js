@@ -70,6 +70,19 @@
     ];
 
 
+    function loadMenus() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                //console.log(data);
+                if (data) {
+                    createVendorTable(data, '#vendorTable');
+                }
+            });
+    }
+
     flatpickr('#menuDate', {
         "minDate": new Date().fp_incr(1),
         "dateFormat": "d-m-Y",

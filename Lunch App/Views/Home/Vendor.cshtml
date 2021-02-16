@@ -14,35 +14,28 @@
                             </div>
                             <div class="col-md-2">
                             </div>
-                            <div class="col-md-4">
-                                <div class="search-wrapper" style=" margin-top: -5px;">
-                                    <div class="input-holder">
-                                        <input type="text" class="search-input" placeholder="Type vendor name to search">
-                                        <button id="search" class="search-icon"><span></span></button>
-                                    </div>
-                                    <button class="close"></button>
-                                </div>
-                            </div>
+                           
                             <div class="col-md-3"></div>
                             <div class="col-md-1" style="margin-top:0px">
-                                <button class="btn btn-lg btn-outline-primary pull-right" style="margin-bottom: 15px;" id="btnAddVendor">Add Vendor</button>
+                                <button class="btn btn-sm btn-outline-primary pull-right" style="margin-bottom: 15px;" id="btnAddVendor">Add Vendor</button>
                             </div>
                         </div>
-                        <div class="table-responsive tableFixHead" style="height: 480px; overflow:auto; min-height: 250px">
-                            <table class="mb-0 table table-striped table-hover">
+
+                            <table id="table" class="mb-0 table table-striped table-hover" width="100%"></table>
+
+                            @*<table class="mb-0 table table-striped table-hover" id="table">
                                 <thead class="">
                                     <tr style="background-color: #063970; color: white;">
-                                        <th width="25%">Name</th>
-                                        <th width="17%">Phone №</th>
-                                        <th width="25%">Email</th>
-                                        <th width="11%" style="z-index: 10000 !important;">Status</th>
-                                        <th width="3%">Actions</th>
+                                        <th width="20%">Name</th>
+                                        <th width="13%">Phone №</th>
+                                        <th width="20%">Email</th>
+                                        <th width="15%" style="z-index: 10000 !important;">Status</th>
+                                        <th width="1%">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody id="vendorTable">
-                                </tbody>
-                            </table>
-                        </div>
+                                </tbody>*@
+                            @*</table>*@
                     </div>
                 </div>
             </div>
@@ -88,7 +81,7 @@
                                 <select class="form-control required" id="status">
                                     <option value="-1" selected disabled>Select Status</option>
                                     <option value="1">Active</option>
-                                    <option value="2">Inactive</option>
+                                    <option value="0">Inactive</option>
                                 </select>
                             </div>
                         </div>
@@ -104,7 +97,7 @@
 }
 
 @section Scripts{
-    <script src="~/js/vendor.js"></script>
+    <script src="~/js/vendor.js" asp-append-version="true"></script>
 }
 
 

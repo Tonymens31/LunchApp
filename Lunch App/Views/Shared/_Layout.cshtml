@@ -1,4 +1,5 @@
-﻿<!Doctype html>
+﻿@using Lunch_App.Data;
+<!Doctype html>
 <html lang="en">
 
 <head>
@@ -7,18 +8,22 @@
     <title>Lunch App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+
     <link href="~/assets/izitoast/dist/css/iziToast.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href="~/plugins/Icon-font-7-stroke-PIXEDEN-v-1.2.0/assets/libs/css/bootstrap-select.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
     <link href="~/plugins/Icon-font-7-stroke-PIXEDEN-v-1.2.0/assets/libs/css/prism.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
     <link href="~/plugins/Icon-font-7-stroke-PIXEDEN-v-1.2.0/assets/libs/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/plugins/Icon-font-7-stroke-PIXEDEN-v-1.2.0/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link href="~/dist/HemantNegi-jquery.sumoselect-cd26b5d/sumoselect.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css" />
     <link href="~/plugins/Icon-font-7-stroke-PIXEDEN-v-1.2.0/pe-icon-7-stroke/css/helper.css" rel="stylesheet" />
     <link href="~/plugins/Icon-font-7-stroke-PIXEDEN-v-1.2.0/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.css" rel="stylesheet" />
@@ -42,6 +47,10 @@
     <link href="~/css/main.css" rel="stylesheet" />
     <link href="~/css/toastr.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+
+
 
 </head>
 <body>
@@ -319,10 +328,13 @@
             &copy; 2020 - LunchApp
         </div>
     </footer>
+    <script>
+        var _path_url = '@IDPSettings.Current.AppServerLocalUrl.ToString()';
+    </script>
     <script src="~/js/Helpers/JQUERY/jquery.js"></script>
     @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="~/plugins/jquery/jquery.min.js" type="text/javascript"></script>
@@ -330,7 +342,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="~/assets/izitoast/src/js/iziToast.js"></script>
     <script src="~/assets/izitoast/dist/js/iziToast.js"></script>
-    <script src="~/js/Helpers/Master.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="~/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
     <script src="~/dist/js/demo.js"></script>
@@ -340,7 +352,8 @@
     <script src="~/plugins/Icon-font-7-stroke-PIXEDEN-v-1.2.0/assets/libs/js/prism.js"></script>
     <script src="~/js/Helpers/DateHandler.js"></script>
     <script src="~/assets/scripts/main.js"></script>
-    <script src="~/js/Helpers/Master.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="~/css/toastr.min.js"></script>
     <script src="~/dist/HemantNegi-jquery.sumoselect-cd26b5d/jquery.sumoselect.min.js"></script>
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
@@ -358,6 +371,7 @@
     <script src="~/plugins/summernote/summernote-bs4.min.js" type="text/javascript"></script>
     <script src="~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js" type="text/javascript"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/Helpers/Master.js" asp-append-version="true"></script>
     <script src="~/dist/js/adminlte.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
     @RenderSection("Scripts", required: false)

@@ -1,8 +1,6 @@
 ﻿$(document).ready(function () {
     btnState = 0;
-    let companyId = "00000000-0000-0000-0000-000000000000";
     let saveOrUpdate = 0;
-    saveLoadedData = [];
     let sub = {
         1: { color: 'success', state: 'Active' },
         0: { color: 'danger', state: 'Inactive' }
@@ -12,21 +10,95 @@
         btnState = 0
         $("#saveVendor").html(`<i class="fa fa-save"></i> Save`)
         $('#vendorModal').modal('show');
-      
+
     });
 
-    
+    //$('#table').DataTable();
+    function loadDataTable(data) {
+        $('#table').DataTable({
+            data: data,
+            searching: true,
+            scrollY: '50vh',
+            pagingType: "simple_numbers",
+            className: "blue",
+            fixedHeader: {
+                header: true,
+                headerOffset: $('#header').height()
+            },
+            dataTables_filter: {
+                float: screenLeft
+            },
+            responsive: true,
+            columns: [
+                {
+                    title: "Vendor Name",
+                    data: "name"
+                },
+                {
+                    title: "Email",
+                    data: "email"
+                },
+                {
+                    title: "Phone №",
+                    data: "phone"
+                },
+                {
+                    title: "Status",
+                    data: "isActive"
+                },
+                { title: "Actions" },
+            ]
+        });
 
-    loadVendors();
+    }
+
+
+    //get all vendors
 
     function loadVendors() {
-        makeAPIRequest(`${_path_url}APICalls/GetAllVendor/${companyId}`, 'GET', '', function (data) {
-            console.log(data)
-            if (data) {
-                createVendorTable(JSON.parse(data), '#vendorTable');
-            }
-        });
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                loadDataTable(data);
+                if (data) {
+                    createVendorTable(data, '#vendorTable');
+                }
+            });
+    };
+    loadVendors();
+
+    //get GetAllVendorWithFoodItems/{companyId}
+
+    function VendorsWithFoodItems() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}GetAllVendorWithFoodItems`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                console.log(data);
+                if (data) {
+                    createVendorTable(data, '#vendorTable');
+                }
+            });
     }
+
+
+    //GetSingleVendors/{pkId}/{companyId}
+    function loadSingleVendor() {
+        let data = { companyId: companyId, pkId: pkId };
+        makeAPIRequest(`${_path_url}GetSingleVendors`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                console.log(data);
+                if (data) {
+                    createVendorTable(data, '#vendorTable');
+                }
+            });
+    }
+
 
     //function loadAPIData(data) {
     //    if (data) {
@@ -35,52 +107,8 @@
     //    }
     //}
 
-    let vendorData = [
-        {
-            id: 1,
-            vendorName: "Champion Dishes",
-            phone1: "026 160 6467",
-            vendorEmail: "championdishes@gmail.com",
-            status: 1,
-        },
-        {
-            id: 2,
-            vendorName: "Tonymens International Dishes",
-            phone1: "030 999 3336",
-            vendorEmail: "tonyInterdi@gmail.com",
-            status: 2
-        },
-        {
-            id: 3,
-            vendorName: "Michael Nartey's Typical Local Chopbar",
-            phone1: "020 554 3331",
-            vendorEmail: "micknartal@hotmail.org",
-            status: 2
-        },
-        {
-            id: 1,
-            vendorName: "Champion Dishes",
-            phone1: "026 160 6467",
-            vendorEmail: "championdishes@gmail.com",
-            status: 1,
-        },
-        {
-            id: 2,
-            vendorName: "Tonymens International Dishes",
-            phone1: "030 999 3336",
-            vendorEmail: "tonyInterdi@gmail.com",
-            status: 2
-        },
-        {
-            id: 3,
-            vendorName: "Michael Nartey's Typical Local Chopbar",
-            phone1: "020 554 3331",
-            vendorEmail: "micknartal@hotmail.org",
-            status: 2
-        }
-    ];
 
-    createVendorTable();
+
 
     $('#closeBtn').click(function () {
         clearFields();
@@ -88,8 +116,6 @@
     })
 
     function createVendorTable(data, tableId) {
-      
-       
         let tem = data.map(item => (`<tr id=${item.id} >
                             <td>${item.name}</td>
                             <td>${item.phone.replace(/\s+/g, '')}</td>
@@ -100,86 +126,51 @@
                             </span>
                            </td>
                            <td class="">
-                                <a href="#" class="text-inverse editButton"  id="${item.id}"   title="Edit"><i class="fas fa-edit fa-1x"></i></a>
-                              
+                                <a href="#" class="text-inverse editButton"  id="${item.id}"  title="Edit"><i class="fas fa-edit fa-1x"></i></a>
+                                <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
                            </td>
                         </tr>
                     `));
-      
+
         $(tableId).html(tem);
-        bindButtonsToDOM() 
+        bindButtonsToDOM(data)
     }
 
-    $("#saveVendor").click(() => {
-        vendorList();
-        validation();
-        $('#vendorModal').modal('hide'); ///getallvendor/{companyid}lunch-general-api/CreateVendors
 
-        saveOrUpdate != 1 ? createVendor('APICalls/GetAllVendor/00000000-0000-0000-0000-000000000000', loadVendors) : console.log('hello')
-    })
-
-    function vendorList() {
-        let formdata = {
-            id: uuidv4(),
-            vendorName: $("#vendorName").val(),
-            phone1: $("#phone1").val(),
-            phone2: $("#phone2").val(),
-            vendorEmail: $("#vendorEmail").val(),
-            status: parseInt($("#status").val())
-        }
-
-        saveLoadedData.push(formdata)
-        createVendorTable();
-        $('#vendorModal').modal('hide');
-        clearFields()
-        
-
-    }
-
-    //function addToTable(data) {
-    //    let { vendorName, phone1, phone2, vendorEmail, status } = data;
-    //    //let tem = `<tr id="">
-    //    //            <td>${vendorName}</td>
-    //    //            <td>${phone1}</td>
-    //    //            <td>${phone2}</td>
-    //    //            <td>${vendorEmail}</td>
-    //    //            <td>${status}</td>
-    //    //        </tr>`;
-
-    //    //$('#vendorTable').prepend(tem);
-    //    $('#vendorModal').modal('hide');
-    //}
-
-    function bindButtonsToDOM() {
+    function bindButtonsToDOM(data) {
         let elements = document.getElementsByClassName('editButton');
 
         for (let x = 0; x < elements.length; x++) {
             elements[x].addEventListener('click', function (e) {
-                getRowData(this.id)
+                getRowData(data, this.id)
                 btnState = 1
                 $("#saveVendor").html(`Update`)
                 $('#vendorModal').modal('show');
-               
+
             });
         }
     }
 
-    function getRowData(rowId) {
-        let data = vendorData.filter(ele => ele.id.toString() === rowId)[0];
-        populateInputFields(data);
-         saveOrUpdate = 1;
+
+    function getRowData(data, rowId) {
+
+        let data1 = data.filter(ele => ele.id.toString() === rowId)[0];
+
+        // console.log(data1);
+        populateInputFields(data1);
+        saveOrUpdate = 1;
     }
 
-    function populateInputFields(data) {
-        console.log(data)
-        let = { vendorName, phone1, phone2, vendorEmail, status } = data;
-        //console.log(foodItem); console.log(type); console.log(status)
+    function populateInputFields(data1) {
+        let = { name, phone, tel, email, isActive } = data1;
+        //console.log(data1);
+        //console.log(name); console.log(type); console.log(status)
 
-        $('#vendorName').val(vendorName)
-        $('#phone1').val(phone1)
-        $('#phone2').val(phone2)
-        $('#vendorEmail').val(vendorEmail)
-        $('#status').val(status)
+        $('#vendorName').val(name)
+        $('#phone1').val(phone)
+        $('#phone2').val(tel)
+        $('#vendorEmail').val(email)
+        $('#status').val(isActive)
         $('#vendorModal').modal('show');
         $("btnAddVendor").html(`Update`)
 
@@ -194,7 +185,7 @@
     }
 
     $('#close').on('click', function () {
-        console.log('Accra')
+
         $('#vendorName').val("")
         $('#phone1').val("")
         $('#phone2').val("")
@@ -232,9 +223,9 @@
         $("#vendorName").val().length !== 0 &&
             $("#phone1").val().length !== 0 &&
             $("#vendorEmail").val().length !== 0 &&
-            $("#status").val() > 0 ?
-            ($("#saveVendor").prop('disabled', false), $("#saveVendor").css('cursor', 'pointer')) :
-            ($("#saveVendor").prop('disabled', true), $("#saveVendor").css('cursor', 'not-allowed'))
+            $("#status").val().length > -1 ?
+            ($("#saveVendor").prop('disabled', false).css('cursor', 'pointer')) :
+            ($("#saveVendor").prop('disabled', true).css('cursor', 'not-allowed'))
     }
 
     function NoEmptyField(data) {
@@ -311,29 +302,43 @@
         }
     });
 
-    function reloadVendors() {
-        makeAPIRequest('/api/application/getapplicationbyprojectid/', 'GET', '', function (data) {
-            if (data) {
-                createVendorTable(JSON.parse(data), '#vendorTable');
-            }
-        });
-    }
 
-    
+
+    $("#saveVendor").click(() => {
+        let postDatasArr = [];
+        let formdata = {
+            "name": $("#vendorName").val(),
+            "email": $("#vendorEmail").val(),
+            "phone": $("#phone1").val(),
+            "tel": $("#phone2").val(),
+            "isActive": parseInt($("#status").val()),
+            "companyId": '00000000-0000-0000-0000-000000000000'
+        }
+
+
+        if (saveOrUpdate == 1) {
+            updateVendor(`${_path_url}APICalls/PutVendor`, formdata)
+        } else {
+            postDatasArr.push(formdata);
+            createVendor(`${_path_url}APICalls/PostVendor`, postDatasArr)
+        }
+        $('#vendorModal').modal('hide');
+    })
+
+
 
     function createVendor(url, data) {
-        makeAPIRequest(url, 'POST', data, function (response) {
-            reloadVendors()
-           
-        });
+        makeAPIRequest(url, data)
+            .done(function (response) {
+                console.log(response)
+            });
     }
 
     function updateVendor(url, data) {
-        makeAPIRequest(url, 'PUT', data, function (response) {
-            reloadVendors()
-           
-        });
+        makeAPIRequest(url, data)
+            .done(function (response) {
+            });
     }
-   
+
 });
 

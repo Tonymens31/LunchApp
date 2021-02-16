@@ -23,8 +23,8 @@ namespace Lunch_App.Data
         public string ClientId { get; set; }
         public string Secret { get; set; }
         public string AppServerLocalUrl { get; set; }
-        public string RequireHttpsMetadata { get; set; }
-        public string signOutURL { get; set; }
+        public bool RequireHttpsMetadata { get; set; }
+        public string SignOutURL { get; set; }
         public string AppName { get; set; }
 
     }

@@ -1,6 +1,4 @@
-﻿
-window.location.href.indexOf("localhost") > -1 ? _path_url = `${window.location.origin}/` :
-    _path_url = `${window.location.origin}/`;
+﻿let companyId = '00000000-0000-0000-0000-000000000000';
 
 function readExternalFile(file, mime, callback) {
     let overrideMime = ''
@@ -23,50 +21,56 @@ function readExternalFile(file, mime, callback) {
 
 
 
-function makeAPIRequest(url, method, data = "", callback) {
+function makeAPIRequest(URL, data = "") {
+    return $.ajax({
+        url: URL,
+        method: 'POST',
+        tryCount: 0,
+        retryLimit: 3,
+        crossDomain: true,
+        data: JSON.stringify(data),
+        contentType: "application/json"
+    })
+        .done(function (e) {
+            //pageLoader("hide");
+            e = JSON.parse(e);
 
-    switch (method) {
-        case 'GET':
-            getRequest(url, callback)
-            break;
-        case 'POST':
-            postRequest(url, method, data, callback)
-        case 'PUT':
-            putRequest(url, method, data, callback)
-            break
-        case 'DELETE':
-            deleteRequest(url, callback)
-            break;
-    }
+            if (Number(e.Status) === 401) {
+                //location.href = `${_path_url}home/logout`;
+                return false;
+            }
 
-    function getRequest(url, callback) {
-        fetch(url).then(data => data.text()).then(data => callback(data)).catch((error) => callback(error));
-    }
+            if (Number(e.Status) === 404) {
+               // messages(msg.notFound);
+                return false;
+            }
 
-    function deleteRequest(url, callback) {
-        fetch(url, {
-            method: 'DELETE',
-        }).then(res => res.text()).then(data => callback(data)).catch((error) => callback(error));
-    }
+            if (Number(e.Status) === 500) {
+                this.tryCount++;
+                if (this.tryCount <= this.retryLimit) {
+                    //try again
+                    $.ajax(this);
+                    return;
+                }
+                return false;
+            }
 
-    function postRequest(url, method, data, callback) {
-        fetch(url, {
-            method: method,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        }).then(data => data.text()).then(data => callback(data));
-    }
-    function putRequest(url, method, data, callback) {
-        fetch(url, {
-            method: method,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        }).then(data => data.text()).then(data => callback(data));
-    }
+            //if (parentModalId !== "")
+            //    $(`${parentModalId}`).modal("hide");
+
+            //alert(msg.success);
+        })
+        .fail(function (xhr) {
+            //pageLoader("hide");
+            //messages(xhr.status, 'error');
+            this.tryCount++;
+            if (this.tryCount <= this.retryLimit) {
+                //try again
+                $.ajax(this);
+                return;
+            }
+            return;
+        });
 
 }
 

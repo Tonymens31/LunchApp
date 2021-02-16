@@ -1,4 +1,7 @@
-﻿using Lunch_App.HTTPServices;
+﻿using Lunch_App.Data;
+using Lunch_App.HTTPServices;
+using Lunch_App.Models;
+using Lunch_App.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -10,39 +13,50 @@ using System.Threading.Tasks;
 namespace Lunch_App.Controllers
 {
    
-    [Route("[controller]")]
-    [ApiController]
+   
+    
     public class APICallsController : ControllerBase
     {
-        MethodAPIRequest MethodAPIRequest = new MethodAPIRequest();
+        public IHelperInterface helperInterface;
+        private readonly HCMAdminHTTPClient _hcmAdminClient;
 
-        public IConfiguration Configuration { get; set; }
-        public APICallsController(IConfiguration configuration)
+        public string LunchAppUrl = IDPSettings.Current.LunchAppUrl;
+        public string Token = ""; //
+
+        public APICallsController(IHelperInterface _helperInterface, HCMAdminHTTPClient hcmAdminClient)
         {
-            Configuration = configuration;
+            helperInterface = _helperInterface;
+            _hcmAdminClient = hcmAdminClient;
         }
 
+        [HttpPost]
+        public async Task<string> GetAllVendors([FromBody] LunchModel mdl)
+        {
+            var url = $"{LunchAppUrl}GetAllVendor/{mdl.companyId}";
+            return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
+        }
+
+        [HttpPost]
+        public async Task<string> PostVendor([FromBody] List<LunchModel> mdl)
+        {
+            var url = $"{LunchAppUrl}CreateVendors/{mdl[0].companyId}";
+            return await  _hcmAdminClient.SendDataToAPI(url, "POST", false, mdl);
+        }
+
+        [HttpPost("PutVendor/{pkId}")]
+        public async Task<object> PutVendor([FromBody] List<LunchModel> mdl, string pkId)
+        {
+            var url = $"{LunchAppUrl}/UpdateVendors/{pkId}/{mdl[0].companyId}";
+            return await  _hcmAdminClient.SendDataToAPI(url, "PUT", false);
+        } 
+
+         [HttpPost]
+        public async Task<object> DeleteVendor([FromBody] List<LunchModel> mdl, string pkId)
+        {
+            var url = $"{LunchAppUrl}/DeleteVendors/{pkId}/{mdl[0].companyId}";
+            return await  _hcmAdminClient.SendDataToAPI(url, "DELETE", false);
+        } 
+        
        
-
-        [HttpGet("GetAllVendor/{companyid}")]
-        public async Task<object> GetAllVendors(string companyid)
-        {
-            var endpoint = Config.Current.LunchAppUrl+"GetAllVendor/"+companyid;
-            return await MethodAPIRequest.MakeRequestAsync(endpoint, "GET", null);
-        }
-
-        [HttpPost("api/createVendors/{companyId}")]
-        public async Task<object> PostVendor([FromBody] object data)
-        {
-            var endpoint =$"{Configuration["APISETTINGS:LunchAppMicroservice"]}Vendors/CreateVendor";
-            return await MethodAPIRequest.MakeRequestAsync(endpoint, "POST", data);
-        }
-
-        [HttpPut("api/putvendor/{vendorId}")]
-        public async Task<object> PutProject([FromBody] object data, string vendorId)
-        {
-            var endpoint = $"{Configuration["APISETTINGS:LunchAppMicroservice"]}Vendors/{vendorId}";
-            return await MethodAPIRequest.MakeRequestAsync(endpoint, "PUT", data);
-        }
     }
 }
