@@ -156,10 +156,7 @@
     //}
 
    
-    $('#closeBtn').click(function () {
-        clearFields();
-        validation();
-    })
+   
 
     //$( "#myselect option:selected" ).text();
 
@@ -235,9 +232,14 @@
     };
 
 
+    $('#closeBtn').click(function () {
+        clearFields();
+        validation();
+    })
+
     function clearFields() {
         $('#menuDate').val("")
-        $('#menuMainDish').val(-1)
+        $('#menuMainDish').val("")
         $('#menuCondiment').val(-1)
         $('#expiryDate').val("")
         $('#price').val("")
@@ -301,8 +303,8 @@
             
         }
         $('#menuModal').modal('hide');
-        //clearFields()
-        console.log(postDatasArr)
+        clearFields()
+        
     })
 
     

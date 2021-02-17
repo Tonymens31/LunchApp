@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     btnState = 0;
+    let Vendors = [];
     let saveOrUpdate = 0;
     let sub = {
         1: { color: 'success', state: 'Active' },
@@ -21,13 +22,23 @@
             .done(function (data) {
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
+                Vendors = data;
                 loadDataTable(data);
                 //if (data) {
                 //    createVendorTable(data, '#vendorTable');
                 //}
             });
     };
-   
+
+    $(document).on("click", ".editButton", function () {
+        let rowid = $(this).val();
+        let rowData = Vendors.filter(x => x.id === rowid)[0]
+        console.log(rowData)
+        populateInputFields(rowData);
+        $("#saveVendor").html(`Update`)
+    })
+
+
     //$('#table').DataTable();
     function loadDataTable(data) {
         $('#table').DataTable({

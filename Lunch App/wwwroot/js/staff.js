@@ -25,7 +25,7 @@
             responsive: true,
             columns: [
                 {
-                    title: "Date",
+                    title: "Name",
                     //data: "name"
                 },
                 {
