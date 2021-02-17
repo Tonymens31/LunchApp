@@ -91,14 +91,24 @@
                         <div class="widget-content p-0">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <div class="btn-group">
-                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                            <img width="60" class="rounded-circle" src="~/assets/images/user.png" alt="" />
-                                            <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                        </a>
-                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <button type="button" tabindex="0" class="dropdown-item">Log </button>
-
+                                    <div class="row">
+                                        <div class="">
+                                            <button class="btn btn-md btn-outline-primary pull-right" style="float:right!important; margin-bottom: 15px;height: 40px;margin-top: 10px" id="btnAddStaff"><span><i class="fa fa-bell"></i></span></button>
+                                            <span>
+                                                <button type="button" class="btn btn-outline-primary btn-sm pull-right" style="height: 40px;margin-top: 10px; float: right !important">
+                                                    Orders: <span class="badge badge-light" id="count"><strong>0</strong></span> Out of<span class="badge badge-light"><strong>75</strong></span>
+                                                    <span class="sr-only">unread messages</span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                        <div class="btn-group" style="margin-top: 10px">
+                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                                <img width="60" class="rounded-circle" src="~/assets/images/user.png" alt="" />
+                                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                            </a>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                                <button type="button" tabindex="0" class="dropdown-item">Log </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

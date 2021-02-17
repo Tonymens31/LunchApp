@@ -18,59 +18,73 @@
 
 
 
-    let orderData = [
-        {
-            id: 1,
-            date: "23-03-2021",
-            name: "Kweku Kyei-Baffour",
-            maindish: "Palmnut Soup with Goat Meat",
-            sidedish: "	Fufu",
-            condiment: "More Pepper",
-        },
-        {
-            id: 2,
-            date: "23-03-2021",
-            name: "Kwabena Asante",
-            maindish: "Palmnut Soup with Fish",
-            sidedish: "Banku",
-            condiment: "Extra Meat"
-        },
-        {
-            id: 3,
-            date: "23-03-2021",
-            name: "Yaw Nkansah",
-            maindish: "Vegetable Stew with Chicken ",
-            sidedish: "Plain Rice",
-            condiment: "Extra Chicken"
-        },
-        // {
-        //    id: 1,
-        //    date: "23-03-2021",
-        //    name: "Kweku Kyei-Baffour",
-        //    maindish: "Palmnut Soup with Goat Meat",
-        //    sidedish: "Fufu",
-        //    condiment: "More Pepper",
-        //},
-        //{
-        //    id: 2,
-        //    date: "23-03-2021",
-        //    name: "Kwabena Asante",
-        //    maindish: "Palmnut Soup with Fish",
-        //    sidedish: "Banku",
-        //    condiment: "Extra Meat"
-        //},
-        //{
-        //    id: 3,
-        //    date: "23-03-2021",
-        //    name: "Yaw Nkansah",
-        //    maindish: "Vegetable Stew with Chicken ",
-        //    sidedish: "Plain Rice",
-        //    condiment: "Extra Chicken"
-        //},
+    //$('#table').DataTable();
+    function loadDataTable() {
+        $('#ordertable').DataTable({
+           // data: data,
+            searching: true,
+            scrollY: '48vh',
+            pagingType: "simple_numbers",
+            className: "blue",
+            fixedHeader: {
+                header: true,
+                headerOffset: $('#header').height()
+            },
+            responsive: true,
+            columns: [
+                {
+                    title: "Date",
+                    //data: "name"
+                },
+                {
+                    title: "Name",
+                    //data: "email"
+                },
+                {
+                    title: "Main Dish",
+                    //data: "email"
+                },
+                {
+                    title: "Side Dish",
+                    //data: "phone"
+                },
+                {
+                    title: "Condiment",
+                    //data: "phone"
+                },
+               
+                {
+                   // data: "id",
+                    title: "Actions",
+                    //render: function (data) {
+                    //    return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
+                    //            <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
+                    //    `;
+                    //}
+                }
+            ]
+        });
 
-    ];
+    }
 
-    loadOrderData(orderData)
+
+    //get all vendors
+
+    function loadVendors() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                loadDataTable(data);
+                //if (data) {
+                //    createVendorTable(data, '#vendorTable');
+                //}
+            });
+    };
+    loadVendors();
+
+   
 
     flatpickr('#orderdate', {
         "minDate": new Date().fp_incr(0),
@@ -102,34 +116,34 @@
         }
     });
 
-    function loadOrderData() {
-        let view = ``;
+    //function loadOrderData() {
+    //    let view = ``;
 
 
-        orderData = [...new Map(orderData.map(item => [item.id, item])).values()];
+    //    orderData = [...new Map(orderData.map(item => [item.id, item])).values()];
 
-        orderData.map(item => {
-            view += `
-                <tr id=${item.id}>
-                    <td>
-                        ${(item.date)}
-                    </td>
+    //    orderData.map(item => {
+    //        view += `
+    //            <tr id=${item.id}>
+    //                <td>
+    //                    ${(item.date)}
+    //                </td>
                     
-                    <td>${item.name}</td>
-                    <td>${item.maindish}</td>
-                    <td>${item.sidedish}</td>
-                    <td>${item.condiment}</td>
-                    <td class="">
-                        <a href="#" class="text-inverse editButton" id="${item.id}"  title="Edit"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
-                     </td>
-                </tr>
-            `
-        })
-        $('#orderTable').html(view);
-        bindButtonsToDOM()
-        $('#count').text(orderData.length);
-    }
+    //                <td>${item.name}</td>
+    //                <td>${item.maindish}</td>
+    //                <td>${item.sidedish}</td>
+    //                <td>${item.condiment}</td>
+    //                <td class="">
+    //                    <a href="#" class="text-inverse editButton" id="${item.id}"  title="Edit"><i class="fas fa-edit"></i></a>
+    //                    <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
+    //                 </td>
+    //            </tr>
+    //        `
+    //    })
+    //    $('#orderTable').html(view);
+    //    bindButtonsToDOM()
+    //    $('#count').text(orderData.length);
+    //}
 
     $("#saveOrder").click(() => {
         orderFood();

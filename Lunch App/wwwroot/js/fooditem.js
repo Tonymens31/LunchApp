@@ -18,6 +18,7 @@ $(document).ready(function () {
     })
 
     function loadDataTable(data) {
+        console.log({ data})
        mtTab =   $('#table').DataTable({
            data: data,
            pageLength: 10,
@@ -40,7 +41,7 @@ $(document).ready(function () {
                     data: "type"
                 },
                 {
-                    title: "Vender",
+                    title: "Vendor",
                     data: "vendor"
                 },
                 {
@@ -92,7 +93,7 @@ $(document).ready(function () {
                
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
-                setGeneric(data, "Select type","#foodType")
+                setGeneric(data, "Select Food Type","#foodType")
             });
     }
     loadDataTypes(); 
@@ -102,7 +103,26 @@ $(document).ready(function () {
         template += data.map(type => (
             `<option value = "${type.id}">${type.name}</option>`
         ))
-        $(elementID).html(template)
+        $(elementID).html(template);
+    }
+
+    function loadVendors() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                setGeneric(data, "Select Vendor(s)", "#vendor");
+            });
+    };
+    loadVendors();
+
+    function setGeneric(data, title, elementID) {
+        let template = `<option value = "">${title}</option>`
+        template += data.map(type => (
+            `<option value = "${type.id}">${type.name}</option>`
+        ))
+        $(elementID).html(template);
     }
 
     //makeAPIRequest(`GetAllCodes`, 'GET', '', loadForSelectBox);
@@ -294,7 +314,7 @@ $(document).ready(function () {
     })
 
    
-    $('#vendor').SumoSelect({ placeholder: 'Select Vendor' });
+    //$('#vendor').SumoSelect({ placeholder: 'Select Vendor' });
 
     //$('.vendor').SumoSelect();
 
