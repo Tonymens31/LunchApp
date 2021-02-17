@@ -32,6 +32,13 @@ namespace Lunch_App.Controllers
             var url = $"{LunchAppUrl}GetAllFoodItem/{mdl.companyId}";
             return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
         }
+
+        [HttpPost]
+        public async Task<string> GetAllCode([FromBody] FoodItemModel mdl)
+        {
+            var url = $"{LunchAppUrl}GetAllCodes/{mdl.type}";
+            return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
+        }
        
         [HttpPost]
         public async Task<string> PostFoodItems([FromBody] List<FoodItemModel> mdl)

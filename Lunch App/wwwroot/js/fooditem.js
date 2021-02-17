@@ -19,7 +19,8 @@ $(document).ready(function () {
 
     function loadDataTable(data) {
        mtTab =   $('#table').DataTable({
-            data: data,
+           data: data,
+           pageLength: 10,
             searching: true,
             scrollY: '48vh',
             pagingType: "simple_numbers",
@@ -75,7 +76,6 @@ $(document).ready(function () {
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}FoodItems/GetAllFoodItems`, data)
             .done(function (data) {
-                console.log(data)
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
                 loadDataTable(data);
@@ -85,19 +85,29 @@ $(document).ready(function () {
     loadFoodItems();
 
 
+    function loadDataTypes() {
+        let data = { type: type };
+        makeAPIRequest(`${_path_url}FoodItems/GetAllCode`, data)
+            .done(function (data) {
+                console.log(data)
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+            });
+    }
+    loadDataTypes(); 
 
 
-    //makeAPIRequest(``, 'GET', '', loadForSelectBox);
+    //makeAPIRequest(`GetAllCodes`, 'GET', '', loadForSelectBox);
 
     //function loadForSelectBox(data) {
     //    data = JSON.parse(data);
 
-    //    var options = '<option value="-1" disabled selected >Select Project</option>';
+    //    var options = '<option value="-1" disabled selected >Select Food Types</option>';
     //    data.forEach((element) => {
-    //        options += '<option value="' + element.id + '">' + element.projectName + '</option>';
+    //        options += '<option value="' + element.id + '">' + element.type + '</option>';
     //    });
 
-    //    document.querySelector('#slctProject').innerHTML = options;
+    //    document.querySelector('#foodType').innerHTML = options;
     //}
 
 
@@ -143,20 +153,8 @@ $(document).ready(function () {
         validation();
     })
 
-    //function foodItemsList() {
-    //    let formData = {
-    //        id: uuidv4(),
-    //        foodItem: $("#foodItem").val(),
-    //        type: $("#foodType").val(),
-    //        vendor: $("#vendor").val(),
-    //        // pricing: $("#pricing").val(),
-    //        status: parseInt($("#status").val())
-    //    }
-    //    foodItemsData.push(formData)
-    //    //CreateFoodItemTable(foodItemsData);
-    //    $('#foodItemModal').modal('hide');
-    //    clearFields()
-    //}
+
+  
 
     function bindButtonsToDOM() {
         let elements = document.getElementsByClassName('editButton');
@@ -288,9 +286,9 @@ $(document).ready(function () {
     })
 
    
-    //$('#vendor').SumoSelect({ placeholder: 'Select Vendor' });
+    $('#vendor').SumoSelect({ placeholder: 'Select Vendor' });
 
-    $('.vendor').SumoSelect();
+    //$('.vendor').SumoSelect();
 
     function createFoodItem(url, data) {
         makeAPIRequest(url, data)

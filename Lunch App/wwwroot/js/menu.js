@@ -284,30 +284,34 @@
         let postDatasArr = [];
         let formdata = {
             "startAt": $("#menuDate").val(),
-            "mainDish": $("#menuMainDish").val(),
-            "sideDish": $("#menuSideDish").val(),
-            "condiDish": $("#menuCondiment").val(),
+            "mainDishId": $("#menuMainDish").val(),
+            "sideDishId": $("#menuSideDish").val(),
+            "condiDishId": $("#menuCondiment").val(),
             "endAt": $("#expiryDate").val(),
             "companyId": '00000000-0000-0000-0000-000000000000'
         }
 
-        console.log(formdata)
+
+       // console.log(formdata)
         if (saveOrUpdate == 1) {
             updateMenu(`${_path_url}Menu/PutMenu`, formdata)
         } else {
             postDatasArr.push(formdata);
             createMenu(`${_path_url}Menu/PostMenu`, postDatasArr)
+            
         }
         $('#menuModal').modal('hide');
         //clearFields()
+        console.log(postDatasArr)
     })
 
-    console.log(postDatasArr)
+    
 
 
     function createMenu(url, data) {
         makeAPIRequest(url, data)
             .done(function (response) {
+                console.log({response})
             });
     }
 

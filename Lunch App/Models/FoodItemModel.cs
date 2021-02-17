@@ -13,6 +13,7 @@ namespace Lunch_App.Models
         public string vendorId { get; set; }
         public string isActive { get; set; }
         public string pkId { get; set; }
+        public string type { get; set; }
 
     }
 }
