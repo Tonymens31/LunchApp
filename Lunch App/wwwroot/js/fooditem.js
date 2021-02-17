@@ -86,16 +86,24 @@ $(document).ready(function () {
 
 
     function loadDataTypes() {
-        let data = { type: type };
+        let data = { type: "ftyp" };
         makeAPIRequest(`${_path_url}FoodItems/GetAllCode`, data)
             .done(function (data) {
-                console.log(data)
+               
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
+                setGeneric(data, "Select type","#foodType")
             });
     }
     loadDataTypes(); 
 
+    function setGeneric(data, title, elementID) {
+        let template = `<option value = "">${title}</option>`
+        template += data.map(type => (
+            `<option value = "${type.id}">${type.name}</option>`
+        ))
+        $(elementID).html(template)
+    }
 
     //makeAPIRequest(`GetAllCodes`, 'GET', '', loadForSelectBox);
 
