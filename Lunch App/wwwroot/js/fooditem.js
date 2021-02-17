@@ -3,6 +3,7 @@ $(document).ready(function () {
     $('#myTable').DataTable();
     let saveOrUpdate = 0;
     let btnState = 0;
+    let FoodItems = [];
     let sub = {
         1: { color: 'success', state: 'Active' },
         0: { color: 'danger', state: 'Inactive' }
@@ -16,6 +17,19 @@ $(document).ready(function () {
         $("#saveFoodItem").html(`<i class="fa fa-save"></i> Save`)
         $('#foodItemModal').modal('show');
     })
+
+    loadFoodItems();
+    function loadFoodItems() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}FoodItems/GetAllFoodItems`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                FoodItems = data;
+                loadDataTable(data);
+            });
+    };
+
 
     function loadDataTable(data) {
         console.log({ data})
@@ -63,27 +77,17 @@ $(document).ready(function () {
         });
     }
 
-    //$(".editButton").click(() => {
-    //    alert("ok")
-    //})
+    
     $(document).on("click", ".editButton", function () {
-       console.log($(this).val())
+        let rowid = $(this).val();
+        let rowData = FoodItems.filter(x => x.id === rowid)[0]
+        populateInputFields(rowData);
     })
     //$(".editButton").on('click', 'tr', function() {
     //    console.log(mtTab.row(this).data());
     //});
 
-    function loadFoodItems() {
-        let data = { companyId: companyId };
-        makeAPIRequest(`${_path_url}FoodItems/GetAllFoodItems`, data)
-            .done(function (data) {
-                data = JSON.parse(data)
-                data = JSON.parse(data.Body)
-                loadDataTable(data);
-
-            });
-    };
-    loadFoodItems();
+   
 
 
     function loadDataTypes() {
@@ -93,6 +97,7 @@ $(document).ready(function () {
                
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
+             
                 setGeneric(data, "Select Food Type","#foodType")
             });
     }
@@ -112,7 +117,7 @@ $(document).ready(function () {
             .done(function (data) {
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
-                setGeneric(data, "Select Vendor(s)", "#vendor");
+                setGeneric(data, "", "#vendor");
             });
     };
     loadVendors();
@@ -141,40 +146,7 @@ $(document).ready(function () {
 
 
 
-    //CreateFoodItemTable(foodItemsData);
-
-    //function CreateFoodItemTable(data) {
-    //    let view = ``;
-
-    //    //data = [...new Map(foodItemsData.map(item => [item.id, item])).values()];
-
-    //    data.map(item => {
-    //        let vendors = item.vendor
-
-    //        view += `
-    //                <tr id="${item.id}">
-    //                    <td>${item.foodItem}</td>
-    //                    <td>${item.type}</td>
-    //                    <td>
-    //                        <select placeholder="Vendors" class="form-control" style="border:none; width: 70%;height: 33px;padding-bottom: 5px;padding-top: 0px !important;">
-    //                            ${vendors.map(i => (`<option>${i}</option>`))}
-    //                        </select>
-    //                    </td>
-    //                    <td>
-    //                        <span class="badge badge-dot mr-4" style="background-color:transparent;padding: 0px;">
-    //                            <i class="bg-${item.status == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.status].color} btn-sm" disabled>${sub[item.status].state}</span>
-    //                        </span>
-    //                    </td>
-    //                     <td class="">
-    //                        <a href="#" class="text-inverse editButton" id="${item.id}"  title="Edit"><i class="fas fa-edit"></i></a>
-    //                        <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
-    //                    </td>
-    //                </tr>
-    //        `
-    //    })
-    //    $("#foodItemTable").html(view)
-    //    bindButtonsToDOM();
-    //}
+    
 
     $('#closeBtn').click(function () {
         clearFields();
@@ -203,15 +175,17 @@ $(document).ready(function () {
     }
 
     function populateInputFields(data) {
-        let = { foodItem, type, pricing, status, vendor } = data;
+        let { name, typeId, vendorId, isActive, vendor } = data;
         console.log(vendor)
-        $('#foodItem').val(foodItem)
-        $('#foodType').val(type)
-        $('#status').val(status)
-        $('#vendor').val(vendor)
+        $('#foodItem').val(name);
+        $('#foodType').val(typeId);
+        $('#status').val(isActive);
+        $('#vendor').val(vendorId);
         $('#foodItemModal').modal('show');
+        $("#saveFoodItem").html(`Update`);
     };
 
+   
     function clearFields() {
         $('#foodItem').val("");
         $('#foodType').val(-1);

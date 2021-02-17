@@ -13,6 +13,21 @@
 
     });
 
+    //get all vendors
+    loadVendors();
+    function loadVendors() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                loadDataTable(data);
+                //if (data) {
+                //    createVendorTable(data, '#vendorTable');
+                //}
+            });
+    };
+   
     //$('#table').DataTable();
     function loadDataTable(data) {
         $('#table').DataTable({
@@ -60,21 +75,7 @@
     }
 
 
-    //get all vendors
-
-    function loadVendors() {
-        let data = { companyId: companyId };
-        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
-            .done(function (data) {
-                data = JSON.parse(data)
-                data = JSON.parse(data.Body)
-                loadDataTable(data);
-                //if (data) {
-                //    createVendorTable(data, '#vendorTable');
-                //}
-            });
-    };
-    loadVendors();
+    
 
     //get GetAllVendorWithFoodItems/{companyId}
 

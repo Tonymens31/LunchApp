@@ -22,54 +22,59 @@
         "dateFormat": "d-m-Y"
     });
 
-    let holidayData = [
-        {
-            id: 1,
-            date:"01-01-2021",
-            name: "New Year Day"
-        },
-        {
-            id: 2,
-             date:"08-03-2021",
-            name: "Independence Day"
-        },
-        {
-            id: 3,
-            date:"02-04-2021",
-            name: "Good Friday"
-        }, {
-            id: 1,
-            date:"01-01-2021",
-            name: "New Year Day"
-        },
-         {
-            id: 2,
-             date:"08-03-2021",
-            name: "Independence Day"
-        },
-        {
-            id: 3,
-            date:"02-04-2021",
-            name: "Good Friday"
-        },
-        {
-            id: 1,
-            date:"01-01-2021",
-            name: "New Year Day"
-        },
-         {
-            id: 2,
-             date:"08-03-2021",
-            name: "Independence Day"
-        },
-        {
-            id: 3,
-            date:"02-04-2021",
-            name: "Good Friday"
-        },
-        
-    ]
-    loadHolidayData();
+    //$('#table').DataTable();
+    function loadDataTable() {
+        $('#HolidayTable').DataTable({
+            // data: data,
+            searching: true,
+            scrollY: '48vh',
+            pagingType: "simple_numbers",
+            className: "blue",
+            fixedHeader: {
+                header: true,
+                headerOffset: $('#header').height()
+            },
+            responsive: true,
+            columns: [
+                {
+                    title: "Date",
+                    //data: "name"
+                },
+                {
+                    title: "Name",
+                    //data: "email"
+                },
+                {
+                    // data: "id",
+                    title: "Actions",
+                    render: function () {
+                        return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
+                                <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
+                        `;
+                    }
+                }
+            ]
+        });
+
+    }
+
+
+    //get all vendors
+
+    function loadVendors() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                loadDataTable(data);
+                //if (data) {
+                //    createVendorTable(data, '#vendorTable');
+                //}
+            });
+    };
+    loadVendors();
+
 
     $("#saveHoliday").click(() => {
         holidayList();

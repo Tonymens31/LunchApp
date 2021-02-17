@@ -1,5 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Staff";
+    <style>
+        th {
+            color: white !important
+        }
+    </style>
 }
 <div class="app-main__outer">
     <div class="app-main__inner">
@@ -24,24 +29,25 @@
                             </div>
                             <div class="col-md-3"></div>
                             <div class="col-md-1" style="margin-top:5px">
-                                <button class="btn btn-lg btn-outline-primary pull-right" style="margin-bottom: 15px" id="btnAddStaff">Add Staff</button>
+                                <button class="btn btn-sm btn-outline-primary pull-right" style="margin-bottom: 15px" id="btnAddStaff">Add Staff</button>
                             </div>
                         </div>
-                        <div class="table-responsive tableFixHead" style="height: 480px; overflow:auto">
-                            <table class="mb-0 table table-striped table-hover">
-                                <thead>
-                                    <tr style="background-color: #063970; color: white;">
-                                        <th width="15%">StaffID</th>
-                                        <th width="30%">Name</th>
-                                        <th width="30%">Email</th>
-                                        <th width="15%">Phone</th>
-                                        <th width="10%" style="z-index: 10000 !important;">Status</th>
-                                        <th width="5%">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="staffTable"></tbody>
-                            </table>
-                        </div>
+                        <table id="staffTable" class="mb-0 table table-striped table-hover" width="100%"></table>
+                        @*<div class="table-responsive tableFixHead" style="height: 480px; overflow:auto">
+                                <table class="mb-0 table table-striped table-hover">
+                                    <thead>
+                                        <tr style="background-color: #063970; color: white;">
+                                            <th width="15%">StaffID</th>
+                                            <th width="30%">Name</th>
+                                            <th width="30%">Email</th>
+                                            <th width="15%">Phone</th>
+                                            <th width="10%" style="z-index: 10000 !important;">Status</th>
+                                            <th width="5%">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="staffTable"></tbody>
+                                </table>
+                            </div>*@
                     </div>
                 </div>
             </div>

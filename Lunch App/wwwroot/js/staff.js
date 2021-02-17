@@ -10,82 +10,72 @@
         $('#staffModal').modal('show');
     })
 
-    let staffData = [
-        {
-            id: 1,
-            staffId: "psl001",
-            name: "Yaw Asare Ken",
-            email: "yaw23@gmail.com",
-            phone: "02498223838",
-            status: 1
-        },
-        {
-            id: 2,
-            staffId: "psl002",
-            name: "Kofi Mansa-Budumburah",
-            email: "kofimansabudumburah@gmail.com",
-            phone: "0247258693",
-            status: 1
-        },
-        {
-            id: 3,
-            staffId: "psl003",
-            name: "Jason Charles Turkson",
-            email: "jasontk@gmail.com",
-            phone: "0263965811",
-            status: 2
-        },
-        {
-            id: 1,
-            staffId: "psl001",
-            name: "Yaw Asare Ken",
-            email: "yaw23@gmail.com",
-            phone: "02498223838",
-            status: 1
-        },
-        {
-            id: 2,
-            staffId: "psl002",
-            name: "Kofi Mansa-Budumburah",
-            email: "kofimansabudumburah@gmail.com",
-            phone: "0247258693",
-            status: 1
-        },
-        {
-            id: 3,
-            staffId: "psl003",
-            name: "Jason Charles Turkson",
-            email: "jasontk@gmail.com",
-            phone: "0263965811",
-            status: 2
-        },
-        {
-            id: 1,
-            staffId: "psl001",
-            name: "Yaw Asare Ken",
-            email: "yaw23@gmail.com",
-            phone: "02498223838",
-            status: 1
-        },
-        {
-            id: 2,
-            staffId: "psl002",
-            name: "Kofi Mansa-Budumburah",
-            email: "kofimansabudumburah@gmail.com",
-            phone: "0247258693",
-            status: 1
-        },
-        {
-            id: 3,
-            staffId: "psl003",
-            name: "Jason Charles Turkson",
-            email: "jasontk@gmail.com",
-            phone: "0263965811",
-            status: 2
-        }
-    ];
+    //$('#table').DataTable();
+    function loadDataTable() {
+        $('#staffTable').DataTable({
+            // data: data,
+            searching: true,
+            scrollY: '48vh',
+            pagingType: "simple_numbers",
+            className: "blue",
+            fixedHeader: {
+                header: true,
+                headerOffset: $('#header').height()
+            },
+            responsive: true,
+            columns: [
+                {
+                    title: "Date",
+                    //data: "name"
+                },
+                {
+                    title: "Name",
+                    //data: "email"
+                },
+                {
+                    title: "Main Dish",
+                    //data: "email"
+                },
+                {
+                    title: "Side Dish",
+                    //data: "phone"
+                },
+                {
+                    title: "Condiment",
+                    //data: "phone"
+                },
 
-    LoadStaffData()
+                {
+                    // data: "id",
+                    title: "Actions",
+                    //render: function (data) {
+                    //    return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
+                    //            <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
+                    //    `;
+                    //}
+                }
+            ]
+        });
+
+    }
+
+
+    //get all vendors
+
+    function loadVendors() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
+            .done(function (data) {
+                data = JSON.parse(data)
+                data = JSON.parse(data.Body)
+                loadDataTable(data);
+                //if (data) {
+                //    createVendorTable(data, '#vendorTable');
+                //}
+            });
+    };
+    loadVendors();
+
 
     function LoadStaffData() {
         let template = ``;
