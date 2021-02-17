@@ -1,5 +1,8 @@
 ﻿$(document).ready(function () {
     btnState = 0;
+   
+    let saveOrUpdate = 0;
+
     let dt = new DateHandler();
     //fmtDate = (s) => {
     //    let d = new Date(Date.parse(s));
@@ -35,7 +38,7 @@
                     title: "Date",
                     data: "startAt",
                     render: function (data) {
-                        return fmtDate(data);
+                        return getFormattedDate(data);
                     }
                 },
                 {
@@ -61,16 +64,8 @@
                           return fmtDate(data);
                       }
                 },
-
-                //{
-                //    title: "Status",
-                //    data: "isActive",
-                //    render: function (data) {
-                //        return data === 1 ? `<button class="btn btn-success btn-sm">Active</button>` : `<button class="btn btn-sm btn-danger">Inactive</button>`;
-                //    }
-                //},
                 {
-                    //data: "id",
+                    data: "id",
                     title: "Actions", render: function () {
                         return `<button style="border:none; background:transparent" class="editButton" value=""><i class="fas fa-edit text-info"></i></button> 
                         `;
@@ -91,7 +86,7 @@
 
    
 
-    function loadMenuData() {
+    function loadMenus() {
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}Menu/GetAllMenus`, data)
             .done(function (data) {
@@ -104,7 +99,7 @@
                 //}
             });
     }
-    loadMenuData()
+    loadMenus();
 
     flatpickr('#menuDate', {
         "minDate": new Date().fp_incr(1),
@@ -136,7 +131,7 @@
     });
     
 
-    //function loadMenuData() {
+    //function loadMenus() {
     //    let view = ``;
     //    menuData = [...new Map(menuData.map(item => [item.id, item])).values()];
     //    menuData.map(item => {
@@ -190,7 +185,7 @@
     //    console.log(formData)
 
     //    menuData.push(formData)
-    //    loadMenuData()
+    //    loadMenus()
        
     //}
 
@@ -277,15 +272,15 @@
         $("#menuDate").val().length > 0 &&
             $("#expiryDate").val().length !== 0 &&
             $("#menuSideDish").val().length !== '' &&
-            $("#menuMainDish").val().length !== '' &&
-            $("#price").val().length > 0 ?
+            $("#menuMainDish").val().length !== '' ?
+           // $("#price").val().length > 0 ?
             ($("#saveMenu").prop('disabled', false), $("#saveMenu").css('cursor', 'pointer')) :
             ($("#saveMenu").prop('disabled', true), $("#saveMenu").css('cursor', 'not-allowed'))
     }
 
 
 
-    $("#saveVendor").click(() => {
+    $("#saveMenu").click(() => {
         let postDatasArr = [];
         let formdata = {
             "startAt": $("#menuDate").val(),
@@ -296,7 +291,7 @@
             "companyId": '00000000-0000-0000-0000-000000000000'
         }
 
-
+        console.log(formdata)
         if (saveOrUpdate == 1) {
             updateMenu(`${_path_url}Menu/PutMenu`, formdata)
         } else {
@@ -304,14 +299,15 @@
             createMenu(`${_path_url}Menu/PostMenu`, postDatasArr)
         }
         $('#menuModal').modal('hide');
-        clearFields()
+        //clearFields()
     })
+
+    console.log(postDatasArr)
 
 
     function createMenu(url, data) {
         makeAPIRequest(url, data)
             .done(function (response) {
-                console.log(response)
             });
     }
 

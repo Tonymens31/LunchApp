@@ -18,7 +18,11 @@ function readExternalFile(file, mime, callback) {
     dataFile.send(null);
 }
 
-
+getFormattedDate = (str) => {
+    let dateString = new Date(str).toUTCString();
+    dateString = dateString.split(' ').slice(0, 4).join(' ');
+    return `${dateString.trim()}`;
+}
 
 
 function makeAPIRequest(URL, data = "") {
