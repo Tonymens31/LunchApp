@@ -2,7 +2,7 @@
     btnState = 0;
    
     let saveOrUpdate = 0;
-
+    let Menus = [];
     let dt = new DateHandler();
     //fmtDate = (s) => {
     //    let d = new Date(Date.parse(s));
@@ -20,6 +20,19 @@
         $("#saveMenu").html(`<i class="fa fa-save"></i> Save`)
         $('#menuModal').modal('show');
     })
+
+
+    function loadMenus() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}Menu/GetAllMenus`, data)
+            .done(function (data) {
+                data = JSON.parse(data);
+                data = JSON.parse(data.Body);
+                Menus = data;
+                loadDataTable(data);
+            });
+    }
+    loadMenus();
 
     function loadDataTable(data) {
         mtTab = $('#table').DataTable({
@@ -53,10 +66,10 @@
                     title: "Condiment",
                     data: "condiDish"
                 },
-                //{
-                //    title: "Pricing",
-                //    data:"3"
-                //},
+                {
+                    title: "Pricing",
+                    data:"price"
+                },
                   {
                     title: "Order Ending",
                       data: "endAt",
@@ -66,40 +79,43 @@
                 },
                 {
                     data: "id",
-                    title: "Actions", render: function () {
-                        return `<button style="border:none; background:transparent" class="editButton" value=""><i class="fas fa-edit text-info"></i></button> 
+                    title: "Actions", render: function (data) {
+                        return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
+                               
                         `;
                     }
-                },
+                }
             ]
         });
     }
 
-    //"mainDishId": "8160896a-41bb-4b3b-b7cc-23b4244511fb",
-    //    "sideDishId": "e76d9349-ba51-4bfe-aa32-f190c2482609",
-    //        "condiDishId": "3ab53303-15f4-48ac-b75d-c244d5633be4",
-    //            "mainDish": "Palmnut Soup with Goat Meat",
-    //                "sideDish": "Banku",
-    //                    "condiDish": "Extra Banku",
-    //                        "startAt": "2021-02-16T13:58:09.313",
-    //                            "endAt": "2021-02-16T13:58:09.313",
+    $(document).on('click', '.editButton', function () {
+        let rowId = $(this).val();
+        let rowData = Menus.filter(x => x.id === rowId)[0];
+        console.log(rowId)
+        populateInputFields(rowData);
+    })
 
-   
-
-    function loadMenus() {
-        let data = { companyId: companyId };
-        makeAPIRequest(`${_path_url}Menu/GetAllMenus`, data)
+    function loadSingleTypes() {
+        let data = { type: "ftyp" };
+        makeAPIRequest(`${_path_url}Menu/GetSingleCode`, data)
             .done(function (data) {
+
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
-                loadDataTable(data)
-                //console.log(data);
-                //if (data) {
-                //    createMenuTable(data, '#vendorTable');
-                //}
+
+                setGeneric(data, "Select Food Type", "#foodType")
             });
     }
-    loadMenus();
+    loadSingleTypes(); 
+
+    function setGeneric(data, title, elementID) {
+        let template = `<option value = "">${title}</option>`
+        template += data.map(type => (
+            `<option value = "${type.id}">${type.name}</option>`
+        ))
+        $(elementID).html(template);
+    }
 
     flatpickr('#menuDate', {
         "minDate": new Date().fp_incr(1),
@@ -130,33 +146,6 @@
         }
     });
     
-
-    //function loadMenus() {
-    //    let view = ``;
-    //    menuData = [...new Map(menuData.map(item => [item.id, item])).values()];
-    //    menuData.map(item => {
-    //        view += `
-    //        <tr id=${item.id}>
-    //            <td>${item.date}</td>
-    //            <td>${item.maindish}</td>
-    //            <td>${item.sidedish}</td>
-    //            <td>${item.condiment}</td> 
-    //            <td>${item.price}</td>
-    //            <td class="">
-    //                 ${item.expiryDate}
-    //            </td>
-    //            <td class="">
-    //                <a href="#" class="text-inverse editButton" id="${item.id}"  title="Edit"><i class="fas fa-edit"></i></a>
-    //            </td>
-    //        </tr>
-    //    `
-    //    })
-    //    $('#menuTable').html(view);
-    //    bindButtonsToDOM()
-    //}
-
-   
-   
 
     //$( "#myselect option:selected" ).text();
 
@@ -221,15 +210,19 @@
     }
 
     function populateInputFields(data) {
-        let { date, maindish, sidedish, condiment, price, expiryDate } = data;
-        $('#menuDate').val(date)
-        $('#menuMainDish').val(maindish)
-        $('#menuSideDish').val(sidedish)
-        $('#menuCondiment').val(condiment)
-        $('#expiryDate').val(expiryDate)
+        let { startAt, mainDish, sideDish, condiDish, price, endAt } = data;
+
+        //console.log({ data } )
+
+        $('#menuDate').val(startAt)
+        $('#menuMainDish').val(mainDish)
+        $('#menuSideDish').val(sideDish)
+        $('#menuCondiment').val(condiDish)
+        $('#expiryDate').val(endAt)
         $('#price').val(price)
         $('#menuModal').modal('show');
-    };
+    }; 
+
 
 
     $('#closeBtn').click(function () {
@@ -289,25 +282,21 @@
             "mainDishId": $("#menuMainDish").val(),
             "sideDishId": $("#menuSideDish").val(),
             "condiDishId": $("#menuCondiment").val(),
+            "price": $("#price").val(),
             "endAt": $("#expiryDate").val(),
             "companyId": '00000000-0000-0000-0000-000000000000'
         }
-
-
-       // console.log(formdata)
+        console.log(formdata)
         if (saveOrUpdate == 1) {
-            updateMenu(`${_path_url}Menu/PutMenu`, formdata)
+            updateMenu(`${_path_url}Menu/PutMenu`, formdata);
         } else {
             postDatasArr.push(formdata);
-            createMenu(`${_path_url}Menu/PostMenu`, postDatasArr)
-            
+            createMenu(`${_path_url}Menu/PostMenu`, postDatasArr);
         }
         $('#menuModal').modal('hide');
         clearFields()
-        
-    })
 
-    
+    });
 
 
     function createMenu(url, data) {

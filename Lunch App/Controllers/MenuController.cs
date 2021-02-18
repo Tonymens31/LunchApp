@@ -33,6 +33,13 @@ namespace Lunch_App.Controllers
         }
 
         [HttpPost]
+        public async Task<string> GetSingleCode([FromBody] FoodItemModel mdl)
+        {
+            var url = $"{LunchAppUrl}GetSingleCodes/{mdl.pkId}";
+            return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
+        }
+
+        [HttpPost]
         public async Task<string> PostMenu([FromBody] List<MenuModel> mdl)
         {
             var url = $"{LunchAppUrl}CreateMenus/{mdl[0].companyId}";

@@ -20,17 +20,17 @@
                             <div class="col-md-2">
                             </div>
                             <div class="col-md-4">
-                                <div class="search-wrapper" style=" margin-top: -5px;">
-                                    <div class="input-holder">
-                                        <input type="text" class="search-input" placeholder="Type menu to search">
-                                        <button class="search-icon"><span></span></button>
-                                    </div>
-                                    <button class="close"></button>
-                                </div>
+                                @*<div class="search-wrapper" style=" margin-top: -5px;">
+                                        <div class="input-holder">
+                                            <input type="text" class="search-input" placeholder="Type menu to search">
+                                            <button class="search-icon"><span></span></button>
+                                        </div>
+                                        <button class="close"></button>
+                                    </div>*@
                             </div>
                             <div class="col-md-3"></div>
                             <div class="col-md-1" style="margin-top: 5px">
-                                <button class="btn btn-sm btn-outline-primary pull-right" style="margin-bottom: 15px" id="btnAddMenu">Add Menu</button>
+                                <button class="btn btn-md btn-outline-primary pull-right" style="margin-bottom: 15px" id="btnAddMenu">Add Menu</button>
                             </div>
                         </div>
                         <table id="table" class="mb-0 table table-striped table-hover" width="100%"></table>
@@ -79,11 +79,7 @@
                                 <br />
                                 <select class="form-control required " id="menuMainDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
                                     <option class="text-muted" value="-1" selected style="padding-left: 10px; text-decoration-color:red !important" disabled>Select Main Dish</option>
-                                    <option>Palmnut Soup with Goat Meat</option>
-                                    <option>Egg Stew with Fish</option>
-                                    <option>Palmnut Soup with Fish</option>
-                                    <option>Okro Stew with Cow Meat</option>
-                                    <option>Light Soup with Chicken</option>
+                                    <option value="">Palmnut Soup with Goat Meat</option>
                                 </select>
                             </div>
                         </div>
@@ -95,11 +91,6 @@
                                 <br />
                                 <select class="form-control required" id="menuSideDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
                                     <option value="-1" selected style="padding-left: 10px" disabled> Select Side Dish</option>
-                                    <option>Plain Rice</option>
-                                    <option>Banku</option>
-                                    <option>Konkonte</option>
-                                    <option>Waakye</option>
-                                    <option>Fufu</option>
                                 </select>
                             </div>
                             <div class="col-md-7">
@@ -107,9 +98,6 @@
                                 <br />
                                 <select class="form-control" id="menuCondiment" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px">
                                     <option value="-1" selected style="padding-left: 10px" disabled>Select Condiment</option>
-                                    <option>Extra Meat</option>
-                                    <option>Extra Shito</option>
-                                    <option>More Pepper</option>
                                 </select>
                             </div>
                         </div>

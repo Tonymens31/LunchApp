@@ -2,8 +2,8 @@
 @{
     ViewData["Title"] = "Vendor";
     <style>
-        th{
-            color:white !important
+        th {
+            color: white !important
         }
     </style>
 }
@@ -17,29 +17,38 @@
                             <div class="col-md-2">
                                 <h3 class="card-title" id="title" style="margin-top: 5px">Vendor</h3>
                             </div>
-                            @*<div class="col-md-2">
+                            <div class="col-md-2">
                             </div>
-                            <div class="col-md-3"></div>*@
+                            <div class="col-md-3"></div>
+                            <div class="col-md-4">
+                                @*<div class="search-wrapper" style=" margin-top: -5px;">
+                                        <div class="input-holder">
+                                            <input type="text" class="search-input" placeholder="Type menu to search">
+                                            <button class="search-icon"><span></span></button>
+                                        </div>
+                                        <button class="close"></button>
+                                    </div>*@
+                            </div>
                             <div class="col-md-1" style="margin-top:0px">
-                                <button class="btn btn-sm btn-outline-primary pull-right" style="margin-bottom: 15px;" id="btnAddVendor">Add Vendor</button>
+                                <button class="btn btn-md btn-outline-primary pull-right" style="margin-bottom: 15px;" id="btnAddVendor">Add Vendor</button>
                             </div>
                         </div>
 
-                            <table id="table" class="mb-0 table table-striped table-hover" width="100%"></table>
+                        <table id="table" class="mb-0 table table-striped table-hover" width="100%"></table>
 
-                            @*<table class="mb-0 table table-striped table-hover" id="table">
-                                <thead class="">
-                                    <tr style="background-color: #063970; color: white;">
-                                        <th width="20%">Name</th>
-                                        <th width="13%">Phone №</th>
-                                        <th width="20%">Email</th>
-                                        <th width="15%" style="z-index: 10000 !important;">Status</th>
-                                        <th width="1%">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="vendorTable">
-                                </tbody>*@
-                            @*</table>*@
+                        @*<table class="mb-0 table table-striped table-hover" id="table">
+                            <thead class="">
+                                <tr style="background-color: #063970; color: white;">
+                                    <th width="20%">Name</th>
+                                    <th width="13%">Phone №</th>
+                                    <th width="20%">Email</th>
+                                    <th width="15%" style="z-index: 10000 !important;">Status</th>
+                                    <th width="1%">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vendorTable">
+                            </tbody>*@
+                        @*</table>*@
                     </div>
                 </div>
             </div>

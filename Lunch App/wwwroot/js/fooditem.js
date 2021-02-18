@@ -87,8 +87,6 @@ $(document).ready(function () {
     //    console.log(mtTab.row(this).data());
     //});
 
-   
-
 
     function loadDataTypes() {
         let data = { type: "ftyp" };
@@ -190,7 +188,7 @@ $(document).ready(function () {
         $('#foodItem').val("");
         $('#foodType').val(-1);
         $('#status').val(-1);
-        $('#vendor')[0].sumo.unSelectAll();
+        //$('#vendor')[0].sumo.unSelectAll();
         $('#vendor')[0].sumo.reload();
         $("#saveFoodItem").prop('disabled', true)
         $("#saveFoodItem").css('cursor', 'not-allowed');
