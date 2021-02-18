@@ -22,17 +22,6 @@ namespace Lunch_App.Models
 
     }
 
-    public class CreateMenuModel
-    {
-
-        public string MainDishId { get; set; }
-        public string SideDishId { get; set; }
-        public string CondiDishId { get; set; }
-        public string StartAt { get; set; }
-        public string Price { get; set; }
-        public string EndAt { get; set; }
-
-
-    }
+   
 
 }

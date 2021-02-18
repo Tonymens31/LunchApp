@@ -43,11 +43,11 @@ namespace Lunch_App.Controllers
             return await  _hcmAdminClient.SendDataToAPI(url, "POST", false, mdl);
         }
 
-        [HttpPost("PutVendor/{pkId}")]
-        public async Task<object> PutVendor([FromBody] List<LunchModel> mdl, string pkId)
+        [HttpPost]
+        public async Task<object> PutVendor([FromBody] LunchModel mdl)
         {
-            var url = $"{LunchAppUrl}/UpdateVendors/{pkId}/{mdl[0].companyId}";
-            return await  _hcmAdminClient.SendDataToAPI(url, "PUT", false);
+            var url = $"{LunchAppUrl}UpdateVendors/{mdl.pkId}/{mdl.companyId}";
+            return await  _hcmAdminClient.SendDataToAPI(url, "PUT", false, mdl);
         } 
 
          [HttpPost]

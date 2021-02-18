@@ -127,30 +127,12 @@ $(document).ready(function () {
         ))
         $(elementID).html(template);
     }
-
-    //makeAPIRequest(`GetAllCodes`, 'GET', '', loadForSelectBox);
-
-    //function loadForSelectBox(data) {
-    //    data = JSON.parse(data);
-
-    //    var options = '<option value="-1" disabled selected >Select Food Types</option>';
-    //    data.forEach((element) => {
-    //        options += '<option value="' + element.id + '">' + element.type + '</option>';
-    //    });
-
-    //    document.querySelector('#foodType').innerHTML = options;
-    //}
-
-
-
-
     
 
     $('#closeBtn').click(function () {
         clearFields();
         validation();
     })
-
 
   
 
@@ -189,7 +171,7 @@ $(document).ready(function () {
         $('#foodType').val(-1);
         $('#status').val(-1);
         //$('#vendor')[0].sumo.unSelectAll();
-        $('#vendor')[0].sumo.reload();
+        //$('#vendor')[0].sumo.reload();
         $("#saveFoodItem").prop('disabled', true)
         $("#saveFoodItem").css('cursor', 'not-allowed');
     }
@@ -267,7 +249,6 @@ $(document).ready(function () {
             "companyId": '00000000-0000-0000-0000-000000000000'
         }
 
-
         if (saveOrUpdate == 1) {
             updateFoodItem(`${_path_url}FoodItems/UpdateFoodItems`, formdata)
         } else {
@@ -275,14 +256,14 @@ $(document).ready(function () {
             createFoodItem(`${_path_url}FoodItems/PostFoodItems`, postDatasArr)
         }
 
-        foodItemsList();
-        clearFields();
-        $('#foodItemModal').modal('hide');
-
         iziToast.success({
             position: 'topRight',
             message: 'Food item saved successfully',
         });
+
+        //$('#foodItemModal').modal('show');
+        $('#saveFoodItem').modal('hide');
+        clearFields();
     })
 
    

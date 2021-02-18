@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     btnState = 0;
     let Vendors = [];
+    let selectedRow = "";
     let saveOrUpdate = 0;
     let sub = {
         1: { color: 'success', state: 'Active' },
@@ -31,9 +32,10 @@
     };
 
     $(document).on("click", ".editButton", function () {
+        saveOrUpdate = 1;
         let rowid = $(this).val();
         let rowData = Vendors.filter(x => x.id === rowid)[0]
-        console.log(rowData)
+        selectedRow = rowData.id
         populateInputFields(rowData);
         $("#saveVendor").html(`Update`)
     })
@@ -134,27 +136,7 @@
         validation();
     })
 
-    //function createVendorTable(data, tableId) {
-    //    let tem = data.map(item => (`<tr id=${item.id} >
-    //                        <td>${item.name}</td>
-    //                        <td>${item.phone.replace(/\s+/g, '')}</td>
-    //                        <td>${item.email}</td>
-    //                        <td>
-    //                            <span class="badge badge-dot mr-4" style="background-color:transparent; padding: 0px;">
-    //                            <i class="bg-${item.isActive == 1 ? `success` : `warning`}"></i> <span class="btn btn-${sub[item.isActive].color} btn-sm" disabled>${sub[item.isActive].state}</span>
-    //                        </span>
-    //                       </td>
-    //                       <td class="">
-    //                            <a href="#" class="text-inverse editButton"  id="${item.id}"  title="Edit"><i class="fas fa-edit fa-1x"></i></a>
-    //                            <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
-    //                       </td>
-    //                    </tr>
-    //                `));
-
-    //    $(tableId).html(tem);
-    //    bindButtonsToDOM(data)
-    //}
-
+   
 
     function bindButtonsToDOM(data) {
         let elements = document.getElementsByClassName('editButton');
@@ -170,9 +152,9 @@
         }
     }
 
-
+  
     function getRowData(data, rowId) {
-
+      
         let data1 = data.filter(ele => ele.id.toString() === rowId)[0];
 
         // console.log(data1);
@@ -180,11 +162,13 @@
         saveOrUpdate = 1;
     }
 
+   
+
     function populateInputFields(data1) {
         let = { name, phone, tel, email, isActive } = data1;
         //console.log(data1);
         //console.log(name); console.log(type); console.log(status)
-
+       
         $('#vendorName').val(name)
         $('#phone1').val(phone)
         $('#phone2').val(tel)
@@ -326,6 +310,7 @@
     $("#saveVendor").click(() => {
         let postDatasArr = [];
         let formdata = {
+            "pkId": selectedRow,
             "name": $("#vendorName").val(),
             "email": $("#vendorEmail").val(),
             "phone": $("#phone1").val(),
@@ -333,14 +318,17 @@
             "isActive": parseInt($("#status").val()),
             "companyId": '00000000-0000-0000-0000-000000000000'
         }
+        
+        console.log(formdata)
 
-
-        if (saveOrUpdate == 1) {
-            updateVendor(`${_path_url}APICalls/PutVendor`, formdata)
-        } else {
+        if (saveOrUpdate === 0) {
             postDatasArr.push(formdata);
             createVendor(`${_path_url}APICalls/PostVendor`, postDatasArr)
+        } else {
+            updateVendor(`${_path_url}APICalls/PutVendor`, formdata)
         }
+       
+    
         $('#vendorModal').modal('hide');
     })
 
