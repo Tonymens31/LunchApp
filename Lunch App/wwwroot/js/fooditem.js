@@ -2,6 +2,7 @@
 $(document).ready(function () {
     $('#myTable').DataTable();
     let saveOrUpdate = 0;
+    let selectedRow = "";
     let btnState = 0;
     let FoodItems = [];
     let sub = {
@@ -79,9 +80,11 @@ $(document).ready(function () {
 
     
     $(document).on("click", ".editButton", function () {
+        saveOrUpdate = 1;
         let rowid = $(this).val();
         let rowData = FoodItems.filter(x => x.id === rowid)[0]
         populateInputFields(rowData);
+        selectedRow = rowData.id;
     })
     //$(".editButton").on('click', 'tr', function() {
     //    console.log(mtTab.row(this).data());
@@ -242,6 +245,7 @@ $(document).ready(function () {
     $("#saveFoodItem").click(() => {
         let postDatasArr = [];
         let formdata = {
+            "pkId": selectedRow,
             "name": $("#vendorName").val(),
             "typeId": $("#vendorEmail").val(),
             "vendorId": $("#phone1").val(),
@@ -256,9 +260,17 @@ $(document).ready(function () {
             createFoodItem(`${_path_url}FoodItems/PostFoodItems`, postDatasArr)
         }
 
+
+        if (saveOrUpdate === 0) {
+            postDatasArr.push(formdata);
+            createVendor(`${_path_url}APICalls/PostFoodItems`, postDatasArr)
+        } else {
+            updateVendor(`${_path_url}APICalls/PutFoodItems`, formdata)
+        }
+
         iziToast.success({
             position: 'topRight',
-            message: 'Food item saved successfully',
+            message: 'Saved successfully',
         });
 
         //$('#foodItemModal').modal('show');

@@ -21,7 +21,4 @@ namespace Lunch_App.Models
         public string pkId { get; set; }
 
     }
-
-   
-
 }

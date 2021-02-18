@@ -16,7 +16,7 @@
     });
 
     //get all vendors
-    loadVendors();
+  
     function loadVendors() {
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
@@ -30,12 +30,15 @@
                 //}
             });
     };
+    loadVendors();
+
+
 
     $(document).on("click", ".editButton", function () {
         saveOrUpdate = 1;
         let rowid = $(this).val();
         let rowData = Vendors.filter(x => x.id === rowid)[0]
-        selectedRow = rowData.id
+        selectedRow = rowData.id;
         populateInputFields(rowData);
         $("#saveVendor").html(`Update`)
     })
@@ -153,14 +156,14 @@
     }
 
   
-    function getRowData(data, rowId) {
+    //function getRowData(data, rowId) {
       
-        let data1 = data.filter(ele => ele.id.toString() === rowId)[0];
+    //    let data1 = data.filter(ele => ele.id.toString() === rowId)[0];
 
-        // console.log(data1);
-        populateInputFields(data1);
-        saveOrUpdate = 1;
-    }
+    //    // console.log(data1);
+    //    populateInputFields(data1);
+    //    saveOrUpdate = 1;
+    //}
 
    
 
@@ -216,10 +219,6 @@
             })
         })(i);
     }
-
-    $('#search').click(() => {
-
-    })
 
     $("#saveVendor").css('cursor', 'not-allowed');
     function validation() {
@@ -319,16 +318,19 @@
             "companyId": '00000000-0000-0000-0000-000000000000'
         }
         
-        console.log(formdata)
-
         if (saveOrUpdate === 0) {
             postDatasArr.push(formdata);
             createVendor(`${_path_url}APICalls/PostVendor`, postDatasArr)
         } else {
             updateVendor(`${_path_url}APICalls/PutVendor`, formdata)
         }
-       
-    
+
+        loadVendors();
+        iziToast.success({
+            position: 'topRight',
+            message: 'Saved successfully',
+        });
+        
         $('#vendorModal').modal('hide');
     })
 
@@ -337,7 +339,6 @@
     function createVendor(url, data) {
         makeAPIRequest(url, data)
             .done(function (response) {
-                console.log(response)
             });
     }
 
