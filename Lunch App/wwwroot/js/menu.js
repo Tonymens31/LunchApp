@@ -52,30 +52,36 @@
                     data: "startAt",
                     render: function (data) {
                         return getFormattedDate(data);
-                    }
+                    },
+                    width: "17%"
                 },
                 {
                     title: "Main Dish",
-                    data: "mainDish"
+                    data: "mainDish",
+                    width: "27%"
                 },
                 {
                     title: "Side Dish",
-                    data: "sideDish"
+                    data: "sideDish",
+                    width: "15%"
                 },
                 {
                     title: "Condiment",
-                    data: "condiDish"
+                    data: "condiDish",
+                    width: "15%"
                 },
                 {
                     title: "Pricing",
-                    data:"price"
+                    data: "price",
+                    width: "2%"
                 },
                   {
                     title: "Order Ending",
                       data: "endAt",
                       render: function (data) {
                           return fmtDate(data);
-                      }
+                      },
+                      width: "22%"
                 },
                 {
                     data: "id",
@@ -83,7 +89,8 @@
                         return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
                                
                         `;
-                    }
+                    },
+                    width: "2%"
                 }
             ]
         });
@@ -212,7 +219,7 @@
     function populateInputFields(data) {
         let { startAt, mainDish, sideDish, condiDish, price, endAt } = data;
 
-        //console.log({ data } )
+        console.log({ price } )
 
         $('#menuDate').val(startAt)
         $('#menuMainDish').val(mainDish)

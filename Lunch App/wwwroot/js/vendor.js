@@ -60,22 +60,26 @@
             columns: [
                 {
                     title: "Vendor Name",
-                    data: "name"
+                    data: "name",
+                    width: "25%"
                 },
                 {
                     title: "Email",
-                    data: "email"
+                    data: "email",
+                    width: "35%"
                 },
                 {
                     title: "Phone №",
-                    data: "phone"
+                    data: "phone",
+                    width: "20%"
                 },
                 {
                     title: "Status",
                     data: "isActive",
                     render: function (data) {
                         return data === 1 ? `<button class="btn btn-success btn-sm">Active</button>` : `<button class="btn btn-sm btn-danger">Inactive</button>`;
-                    }
+                    },
+                    width: "15%"
                 },
                 {
                     data: "id",
@@ -83,7 +87,8 @@
                         return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
                                 <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
                         `;
-                    }
+                    },
+                    width: "5%"
                 }
             ]
         });
