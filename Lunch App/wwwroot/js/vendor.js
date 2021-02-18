@@ -335,7 +335,6 @@
     })
 
 
-
     function createVendor(url, data) {
         makeAPIRequest(url, data)
             .done(function (response) {
