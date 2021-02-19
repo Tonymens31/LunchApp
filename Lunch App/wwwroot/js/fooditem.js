@@ -88,13 +88,13 @@ $(document).ready(function () {
         saveOrUpdate = 1;
         let rowid = $(this).val();
         let rowData = FoodItems.filter(x => x.id === rowid)[0]
-        populateInputFields(rowData);
         selectedRow = rowData.id;
+        populateInputFields(rowData);
+        
+        $("#saveFoodItem").html(`Update`)
+        
     })
-    //$(".editButton").on('click', 'tr', function() {
-    //    console.log(mtTab.row(this).data());
-    //});
-
+    
 
     function loadDataTypes() {
         let data = { type: "ftyp" };
@@ -163,8 +163,10 @@ $(document).ready(function () {
     }
 
     function populateInputFields(data) {
-        let { name, typeId, vendorId, isActive, vendor } = data;
-        console.log(vendor)
+        let { name, typeId, vendorId, isActive } = data;
+
+        console.log(name)
+
         $('#foodItem').val(name);
         $('#foodType').val(typeId);
         $('#status').val(isActive);
@@ -173,7 +175,7 @@ $(document).ready(function () {
         $("#saveFoodItem").html(`Update`);
     };
 
-   
+
     function clearFields() {
         $('#foodItem').val("");
         $('#foodType').val(-1);
@@ -251,9 +253,9 @@ $(document).ready(function () {
         let postDatasArr = [];
         let formdata = {
             "pkId": selectedRow,
-            "name": $("#vendorName").val(),
-            "typeId": $("#vendorEmail").val(),
-            "vendorId": $("#phone1").val(),
+            "name": $("#foodItem").val(),
+            "typeId": $("#foodType").val(),
+            "vendorId": $("#vendor").val(),
             "isActive": parseInt($("#status").val()),
             "companyId": '00000000-0000-0000-0000-000000000000'
         }
