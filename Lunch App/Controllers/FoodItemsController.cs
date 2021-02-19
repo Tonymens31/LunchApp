@@ -51,7 +51,7 @@ namespace Lunch_App.Controllers
         public async Task<object> PutFoodItems([FromBody] FoodItemModel mdl)
         {
             var endpoint = $"{LunchAppUrl}UpdateFoodItems/{mdl.pkId}/{mdl.companyId}";
-            return await _hcmAdminClient.SendDataToAPI(endpoint, "PUT", false);
+            return await _hcmAdminClient.SendDataToAPI(endpoint, "PUT", false, mdl);
         }
 
     }

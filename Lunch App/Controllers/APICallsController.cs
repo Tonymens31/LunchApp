@@ -51,9 +51,9 @@ namespace Lunch_App.Controllers
         } 
 
          [HttpPost]
-        public async Task<object> DeleteVendor([FromBody] List<LunchModel> mdl, string pkId)
+        public async Task<object> DeleteVendor([FromBody] LunchModel mdl)
         {
-            var url = $"{LunchAppUrl}/DeleteVendors/{pkId}/{mdl[0].companyId}";
+            var url = $"{LunchAppUrl}DeleteVendors/{mdl.pkId}/{mdl.companyId}";
             return await  _hcmAdminClient.SendDataToAPI(url, "DELETE", false);
         } 
         

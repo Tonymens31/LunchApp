@@ -165,7 +165,7 @@ $(document).ready(function () {
     function populateInputFields(data) {
         let { name, typeId, vendorId, isActive } = data;
 
-        console.log(name)
+        console.log(isActive)
 
         $('#foodItem').val(name);
         $('#foodType').val(typeId);
