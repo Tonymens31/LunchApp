@@ -1,5 +1,6 @@
 ﻿using Lunch_App.Data;
 using Lunch_App.Models;
+using Lunch_App.Models.Foods;
 using Lunch_App.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,7 @@ namespace Lunch_App.Controllers
             var url = $"{LunchAppUrl}GetAllFoodItem/{mdl.companyId}";
             return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
         }
+
 
         [HttpPost]
         public async Task<string> GetAllCode([FromBody] FoodItemModel mdl)

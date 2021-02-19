@@ -308,25 +308,26 @@
                             </li>
                         </ul>
                         @*<ul class="vertical-nav-menu">
-                            <li>
-                                <a href="#">
-                                    <i class="metismenu-icon pe-7s-settings"></i>
-                                    General Setting
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a asp-controller="Home" asp-action="Holiday">
-                                            <i class="pe-7s-album">
-                                            </i>    Holiday
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>*@
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-settings"></i>
+                                General Setting
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a asp-controller="Home" asp-action="Holiday">
+                                        <i class="pe-7s-album">
+                                        </i>    Holiday
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>*@
                     </div>
                 </div>
             </div>
+            @Html.AntiForgeryToken()
             @RenderBody()
 
         </div>

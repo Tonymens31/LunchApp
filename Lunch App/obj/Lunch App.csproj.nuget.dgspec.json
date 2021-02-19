@@ -84,10 +84,6 @@
               "target": "Package",
               "version": "[3.1.5, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[3.1.5, )"
-            },
             "Microsoft.IdentityModel.JsonWebTokens": {
               "target": "Package",
               "version": "[6.6.0, )"
@@ -115,10 +111,6 @@
             "Syncfusion.EJ.AspNet.Core": {
               "target": "Package",
               "version": "[17.3.0.28, )"
-            },
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.4.0, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

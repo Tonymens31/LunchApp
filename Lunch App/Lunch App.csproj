@@ -29,7 +29,6 @@
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.5" />
 	  <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="5.1.0" />
 	  <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
 
 	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
 	  <PackageReference Include="NWebsec.AspNetCore.Middleware" Version="3.0.0" />
@@ -37,8 +36,6 @@
 	  <PackageReference Include="System.Net.Http" Version="4.3.4" />
 	  <PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.65" />
 
-	  <!--<PackageReference Include="System.Data.SqlClient" Version="4.8.1" />-->
-	  <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,12 @@
-﻿let companyId = '00000000-0000-0000-0000-000000000000';
+﻿$.ajaxSetup({
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'RequestVerificationToken': $('input:hidden[name="__RequestVerificationToken"]').val()
+    }
+});
+
+let companyId = '00000000-0000-0000-0000-000000000000';
 
 function readExternalFile(file, mime, callback) {
     let overrideMime = ''

@@ -1,15 +1,20 @@
-﻿
+﻿let saveOrUpdate = 0;
+let selectedRow = "";
+let btnState = 0;
+let FoodItems = [];
+let sub = {
+    1: { color: 'success', state: 'Active' },
+    0: { color: 'danger', state: 'Inactive' }
+};
+let mtTab;
+
+let ShowFoodModal = () => {
+
+}
+
 $(document).ready(function () {
     $('#myTable').DataTable();
-    let saveOrUpdate = 0;
-    let selectedRow = "";
-    let btnState = 0;
-    let FoodItems = [];
-    let sub = {
-        1: { color: 'success', state: 'Active' },
-        0: { color: 'danger', state: 'Inactive' }
-    };
-    let mtTab;
+
 
     //var table = $('#table').DataTable();
 
@@ -272,8 +277,9 @@ $(document).ready(function () {
         });
 
         $('#foodItemModal').modal('hide');
-       
+
         clearFields();
+        loadFoodItems();
     })
 
 

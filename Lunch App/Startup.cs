@@ -48,21 +48,26 @@ namespace Lunch_App
         [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
-          
-
-            var config = new Config();
-            Configuration.Bind("APISETTINGS", config);
-            services.AddSingleton(config);
             services.AddControllersWithViews();
 
             var IDPSettings = new IDPSettings();
-            Configuration.Bind("IDPSETTINGS", IDPSettings);
+            Configuration.Bind("IDPSettings", IDPSettings);
             services.AddSingleton(IDPSettings);
 
             services.AddNodeServices();
 
             services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddHttpContextAccessor();
+
+            // --------- START SCRUM ------------------------------
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpClient<IAPIClient, APIClient>(options =>
+            {
+                options.BaseAddress = new Uri(IDPSettings.LunchAppUrl);
+                options.DefaultRequestHeaders.Accept.Clear();
+            });
+            services.AddTransient<IAPIServices, APIServices>();
+            // ---------- END SCRUM -------------------
 
             services.AddScoped<HCMAdminHTTPClient, HCMAdminHTTPClientIdentity>();
             services.AddScoped<IHelperInterface, ApiHelper>();
@@ -72,14 +77,6 @@ namespace Lunch_App
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            services.AddHttpClient();
-
-            services.AddHttpClient<HelperInterface, MethodAPIRequest>(options =>
-            {
-               options.BaseAddress = new Uri(config.LunchAppUrl);
-                options.DefaultRequestHeaders.Accept.Clear();
             });
 
             ConfigureIdentityServer(services);
