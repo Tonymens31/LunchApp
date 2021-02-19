@@ -33,10 +33,10 @@ $(document).ready(function () {
 
 
     function loadDataTable(data) {
-        console.log({ data})
-       mtTab =   $('#table').DataTable({
-           data: data,
-           pageLength: 10,
+        console.log({ data })
+        mtTab = $('#table').DataTable({
+            data: data,
+            pageLength: 10,
             searching: true,
             scrollY: '48vh',
             pagingType: "simple_numbers",
@@ -83,31 +83,31 @@ $(document).ready(function () {
         });
     }
 
-    
+
     $(document).on("click", ".editButton", function () {
         saveOrUpdate = 1;
         let rowid = $(this).val();
         let rowData = FoodItems.filter(x => x.id === rowid)[0]
         selectedRow = rowData.id;
         populateInputFields(rowData);
-        
+
         $("#saveFoodItem").html(`Update`)
-        
+
     })
-    
+
 
     function loadDataTypes() {
         let data = { type: "ftyp" };
         makeAPIRequest(`${_path_url}FoodItems/GetAllCode`, data)
             .done(function (data) {
-               
+
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
-             
-                setGeneric(data, "Select Food Type","#foodType")
+
+                setGeneric(data, "Select Food Type", "#foodType")
             });
     }
-    loadDataTypes(); 
+    loadDataTypes();
 
     function setGeneric(data, title, elementID) {
         let template = `<option value = "">${title}</option>`
@@ -135,27 +135,27 @@ $(document).ready(function () {
         ))
         $(elementID).html(template);
     }
-    
+
 
     $('#closeBtn').click(function () {
         clearFields();
         validation();
     })
 
-  
 
-    function bindButtonsToDOM() {
-        let elements = document.getElementsByClassName('editButton');
 
-        for (let x = 0; x < elements.length; x++) {
-            elements[x].addEventListener('click', function (e) {
-                getRowData(this.id)
-                btnState = 1;
-                $("#saveFoodItem").html(`Update`)
-                $('#foodItemModal').modal('show');
-            });
-        }
-    }
+    //function bindButtonsToDOM() {
+    //    let elements = document.getElementsByClassName('editButton');
+
+    //    for (let x = 0; x < elements.length; x++) {
+    //        elements[x].addEventListener('click', function (e) {
+    //            getRowData(this.id)
+    //            btnState = 1;
+    //            $("#saveFoodItem").html(`Update`)
+    //            $('#foodItemModal').modal('show');
+    //        });
+    //    }
+    //}
 
     function getRowData(rowId) {
         let data = foodItemsData.filter(ele => ele.id.toString() === rowId)[0];
@@ -180,8 +180,7 @@ $(document).ready(function () {
         $('#foodItem').val("");
         $('#foodType').val(-1);
         $('#status').val(-1);
-        //$('#vendor')[0].sumo.unSelectAll();
-        //$('#vendor')[0].sumo.reload();
+        $('#vendor').val(-1);
         $("#saveFoodItem").prop('disabled', true)
         $("#saveFoodItem").css('cursor', 'not-allowed');
     }
@@ -219,8 +218,8 @@ $(document).ready(function () {
 
     function validation() {
         var vendor = $("#vendor").val() ? true : false;
-        if (vendor && $("#foodType").val().length > 0 &&
-            $("#foodItem").val().length !== 0 && $("#status").val() > 0) {
+        if (vendor && $("#foodType").val().length !== "" &&
+            $("#foodItem").val().length !== 0 && $("#status").val() > -1) {
             $("#saveFoodItem").prop('disabled', false);
             $("#saveFoodItem").css('cursor', 'pointer')
         } else {
@@ -270,9 +269,9 @@ $(document).ready(function () {
 
         if (saveOrUpdate === 0) {
             postDatasArr.push(formdata);
-            createVendor(`${_path_url}APICalls/PostFoodItems`, postDatasArr)
+            createFoodItem(`${_path_url}FoodItems/PostFoodItems`, postDatasArr)
         } else {
-            updateVendor(`${_path_url}APICalls/PutFoodItems`, formdata)
+            updateFoodItem(`${_path_url}FoodItems/PutFoodItems`, formdata)
         }
 
         iziToast.success({
@@ -280,12 +279,12 @@ $(document).ready(function () {
             message: 'Saved successfully',
         });
 
-        //$('#foodItemModal').modal('show');
-        $('#saveFoodItem').modal('hide');
+        $('#foodItemModal').modal('hide');
+       
         clearFields();
     })
 
-   
+
     //$('#vendor').SumoSelect({ placeholder: 'Select Vendor' });
 
     //$('.vendor').SumoSelect();
