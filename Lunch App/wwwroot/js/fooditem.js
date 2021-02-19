@@ -259,14 +259,6 @@ $(document).ready(function () {
             "companyId": '00000000-0000-0000-0000-000000000000'
         }
 
-        if (saveOrUpdate == 1) {
-            updateFoodItem(`${_path_url}FoodItems/UpdateFoodItems`, formdata)
-        } else {
-            postDatasArr.push(formdata);
-            createFoodItem(`${_path_url}FoodItems/PostFoodItems`, postDatasArr)
-        }
-
-
         if (saveOrUpdate === 0) {
             postDatasArr.push(formdata);
             createFoodItem(`${_path_url}FoodItems/PostFoodItems`, postDatasArr)
