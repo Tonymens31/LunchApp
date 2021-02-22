@@ -42,6 +42,7 @@ $(document).ready(function () {
         mtTab = $('#table').DataTable({
             data: data,
             pageLength: 10,
+            destroy: true,
             searching: true,
             scrollY: '48vh',
             pagingType: "simple_numbers",
@@ -90,6 +91,7 @@ $(document).ready(function () {
 
 
     $(document).on("click", ".editButton", function () {
+
         saveOrUpdate = 1;
         let rowid = $(this).val();
         let rowData = FoodItems.filter(x => x.id === rowid)[0]

@@ -13,15 +13,33 @@
             <div class="col-md-12 col-xl-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <div class="row">
-                            <div>
-                                <h3 class="card-title" style="margin-top: 5px">ORDERS</h3>
+                        <div class="row widget-content p-0" style="background-color: #fff; margin-bottom: 0px">
+                            <div class="col-md-3">
+                                <h1 class="card-title">ORDERS</h1>
                             </div>
-                            <div class="pull-right">
-                                <button class="btn btn-sm btn-outline-primary pull-right" id="btnAddOrder">Add Order</button>
+                            <div class="col-md-4">
+                                @*<div class="search-wrapper" style=" margin-top: -5px;">
+                                        <div class="input-holder">
+                                            <input type="text" class="search-input" placeholder="Type menu to search">
+                                            <button class="search-icon"><span></span></button>
+                                        </div>
+                                        <button class="close"></button>
+                                    </div>*@
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-2">
+                                <button class="btn btn-md btn-outline-primary pull-right" style="margin-bottom: 15px" id="btnAddOrder">Add Order</button>
                             </div>
                         </div>
-                       
+                        @*<div class="row">
+                                <div>
+                                    <h3 class="card-title" style="margin-top: 5px">ORDERS</h3>
+                                </div>
+                                <div class="pull-right">
+                                    <button class="btn btn-sm btn-outline-primary pull-right" id="btnAddOrder">Add Order</button>
+                                </div>
+                            </div>*@
+
 
                         <table id="ordertable" class="mb-0 table table-striped table-hover" width="100%"></table>
 
