@@ -49,7 +49,7 @@
         $('#table').DataTable({
             data: data,
             searching: true,
-            destroy: true,
+            gdestroy: true,
             scrollY: '50vh',
             pagingType: "simple_numbers",
             className: "blue",

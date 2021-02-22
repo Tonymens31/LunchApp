@@ -35,6 +35,10 @@ let init = () => {
 
     // get Vendors
     getVendors();
+
+    $(document).on("click", ".editButton", function () {
+        editFunction();
+    })
 }
 
 let showFoodModal = () => {
@@ -247,6 +251,21 @@ let saveFoodItem = () => {
         }
     )
 }
+
+
+    let editFunction = () => {
+        saveOrUpdate = 1;
+        let rowid = $(this).val();
+        let rowData = FoodItems.filter(x => x.id === rowid)[0]
+        selectedRow = rowData.id;
+        populateInputFields(rowData);
+
+        $("#saveFoodItem").html(`Update`)
+    }
+   
+
+
+
 
 
 let resetFoodItems = () => {
