@@ -38,7 +38,7 @@
         mtTab = $('#table').DataTable({
             data: data,
             searching: true,
-            scrollY: '48vh',
+            scrollY: '45vh',
             pagingType: "simple_numbers",
             className: "blue",
             fixedHeader: {
@@ -101,6 +101,15 @@
         let rowData = Menus.filter(x => x.id === rowId)[0];
         console.log(rowId)
         populateInputFields(rowData);
+    })
+
+    $(document).on("keyup", ".editButton", function () {
+        saveOrUpdate = 1;
+        let rowid = $(this).val();
+        let rowData = Vendors.filter(x => x.id === rowid)[0]
+        selectedRow = rowData.id;
+        populateInputFields(rowData);
+        $("#saveVendor").html(`Update`)
     })
 
     function loadSingleTypes() {

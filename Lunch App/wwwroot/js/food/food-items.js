@@ -27,7 +27,9 @@ let init = () => {
 
     // Edit button
     $(document).on("click", ".editButton", function () {
-        editFoodItem();
+        
+        editFoodItem($(this).val());
+
     })
 
     // Load Food Types
@@ -35,10 +37,6 @@ let init = () => {
 
     // get Vendors
     getVendors();
-
-    $(document).on("click", ".editButton", function () {
-        editFunction();
-    })
 }
 
 let showFoodModal = () => {
@@ -60,6 +58,15 @@ let showFoodModal = () => {
     $("#saveFoodItem").click(() => {
         saveFoodItem();
     })
+}
+
+function clearFields() {
+    $('#foodItem').val("");
+    $('#foodType').val(-1);
+    $('#status').val(-1);
+    $('#vendor').val(-1);
+    $("#saveFoodItem").prop('disabled', true)
+    $("#saveFoodItem").css('cursor', 'not-allowed');
 }
 
 let validation = () => {
@@ -158,15 +165,27 @@ let getDataTable = () => {
     });
 }
 
-let editFoodItem = () => {
+let editFoodItem = (rowid) => {
     saveOrUpdate = 1;
-    let rowid = $(this).val();
+  
+    console.log(rowid)
     let rowData = FoodItems.filter(x => x.id === rowid)[0]
+    console.log(rowData)
     selectedRow = rowData.id;
     populateInputFields(rowData);
 
     $("#saveFoodItem").html(`Update`)
 }
+
+function populateInputFields(data) {
+    let { name, typeId, vendorId, isActive } = data;
+    $('#foodItem').val(name);
+    $('#foodType').val(typeId);
+    $('#status').val(isActive);
+    $('#vendor').val(vendorId);
+    $('#foodItemModal').modal('show');
+    $("#saveFoodItem").html(`Update`);
+};
 
 let getFoodTypes = () => {
     let url = `${_path_url}api/Codes/GetAllCodes`;
@@ -252,19 +271,16 @@ let saveFoodItem = () => {
     )
 }
 
+//$(document).on("click", ".editButton", function () {
+//    saveOrUpdate = 1;
+//    let rowid = $(this).val();
+//    let rowData = FoodItems.filter(x => x.id === rowid)[0]
+//    selectedRow = rowData.id;
+//    populateInputFields(rowData);
 
-    let editFunction = () => {
-        saveOrUpdate = 1;
-        let rowid = $(this).val();
-        let rowData = FoodItems.filter(x => x.id === rowid)[0]
-        selectedRow = rowData.id;
-        populateInputFields(rowData);
+//    $("#saveFoodItem").html(`Update`)
 
-        $("#saveFoodItem").html(`Update`)
-    }
-   
-
-
+//})
 
 
 

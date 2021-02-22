@@ -150,7 +150,6 @@ $(document).ready(function () {
     })
 
 
-
     //function bindButtonsToDOM() {
     //    let elements = document.getElementsByClassName('editButton');
 
@@ -171,9 +170,6 @@ $(document).ready(function () {
 
     function populateInputFields(data) {
         let { name, typeId, vendorId, isActive } = data;
-
-        console.log(isActive)
-
         $('#foodItem').val(name);
         $('#foodType').val(typeId);
         $('#status').val(isActive);
@@ -191,8 +187,6 @@ $(document).ready(function () {
         $("#saveFoodItem").prop('disabled', true)
         $("#saveFoodItem").css('cursor', 'not-allowed');
     }
-
-
 
 
     function uuidv4() {
@@ -234,6 +228,7 @@ $(document).ready(function () {
             $("#saveFoodItem").css('cursor', 'not-allowed')
         }
     }
+
 
     $("#foodItemModal").on('hidden.bs.modal', function () {
         $("#vendor").val([]);
@@ -292,7 +287,7 @@ $(document).ready(function () {
     function createFoodItem(url, data) {
         makeAPIRequest(url, data)
             .done(function (response) {
-                console.log(response)
+               // console.log(response)
             });
     }
 
