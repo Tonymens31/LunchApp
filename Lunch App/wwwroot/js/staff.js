@@ -16,6 +16,7 @@
             // data: data,
             searching: true,
             scrollY: '48vh',
+            destroy: true,
             pagingType: "simple_numbers",
             className: "blue",
             fixedHeader: {
@@ -25,24 +26,30 @@
             responsive: true,
             columns: [
                 {
-                    title: "Name",
-                    //data: "name"
+                    title: "Staff ID",
+                    //data: "name",
+                    width: "15%"
+
                 },
                 {
                     title: "Name",
-                    //data: "email"
+                    //data: "email",
+                    width: "23%"
                 },
                 {
-                    title: "Main Dish",
-                    //data: "email"
+                    title: "Email",
+                    //data: "email",
+                    width: "30%"
                 },
                 {
-                    title: "Side Dish",
-                    //data: "phone"
+                    title: "Phone",
+                    //data: "phone",
+                    width: "15%"
                 },
                 {
-                    title: "Condiment",
-                    //data: "phone"
+                    title: "Status",
+                    //data: "phone",
+                    width: "15%"
                 },
 
                 {
@@ -52,7 +59,8 @@
                     //    return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
                     //            <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
                     //    `;
-                    //}
+                    //},
+                    width: "3%"
                 }
             ]
         });

@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     btnState = 0;
-   
+    let selectedRow = "";
     let saveOrUpdate = 0;
     let Menus = [];
     let dt = new DateHandler();
@@ -35,9 +35,10 @@
     loadMenus();
 
     function loadDataTable(data) {
-        mtTab = $('#table').DataTable({
+        $('#table').DataTable({
             data: data,
             searching: true,
+            destroy: true,
             scrollY: '45vh',
             pagingType: "simple_numbers",
             className: "blue",
