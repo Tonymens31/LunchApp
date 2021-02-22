@@ -34,6 +34,17 @@
     }
     loadMenus();
 
+    function loadMenusByCat() {
+        let data = { companyId: companyId };
+        makeAPIRequest(`${_path_url}Menu/GetAllFoodItemsInCat`, data)
+            .done(function (data) {
+                data = JSON.parse(data);
+                data = JSON.parse(data.Body);
+            });
+    }
+
+    console.log(loadMenusByCat);
+
     function loadDataTable(data) {
         $('#table').DataTable({
             data: data,
