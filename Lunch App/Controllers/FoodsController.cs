@@ -38,5 +38,13 @@ namespace Lunch_App.Controllers
             var results = await _services.PostAsync<IEnumerable<Guid>>(url, model);
             return new JsonResult(results);
         }
+         [HttpPost("updateFoodItem/{CompanyId}", Name = "updateFoodItem")]
+        public async Task<IActionResult> UpdateFoodItem([FromBody] IEnumerable<SendFoodItem> model, Guid CompanyId)
+        {
+            var url = $"{IDPSettings.Current.LunchAppUrl}CreateFoodItems/{CompanyId}";
+            var results = await _services.PutAsync<IEnumerable<Guid>>(url, model);
+            return new JsonResult(results);
+        }
+
     }
 }

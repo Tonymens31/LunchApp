@@ -102,6 +102,10 @@ $(document).ready(function () {
 
     })
 
+    $("#table").on('click', '.deleteButton', '.transfer-input-check', function (event) {
+        $(this).parents('tr').detach();
+    });
+
 
     function loadDataTypes() {
         let data = { type: "ftyp" };

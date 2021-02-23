@@ -15,6 +15,11 @@
 
     });
 
+
+    $("#table").on('click', '.deleteButton', '.transfer-input-check', function (event) {
+        $(this).parents('tr').detach();
+    });
+
     //get all vendors
   
     function loadVendors() {

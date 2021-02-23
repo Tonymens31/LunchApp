@@ -60,14 +60,6 @@ let showFoodModal = () => {
     })
 }
 
-function clearFields() {
-    $('#foodItem').val("");
-    $('#foodType').val(-1);
-    $('#status').val(-1);
-    $('#vendor').val(-1);
-    $("#saveFoodItem").prop('disabled', true)
-    $("#saveFoodItem").css('cursor', 'not-allowed');
-}
 
 let validation = () => {
     FoodItem = {
@@ -259,7 +251,6 @@ let saveFoodItem = () => {
                     message: `Failure: ${response.caption}`,
                 });
             }
-            
         },
         error => {
             console.log({ error });
@@ -293,5 +284,7 @@ let resetFoodItems = () => {
 
 
 let updateFoodItem = () => {
-
+    makeAPIRequest(url, data)
+        .done(function (response) {
+        });
 }

@@ -43,6 +43,11 @@
             });
     }
 
+    $("#table").on('click', '.deleteButton', '.transfer-input-check', function (event) {
+        $(this).parents('tr').detach();
+    });
+
+
     console.log(loadMenusByCat);
 
     function loadDataTable(data) {
