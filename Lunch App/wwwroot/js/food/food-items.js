@@ -27,7 +27,7 @@ let init = () => {
 
     // Edit button
     $(document).on("click", ".editButton", function () {
-        
+
         editFoodItem($(this).val());
 
     })
@@ -159,14 +159,32 @@ let getDataTable = () => {
 
 let editFoodItem = (rowid) => {
     saveOrUpdate = 1;
-  
+
     console.log(rowid)
     let rowData = FoodItems.filter(x => x.id === rowid)[0]
     console.log(rowData)
     selectedRow = rowData.id;
     populateInputFields(rowData);
 
-    $("#saveFoodItem").html(`Update`)
+    $("#saveFoodItem").html(`Update`);
+
+    $("#saveFoodItem").click(() => {
+
+        //FoodItem
+        FoodItem.Name = $("#foodItem").val();
+        FoodItem.TypeId = $("#foodType").val();
+        FoodItem.VendorId = $("#vendor").val();
+        FoodItem.IsActive = $("#status").val();
+        
+        if (FoodItem && FoodItem.Name && FoodItem.TypeId && FoodItem.VendorId && FoodItem.IsActive) {
+            $("#saveFoodItem").prop('disabled', false);
+            $("#saveFoodItem").css('cursor', 'pointer')
+        } else {
+            $("#saveFoodItem").prop('disabled', true);
+            $("#saveFoodItem").css('cursor', 'not-allowed')
+        }
+        updateFoodItem();
+    });
 }
 
 function populateInputFields(data) {
@@ -284,7 +302,33 @@ let resetFoodItems = () => {
 
 
 let updateFoodItem = () => {
-    makeAPIRequest(url, data)
-        .done(function (response) {
-        });
+    let foodItms = [];
+    foodItms.push(FoodItem)
+    let model = JSON.stringify(foodItms);
+    let url = `${_path_url}api/Foods/CreateFoodItem/${companyId}`
+    $.post(url, model).then(
+        response => {
+            console.log({ response });
+            if (response.status == "Success") {
+                iziToast.success({
+                    position: 'topRight',
+                    message: 'Saved successfully',
+                });
+                resetFoodItems();
+            } else {
+                iziToast.success({
+                    position: 'topRight',
+                    message: `Failure: ${response.caption}`,
+                });
+            }
+        },
+        error => {
+            console.log({ error });
+            iziToast.error({
+                position: 'topRight',
+                message: 'Operation failed',
+            });
+        }
+    )
+
 }
