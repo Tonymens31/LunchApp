@@ -38,13 +38,21 @@ namespace Lunch_App.Controllers
             var results = await _services.PostAsync<IEnumerable<Guid>>(url, model);
             return new JsonResult(results);
         }
-         [HttpPost("updateFoodItem/{CompanyId}", Name = "updateFoodItem")]
-        public async Task<IActionResult> UpdateFoodItem([FromBody] IEnumerable<SendFoodItem> model, Guid CompanyId)
+
+        [HttpPost("UpdateFoodItem/{CompanyId}", Name = "UpdateFoodItem")]
+        public async Task<IActionResult> UpdateFoodItem([FromBody] EditFoodItem model, Guid CompanyId)
         {
-            var url = $"{IDPSettings.Current.LunchAppUrl}CreateFoodItems/{CompanyId}";
-            var results = await _services.PutAsync<IEnumerable<Guid>>(url, model);
+            var url = $"{IDPSettings.Current.LunchAppUrl}UpdateFoodItems/{model.Id}/{CompanyId}";
+            var results = await _services.PutAsync<string>(url, model);
             return new JsonResult(results);
         }
 
+        [HttpPost("DeleteFoodItem/{Id}/{CompanyId}", Name = "DeleteFoodItem")]
+        public async Task<IActionResult> DeleteFoodItem(Guid Id, Guid CompanyId)
+        {
+            var url = $"{IDPSettings.Current.LunchAppUrl}DeleteFoodItems/{Id}/{CompanyId}";
+            var results = await _services.DelAsync<string>(url, null);
+            return new JsonResult(results);
+        }
     }
 }

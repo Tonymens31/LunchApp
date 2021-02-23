@@ -19,18 +19,12 @@ $(document).ready(() => {
 let init = () => {
     // Button click
     $('#foodModal').click(() => {
+        FoodItem = {};
         showFoodModal();
     })
 
     // Load Foo Items
     getFoodItems();
-
-    // Edit button
-    $(document).on("click", ".editButton", function () {
-
-        editFoodItem($(this).val());
-
-    })
 
     // Load Food Types
     getFoodTypes();
@@ -40,7 +34,12 @@ let init = () => {
 }
 
 let showFoodModal = () => {
-    $("#saveFoodItem").html(`<i class="fa fa-save"></i> Save`);
+    if (FoodItem && FoodItem.id) {
+        $("#saveFoodItem").html(`<i class="fa fa-save"></i> Update`);
+    } else {
+        $("#saveFoodItem").html(`<i class="fa fa-save"></i> Save`);
+    }
+
     $('#foodItemModal').modal('show');
 
     $('#closeBtn').click(() => {
@@ -54,21 +53,47 @@ let showFoodModal = () => {
 
     $("#saveFoodItem").css('cursor', 'not-allowed');
 
-
     $("#saveFoodItem").click(() => {
-        saveFoodItem();
+        if (FoodItem && FoodItem.id) {
+            // Update Existing
+            updateFoodItem();
+        } else {
+            // Create New
+            saveFoodItem();
+        }        
     })
+
 }
 
 
+
+let populateInputFields = () => {
+    $('#foodItem').val(FoodItem.name);
+    $('#foodType').val(FoodItem.typeId);
+    $('#status').val(FoodItem.isActive);
+    $('#vendor').val(FoodItem.vendorId);
+    // Show Modal
+    showFoodModal();
+};
+
+
 let validation = () => {
-    FoodItem = {
-        Name: $("#foodItem").val(),
-        TypeId: $("#foodType").val(),
-        VendorId: $("#vendor").val(),
-        IsActive: $("#status").val(),
-    };
-    if (FoodItem && FoodItem.Name && FoodItem.TypeId && FoodItem.VendorId && FoodItem.IsActive) {
+    if (FoodItem && FoodItem.id) {
+        //Edit Existing
+        FoodItem.name = $("#foodItem").val();
+        FoodItem.typeId = $("#foodType").val();
+        FoodItem.vendorId = $("#vendor").val();
+        FoodItem.isActive = $("#status").val();
+    } else {
+        // Create New
+        FoodItem = {
+            name: $("#foodItem").val(),
+            typeId: $("#foodType").val(),
+            vendorId: $("#vendor").val(),
+            isActive: $("#status").val(),
+        };
+    }
+    if (FoodItem && FoodItem.name && FoodItem.typeId && FoodItem.vendorId && FoodItem.isActive) {
         $("#saveFoodItem").prop('disabled', false);
         $("#saveFoodItem").css('cursor', 'pointer')
     } else {
@@ -147,55 +172,51 @@ let getDataTable = () => {
             {
                 data: "id",
                 title: "Actions", render: function (data) {
-                    return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
-                                <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
+                    return `
+                        <button style="border:none; background:transparent" class="editButton" data-id="${data}">
+                            <i class="fas fa-edit text-info" data-id=${data}></i>
+                        </button> 
+                        <button style="border:none; background:transparent" class="deleteButton" data-id=${data}>
+                            <i class="fas fa-trash text-danger" data-id=${data}></i>
+                        </a>
                         `;
                 },
                 width: "5%"
             },
         ]
     });
+
+
+    
+    ControlButtons();
+
+    $(".paginate_button").click(() => {
+        ControlButtons();
+    })
 }
 
-let editFoodItem = (rowid) => {
-    saveOrUpdate = 1;
-
-    console.log(rowid)
-    let rowData = FoodItems.filter(x => x.id === rowid)[0]
-    console.log(rowData)
-    selectedRow = rowData.id;
-    populateInputFields(rowData);
-
-    $("#saveFoodItem").html(`Update`);
-
-    $("#saveFoodItem").click(() => {
-
-        //FoodItem
-        FoodItem.Name = $("#foodItem").val();
-        FoodItem.TypeId = $("#foodType").val();
-        FoodItem.VendorId = $("#vendor").val();
-        FoodItem.IsActive = $("#status").val();
-        
-        if (FoodItem && FoodItem.Name && FoodItem.TypeId && FoodItem.VendorId && FoodItem.IsActive) {
-            $("#saveFoodItem").prop('disabled', false);
-            $("#saveFoodItem").css('cursor', 'pointer')
-        } else {
-            $("#saveFoodItem").prop('disabled', true);
-            $("#saveFoodItem").css('cursor', 'not-allowed')
+let ControlButtons = () => {
+    // Edit button
+    $(".editButton").click((el) => {
+        let id = el.target.dataset.id;
+        FoodItem = FoodItems.filter(x => x.id === id)[0]
+        // Show Modal
+        if (FoodItem && FoodItem.id) {
+            populateInputFields();
         }
-        updateFoodItem();
-    });
-}
+    })
 
-function populateInputFields(data) {
-    let { name, typeId, vendorId, isActive } = data;
-    $('#foodItem').val(name);
-    $('#foodType').val(typeId);
-    $('#status').val(isActive);
-    $('#vendor').val(vendorId);
-    $('#foodItemModal').modal('show');
-    $("#saveFoodItem").html(`Update`);
-};
+    // Delete Button
+    $(".deleteButton").click((el) => {
+        console.log({ el });
+        let id = el.target.dataset.id;
+        FoodItem = FoodItems.filter(x => x.id === id)[0]
+        // Show Modal
+        if (FoodItem && FoodItem.id) {
+            deleteFoodItem();
+        }
+    })
+}
 
 let getFoodTypes = () => {
     let url = `${_path_url}api/Codes/GetAllCodes`;
@@ -280,18 +301,6 @@ let saveFoodItem = () => {
     )
 }
 
-//$(document).on("click", ".editButton", function () {
-//    saveOrUpdate = 1;
-//    let rowid = $(this).val();
-//    let rowData = FoodItems.filter(x => x.id === rowid)[0]
-//    selectedRow = rowData.id;
-//    populateInputFields(rowData);
-
-//    $("#saveFoodItem").html(`Update`)
-
-//})
-
-
 
 let resetFoodItems = () => {
     $('#foodItemModal').modal('hide');
@@ -299,20 +308,17 @@ let resetFoodItems = () => {
     clearFields();
     getFoodItems();
 }
-
-
+         
 let updateFoodItem = () => {
-    let foodItms = [];
-    foodItms.push(FoodItem)
-    let model = JSON.stringify(foodItms);
-    let url = `${_path_url}api/Foods/CreateFoodItem/${companyId}`
+    let model = JSON.stringify(FoodItem);
+    let url = `${_path_url}api/Foods/UpdateFoodItem/${companyId}`
     $.post(url, model).then(
         response => {
             console.log({ response });
             if (response.status == "Success") {
                 iziToast.success({
                     position: 'topRight',
-                    message: 'Saved successfully',
+                    message: 'Updated successfully',
                 });
                 resetFoodItems();
             } else {
@@ -330,5 +336,32 @@ let updateFoodItem = () => {
             });
         }
     )
+}
 
+let deleteFoodItem = () => {
+    let url = `${_path_url}api/Foods/DeleteFoodItem/${FoodItem.id}/${companyId}`
+    $.post(url).then(
+        response => {
+            console.log({ response });
+            if (response.status == "Success") {
+                iziToast.success({
+                    position: 'topRight',
+                    message: 'Deleted successfully',
+                });
+                resetFoodItems();
+            } else {
+                iziToast.success({
+                    position: 'topRight',
+                    message: `Failure: ${response.caption}`,
+                });
+            }
+        },
+        error => {
+            console.log({ error });
+            iziToast.error({
+                position: 'topRight',
+                message: 'Operation failed',
+            });
+        }
+    )
 }
