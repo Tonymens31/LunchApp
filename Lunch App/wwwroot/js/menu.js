@@ -1,145 +1,165 @@
 ﻿let mtTab;
-    btnState = 0;
-    let selectedRow = "";
-    let saveOrUpdate = 0;
-    let Menus = [];
-    let dt = new DateHandler();
-    //fmtDate = (s) => {
-    //    let d = new Date(Date.parse(s));
-    //    return d.toUTCString().replace("GMT", "")
-    //}
+btnState = 0;
+let selectedRow = "";
+let saveOrUpdate = 0;
+let Menus = [];
+let Menu = {};
+let dt = new DateHandler();
+//fmtDate = (s) => {
+//    let d = new Date(Date.parse(s));
+//    return d.toUTCString().replace("GMT", "")
+//}
 
 
 $(document).ready(function () {
     inIt();
-}); 
+});
 
 
 let inIt = () => {
+    $('#btnAddMenu').click(() => {
+        Menu = {};
+        showMenuModal();
+    })
+
     getMenus();
 
 }
 
-    //fmtDate = (s) => {
-    //    let d = new Date(Date.parse(s));
-    //    let fmt = d.toUTCString().replace("00:00:00", "")
-    //    return fmt.replace("GMT", "")
-    //}
+fmtDate = (s) => {
+    let d = new Date(Date.parse(s));
+    let fmt = d.toUTCString().replace("00:00:00", "")
+    return fmt.replace("GMT", "")
+}
 
-    //$('#btnAddMenu').click(function () {
-    //    btnState = 0;
-    //    $("#saveMenu").html(`<i class="fa fa-save"></i> Save`)
-    //    $('#menuModal').modal('show');
-    //})
+//$('#btnAddMenu').click(function () {
+//    btnState = 0;
+//    $("#saveMenu").html(`<i class="fa fa-save"></i> Save`)
+//    $('#menuModal').modal('show');
+//})
 
-    let getMenus = () => {
-        let model = JSON.stringify({ Id: companyId });
-        let url = `${_path_url}api/Menu/GetMenus`;
-        $.post(url, model).then(
-            response => {
-                // Process Response
-                if (response.status == "Success") {
-                    FoodItems = response.body;
-                }
-                getDataTable();
-            },
-            error => {
-                // debug error
-                console.log({ error });
+let getMenus = () => {
+    let model = JSON.stringify({ Id: companyId });
+    let url = `${_path_url}api/Menu/GetAllMenus`;
+    $.post(url, model).then(
+        response => {
+            // Process Response
+            if (response.status == "Success") {
+                Menus = response.body;
             }
-        )
+            getDataTable();
+        },
+        error => {
+            // debug error
+            console.log({ error });
+        }
+    )
+}
+
+//function loadMenus() {
+//    let data = { companyId: companyId };
+//    makeAPIRequest(`${_path_url}Menu/GetAllMenus`, data)
+//        .done(function (data) {
+//            data = JSON.parse(data);
+//            data = JSON.parse(data.Body);
+//            Menus = data;
+//            loadDataTable(data);
+//        });
+//}
+//loadMenus();
+
+//function loadMenusByCat() {
+//    let data = { CompanyId: CompanyId };
+//    makeAPIRequest(`${_path_url}Menu/GetAllFoodItemsInCat`, data)
+//        .done(function (data) {
+//            data = JSON.parse(data);
+//            data = JSON.parse(data.Body);
+//        });
+//}
+
+//$("#table").on('click', '.deleteButton', '.transfer-input-check', function (event) {
+//    $(this).parents('tr').detach();
+//});
+
+
+//console.log(loadMenusByCat);
+let showMenuModal = () => {
+    if (Menu && Menu.id) {
+        $("#saveMenu").html(`<i class="fa fa-save"></i> Update`);
+    } else {
+        $("#saveMenu").html(`<i class="fa fa-save"></i> Save`);
     }
 
-    //function loadMenus() {
-    //    let data = { companyId: companyId };
-    //    makeAPIRequest(`${_path_url}Menu/GetAllMenus`, data)
-    //        .done(function (data) {
-    //            data = JSON.parse(data);
-    //            data = JSON.parse(data.Body);
-    //            Menus = data;
-    //            loadDataTable(data);
-    //        });
-    //}
-    //loadMenus();
+    $('#menuModal').modal('show');
 
-    //function loadMenusByCat() {
-    //    let data = { CompanyId: CompanyId };
-    //    makeAPIRequest(`${_path_url}Menu/GetAllFoodItemsInCat`, data)
-    //        .done(function (data) {
-    //            data = JSON.parse(data);
-    //            data = JSON.parse(data.Body);
-    //        });
-    //}
-
-    //$("#table").on('click', '.deleteButton', '.transfer-input-check', function (event) {
-    //    $(this).parents('tr').detach();
-    //});
-
-
-    //console.log(loadMenusByCat);
+    $('#closeBtn').click(() => {
+        clearFields();
+        $('#menuModal').modal('hide');
+    })
+}
 
 let getDataTable = () => {
-    mtTab =  $('#table').DataTable({
-            data: data,
-            searching: true,
-            destroy: true,
-            scrollY: '45vh',
-            pagingType: "simple_numbers",
-            className: "blue",
-            fixedHeader: {
-                header: true,
-                headerOffset: $('#header').height()
+    mtTab = $('#table').DataTable({
+        data: Menus,
+        searching: true,
+        destroy: true,
+        scrollY: '45vh',
+        pagingType: "simple_numbers",
+        className: "blue",
+        fixedHeader: {
+            header: true,
+            headerOffset: $('#header').height()
+        },
+        responsive: true,
+        columns: [
+            {
+                title: "Date",
+                data: "startAt",
+                render: function (data) {
+                    return getFormattedDate(data);
+                },
+                width: "17%"
             },
-            responsive: true,
-            columns: [
-                {
-                    title: "Date",
-                    data: "startAt",
-                    render: function (data) {
-                        return getFormattedDate(data);
-                    },
-                    width: "17%"
+            {
+                title: "Main Dish",
+                data: "mainDish",
+                width: "27%"
+            },
+            {
+                title: "Side Dish",
+                data: "sideDish",
+                width: "15%"
+            },
+            {
+                title: "Condiment",
+                data: "condiDish",
+                width: "15%"
+            },
+            {
+                title: "Pricing",
+                data: "price",
+                width: "2%"
+            },
+            {
+                title: "Order Ending",
+                data: "endAt",
+                render: function (data) {
+                    return fmtDate(data);
                 },
-                {
-                    title: "Main Dish",
-                    data: "mainDish",
-                    width: "27%"
-                },
-                {
-                    title: "Side Dish",
-                    data: "sideDish",
-                    width: "15%"
-                },
-                {
-                    title: "Condiment",
-                    data: "condiDish",
-                    width: "15%"
-                },
-                {
-                    title: "Pricing",
-                    data: "price",
-                    width: "2%"
-                },
-                  {
-                    title: "Order Ending",
-                      data: "endAt",
-                      render: function (data) {
-                          return fmtDate(data);
-                      },
-                      width: "22%"
-                },
-                {
-                    data: "id",
-                    title: "Actions", render: function (data) {
-                        return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
+                width: "22%"
+            },
+            {
+                data: "id",
+                title: "Actions", render: function (data) {
+                    return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
                                
                         `;
-                    },
-                    width: "2%"
-                }
-            ]
-        });
-    }
+                },
+                width: "2%"
+            }
+        ]
+    });
+}
 
     //$(document).on('click', '.editButton', function () {
     //    let rowId = $(this).val();
@@ -206,7 +226,7 @@ let getDataTable = () => {
     //        "firstDayOfWeek": 1 // start week on Monday
     //    }
     //});
-    
+
 
     //$( "#myselect option:selected" ).text();
 
@@ -233,7 +253,7 @@ let getDataTable = () => {
 
     //    menuData.push(formData)
     //    loadMenus()
-       
+
     //}
 
     //$("#expiryDate").change(function () {})
@@ -270,19 +290,17 @@ let getDataTable = () => {
     //     saveOrUpdate = 1;
     //}
 
-    //function populateInputFields(data) {
-    //    let { startAt, mainDish, sideDish, condiDish, price, endAt } = data;
+    let populateInputFields = () => {
+        $('#menuDate').val(menu.startAt);
+        $('#menuMainDish').val(Menu.mainDish);
+        $('#menuSideDish').val(Menu.sideDish);
+        $('#menuCondiment').val(Menu.condiDish);
+        $('#expiryDate').val(Menu.endAt);
+        $('#price').val(Menu.price);
 
-    //    console.log({ price } )
-
-    //    $('#menuDate').val(startAt)
-    //    $('#menuMainDish').val(mainDish)
-    //    $('#menuSideDish').val(sideDish)
-    //    $('#menuCondiment').val(condiDish)
-    //    $('#expiryDate').val(endAt)
-    //    $('#price').val(price)
-    //    $('#menuModal').modal('show');
-    //}; 
+        //show modal
+        showMenuModal();
+    }; 
 
 
 
@@ -291,13 +309,13 @@ let getDataTable = () => {
     //    validation();
     //})
 
-    //function clearFields() {
-    //    $('#menuDate').val("")
-    //    $('#menuMainDish').val("")
-    //    $('#menuCondiment').val(-1)
-    //    $('#expiryDate').val("")
-    //    $('#price').val("")
-    //}
+let clearFields = () => {
+        $('#menuDate').val("")
+        $('#menuMainDish').val("")
+        $('#menuCondiment').val(-1)
+        $('#expiryDate').val("")
+        $('#price').val("")
+    }
 
 
     //function uuidv4() {
@@ -372,4 +390,3 @@ let getDataTable = () => {
     //        .done(function (response) {
     //        });
     //}
-          
