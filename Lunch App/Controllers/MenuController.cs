@@ -28,42 +28,42 @@ namespace Lunch_App.Controllers
         [HttpPost]
         public async Task<string> GetAllMenus([FromBody] MenuModel mdl)
         {
-            var url = $"{LunchAppUrl}GetAllMenu/{mdl.companyId}";
+            var url = $"{LunchAppUrl}GetAllMenu/{mdl.CompanyId}";
             return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
         }
 
          [HttpPost]
         public async Task<string> GetAllMenusByCat([FromBody] MenuModel mdl)
         {
-            var url = $"{LunchAppUrl}GetAllFoodItemsInCat//{mdl.companyId}";
+            var url = $"{LunchAppUrl}GetAllFoodItemsInCat/{mdl.CompanyId}";
             return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
         }
 
         [HttpPost]
         public async Task<string> GetSingleCode([FromBody] FoodItemModel mdl)
         {
-            var url = $"{LunchAppUrl}GetSingleCodes/{mdl.pkId}";
+            var url = $"{LunchAppUrl}GetSingleCodes/{mdl.PkId}";
             return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
         }
 
         [HttpPost]
         public async Task<string> PostMenu([FromBody] List<MenuModel> mdl)
         {
-            var url = $"{LunchAppUrl}CreateMenus/{mdl[0].companyId}";
+            var url = $"{LunchAppUrl}CreateMenus/{mdl[0].CompanyId}";
             return await _hcmAdminClient.SendDataToAPI(url, "POST", false, mdl);
         }
 
-        [HttpPost("PutMenu/{pkId}")]
-        public async Task<object> PutMenu([FromBody] List<MenuModel> mdl, string pkId)
+        [HttpPost]
+        public async Task<object> PutMenu([FromBody] MenuModel mdl)
         {
-            var url = $"{LunchAppUrl}UpdateMenus/{pkId}/{mdl[0].companyId}";
+            var url = $"{LunchAppUrl}UpdateMenus/{mdl.PkId}/{mdl.CompanyId}";
             return await _hcmAdminClient.SendDataToAPI(url, "PUT", false);
         }
 
         [HttpPost]
         public async Task<object> DeleteVendor([FromBody] List<MenuModel> mdl, string pkId)
         {
-            var url = $"{LunchAppUrl}/DeleteVendors/{pkId}/{mdl[0].companyId}";
+            var url = $"{LunchAppUrl}/DeleteVendors/{pkId}/{mdl[0].CompanyId}";
             return await _hcmAdminClient.SendDataToAPI(url, "DELETE", false);
         }
 

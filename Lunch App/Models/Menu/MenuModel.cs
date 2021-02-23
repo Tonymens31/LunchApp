@@ -7,7 +7,13 @@ namespace Lunch_App.Models
 {
     public class MenuModel
     {
+
+        public Guid CompanyId { get; set; }
+
         public Guid MainDishId { get; set; }
+
+         public Guid PkId { get; set; }
+       
 
         public Guid SideDishId { get; set; }
 

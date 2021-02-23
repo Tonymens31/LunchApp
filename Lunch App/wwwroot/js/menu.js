@@ -35,7 +35,7 @@
     loadMenus();
 
     function loadMenusByCat() {
-        let data = { companyId: companyId };
+        let data = { CompanyId: CompanyId };
         makeAPIRequest(`${_path_url}Menu/GetAllFoodItemsInCat`, data)
             .done(function (data) {
                 data = JSON.parse(data);

@@ -7,13 +7,13 @@ namespace Lunch_App.Models
 {
     public class FoodItemModel
     {
-        public string companyId { get; set; }
-        public string name { get; set; }
-        public string typeId { get; set; }
-        public string vendorId { get; set; }
-        public string isActive { get; set; }
-        public string pkId { get; set; }
-        public string type { get; set; }
+        public Guid CompanyId { get; set; }
+        public string Name { get; set; }
+        public Guid TypeId { get; set; }
+        public Guid VendorId { get; set; }
+        public int IsActive { get; set; }
+        public Guid PkId { get; set; }
+        public string Type { get; set; }
 
     }
 }
