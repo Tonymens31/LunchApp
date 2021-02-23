@@ -1,6 +1,7 @@
 ﻿using Lunch_App.Data;
 using Lunch_App.Models;
 using Lunch_App.Models.Common;
+using Lunch_App.Models.Menu;
 using Lunch_App.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,13 @@ namespace Lunch_App.Controllers
         }
 
 
+        [HttpPost("CreateMenu/{CompanyId}", Name = "CreateMenu")]
+        public async Task<IActionResult> CreateMenu([FromBody] IEnumerable<SendMenu> model, Guid CompanyId)
+        {
+            var url = $"{IDPSettings.Current.LunchAppUrl}CreateMenus/{CompanyId}";
+            var results = await _services.PostAsync<IEnumerable<Guid>>(url, model);
+            return new JsonResult(results);
+        }
         //[HttpPost]
         //public async Task<string> GetAllMenus([FromBody] MenuModel mdl)
         //{

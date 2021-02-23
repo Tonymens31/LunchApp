@@ -166,34 +166,6 @@ let getDataTable = () => {
     });
 }
 
-//$(document).on('click', '.editButton', function () {
-//    let rowId = $(this).val();
-//    let rowData = Menus.filter(x => x.id === rowId)[0];
-//    console.log(rowId)
-//    populateInputFields(rowData);
-//})
-
-//$(document).on("keyup", ".editButton", function () {
-//    saveOrUpdate = 1;
-//    let rowid = $(this).val();
-//    let rowData = Vendors.filter(x => x.id === rowid)[0]
-//    selectedRow = rowData.id;
-//    populateInputFields(rowData);
-//    $("#saveVendor").html(`Update`)
-//})
-
-//function loadSingleTypes() {
-//    let data = { type: "ftyp" };
-//    makeAPIRequest(`${_path_url}Menu/GetSingleCode`, data)
-//        .done(function (data) {
-
-//            data = JSON.parse(data)
-//            data = JSON.parse(data.Body)
-
-//            setGeneric(data, "Select Food Type", "#foodType")
-//        });
-//}
-//loadSingleTypes(); 
 
 //function setGeneric(data, title, elementID) {
 //    let template = `<option value = "">${title}</option>`
@@ -237,62 +209,6 @@ let getDataTable = () => {
 
 
 
-//"mainDish": "Palmnut Soup with Goat Meat",
-//    "sideDish": "Banku",
-//        "condiDish": "Extra Banku",
-//            "startAt": "2021-02-16T13:58:09.313",
-//                "endAt": "2021-02-16T13:58:09.313",
-//                    "createdAt"
-
-//function MenuFood() {
-//    let formData = {
-//        id: uuidv4(),
-//        date: 
-//        maindish: ,
-//        sidedish:
-//        condiment: 
-//        expiryDate: 
-//        price:moneyInTxt($("#price").val(),"en",2)
-//    }
-//    console.log(formData)
-
-//    menuData.push(formData)
-//    loadMenus()
-
-//}
-
-//$("#expiryDate").change(function () {})
-
-//function bindButtonsToDOM() {
-//    let elements = document.getElementsByClassName('editButton');
-
-//    for (let x = 0; x < elements.length; x++) {
-//        elements[x].addEventListener('click', function (e) {
-//            getRowData(this.id)
-//            btnState = 1
-//            $("#saveMenu").html(`Update`)
-//            $('#menuModal').modal('show');
-//        });
-//    }
-//}
-
-//var userSelection = document.getElementsByClassName('required');
-
-//for (var i = 0; i < userSelection.length; i++) {
-//    (function (index) {
-//        userSelection[index].addEventListener("input", function () {
-//            let el = userSelection[index].id;
-
-//            let inputel = document.getElementById(el);
-//            inputel.value ? (inputel.style.border = "1px solid #ced4da", validation()) : (inputel.style.border = "1px solid red", validation(), inputel.focus())
-//        })
-//    })(i);
-//}
-
-//function getRowData(rowId) {
-//    let data = menuData.filter(ele => ele.id.toString() === rowId)[0];
-//    populateInputFields(data);
-//     saveOrUpdate = 1;
 //}
 
 let clearFields = () => {
@@ -357,9 +273,9 @@ let ControlButtons = () => {
     // Edit button
     $(".editButton").click((el) => {
         let id = el.target.dataset.id;
-        FoodItem = FoodItems.filter(x => x.id === id)[0]
+        Menu = Menus.filter(x => x.id === id)[0]
         // Show Modal
-        if (FoodItem && FoodItem.id) {
+        if (Menu && Menu.id) {
             populateInputFields();
         }
     })
@@ -368,48 +284,111 @@ let ControlButtons = () => {
     $(".deleteButton").click((el) => {
         console.log({ el });
         let id = el.target.dataset.id;
-        FoodItem = FoodItems.filter(x => x.id === id)[0]
+        Menu = Menus.filter(x => x.id === id)[0]
         // Show Modal
-        if (FoodItem && FoodItem.id) {
+        if (Menu && Menu.id) {
             deleteFoodItem();
         }
     })
 }
 
 
-    //$("#saveMenu").click(() => {
-    //    let postDatasArr = [];
-    //    let formdata = {
-    //        "startAt": $("#menuDate").val(),
-    //        "mainDishId": $("#menuMainDish").val(),
-    //        "sideDishId": $("#menuSideDish").val(),
-    //        "condiDishId": $("#menuCondiment").val(),
-    //        "price": $("#price").val(),
-    //        "endAt": $("#expiryDate").val(),
-    //        "companyId": '00000000-0000-0000-0000-000000000000'
-    //    }
-    //    console.log(formdata)
-    //    if (saveOrUpdate == 1) {
-    //        updateMenu(`${_path_url}Menu/PutMenu`, formdata);
-    //    } else {
-    //        postDatasArr.push(formdata);
-    //        createMenu(`${_path_url}Menu/PostMenu`, postDatasArr);
-    //    }
-    //    $('#menuModal').modal('hide');
-    //    clearFields()
+let updateMenu = () => {
+    let model = JSON.stringify(FoodItem);
+    let url = `${_path_url}api/Menus/UpdateFoodItem/${companyId}`
+    $.post(url, model).then(
+        response => {
+            console.log({ response });
+            if (response.status == "Success") {
+                iziToast.success({
+                    position: 'topRight',
+                    message: 'Updated successfully',
+                });
+                resetMenus();
+            } else {
+                iziToast.success({
+                    position: 'topRight',
+                    message: `Failure: ${response.caption}`,
+                });
+            }
+        },
+        error => {
+            console.log({ error });
+            iziToast.error({
+                position: 'topRight',
+                message: 'Operation failed',
+            });
+        }
+    )
+}
 
-    //});
+let saveMenu = () => {
+    //console.log({ FoodItem });
+
+    let theMenu = [];
+    theMenu.push(Menu)
+    let model = JSON.stringify(theMenu);
+    let url = `${_path_url}api/Menus/CreateMenus/${companyId}`
+    $.post(url, model).then(
+        response => {
+            console.log({ response });
+            if (response.status == "Success") {
+                iziToast.success({
+                    position: 'topRight',
+                    message: 'Saved successfully',
+                });
+                resetMenus();
+            } else {
+                iziToast.success({
+                    position: 'topRight',
+                    message: `Failure: ${response.caption}`,
+                });
+            }
+        },
+        error => {
+            console.log({ error });
+            iziToast.error({
+                position: 'topRight',
+                message: 'Operation failed',
+            });
+        }
+    )
+}
 
 
-    //function createMenu(url, data) {
-    //    makeAPIRequest(url, data)
-    //        .done(function (response) {
-    //            console.log({response})
-    //        });
-    //}
+let resetMenus = () => {
+    $('#menuModal').modal('hide');
 
-    //function updateMenu(url, data) {
-    //    makeAPIRequest(url, data)
-    //        .done(function (response) {
-    //        });
-    //}
+    clearFields();
+    getMenus();
+}
+
+
+let deleteMenus = () => {
+    let url = `${_path_url}api/Menus/DeleteFoodItem/${FoodItem.id}/${companyId}`
+    $.post(url).then(
+        response => {
+            console.log({ response });
+            if (response.status == "Success") {
+                iziToast.success({
+                    position: 'topRight',
+                    message: 'Deleted successfully',
+                });
+                resetMenus();
+            } else {
+                iziToast.success({
+                    position: 'topRight',
+                    message: `Failure: ${response.caption}`,
+                });
+            }
+        },
+        error => {
+            console.log({ error });
+            iziToast.error({
+                position: 'topRight',
+                message: 'Operation failed',
+            });
+        }
+    )
+}
+
