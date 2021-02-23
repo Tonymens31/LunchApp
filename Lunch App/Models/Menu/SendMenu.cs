@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Lunch_App.Models.Menu
 {
-    public class setMenu
+    public class SendMenu
     {
         public Guid MainDishId { get; set; }
 
