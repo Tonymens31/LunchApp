@@ -151,207 +151,230 @@ let getDataTable = () => {
             {
                 data: "id",
                 title: "Actions", render: function (data) {
-                    return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
-                               
+                    return `
+                        <button style="border:none; background:transparent" class="editButton" data-id="${data}">
+                            <i class="fas fa-edit text-info" data-id=${data}></i>
+                        </button> 
+                        <button style="border:none; background:transparent" class="deleteButton" data-id=${data}>
+                            <i class="fas fa-trash text-danger" data-id=${data}></i>
+                        </a>
                         `;
                 },
                 width: "2%"
-            }
+            },
         ]
     });
 }
 
-    //$(document).on('click', '.editButton', function () {
-    //    let rowId = $(this).val();
-    //    let rowData = Menus.filter(x => x.id === rowId)[0];
-    //    console.log(rowId)
-    //    populateInputFields(rowData);
-    //})
+//$(document).on('click', '.editButton', function () {
+//    let rowId = $(this).val();
+//    let rowData = Menus.filter(x => x.id === rowId)[0];
+//    console.log(rowId)
+//    populateInputFields(rowData);
+//})
 
-    //$(document).on("keyup", ".editButton", function () {
-    //    saveOrUpdate = 1;
-    //    let rowid = $(this).val();
-    //    let rowData = Vendors.filter(x => x.id === rowid)[0]
-    //    selectedRow = rowData.id;
-    //    populateInputFields(rowData);
-    //    $("#saveVendor").html(`Update`)
-    //})
+//$(document).on("keyup", ".editButton", function () {
+//    saveOrUpdate = 1;
+//    let rowid = $(this).val();
+//    let rowData = Vendors.filter(x => x.id === rowid)[0]
+//    selectedRow = rowData.id;
+//    populateInputFields(rowData);
+//    $("#saveVendor").html(`Update`)
+//})
 
-    //function loadSingleTypes() {
-    //    let data = { type: "ftyp" };
-    //    makeAPIRequest(`${_path_url}Menu/GetSingleCode`, data)
-    //        .done(function (data) {
+//function loadSingleTypes() {
+//    let data = { type: "ftyp" };
+//    makeAPIRequest(`${_path_url}Menu/GetSingleCode`, data)
+//        .done(function (data) {
 
-    //            data = JSON.parse(data)
-    //            data = JSON.parse(data.Body)
+//            data = JSON.parse(data)
+//            data = JSON.parse(data.Body)
 
-    //            setGeneric(data, "Select Food Type", "#foodType")
-    //        });
-    //}
-    //loadSingleTypes(); 
+//            setGeneric(data, "Select Food Type", "#foodType")
+//        });
+//}
+//loadSingleTypes(); 
 
-    //function setGeneric(data, title, elementID) {
-    //    let template = `<option value = "">${title}</option>`
-    //    template += data.map(type => (
-    //        `<option value = "${type.id}">${type.name}</option>`
-    //    ))
-    //    $(elementID).html(template);
-    //}
+//function setGeneric(data, title, elementID) {
+//    let template = `<option value = "">${title}</option>`
+//    template += data.map(type => (
+//        `<option value = "${type.id}">${type.name}</option>`
+//    ))
+//    $(elementID).html(template);
+//}
 
-    //flatpickr('#menuDate', {
-    //    "minDate": new Date().fp_incr(1),
-    //    "dateFormat": "d-m-Y",
-    //    "disable": [
-    //        function (date) {
-    //             return true to disable
-    //            return (date.getDay() === 0 || date.getDay() === 6);
-    //        }
-    //    ],
-    //    "locale": {
-    //        "firstDayOfWeek": 1 // start week on Monday
-    //    }
-    //});
+//flatpickr('#menuDate', {
+//    "minDate": new Date().fp_incr(1),
+//    "dateFormat": "d-m-Y",
+//    "disable": [
+//        function (date) {
+//             return true to disable
+//            return (date.getDay() === 0 || date.getDay() === 6);
+//        }
+//    ],
+//    "locale": {
+//        "firstDayOfWeek": 1 // start week on Monday
+//    }
+//});
 
-    //flatpickr('#expiryDate', {
-    //    "minDate": new Date().fp_incr(1),
-    //    "enableTime": true,
-    //    "dateFormat": "d-m-Y H:i",
-    //    "disable": [
-    //        function (date) {
-    //             return true to disable
-    //            return (date.getDay() === 0 || date.getDay() === 6);
-    //        }
-    //    ],
-    //    "locale": {
-    //        "firstDayOfWeek": 1 // start week on Monday
-    //    }
-    //});
-
-
-    //$( "#myselect option:selected" ).text();
+//flatpickr('#expiryDate', {
+//    "minDate": new Date().fp_incr(1),
+//    "enableTime": true,
+//    "dateFormat": "d-m-Y H:i",
+//    "disable": [
+//        function (date) {
+//             return true to disable
+//            return (date.getDay() === 0 || date.getDay() === 6);
+//        }
+//    ],
+//    "locale": {
+//        "firstDayOfWeek": 1 // start week on Monday
+//    }
+//});
 
 
-
-    //"mainDish": "Palmnut Soup with Goat Meat",
-    //    "sideDish": "Banku",
-    //        "condiDish": "Extra Banku",
-    //            "startAt": "2021-02-16T13:58:09.313",
-    //                "endAt": "2021-02-16T13:58:09.313",
-    //                    "createdAt"
-
-    //function MenuFood() {
-    //    let formData = {
-    //        id: uuidv4(),
-    //        date: 
-    //        maindish: ,
-    //        sidedish:
-    //        condiment: 
-    //        expiryDate: 
-    //        price:moneyInTxt($("#price").val(),"en",2)
-    //    }
-    //    console.log(formData)
-
-    //    menuData.push(formData)
-    //    loadMenus()
-
-    //}
-
-    //$("#expiryDate").change(function () {})
-
-    //function bindButtonsToDOM() {
-    //    let elements = document.getElementsByClassName('editButton');
-
-    //    for (let x = 0; x < elements.length; x++) {
-    //        elements[x].addEventListener('click', function (e) {
-    //            getRowData(this.id)
-    //            btnState = 1
-    //            $("#saveMenu").html(`Update`)
-    //            $('#menuModal').modal('show');
-    //        });
-    //    }
-    //}
-
-    //var userSelection = document.getElementsByClassName('required');
-
-    //for (var i = 0; i < userSelection.length; i++) {
-    //    (function (index) {
-    //        userSelection[index].addEventListener("input", function () {
-    //            let el = userSelection[index].id;
-
-    //            let inputel = document.getElementById(el);
-    //            inputel.value ? (inputel.style.border = "1px solid #ced4da", validation()) : (inputel.style.border = "1px solid red", validation(), inputel.focus())
-    //        })
-    //    })(i);
-    //}
-
-    //function getRowData(rowId) {
-    //    let data = menuData.filter(ele => ele.id.toString() === rowId)[0];
-    //    populateInputFields(data);
-    //     saveOrUpdate = 1;
-    //}
-
-    let populateInputFields = () => {
-        $('#menuDate').val(menu.startAt);
-        $('#menuMainDish').val(Menu.mainDish);
-        $('#menuSideDish').val(Menu.sideDish);
-        $('#menuCondiment').val(Menu.condiDish);
-        $('#expiryDate').val(Menu.endAt);
-        $('#price').val(Menu.price);
-
-        //show modal
-        showMenuModal();
-    }; 
+//$( "#myselect option:selected" ).text();
 
 
 
-    //$('#closeBtn').click(function () {
-    //    clearFields();
-    //    validation();
-    //})
+//"mainDish": "Palmnut Soup with Goat Meat",
+//    "sideDish": "Banku",
+//        "condiDish": "Extra Banku",
+//            "startAt": "2021-02-16T13:58:09.313",
+//                "endAt": "2021-02-16T13:58:09.313",
+//                    "createdAt"
+
+//function MenuFood() {
+//    let formData = {
+//        id: uuidv4(),
+//        date: 
+//        maindish: ,
+//        sidedish:
+//        condiment: 
+//        expiryDate: 
+//        price:moneyInTxt($("#price").val(),"en",2)
+//    }
+//    console.log(formData)
+
+//    menuData.push(formData)
+//    loadMenus()
+
+//}
+
+//$("#expiryDate").change(function () {})
+
+//function bindButtonsToDOM() {
+//    let elements = document.getElementsByClassName('editButton');
+
+//    for (let x = 0; x < elements.length; x++) {
+//        elements[x].addEventListener('click', function (e) {
+//            getRowData(this.id)
+//            btnState = 1
+//            $("#saveMenu").html(`Update`)
+//            $('#menuModal').modal('show');
+//        });
+//    }
+//}
+
+//var userSelection = document.getElementsByClassName('required');
+
+//for (var i = 0; i < userSelection.length; i++) {
+//    (function (index) {
+//        userSelection[index].addEventListener("input", function () {
+//            let el = userSelection[index].id;
+
+//            let inputel = document.getElementById(el);
+//            inputel.value ? (inputel.style.border = "1px solid #ced4da", validation()) : (inputel.style.border = "1px solid red", validation(), inputel.focus())
+//        })
+//    })(i);
+//}
+
+//function getRowData(rowId) {
+//    let data = menuData.filter(ele => ele.id.toString() === rowId)[0];
+//    populateInputFields(data);
+//     saveOrUpdate = 1;
+//}
 
 let clearFields = () => {
-        $('#menuDate').val("")
-        $('#menuMainDish').val("")
-        $('#menuCondiment').val(-1)
-        $('#expiryDate').val("")
-        $('#price').val("")
+    $('#menuDate').val("")
+    $('#menuMainDish').val("")
+    $('#menuCondiment').val(-1)
+    $('#expiryDate').val("")
+    $('#price').val("")
+}
+
+
+let populateInputFields = () => {
+    $('#menuDate').val(Menu.startAt);
+    $('#menuMainDish').val(Menu.mainDish);
+    $('#menuSideDish').val(Menu.sideDish);
+    $('#menuCondiment').val(Menu.condiDish);
+    $('#expiryDate').val(Menu.endAt);
+    $('#price').val(Menu.price);
+
+    //show modal
+    showMenuModal();
+};
+//$('#closeBtn').click(function () {
+//    clearFields();
+//    validation();
+//})
+
+
+$("#saveMenu").css('cursor', 'not-allowed');
+let validation = () => {
+    //Edit Existing
+    if (Menu && Menu.id) {
+        Menu.startAt = $("#menuDate").val();
+        Menu.sideDish = $("#menuSideDish").val();
+        Menu.mainDish = $("#menuMainDish").val();
+        Menu.price = $("#price").val();
+        Menu.condiDish = $('#menuCondiment').val();
+        Menu.endAt = $("#expiryDate").val();
     }
+    else {
+        //create new
+        Menu = {
+            startAt: $("#menuDate").val(),
+            mainDish: $("#menuMainDish").val(),
+            sideDish: $("#menuSideDish").val(),
+            condiDish: $('#menuCondiment').val(),
+            price: $("#price").val(),
+            endAt: $("#expiryDate").val(),
+        };
+    }
+    if (Menu && Menu.startAt && Menu.sideDish && Menu.mainDish && Menu.price && Menu.endAt) {
+        ($("#saveMenu").prop('disabled', false),
+            $("#saveMenu").css('cursor', 'pointer'))
+    } else {
+        ($("#saveMenu").prop('disabled', true),
+            $("#saveMenu").css('cursor', 'not-allowed'))
+    }
+}
 
 
-    //function uuidv4() {
-    //    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    //        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    //        return v.toString(16);
-    //    });
-    //}
+let ControlButtons = () => {
+    // Edit button
+    $(".editButton").click((el) => {
+        let id = el.target.dataset.id;
+        FoodItem = FoodItems.filter(x => x.id === id)[0]
+        // Show Modal
+        if (FoodItem && FoodItem.id) {
+            populateInputFields();
+        }
+    })
 
-    //function addToTable(data) {
-    //    let { date, maindish, sidedish, condiment, beverage, expiryDate } = data;
-    //    let tem = `<tr id="">
-    //                <td>${date}</td>
-    //                <td>${maindish}</td>
-    //                <td>${sidedish}</td>
-    //                <td>${condiment}</td>
-    //                <td>${beverage}</td
-    //                <td>${expiryDate}</td>
-    //            </tr>`;
-
-    //    $('#menuTable').prepend(tem);
-    //    $('#menuModal').modal('hide');
-    //}
-
-
-    //$("#saveMenu").css('cursor', 'not-allowed');
-    //function validation() {
-    //    $("#menuDate").val().length > 0 &&
-    //        $("#expiryDate").val().length !== 0 &&
-    //        $("#menuSideDish").val().length !== '' &&
-    //        $("#menuMainDish").val().length !== '' ?
-    //        $("#price").val().length > 0 ?
-    //        ($("#saveMenu").prop('disabled', false), $("#saveMenu").css('cursor', 'pointer')) :
-    //        ($("#saveMenu").prop('disabled', true), $("#saveMenu").css('cursor', 'not-allowed'))
-    //}
-
+    // Delete Button
+    $(".deleteButton").click((el) => {
+        console.log({ el });
+        let id = el.target.dataset.id;
+        FoodItem = FoodItems.filter(x => x.id === id)[0]
+        // Show Modal
+        if (FoodItem && FoodItem.id) {
+            deleteFoodItem();
+        }
+    })
+}
 
 
     //$("#saveMenu").click(() => {
