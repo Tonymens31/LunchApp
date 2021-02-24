@@ -351,7 +351,7 @@ let ControlButtons = () => {
 
 let updateMenu = () => {
     let model = JSON.stringify(FoodItem);
-    let url = `${_path_url}api/Menus/UpdateFoodItem/${companyId}`
+    let url = `${_path_url}api/Menus/UpdateMenu/${companyId}`
     $.post(url, model).then(
         response => {
             console.log({ response });

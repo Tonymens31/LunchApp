@@ -49,8 +49,8 @@ namespace Lunch_App.Controllers
         }
         
         
-        [HttpPost("UpdateFoodItem/{CompanyId}", Name = "UpdateFoodItem")]
-        public async Task<IActionResult> UpdateFoodItem([FromBody] IEnumerable<SendMenu> model, Guid CompanyId)
+        [HttpPost("UpdateMenu/{CompanyId}", Name = "UpdateMenu")]
+        public async Task<IActionResult> UpdateMenu([FromBody] IEnumerable<SendMenu> model, Guid CompanyId)
         {
             var url = $"{IDPSettings.Current.LunchAppUrl}UpdateMenus/{CompanyId}";
             var results = await _services.PostAsync<IEnumerable<Guid>>(url, model);
