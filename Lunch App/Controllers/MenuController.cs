@@ -31,6 +31,14 @@ namespace Lunch_App.Controllers
             return new JsonResult(results);
         }
 
+         [HttpPost("GetAllMenus", Name = "GetAllMenus")]
+        public async Task<IActionResult> GetAllMenus([FromBody] IdData model)
+        {
+            var url = $"{IDPSettings.Current.LunchAppUrl}GetAllMenu/{model.Id}";
+            var results = await _services.GetAsync<IEnumerable<GetMenu>>(url);
+            return new JsonResult(results);
+        }
+
 
         [HttpPost("CreateMenu/{CompanyId}", Name = "CreateMenu")]
         public async Task<IActionResult> CreateMenu([FromBody] IEnumerable<SendMenu> model, Guid CompanyId)

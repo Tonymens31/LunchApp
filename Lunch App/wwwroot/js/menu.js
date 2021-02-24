@@ -96,6 +96,19 @@ let showMenuModal = () => {
         clearFields();
         $('#menuModal').modal('hide');
     })
+
+    flatpickr('#menuDate', {
+        "dateFormat": "d-m-Y"
+    });
+
+
+    flatpickr('#expiryDate', {
+        "dateFormat": "d-m-Y"
+    });
+
+
+
+
 }
 
 let getDataTable = () => {
@@ -210,6 +223,9 @@ let getDataTable = () => {
 
 
 //}
+
+
+
 
 let clearFields = () => {
     $('#menuDate').val("")
