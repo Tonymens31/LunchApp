@@ -35,7 +35,7 @@ namespace Lunch_App.Controllers
         public async Task<IActionResult> GetAllFoodInCats([FromBody] IdData model)
         {
             var url = $"{IDPSettings.Current.LunchAppUrl}GetAllFoodItemsInCat/{model.Id}";
-            var results = await _services.GetAsync<IEnumerable<AllFoodInCat>>(url);
+            var results = await _services.GetAsync<IEnumerable<GetAllFoodInCat>>(url);
             return new JsonResult(results);
         }
 
