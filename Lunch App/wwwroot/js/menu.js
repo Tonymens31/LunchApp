@@ -66,6 +66,9 @@ let getAllFoodInCat = () => {
             if (response.status == "Success") {
                 Menus = response.body;
             }
+            console.log(Menus);
+            console.log(response);
+
         },
         error => {
             // debug error
