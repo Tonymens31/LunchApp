@@ -64,6 +64,7 @@ let getAllFoodInCat = () => {
         response => {
             // Process Response
             if (response.status == "Success") {
+                setMenuTypes();
                 Menus = response.body;
             }
             console.log(Menus);
@@ -77,6 +78,14 @@ let getAllFoodInCat = () => {
     )
 }
 
+
+let setMenuTypes = () => {
+    let template = `<option value="">Select Menu</option>`
+    template += Menus.map(type => (
+        `<option value = "${type.id}">${type.name}</option>`
+    ))
+    $("#menuMainDish").html(template);
+}
 //function loadMenus() {
 //    let data = { companyId: companyId };
 //    makeAPIRequest(`${_path_url}Menu/GetAllMenus`, data)

@@ -23,7 +23,7 @@ let init = () => {
         showFoodModal();
     })
 
-    // Load Foo Items
+    // Load Food Items
     getFoodItems();
 
     // Load Food Types
