@@ -31,11 +31,11 @@ namespace Lunch_App.Controllers
             return new JsonResult(results);
         }
 
-         [HttpPost("GetAllMenus", Name = "GetAllMenus")]
-        public async Task<IActionResult> GetAllMenus([FromBody] IdData model)
+         [HttpPost("GetAllFoodInCat", Name = "GetAllFoodInCat")]
+        public async Task<IActionResult> GetAllFoodInCat([FromBody] IdData model)
         {
-            var url = $"{IDPSettings.Current.LunchAppUrl}GetAllMenu/{model.Id}";
-            var results = await _services.GetAsync<IEnumerable<GetMenu>>(url);
+            var url = $"{IDPSettings.Current.LunchAppUrl}GetAllFoodItemsInCat/{model.Id}";
+            var results = await _services.GetAsync<IEnumerable<AllFoodInCat>>(url);
             return new JsonResult(results);
         }
 

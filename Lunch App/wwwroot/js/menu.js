@@ -24,6 +24,7 @@ let inIt = () => {
 
     getMenus();
 
+    getAllFoodInCat();
 }
 
 fmtDate = (s) => {
@@ -48,6 +49,23 @@ let getMenus = () => {
                 Menus = response.body;
             }
             getDataTable();
+        },
+        error => {
+            // debug error
+            console.log({ error });
+        }
+    )
+}
+
+let getAllFoodInCat = () => {
+    let model = JSON.stringify({ Id: companyId });
+    let url = `${_path_url}api/Menu/GetAllFoodItemsInCat`;
+    $.post(url, model).then(
+        response => {
+            // Process Response
+            if (response.status == "Success") {
+                Menus = response.body;
+            }
         },
         error => {
             // debug error
