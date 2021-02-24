@@ -9,6 +9,7 @@ namespace Lunch_App.Models.Menu
     {
 
         public Guid Id { get; set; }
+
         public Guid MainDishId { get; set; }
 
         public Guid SideDishId { get; set; }
