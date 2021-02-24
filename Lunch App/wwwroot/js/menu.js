@@ -5,10 +5,6 @@ let saveOrUpdate = 0;
 let Menus = [];
 let Menu = {};
 let dt = new DateHandler();
-//fmtDate = (s) => {
-//    let d = new Date(Date.parse(s));
-//    return d.toUTCString().replace("GMT", "")
-//}
 
 
 $(document).ready(function () {
@@ -25,6 +21,9 @@ let inIt = () => {
     getMenus();
 
     getAllFoodInCat();
+
+   
+
 }
 
 fmtDate = (s) => {
@@ -33,11 +32,6 @@ fmtDate = (s) => {
     return fmt.replace("GMT", "")
 }
 
-//$('#btnAddMenu').click(function () {
-//    btnState = 0;
-//    $("#saveMenu").html(`<i class="fa fa-save"></i> Save`)
-//    $('#menuModal').modal('show');
-//})
 
 let getMenus = () => {
     let model = JSON.stringify({ Id: companyId });
@@ -63,9 +57,13 @@ let getAllFoodInCat = () => {
     $.post(url, model).then(
         response => {
             if (response.status == "Success") {
-                setMenuTypes();
-                Menus = response.body;
+               
+                Menus = response.body.mainDish;
+                setMenuTypes(response.body.mainDish, "Select main dish", "#menuMainDish");
+                setMenuTypes(response.body.sideDish, "Select side dish", "#menuSideDish");
+                setMenuTypes(response.body.condiDish, "Select condiment", "#menuCondiment");
             }
+        
             setMenuTypes();
         },
         error => {
@@ -76,12 +74,12 @@ let getAllFoodInCat = () => {
 }
 
 
-let setMenuTypes = () => {
-    let template = `<option value="">Select Menu</option>`
-    template += Menus.map(type => (
-        `<option value = "${type.id}">${type.name}</option>`
+let setMenuTypes = (data,title,htmlElementId) => {
+    let template = `<option value="">${title}</option>`
+    template += data.map(menu => (
+        `<option value = "${menu.id}">${menu.name}</option>`
     ))
-    $("#menuMainDish").html(template);
+    $(htmlElementId).html(template);
 }
 //function loadMenus() {
 //    let data = { companyId: companyId };
@@ -117,24 +115,33 @@ let showMenuModal = () => {
         $("#saveMenu").html(`<i class="fa fa-save"></i> Save`);
     }
 
+    orderEnds();
+
+    menuTime();
+
     $('#menuModal').modal('show');
 
     $('#closeBtn').click(() => {
         clearFields();
         $('#menuModal').modal('hide');
+
     })
 
-    flatpickr('#menuDate', {
-        "dateFormat": "d-m-Y"
+    $("#menuDate, #menuMainDish, #menuSideDish, #expiryDate, #price").bind('change', () => {
+        validation();
     });
 
+    $("#saveMenu").css('cursor', 'not-allowed');
 
-    flatpickr('#expiryDate', {
-        "dateFormat": "d-m-Y"
-    });
-
-
-
+    $("#saveMenu").click(() => {
+        if (Menu && Menu.id) {
+            // Update Existing
+            updateMenu();
+        } else {
+            // Create New
+            saveMenu();
+        }
+    })
 
 }
 
@@ -215,34 +222,40 @@ let getDataTable = () => {
 //    $(elementID).html(template);
 //}
 
-//flatpickr('#menuDate', {
-//    "minDate": new Date().fp_incr(1),
-//    "dateFormat": "d-m-Y",
-//    "disable": [
-//        function (date) {
-//             return true to disable
-//            return (date.getDay() === 0 || date.getDay() === 6);
-//        }
-//    ],
-//    "locale": {
-//        "firstDayOfWeek": 1 // start week on Monday
-//    }
-//});
+let menuTime = () => {
+    flatpickr('#menuDate', {
+        "minDate": new Date().fp_incr(1),
+        altFormat: "F j, Y",
+        dateFormat: "Y-m-d",
+        "disable": [
+            function (date) {
+                //return true to disable
+                return (date.getDay() === 0 || date.getDay() === 6);
+            }
+        ],
+        "locale": {
+            "firstDayOfWeek": 1 // start week on Monday
+        }
+    });
+}
 
-//flatpickr('#expiryDate', {
-//    "minDate": new Date().fp_incr(1),
-//    "enableTime": true,
-//    "dateFormat": "d-m-Y H:i",
-//    "disable": [
-//        function (date) {
-//             return true to disable
-//            return (date.getDay() === 0 || date.getDay() === 6);
-//        }
-//    ],
-//    "locale": {
-//        "firstDayOfWeek": 1 // start week on Monday
-//    }
-//});
+let orderEnds = () => {
+    flatpickr('#expiryDate', {
+        "minDate": new Date().fp_incr(1),
+        "enableTime": true,
+        "dateFormat": "d-m-Y H:i",
+        "disable": [
+            function (date) {
+                //return true to disable
+                return (date.getDay() === 0 || date.getDay() === 6);
+            }
+        ],
+        "locale": {
+            "firstDayOfWeek": 1 // start week on Monday
+        }
+    });
+
+}
 
 
 //$( "#myselect option:selected" ).text();
@@ -280,7 +293,6 @@ let populateInputFields = () => {
 //})
 
 
-$("#saveMenu").css('cursor', 'not-allowed');
 let validation = () => {
     //Edit Existing
     if (Menu && Menu.id) {
