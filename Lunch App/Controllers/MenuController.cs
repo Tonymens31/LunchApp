@@ -47,48 +47,16 @@ namespace Lunch_App.Controllers
             var results = await _services.PostAsync<IEnumerable<Guid>>(url, model);
             return new JsonResult(results);
         }
-        //[HttpPost]
-        //public async Task<string> GetAllMenus([FromBody] MenuModel mdl)
-        //{
-        //    var url = $"{LunchAppUrl}GetAllMenu/{mdl.CompanyId}";
-        //    return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
-        //}
-
-        // [HttpPost]
-        //public async Task<string> GetAllMenusByCat([FromBody] MenuModel mdl)
-        //{
-        //    var url = $"{LunchAppUrl}GetAllFoodItemsInCat/{mdl.CompanyId}";
-        //    return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
-        //}
-
-        //[HttpPost]
-        //public async Task<string> GetSingleCode([FromBody] FoodItemModel mdl)
-        //{
-        //    var url = $"{LunchAppUrl}GetSingleCodes/{mdl.PkId}";
-        //    return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
-        //}
-
-        //[HttpPost]
-        //public async Task<string> PostMenu([FromBody] List<MenuModel> mdl)
-        //{
-        //    var url = $"{LunchAppUrl}CreateMenus/{mdl[0].CompanyId}";
-        //    return await _hcmAdminClient.SendDataToAPI(url, "POST", false, mdl);
-        //}
-
-        //[HttpPost]
-        //public async Task<object> PutMenu([FromBody] MenuModel mdl)
-        //{
-        //    var url = $"{LunchAppUrl}UpdateMenus/{mdl.PkId}/{mdl.CompanyId}";
-        //    return await _hcmAdminClient.SendDataToAPI(url, "PUT", false);
-        //}
-
-        //[HttpPost]
-        //public async Task<object> DeleteVendor([FromBody] List<MenuModel> mdl, string pkId)
-        //{
-        //    var url = $"{LunchAppUrl}/DeleteVendors/{pkId}/{mdl[0].CompanyId}";
-        //    return await _hcmAdminClient.SendDataToAPI(url, "DELETE", false);
-        //}
-
+        
+        
+        [HttpPost("UpdateFoodItem/{CompanyId}", Name = "UpdateFoodItem")]
+        public async Task<IActionResult> UpdateFoodItem([FromBody] IEnumerable<SendMenu> model, Guid CompanyId)
+        {
+            var url = $"{IDPSettings.Current.LunchAppUrl}UpdateMenus/{CompanyId}";
+            var results = await _services.PostAsync<IEnumerable<Guid>>(url, model);
+            return new JsonResult(results);
+        }
+        
 
     }
 }

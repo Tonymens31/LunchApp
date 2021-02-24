@@ -225,6 +225,7 @@ let getDataTable = () => {
 let menuTime = () => {
     flatpickr('#menuDate', {
         "minDate": new Date().fp_incr(1),
+        altInput: true,
         altFormat: "F j, Y",
         dateFormat: "Y-m-d",
         "disable": [
@@ -383,7 +384,7 @@ let saveMenu = () => {
     let theMenu = [];
     theMenu.push(Menu)
     let model = JSON.stringify(theMenu);
-    let url = `${_path_url}api/Menus/CreateMenus/${companyId}`
+    let url = `${_path_url}api/Menus/CreateMenu/${companyId}`
     $.post(url, model).then(
         response => {
             console.log({ response });
