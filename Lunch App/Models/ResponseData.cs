@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lunch_App.Models.Menu;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,4 +16,6 @@ namespace Lunch_App.Models
 
         public TModel Body { get; set; }
     }
+
+   
 }

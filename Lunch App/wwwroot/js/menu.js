@@ -59,17 +59,10 @@ let getMenus = () => {
 
 let getAllFoodInCat = () => {
     let model = JSON.stringify({ Id: companyId });
-    let url = `${_path_url}api/Menu/GetAllFoodItemsInCat`;
+    let url = `${_path_url}api/Menu/GetAllFoodInCats`;
     $.post(url, model).then(
         response => {
-            // Process Response
-            if (response.status == "Success") {
-                setMenuTypes();
-                Menus = response.body;
-            }
-            console.log(Menus);
-            console.log(response);
-
+            console.log({ response})
         },
         error => {
             // debug error
@@ -77,6 +70,27 @@ let getAllFoodInCat = () => {
         }
     )
 }
+
+//let getAllFoodInCat = () => {
+//    let model = JSON.stringify({ Id: companyId });
+//    let url = `${_path_url}api/Menu/GetAllFoodItemsInCat`;
+//    $.post(url, model).then(
+//        response => {
+//            // Process Response
+//            if (response.status == "Success") {
+//                setMenuTypes();
+//                Menus = response.body;
+//            }
+//            console.log(Menus);
+//            console.log(response);
+
+//        },
+//        error => {
+//            // debug error
+//            console.log({ error });
+//        }
+//    )
+//}
 
 
 let setMenuTypes = () => {
