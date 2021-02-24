@@ -384,7 +384,7 @@ let saveMenu = () => {
     let theMenu = [];
     theMenu.push(Menu)
     let model = JSON.stringify(theMenu);
-    let url = `${_path_url}api/Menus/CreateMenu/${companyId}`
+    let url = `${_path_url}api/Menu/CreateMenu/${companyId}`
     $.post(url, model).then(
         response => {
             console.log({ response });
@@ -421,7 +421,7 @@ let resetMenus = () => {
 
 
 let deleteMenus = () => {
-    let url = `${_path_url}api/Menus/DeleteFoodItem/${FoodItem.id}/${companyId}`
+    let url = `${_path_url}api/Menu/DeleteFoodItem/${FoodItem.id}/${companyId}`
     $.post(url).then(
         response => {
             console.log({ response });
