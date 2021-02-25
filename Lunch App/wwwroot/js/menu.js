@@ -213,6 +213,13 @@ let getDataTable = () => {
     });
 }
 
+/**   "mainDishId": "491e5a01-2218-411d-b8b3-a91c83ba68df",
+    "sideDishId": "ef0c9c1f-6709-4065-854d-2b7b9f2258e3",
+    "condiDishId": "00000000-0000-0000-0000-000000000000",
+    "price": 4,
+    "startAt": "2021-03-02T10:00:00.022Z",
+    "endAt": "2021-03-03T10:00:00.022Z" */
+
 
 //function setGeneric(data, title, elementID) {
 //    let template = `<option value = "">${title}</option>`
