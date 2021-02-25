@@ -60,7 +60,7 @@ let showFoodModal = () => {
         } else {
             // Create New
             saveFoodItem();
-        }        
+        }
     })
 
 }
@@ -187,7 +187,7 @@ let getDataTable = () => {
     });
 
 
-    
+
     ControlButtons();
 
     $(".paginate_button").click(() => {
@@ -308,7 +308,8 @@ let resetFoodItems = () => {
     clearFields();
     getFoodItems();
 }
-         
+
+
 let updateFoodItem = () => {
     let model = JSON.stringify(FoodItem);
     let url = `${_path_url}api/Foods/UpdateFoodItem/${companyId}`
@@ -337,6 +338,7 @@ let updateFoodItem = () => {
         }
     )
 }
+
 
 let deleteFoodItem = () => {
     let url = `${_path_url}api/Foods/DeleteFoodItem/${FoodItem.id}/${companyId}`

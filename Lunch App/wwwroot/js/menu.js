@@ -22,7 +22,7 @@ let inIt = () => {
 
     getAllFoodInCat();
 
-   
+
 
 }
 
@@ -57,13 +57,13 @@ let getAllFoodInCat = () => {
     $.post(url, model).then(
         response => {
             if (response.status == "Success") {
-               
+
                 Menus = response.body.mainDish;
                 setMenuTypes(response.body.mainDish, "Select main dish", "#menuMainDish");
                 setMenuTypes(response.body.sideDish, "Select side dish", "#menuSideDish");
                 setMenuTypes(response.body.condiDish, "Select condiment", "#menuCondiment");
             }
-        
+
             setMenuTypes();
         },
         error => {
@@ -74,7 +74,7 @@ let getAllFoodInCat = () => {
 }
 
 
-let setMenuTypes = (data,title,htmlElementId) => {
+let setMenuTypes = (data, title, htmlElementId) => {
     let template = `<option value="">${title}</option>`
     template += data.map(menu => (
         `<option value = "${menu.id}">${menu.name}</option>`
@@ -379,7 +379,7 @@ let updateMenu = () => {
 }
 
 let saveMenu = () => {
-    //console.log({ FoodItem });
+    //console.log({ Menu });
 
     let theMenu = [];
     theMenu.push(Menu)
@@ -414,7 +414,6 @@ let saveMenu = () => {
 
 let resetMenus = () => {
     $('#menuModal').modal('hide');
-
     clearFields();
     getMenus();
 }
