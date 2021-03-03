@@ -10,7 +10,6 @@ namespace Lunch_App.Models.Menu
 
         public Guid Id { get; set; }
 
-
         public DateTime StartAt { get; set; }
 
         public Guid MainDishId { get; set; }
