@@ -372,16 +372,15 @@ let orderEnds = () => {
 //    validation();
 //})
 
-
-
-
-
-
-
+let resetMenus = () => {
+    $('#menuModal').modal('hide');
+    clearFields();
+    getMenus();
+}
 
 let updateMenu = () => {
     let model = JSON.stringify(Menu);
-    let url = `${_path_url}api/Menus/UpdateMenu/${companyId}`
+    let url = `${_path_url}api/Menu/UpdateMenu/${companyId}`
     $.post(url, model).then(
         response => {
             console.log({ response });
@@ -442,11 +441,7 @@ let saveMenu = () => {
 }
 
 
-let resetMenus = () => {
-    $('#menuModal').modal('hide');
-    clearFields();
-    getMenus();
-}
+
 
 
 let deleteMenus = () => {
