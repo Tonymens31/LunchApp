@@ -185,6 +185,9 @@ let getDataTable = () => {
             {
                 title: "Pricing",
                 data: "price",
+                render: function (data) {
+                    return moneyInTxt(data);
+                },
                 width: "2%"
             },
             {
