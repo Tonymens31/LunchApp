@@ -150,7 +150,7 @@ let getDataTable = () => {
         data: Menus,
         searching: true,
         destroy: true,
-        scrollY: '45vh',
+        scrollY: '48vh',
         pagingType: "simple_numbers",
         className: "blue",
         fixedHeader: {
@@ -191,7 +191,7 @@ let getDataTable = () => {
                 title: "Order Ending",
                 data: "endAt",
                 render: function (data) {
-                    return fmtDate(data);
+                    return getFormattedDate(data);
                 },
                 width: "22%"
             },
@@ -211,6 +211,13 @@ let getDataTable = () => {
             },
         ]
     });
+
+
+    ControlButtons();
+
+    $(".paginate_button").click(() => {
+        ControlButtons();
+    })
 }
 
 /**   "mainDishId": "491e5a01-2218-411d-b8b3-a91c83ba68df",
@@ -350,7 +357,7 @@ let ControlButtons = () => {
         Menu = Menus.filter(x => x.id === id)[0]
         // Show Modal
         if (Menu && Menu.id) {
-            deleteFoodItem();
+            deleteMenu();
         }
     })
 }

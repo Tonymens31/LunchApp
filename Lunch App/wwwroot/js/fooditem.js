@@ -44,9 +44,10 @@ $(document).ready(function () {
             pageLength: 10,
             destroy: true,
             searching: true,
-            scrollY: '48vh',
+           
             pagingType: "simple_numbers",
             className: "blue",
+           
             fixedHeader: {
                 header: true,
                 headerOffset: $('#header').height()
