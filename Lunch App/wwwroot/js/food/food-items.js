@@ -195,6 +195,14 @@ let getDataTable = () => {
     })
 }
 
+let setFoodTypes = () => {
+    let template = `<option value="">Select Food Type</option>`
+    template += FoodTypes.map(type => (
+        `<option value = "${type.id}">${type.name}</option>`
+    ))
+    $("#foodType").html(template);
+}
+
 let ControlButtons = () => {
     // Edit button
     $(".editButton").click((el) => {
@@ -235,13 +243,7 @@ let getFoodTypes = () => {
     )
 }
 
-let setFoodTypes = () => {
-    let template = `<option value="">Select Food Type</option>`
-    template += FoodTypes.map(type => (
-        `<option value = "${type.id}">${type.name}</option>`
-    ))
-    $("#foodType").html(template);
-}
+
 
 let getVendors = () => {
     let url = `${_path_url}api/Vendors/GetAllVendors`;

@@ -26,6 +26,96 @@ let inIt = () => {
 
 }
 
+let showMenuModal = () => {
+    if (Menu && Menu.id) {
+        $("#saveMenu").html(`<i class="fa fa-save"></i> Update`);
+    } else {
+        $("#saveMenu").html(`<i class="fa fa-save"></i> Save`);
+    }
+
+    orderEnds();
+
+    menuTime();
+
+    $('#menuModal').modal('show');
+
+    $('#closeBtn').click(() => {
+        clearFields();
+        $('#menuModal').modal('hide');
+
+    })
+
+    $("#menuDate, #menuMainDish, #menuSideDish, #expiryDate, #price").bind('change', () => {
+        validation();
+    });
+
+    $("#saveMenu").css('cursor', 'not-allowed');
+
+    $("#saveMenu").click(() => {
+        if (Menu && Menu.id) {
+            // Update Existing
+            updateMenu();
+        } else {
+            // Create New
+            saveMenu();
+        }
+    })
+
+}
+
+
+let populateInputFields = () => {
+    $('#menuDate').val(Menu.startAt);
+    $('#menuMainDish').val(Menu.mainDishId);
+    $('#menuSideDish').val(Menu.sideDishId);
+    $('#menuCondiment').val(Menu.condiDishId);
+    $('#expiryDate').val(Menu.endAt);
+    $('#price').val(Menu.price);
+
+    //show modal
+    showMenuModal();
+};
+
+
+
+let validation = () => {
+    //Edit Existing
+    if (Menu && Menu.id) {
+        Menu.startAt = $("#menuDate").val();
+        Menu.sideDish = $("#menuSideDish").val();
+        Menu.mainDish = $("#menuMainDish").val();
+        Menu.price = $("#price").val();
+        Menu.condiDish = $('#menuCondiment').val();
+        Menu.endAt = $("#expiryDate").val();
+    }
+    else {
+        //create new
+        Menu = {
+            startAt: $("#menuDate").val(),
+            mainDish: $("#menuMainDish").val(),
+            sideDish: $("#menuSideDish").val(),
+            condiDish: $('#menuCondiment').val(),
+            price: $("#price").val(),
+            endAt: $("#expiryDate").val(),
+        };
+    }
+    if (Menu && Menu.startAt && Menu.sideDish && Menu.mainDish && Menu.price && Menu.endAt) {
+        ($("#saveMenu").prop('disabled', false),
+            $("#saveMenu").css('cursor', 'pointer'))
+    } else {
+        ($("#saveMenu").prop('disabled', true),
+            $("#saveMenu").css('cursor', 'not-allowed'))
+    }
+}
+
+let clearFields = () => {
+    $('#menuDate').val("")
+    $('#menuMainDish').val("")
+    $('#menuCondiment').val(-1)
+    $('#expiryDate').val("")
+    $('#price').val("")
+}
+
 fmtDate = (s) => {
     let d = new Date(Date.parse(s));
     let fmt = d.toUTCString().replace("00:00:00", "")
@@ -74,6 +164,30 @@ let getAllFoodInCat = () => {
 }
 
 
+let ControlButtons = () => {
+    // Edit button
+    $(".editButton").click((el) => {
+        let id = el.target.dataset.id;
+        Menu = Menus.filter(x => x.id === id)[0]
+        // Show Modal
+        console.log(Menu)
+        if (Menu && Menu.id) {
+            populateInputFields();
+        }
+    })
+
+    // Delete Button
+    $(".deleteButton").click((el) => {
+        console.log({ el });
+        let id = el.target.dataset.id;
+        Menu = Menus.filter(x => x.id === id)[0]
+        // Show Modal
+        if (Menu && Menu.id) {
+            deleteMenu();
+        }
+    })
+}
+
 let setMenuTypes = (data, title, htmlElementId) => {
     let template = `<option value="">${title}</option>`
     template += data.map(menu => (
@@ -108,42 +222,7 @@ let setMenuTypes = (data, title, htmlElementId) => {
 
 
 //console.log(loadMenusByCat);
-let showMenuModal = () => {
-    if (Menu && Menu.id) {
-        $("#saveMenu").html(`<i class="fa fa-save"></i> Update`);
-    } else {
-        $("#saveMenu").html(`<i class="fa fa-save"></i> Save`);
-    }
 
-    orderEnds();
-
-    menuTime();
-
-    $('#menuModal').modal('show');
-
-    $('#closeBtn').click(() => {
-        clearFields();
-        $('#menuModal').modal('hide');
-
-    })
-
-    $("#menuDate, #menuMainDish, #menuSideDish, #expiryDate, #price").bind('change', () => {
-        validation();
-    });
-
-    $("#saveMenu").css('cursor', 'not-allowed');
-
-    $("#saveMenu").click(() => {
-        if (Menu && Menu.id) {
-            // Update Existing
-            updateMenu();
-        } else {
-            // Create New
-            saveMenu();
-        }
-    })
-
-}
 
 let getDataTable = () => {
     mtTab = $('#table').DataTable({
@@ -285,89 +364,23 @@ let orderEnds = () => {
 
 
 
-let clearFields = () => {
-    $('#menuDate').val("")
-    $('#menuMainDish').val("")
-    $('#menuCondiment').val(-1)
-    $('#expiryDate').val("")
-    $('#price').val("")
-}
 
 
-let populateInputFields = () => {
-    $('#menuDate').val(Menu.startAt);
-    $('#menuMainDish').val(Menu.mainDish);
-    $('#menuSideDish').val(Menu.sideDish);
-    $('#menuCondiment').val(Menu.condiDish);
-    $('#expiryDate').val(Menu.endAt);
-    $('#price').val(Menu.price);
 
-    //show modal
-    showMenuModal();
-};
 //$('#closeBtn').click(function () {
 //    clearFields();
 //    validation();
 //})
 
 
-let validation = () => {
-    //Edit Existing
-    if (Menu && Menu.id) {
-        Menu.startAt = $("#menuDate").val();
-        Menu.sideDish = $("#menuSideDish").val();
-        Menu.mainDish = $("#menuMainDish").val();
-        Menu.price = $("#price").val();
-        Menu.condiDish = $('#menuCondiment').val();
-        Menu.endAt = $("#expiryDate").val();
-    }
-    else {
-        //create new
-        Menu = {
-            startAt: $("#menuDate").val(),
-            mainDish: $("#menuMainDish").val(),
-            sideDish: $("#menuSideDish").val(),
-            condiDish: $('#menuCondiment').val(),
-            price: $("#price").val(),
-            endAt: $("#expiryDate").val(),
-        };
-    }
-    if (Menu && Menu.startAt && Menu.sideDish && Menu.mainDish && Menu.price && Menu.endAt) {
-        ($("#saveMenu").prop('disabled', false),
-            $("#saveMenu").css('cursor', 'pointer'))
-    } else {
-        ($("#saveMenu").prop('disabled', true),
-            $("#saveMenu").css('cursor', 'not-allowed'))
-    }
-}
 
 
-let ControlButtons = () => {
-    // Edit button
-    $(".editButton").click((el) => {
-        let id = el.target.dataset.id;
-        Menu = Menus.filter(x => x.id === id)[0]
-        // Show Modal
-        if (Menu && Menu.id) {
-            populateInputFields();
-        }
-    })
 
-    // Delete Button
-    $(".deleteButton").click((el) => {
-        console.log({ el });
-        let id = el.target.dataset.id;
-        Menu = Menus.filter(x => x.id === id)[0]
-        // Show Modal
-        if (Menu && Menu.id) {
-            deleteMenu();
-        }
-    })
-}
+
 
 
 let updateMenu = () => {
-    let model = JSON.stringify(FoodItem);
+    let model = JSON.stringify(Menu);
     let url = `${_path_url}api/Menus/UpdateMenu/${companyId}`
     $.post(url, model).then(
         response => {
