@@ -92,14 +92,14 @@ let validation = () => {
         //create new
         Menu = {
             startAt: $("#menuDate").val(),
-            mainDish: $("#menuMainDish").val(),
-            sideDish: $("#menuSideDish").val(),
-            condiDish: $('#menuCondiment').val(),
+            mainDishId: $("#menuMainDish").val(),
+            sideDishId: $("#menuSideDish").val(),
+            condiDishId: $('#menuCondiment').val(),
             price: $("#price").val(),
             endAt: $("#expiryDate").val(),
         };
     }
-    if (Menu && Menu.startAt && Menu.sideDish && Menu.mainDish && Menu.price && Menu.endAt) {
+    if (Menu && Menu.startAt && Menu.mainDishId && Menu.sideDishId && Menu.price && Menu.endAt) {
         ($("#saveMenu").prop('disabled', false),
             $("#saveMenu").css('cursor', 'pointer'))
     } else {
@@ -167,9 +167,9 @@ let getAllFoodInCat = () => {
 let ControlButtons = () => {
     // Edit button
     $(".editButton").click((el) => {
+        alert('hiiiii')
         let id = el.target.dataset.id;
         Menu = Menus.filter(x => x.id === id)[0]
-        // Show Modal
         console.log(Menu)
         if (Menu && Menu.id) {
             populateInputFields();
@@ -195,33 +195,7 @@ let setMenuTypes = (data, title, htmlElementId) => {
     ))
     $(htmlElementId).html(template);
 }
-//function loadMenus() {
-//    let data = { companyId: companyId };
-//    makeAPIRequest(`${_path_url}Menu/GetAllMenus`, data)
-//        .done(function (data) {
-//            data = JSON.parse(data);
-//            data = JSON.parse(data.Body);
-//            Menus = data;
-//            loadDataTable(data);
-//        });
-//}
-//loadMenus();
 
-//function loadMenusByCat() {
-//    let data = { CompanyId: CompanyId };
-//    makeAPIRequest(`${_path_url}Menu/GetAllFoodItemsInCat`, data)
-//        .done(function (data) {
-//            data = JSON.parse(data);
-//            data = JSON.parse(data.Body);
-//        });
-//}
-
-//$("#table").on('click', '.deleteButton', '.transfer-input-check', function (event) {
-//    $(this).parents('tr').detach();
-//});
-
-
-//console.log(loadMenusByCat);
 
 
 let getDataTable = () => {
@@ -302,28 +276,14 @@ let getDataTable = () => {
     })
 }
 
-/**   "mainDishId": "491e5a01-2218-411d-b8b3-a91c83ba68df",
-    "sideDishId": "ef0c9c1f-6709-4065-854d-2b7b9f2258e3",
-    "condiDishId": "00000000-0000-0000-0000-000000000000",
-    "price": 4,
-    "startAt": "2021-03-02T10:00:00.022Z",
-    "endAt": "2021-03-03T10:00:00.022Z" */
 
-
-//function setGeneric(data, title, elementID) {
-//    let template = `<option value = "">${title}</option>`
-//    template += data.map(type => (
-//        `<option value = "${type.id}">${type.name}</option>`
-//    ))
-//    $(elementID).html(template);
-//}
 
 let menuTime = () => {
     flatpickr('#menuDate', {
         "minDate": new Date().fp_incr(1),
         altInput: true,
         altFormat: "F j, Y",
-        dateFormat: "Y-m-d",
+        dateFormat: "d-m-Y H:i",
         "disable": [
             function (date) {
                 //return true to disable
@@ -355,22 +315,7 @@ let orderEnds = () => {
 }
 
 
-//$( "#myselect option:selected" ).text();
 
-
-
-//}
-
-
-
-
-
-
-
-//$('#closeBtn').click(function () {
-//    clearFields();
-//    validation();
-//})
 
 let resetMenus = () => {
     $('#menuModal').modal('hide');
