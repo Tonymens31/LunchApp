@@ -167,7 +167,7 @@ let getAllFoodInCat = () => {
 let ControlButtons = () => {
     // Edit button
     $(".editButton").click((el) => {
-        alert('hiiiii')
+        //alert('hiiiii')
         let id = el.target.dataset.id;
         Menu = Menus.filter(x => x.id === id)[0]
         console.log(Menu)
