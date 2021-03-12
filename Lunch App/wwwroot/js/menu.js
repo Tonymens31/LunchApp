@@ -131,6 +131,7 @@ let getMenus = () => {
             // Process Response
             if (response.status == "Success") {
                 Menus = response.body;
+                console.log({ Menus})
             }
             getDataTable();
         },
@@ -180,7 +181,7 @@ let ControlButtons = () => {
     $(".deleteButton").click((el) => {
         console.log({ el });
         let id = el.target.dataset.id;
-        Menu = Menus.filter(x => x.id === id)[0]
+        Menu = Menus.filter(menu => menu.id === id)[0]
         // Show Modal
         if (Menu && Menu.id) {
             deleteMenu();
@@ -216,6 +217,7 @@ let getDataTable = () => {
                 title: "Date",
                 data: "startAt",
                 render: function (data) {
+
                     return getFormattedDate(data);
                 },
                 width: "17%"
@@ -281,9 +283,8 @@ let getDataTable = () => {
 let menuTime = () => {
     flatpickr('#menuDate', {
         "minDate": new Date().fp_incr(1),
-        altInput: true,
         altFormat: "F j, Y",
-        dateFormat: "d-m-Y H:i",
+        dateFormat: "d-m-Y",
         "disable": [
             function (date) {
                 //return true to disable
@@ -293,7 +294,7 @@ let menuTime = () => {
         "locale": {
             "firstDayOfWeek": 1 // start week on Monday
         }
-    });
+    });mouth 
 }
 
 let orderEnds = () => {

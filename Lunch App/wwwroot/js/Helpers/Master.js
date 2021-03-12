@@ -29,9 +29,8 @@ function readExternalFile(file, mime, callback) {
 getFormattedDate = (str) => {
     let dateString = new Date(str).toUTCString();
     dateString = dateString.split(' ').slice(0, 4).join(' ');
-    return `${dateString.trim()}`;
+    return `${dateString}`;
 }
-
 
 let formatter = () => {
     new Intl.NumberFormat('en-US', {
