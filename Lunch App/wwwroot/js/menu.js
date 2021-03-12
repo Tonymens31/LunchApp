@@ -283,8 +283,8 @@ let getDataTable = () => {
 let menuTime = () => {
     flatpickr('#menuDate', {
         "minDate": new Date().fp_incr(1),
-        altFormat: "F j, Y",
-        dateFormat: "d-m-Y",
+        "altFormat": "F j, Y",
+        "dateFormat": "d-m-Y H:i",
         "disable": [
             function (date) {
                 //return true to disable
@@ -294,7 +294,7 @@ let menuTime = () => {
         "locale": {
             "firstDayOfWeek": 1 // start week on Monday
         }
-    });mouth 
+    });
 }
 
 let orderEnds = () => {
