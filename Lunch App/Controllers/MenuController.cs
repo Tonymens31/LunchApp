@@ -3,11 +3,9 @@ using Lunch_App.Models;
 using Lunch_App.Models.Common;
 using Lunch_App.Models.Menu;
 using Lunch_App.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lunch_App.Controllers
@@ -27,7 +25,7 @@ namespace Lunch_App.Controllers
         public async Task<IActionResult> GetAllMenus([FromBody] IdData model)
         {
             var url = $"{IDPSettings.Current.LunchAppUrl}GetAllMenu/{model.Id}";
-            var results = await _services.GetAsync<IEnumerable<GetOrders>>(url);
+            var results = await _services.GetAsync<IEnumerable<GetMenu>>(url);
             return new JsonResult(results);
         }
 

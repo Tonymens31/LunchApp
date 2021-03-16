@@ -1,10 +1,4 @@
-﻿using Lunch_App.Models.Menu;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Lunch_App.Models
+﻿namespace Lunch_App.Models
 {
     public class ResponseData<TModel>
     {

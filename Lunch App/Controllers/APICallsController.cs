@@ -1,20 +1,15 @@
 ﻿using Lunch_App.Data;
-using Lunch_App.HTTPServices;
 using Lunch_App.Models;
 using Lunch_App.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lunch_App.Controllers
 {
-   
-   
-    
+
+
+
     public class APICallsController : ControllerBase
     {
         public IHelperInterface helperInterface;

@@ -1,5 +1,4 @@
 ﻿using Lunch_App.ResponseModel;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Lunch_App.Services

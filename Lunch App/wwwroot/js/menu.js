@@ -15,23 +15,16 @@ $(document).ready(function () {
 let inIt = () => {
     $('#btnAddMenu').click(() => {
         Menu = {};
-        showMenuModal();
+        createMenu();
     })
-
     getMenus();
-
     getAllFoodInCat();
-
-
-
 }
 
-let showMenuModal = () => {
-    if (Menu && Menu.id) {
-        $("#saveMenu").html(`<i class="fa fa-save"></i> Update`);
-    } else {
-        $("#saveMenu").html(`<i class="fa fa-save"></i> Save`);
-    }
+let createMenu = () => {
+    Menu = {};
+
+    $("#saveMenu").html(`<i class="fa fa-save"></i> Save`);
 
     orderEnds();
 
@@ -40,56 +33,66 @@ let showMenuModal = () => {
     $('#menuModal').modal('show');
 
     $('#closeBtn').click(() => {
+        Menu = {};
         clearFields();
         $('#menuModal').modal('hide');
 
     })
 
     $("#menuDate, #menuMainDish, #menuSideDish, #expiryDate, #price").bind('change', () => {
-        validation();
+        validateMenu();
     });
 
     $("#saveMenu").css('cursor', 'not-allowed');
 
-    $("#saveMenu").click(() => {
-        if (Menu && Menu.id) {
-            // Update Existing
-            updateMenu();
-        } else {
-            // Create New
-            saveMenu();
-        }
-    })
-
 }
 
-
-let populateInputFields = () => {
-    $('#menuDate').val(Menu.startAt);
+let editMenu = () => {
+    $('#menuDate').val(Menu.startAt.split("T")[0]);
     $('#menuMainDish').val(Menu.mainDishId);
     $('#menuSideDish').val(Menu.sideDishId);
     $('#menuCondiment').val(Menu.condiDishId);
     $('#expiryDate').val(Menu.endAt);
     $('#price').val(Menu.price);
 
-    //show modal
-    showMenuModal();
-};
+    $("#saveMenu").html(`<i class="fa fa-save"></i> Update`);
+
+    orderEnds();
+
+    menuTime();
+
+    $('#menuModal').modal('show');
+
+    $('#closeBtn').click(() => {
+        Menu = {};
+        clearFields();
+        $('#menuModal').modal('hide');
+
+    })
+
+    $("#menuDate, #menuMainDish, #menuSideDish, #expiryDate, #price").bind('change', () => {
+        validateMenu();
+    });
+
+    $("#saveMenu").css('cursor', 'not-allowed');
+}
 
 
-
-let validation = () => {
-    //Edit Existing
+$("#saveMenu").click(() => {
     if (Menu && Menu.id) {
+        //Collect
         Menu.startAt = $("#menuDate").val();
         Menu.sideDish = $("#menuSideDish").val();
         Menu.mainDish = $("#menuMainDish").val();
         Menu.price = $("#price").val();
         Menu.condiDish = $('#menuCondiment').val();
         Menu.endAt = $("#expiryDate").val();
-    }
-    else {
-        //create new
+
+        // Update Existing
+        controlDateValues();
+        updateMenu();
+    } else {
+        //Collect
         Menu = {
             startAt: $("#menuDate").val(),
             mainDishId: $("#menuMainDish").val(),
@@ -98,8 +101,38 @@ let validation = () => {
             price: $("#price").val(),
             endAt: $("#expiryDate").val(),
         };
+        // Create New
+        controlDateValues();
+        saveMenu();
     }
-    if (Menu && Menu.startAt && Menu.mainDishId && Menu.sideDishId && Menu.price && Menu.endAt) {
+})
+
+let controlDateValues = () => {
+    // Manipulate [Menu.startAt] & [Menu.endAt]
+    let start_dates = Menu.startAt.split("-");
+    Menu.startAt = `${start_dates[2]}-${start_dates[1]}-${start_dates[0]}T00:00:00`;
+
+    let ends = Menu.endAt.split(" ");
+    let end_dates = ends[0].split("-");
+    Menu.endAt = `${end_dates[2]}-${end_dates[1]}-${end_dates[0]}T${ends[1]}:00`;
+
+    if (!Menu.condiDishId) {
+        Menu.condiDishId = '00000000-0000-0000-0000-000000000000';
+    }
+    console.log({ Menu });
+}
+
+
+let validateMenu = () => {
+    let _menu = {
+        startAt: $("#menuDate").val(),
+        mainDishId: $("#menuMainDish").val(),
+        sideDishId: $("#menuSideDish").val(),
+        condiDishId: $('#menuCondiment').val(),
+        price: $("#price").val(),
+        endAt: $("#expiryDate").val(),
+    };
+    if (_menu && _menu.startAt && _menu.mainDishId && _menu.sideDishId && _menu.price && _menu.endAt) {
         ($("#saveMenu").prop('disabled', false),
             $("#saveMenu").css('cursor', 'pointer'))
     } else {
@@ -131,7 +164,7 @@ let getMenus = () => {
             // Process Response
             if (response.status == "Success") {
                 Menus = response.body;
-                console.log({ Menus})
+                console.log({ Menus })
             }
             getDataTable();
         },
@@ -170,10 +203,13 @@ let ControlButtons = () => {
     $(".editButton").click((el) => {
         //alert('hiiiii')
         let id = el.target.dataset.id;
+        console.log({ Menus });
+        console.log({ id });
+
         Menu = Menus.filter(x => x.id === id)[0]
         console.log(Menu)
         if (Menu && Menu.id) {
-            populateInputFields();
+            createMenu();
         }
     })
 
@@ -241,7 +277,7 @@ let getDataTable = () => {
                 title: "Pricing",
                 data: "price",
                 render: function (data) {
-                    return moneyInTxt(data,"en",2);
+                    return moneyInTxt(data, "en", 2);
                 },
                 width: "2%"
             },
@@ -255,13 +291,13 @@ let getDataTable = () => {
             },
             {
                 data: "id",
-                title: "Actions", render: function (data) {
+                title: "Actions", render: function (val) {
                     return `
-                        <button style="border:none; background:transparent" class="editButton" data-id="${data}">
-                            <i class="fas fa-edit text-info" data-id=${data}></i>
+                        <button style="border:none; background:transparent" class="editButton" data-id="${val}">
+                            <i class="fas fa-edit text-info" data-id=${val}></i>
                         </button> 
-                        <button style="border:none; background:transparent" class="deleteButton" data-id=${data}>
-                            <i class="fas fa-trash text-danger" data-id=${data}></i>
+                        <button style="border:none; background:transparent" class="deleteButton" data-id=${val}>
+                            <i class="fas fa-trash text-danger" data-id=${val}></i>
                         </a>
                         `;
                 },
@@ -354,7 +390,8 @@ let updateMenu = () => {
 }
 
 let saveMenu = () => {
-    //console.log({ Menu });
+
+    console.log({ Menu });
 
     let theMenu = [];
     theMenu.push(Menu)
@@ -362,7 +399,7 @@ let saveMenu = () => {
     let url = `${_path_url}api/Menu/CreateMenu/${companyId}`
     $.post(url, model).then(
         response => {
-            console.log({ response });
+            //console.log({ response });
             if (response.status == "Success") {
                 iziToast.success({
                     position: 'topRight',

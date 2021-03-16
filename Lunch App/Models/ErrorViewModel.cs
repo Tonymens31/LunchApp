@@ -1,5 +1,3 @@
-using System;
-
 namespace Lunch_App.Models
 {
     public class ErrorViewModel

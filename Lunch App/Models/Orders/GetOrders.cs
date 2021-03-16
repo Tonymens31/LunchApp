@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Lunch_App.Models.Orders
 {
@@ -17,7 +14,7 @@ namespace Lunch_App.Models.Orders
 
         public Guid CondiDishId { get; set; }
 
-        public int Price { get; set; }
+        public double Price { get; set; }
 
         public string MainDish { get; set; }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Lunch_App.ResponseModel
+﻿namespace Lunch_App.ResponseModel
 {
     public class ResponseData
     {

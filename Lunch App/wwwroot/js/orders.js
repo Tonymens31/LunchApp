@@ -44,6 +44,8 @@ $('#btnAddOrder').click(function () {
 
 //$('#table').DataTable();
 let getDataTable = () => {
+    console.log({ Orders });
+
     mtTab = $('#table').DataTable({
         data: Orders,
         pageLength: 10,

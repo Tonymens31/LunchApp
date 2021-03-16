@@ -1,12 +1,8 @@
 ﻿using Lunch_App.Data;
 using Lunch_App.Models;
-using Lunch_App.Models.Foods;
 using Lunch_App.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lunch_App.Controllers

@@ -19,8 +19,7 @@ $(document).ready(() => {
 let init = () => {
     // Button click
     $('#foodModal').click(() => {
-        FoodItem = {};
-        showFoodModal();
+        createFoodItem();
     })
 
     // Load Food Items
@@ -33,14 +32,12 @@ let init = () => {
     getVendors();
 }
 
-let showFoodModal = () => {
-    if (FoodItem && FoodItem.id) {
-        $("#saveFoodItem").html(`<i class="fa fa-save"></i> Update`);
-    } else {
-        $("#saveFoodItem").html(`<i class="fa fa-save"></i> Save`);
-    }
+let createFoodItem = () => {
+    FoodItem = {};
 
     $('#foodItemModal').modal('show');
+    $("#save-food-item").css('cursor', 'not-allowed');
+    $("#save-food-item").html(`<i class="fa fa-save"></i> Save`);
 
     $('#closeBtn').click(() => {
         clearFields();
@@ -48,43 +45,52 @@ let showFoodModal = () => {
     })
 
     $("#vendor, #foodItem, #foodType, #status").bind('change', () => {
-        validation();
+        validateFoodItem();
     });
-
-    $("#saveFoodItem").css('cursor', 'not-allowed');
-
-    $("#saveFoodItem").click(() => {
-        if (FoodItem && FoodItem.id) {
-            // Update Existing
-            updateFoodItem();
-        } else {
-            // Create New
-            saveFoodItem();
-        }
-    })
-
 }
 
+let editFoodItem = () => {
+    $('#foodItemModal').modal('show');
 
-
-let populateInputFields = () => {
     $('#foodItem').val(FoodItem.name);
     $('#foodType').val(FoodItem.typeId);
     $('#status').val(FoodItem.isActive);
     $('#vendor').val(FoodItem.vendorId);
-    // Show Modal
-    showFoodModal();
-};
+
+    $("#save-food-item").html(`<i class="fa fa-save"></i> Update`);
+    $("#save-food-item").prop('disabled', false);
+    $("#save-food-item").css('cursor', 'pointer');
 
 
-let validation = () => {
+    $('#closeBtn').click(() => {
+        FoodItem = {};
+        clearFields();
+        $('#foodItemModal').modal('hide');
+    })
+
+    $("#vendor, #foodItem, #foodType, #status").bind('change', () => {
+        validateFoodItem();
+    });
+}
+
+
+$("#save-food-item").click(() => {
+
+    //console.log({ FoodItem });
+
     if (FoodItem && FoodItem.id) {
+
         //Edit Existing
         FoodItem.name = $("#foodItem").val();
         FoodItem.typeId = $("#foodType").val();
         FoodItem.vendorId = $("#vendor").val();
         FoodItem.isActive = $("#status").val();
+
+        // Update Existing
+        updateFoodItem();
+
     } else {
+
         // Create New
         FoodItem = {
             name: $("#foodItem").val(),
@@ -92,13 +98,25 @@ let validation = () => {
             vendorId: $("#vendor").val(),
             isActive: $("#status").val(),
         };
+        // Create New
+        saveFoodItem();
+
     }
-    if (FoodItem && FoodItem.name && FoodItem.typeId && FoodItem.vendorId && FoodItem.isActive) {
-        $("#saveFoodItem").prop('disabled', false);
-        $("#saveFoodItem").css('cursor', 'pointer')
+})
+
+let validateFoodItem = () => {
+    let _foodItem = {
+        name: $("#foodItem").val(),
+        typeId: $("#foodType").val(),
+        vendorId: $("#vendor").val(),
+        isActive: $("#status").val(),
+    };
+    if (_foodItem && _foodItem.name && _foodItem.typeId && _foodItem.vendorId && _foodItem.isActive) {
+        $("#save-food-item").prop('disabled', false);
+        $("#save-food-item").css('cursor', 'pointer')
     } else {
-        $("#saveFoodItem").prop('disabled', true);
-        $("#saveFoodItem").css('cursor', 'not-allowed')
+        $("#save-food-item").prop('disabled', true);
+        $("#save-food-item").css('cursor', 'not-allowed')
     }
 }
 
@@ -108,8 +126,8 @@ let clearFields = () => {
     $('#foodType').val(-1);
     $('#status').val(-1);
     $('#vendor').val(-1);
-    $("#saveFoodItem").prop('disabled', true);
-    $("#saveFoodItem").css('cursor', 'not-allowed');
+    $("#save-food-item").prop('disabled', true);
+    $("#save-food-item").css('cursor', 'not-allowed');
 }
 
 let getFoodItems = () => {
@@ -186,12 +204,20 @@ let getDataTable = () => {
         ]
     });
 
-
-
     ControlButtons();
-
     $(".paginate_button").click(() => {
         ControlButtons();
+    })
+    
+    // Delete Button
+    $(".deleteButton").click((el) => {
+        //console.log({ el });
+        let id = el.target.dataset.id;
+        FoodItem = FoodItems.filter(x => x.id === id)[0]
+        // Show Modal
+        if (FoodItem && FoodItem.id) {
+            deleteFoodItem();
+        }
     })
 }
 
@@ -204,24 +230,16 @@ let setFoodTypes = () => {
 }
 
 let ControlButtons = () => {
+
     // Edit button
     $(".editButton").click((el) => {
         let id = el.target.dataset.id;
         FoodItem = FoodItems.filter(x => x.id === id)[0]
-        // Show Modal
-        if (FoodItem && FoodItem.id) {
-            populateInputFields();
-        }
-    })
 
-    // Delete Button
-    $(".deleteButton").click((el) => {
-        console.log({ el });
-        let id = el.target.dataset.id;
-        FoodItem = FoodItems.filter(x => x.id === id)[0]
         // Show Modal
         if (FoodItem && FoodItem.id) {
-            deleteFoodItem();
+            // Show Modal
+            editFoodItem();
         }
     })
 }
@@ -306,7 +324,7 @@ let saveFoodItem = () => {
 
 let resetFoodItems = () => {
     $('#foodItemModal').modal('hide');
-
+    FoodItem = {};
     clearFields();
     getFoodItems();
 }

@@ -1,6 +1,5 @@
 ﻿using Lunch_App.ResponseModel;
 using IdentityModel.Client;
-using Marvin.StreamExtensions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -8,11 +7,8 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Lunch_App.Data;
 using Lunch_App.Services;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using RestSharp;
