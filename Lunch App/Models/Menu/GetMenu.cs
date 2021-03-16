@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Lunch_App.Models
 {
-    public class GetMenu
+    public class GetOrders
     {
 
         

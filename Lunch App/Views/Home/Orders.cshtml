@@ -5,6 +5,7 @@
         th {
             color: white !important
         }
+
         .dataTables_wrapper.no-footer .dataTables_scrollBody {
             height: 50vh !important;
             max-height: 50vh !important;
@@ -22,48 +23,23 @@
                                 <h1 class="card-title">ORDERS</h1>
                             </div>
                             <div class="col-md-4">
-                                <div class="search-wrapper" style=" margin-top: -5px;">
-                                    <div class="input-holder">
-                                        <input type="text" class="search-input" placeholder="Type menu to search">
-                                        <button class="search-icon"><span></span></button>
-                                    </div>
-                                    <button class="close"></button>
-                                </div>
+                                @*<div class="search-wrapper" style=" margin-top: -5px;">
+                                        <div class="input-holder">
+                                            <input type="text" class="search-input" placeholder="Type menu to search">
+                                            <button class="search-icon"><span></span></button>
+                                        </div>
+                                        <button class="close"></button>
+                                    </div>*@
                             </div>
                             <div class="col-md-3"></div>
                             <div class="col-md-2">
                                 <button class="btn btn-md btn-outline-primary pull-right" id="btnAddOrder">Add Order</button>
                             </div>
                         </div>
-                        @*<div class="row">
-                                <div>
-                                    <h3 class="card-title" style="margin-top: 5px">ORDERS</h3>
-                                </div>
-                                <div class="pull-right">
-                                    <button class="btn btn-sm btn-outline-primary pull-right" id="btnAddOrder">Add Order</button>
-                                </div>
-                            </div>*@
+                      
 
+                        <table id="table" class="mb-0 table table-striped table-hover" width="100%"></table>
 
-                        <table id="ordertable" class="mb-0 table table-striped table-hover" width="100%"></table>
-
-                        @*<div class="table-responsive tableFixHead" style="height: 410px; overflow:auto">
-                                <table class="mb-0 table align-items-center table-striped table-hover" id="myTable">
-                                    <thead>
-                                        <tr style="background-color: #063970; color: white;">
-                                            <th scope="col" width="13%">Date</th>
-                                            <th scope="col" width="22%">Name</th>
-                                            <th scope="col" width="25%">Main Dish</th>
-                                            <th scope="col" width="20%">Side Dish</th>
-                                            <th scope="col" width="15%">Condiment</th>
-                                            <th scope="col" width="5%">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="orderTable">
-                                    </tbody>
-                                </table>
-                                <br />
-                            </div>*@
                         <div>
                             <button class="btn btn-md  btn-outline-primary pull-right" id="btnPrintOrders"> <i class="pe-7s-print"></i>Print Orders</button>
                         </div>
@@ -156,6 +132,7 @@
 }
 @section Scripts{
     <script src="~/js/orders.js" asp-append-version="true"></script>
+   
 }
 
 

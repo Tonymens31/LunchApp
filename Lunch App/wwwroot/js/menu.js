@@ -241,7 +241,7 @@ let getDataTable = () => {
                 title: "Pricing",
                 data: "price",
                 render: function (data) {
-                    return moneyInTxt(data);
+                    return moneyInTxt(data,"en",2);
                 },
                 width: "2%"
             },
@@ -284,7 +284,7 @@ let menuTime = () => {
     flatpickr('#menuDate', {
         "minDate": new Date().fp_incr(1),
         "altFormat": "F j, Y",
-        "dateFormat": "d-m-Y H:i",
+        "dateFormat": "d-m-Y",
         "disable": [
             function (date) {
                 //return true to disable

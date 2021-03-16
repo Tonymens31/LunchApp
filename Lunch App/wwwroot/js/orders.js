@@ -1,451 +1,354 @@
-﻿$(document).ready(function () {
-    let dt = new DateHandler();
-    btnState = 0;
-    fmtDate = (s) => {
-        let d = new Date(Date.parse(s));
-        let fmt = d.toUTCString().replace("00:00:00", "")
-        return fmt.replace("GMT", "")
-    }
+﻿
+let saveOrUpdate = 0,
+    selectedRow = "",
+    btnState = 0,
+    Orders = [],
+    Order = {},
+    mtTab;
 
 
 
+$(document).ready(() => {
+    init();
+})
+
+let init = () => {
+
+    //Button click
     $('#btnAddOrder').click(function () {
-        btnState = 0
-        $("#saveOrder").html(`<i class="fa fa-save"></i> Save`)
-        $('#orderModal').modal('show');
-
+        Order = {};
+        showModal();
     })
 
+    //load Orders
+    getOrders();
+}
+
+let dt = new DateHandler();
+btnState = 0;
+fmtDate = (s) => {
+    let d = new Date(Date.parse(s));
+    let fmt = d.toUTCString().replace("00:00:00", "")
+    return fmt.replace("GMT", "")
+}
 
 
-    //$('#table').DataTable();
-    function loadDataTable() {
-        $('#ordertable').DataTable({
-           // data: data,
-            searching: true,
-            scrollY: '48vh',
-            pagingType: "simple_numbers",
-            className: "blue",
-            fixedHeader: {
-                header: true,
-                headerOffset: $('#header').height()
+
+$('#btnAddOrder').click(function () {
+    btnState = 0
+    $("#saveOrder").html(`<i class="fa fa-save"></i> Save`)
+
+})
+
+
+
+//$('#table').DataTable();
+let getDataTable = () => {
+    mtTab = $('#table').DataTable({
+        data: Orders,
+        pageLength: 10,
+        destroy: true,
+        searching: true,
+        searching: true,
+        scrollY: '48vh',
+        pagingType: "simple_numbers",
+        className: "blue",
+        fixedHeader: {
+            header: true,
+            headerOffset: $('#header').height()
+        },
+        responsive: true,
+        columns: [
+            {
+                title: "Date",
+                data: "orderDate"
             },
-            responsive: true,
-            columns: [
-                {
-                    title: "Date",
-                    //data: "name"
+            {
+                title: "Main Dish",
+                data: "mainDish"
+            },
+            {
+                title: "Side Dish",
+                data: "sideDish"
+            },
+            {
+                title: "Condiment",
+                data: "condiDish"
+            },
+            {
+                title: "Price",
+                data: "price",
+                 data: "price",
+                render: function (data) {
+                    return moneyInTxt(data, "en", 2);
                 },
-                {
-                    title: "Name",
-                    //data: "email"
-                },
-                {
-                    title: "Main Dish",
-                    //data: "email"
-                },
-                {
-                    title: "Side Dish",
-                    //data: "phone"
-                },
-                {
-                    title: "Condiment",
-                    //data: "phone"
-                },
-               
-                {
-                   // data: "id",
-                    title: "Actions",
-                    //render: function (data) {
-                    //    return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
-                    //            <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
-                    //    `;
-                    //}
+                width: "2%"
+            },
+           
+            {
+                data: "id",
+                title: "Actions", render: function (data) {
+                    return `
+                        <button style="border:none; background:transparent" class="editButton" data-id="${data}">
+                            <i class="fas fa-edit text-info" data-id=${data}></i>
+                        </button> 
+                        <button style="border:none; background:transparent" class="deleteButton" data-id=${data}>
+                            <i class="fas fa-trash text-danger" data-id=${data}></i>
+                        </a>
+                        `;
                 }
-            ]
-        });
+            },
+        ]
+    });
+}
 
+
+//get all orders
+let getOrders = () => {
+    let model = JSON.stringify({ Id: companyId });
+    let url = `${_path_url}api/Order/GetOrders`;
+    $.post(url, model).then(
+        response => {
+            // Process Response
+            if (response.status == "Success") {
+                Orders = response.body;
+            }
+            console.log({ Orders })
+            getDataTable();
+        },
+        error => {
+            // debug error
+            console.log({ error });
+        }
+    )
+}
+
+let showModal = () => {
+    if (Order && Order.id) {
+        $("#saveOrder").html(`<i class="fa fa-save"></i> Update`);
+    } else {
+        $("#saveOrder").html(`<i class="fa fa-save"></i> Save`);
     }
 
-
-    //get all vendors
-
-    function loadVendors() {
-        let data = { companyId: companyId };
-        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
-            .done(function (data) {
-                data = JSON.parse(data)
-                data = JSON.parse(data.Body)
-                loadDataTable(data);
-                //if (data) {
-                //    createVendorTable(data, '#vendorTable');
-                //}
-            });
-    };
-    loadVendors();
-
-   
-
-    flatpickr('#orderdate', {
-        "minDate": new Date().fp_incr(0),
-        "dateFormat": "d-m-Y",
-        "disable": [
-            function (date) {
-                // return true to disable
-                return (date.getDay() === 0 || date.getDay() === 6);
-
-            }
-        ],
-        "locale": {
-            "firstDayOfWeek": 1 // start week on Monday
-        }
-    });
-
-    flatpickr('#orderDate', {
-        "minDate": new Date().fp_incr(0),
-        "dateFormat": "d-m-Y",
-        "disable": [
-            function (date) {
-                // return true to disable
-                return (date.getDay() === 0 || date.getDay() === 6);
-
-            }
-        ],
-        "locale": {
-            "firstDayOfWeek": 1 // start week on Monday
-        }
-    });
-
-    //function loadOrderData() {
-    //    let view = ``;
-
-
-    //    orderData = [...new Map(orderData.map(item => [item.id, item])).values()];
-
-    //    orderData.map(item => {
-    //        view += `
-    //            <tr id=${item.id}>
-    //                <td>
-    //                    ${(item.date)}
-    //                </td>
-                    
-    //                <td>${item.name}</td>
-    //                <td>${item.maindish}</td>
-    //                <td>${item.sidedish}</td>
-    //                <td>${item.condiment}</td>
-    //                <td class="">
-    //                    <a href="#" class="text-inverse editButton" id="${item.id}"  title="Edit"><i class="fas fa-edit"></i></a>
-    //                    <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
-    //                 </td>
-    //            </tr>
-    //        `
-    //    })
-    //    $('#orderTable').html(view);
-    //    bindButtonsToDOM()
-    //    $('#count').text(orderData.length);
-    //}
-
-    $("#saveOrder").click(() => {
-        orderFood();
-        validation();
-        iziToast.success({
-            position: 'topRight',
-            message: 'Order saved successfully',
-        });
-        $("#name").prop('disabled', true)
-        $('#orderingForField').hide()
-        // message('success', 'Order added sucessfully ');
-    })
-
-    function orderFood() {
-
-        let formdata = {
-            id: uuidv4(),
-            date: $("#orderDate").val(),
-            maindish: $("#orderMainDish").val(),
-            orderFor: $('#orderFor').val(),
-            sidedish: $("#orderSideDish").val(),
-            condiment: $("#orderCondiment").val(),
-        }
-        orderForState === 0 ? formdata.name = $('#orderForStaff').val() : formdata.name = $("#name").val()
-
-
-        console.log(formdata)
-
-        orderData.push(formdata)
-        loadOrderData()
-        $('#orderModal').modal('hide');
-        clearFields();
-    }
+    $('#orderModal').modal('show');
 
     $('#closeBtn').click(function () {
         clearFields();
-        validation();
         $('#orderingForField').hide();
+        $('#orderModal').modal('hide');
     })
+}
 
-
-
-    //function addToTable(data) {
-    //    let { date, name, maindish, sidedish, condiment, orderFor } = data;
-    //    let tem = `<tr id=""> 
-    //                <td>${date}</td>
-    //                <td>${name}</td>
-    //                <td>${maindish}</td> 
-    //                <td>${orderFor}</td>
-    //                <td>${sidedish}</td>
-    //                <td>${condiment}</td>
-    //            </tr>`;
-
-    //    $('#orderTable').prepend(tem);
-    //    $('#orderModal').modal('hide');
-    //    clearFields();
-    //}
-
-    var userSelection = document.getElementsByClassName('required');
-
-    for (var i = 0; i < userSelection.length; i++) {
-        (function (index) {
-            userSelection[index].addEventListener("input", function () {
-                let el = userSelection[index].id;
-
-                let inputel = document.getElementById(el);
-                inputel.value ? (inputel.style.border = "1px solid #ced4da", validation()) : (inputel.style.border = "1px solid red", validation(), inputel.focus())
-            })
-        })(i);
-    }
-
-    function bindButtonsToDOM() {
-        let elements = document.getElementsByClassName('editButton');
-
-        for (let x = 0; x < elements.length; x++) {
-            elements[x].addEventListener('click', function (e) {
-                getRowData(this.id)
-                btnState = 1
-                $("#saveOrder").html(`Update`)
-                $('#orderModal').modal('show');
-
-            });
-        }
-    }
-
-
-    function getRowData(rowId) {
-        let data = orderData.filter(ele => ele.id.toString() === rowId)[0];
-        populateInputFields(data);
-        // saveOrUpdate = 1;
-    }
-
-    function populateInputFields(data) {
-        let { name, date, maindish, sidedish, condiment, orderFor, orderForStaff } = data;
-
-        $('#orderDate').val(date)
-        $('#name').val(name)
-        $('#orderMainDish').val(maindish)
-        $('#orderSideDish').val(sidedish)
-        $('#orderCondiment').val(condiment)
-        $('#orderFor').val(orderFor)
-        $('#orderForStaff').val(orderForStaff)
-
-
-        $('#orderingForField').show()
-        $('#name').prop('disabled', false)
-        $('#orderModal').modal('show');
-    };
-
-    function clearFields() {
-        $('#orderDate').val("")
-        $('#name').val("")
-        $('#orderMainDish').val(0)
-        $('#orderSideDish').val(0)
-        $('#orderCondiment').val(0)
-        $('#orderFor').val(0)
-        $('#orderForStaff').val(0)
-    }
-
-    let orderForState = 0;
-
-    $("#orderFor").change(function () {
-
-        //$("#name").prop('hidden', false)
-
-
-        if ($(this).val() == "staff") {
-            orderForState = 0;
-            $('#orderingForField').show()
-            $("#name").show();
-            $("#orderForStaff").prop('hidden', false)
-            $("#name").prop('disabled', false)
-            //console.log('name')
-        }
-        else if
-            ($(this).val() == "quest") {
-            orderForState = 1;
-            $('#orderingForField').show()
-            $("#orderForStaff").prop('hidden', true)
-            $("#name").prop('hidden', false)
-            $("#name").prop('disabled', false)
+flatpickr('#orderdate', {
+    "minDate": new Date().fp_incr(0),
+    "dateFormat": "d-m-Y",
+    "disable": [
+        function (date) {
+            // return true to disable
+            return (date.getDay() === 0 || date.getDay() === 6);
 
         }
-    })
+    ],
+    "locale": {
+        "firstDayOfWeek": 1 // start week on Monday
+    }
+});
 
+
+
+$("#saveOrder").click(() => {
+    orderFood();
+    validation();
+    iziToast.success({
+        position: 'topRight',
+        message: 'Order saved successfully',
+    });
+    $("#name").prop('disabled', true)
     $('#orderingForField').hide()
+    // message('success', 'Order added sucessfully ');
+})
 
+function orderFood() {
 
-
-
-    //function validateSubmitFields() {
-    //    $('#orderSideDish').val() != '' &&
-    //        $('#EmergencyContactAddress').val() != '' &&
-    //        $('#EmergencyContactNumber').val() != '' &&
-    //        validatePhone($('#EmergencyContactNumber').val()) &&
-    //        $('#EmergencyContactNumber').val().length >= 10 &&
-    //        $('#EmergencyContactNumber').val().length < 15
-    //        ?
-    //        $('#btnSave').prop('disabled', false)
-    //        :
-    //        $('#btnSave').prop('disabled', true);
-    //}
-
-
-
-    //$('.transfer-input-check').on('keyup change', function () {
-    //    validateSubmitFields();
-    //});
-
-    $("#saveOrder").css('cursor', 'not-allowed');
-    function validation() {
-        if (orderForState === 1) {
-            $("#orderDate").val().length > 0 &&
-                $("#name").val().length !== '' &&
-                $("#orderMainDish").val().length !== '' &&
-                $("#orderFor").val().length !== '' &&
-                $("#orderSideDish").val().length !== '' ?
-                ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
-                ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
-        }
-        else if (orderForState === 0) {
-            $("#orderDate").val().length > 0 &&
-                $("#orderForStaff").val() > 0 &&
-                $("#orderMainDish").val().length !== '' &&
-                $("#orderFor").val().length !== '' &&
-                $("#orderSideDish").val().length !== '' ?
-                ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
-                ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
-        } else {
-            $("#orderDate").val().length > 0 &&
-                $("#name").val().length !== 0 &&
-                $("#orderForStaff").val() > 0 &&
-                $("#orderMainDish").val().length !== '' &&
-                $("#orderFor").val().length !== '' &&
-                $("#orderSideDish").val().length !== '' ?
-                ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
-                ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
-        }
+    let formdata = {
+        id: uuidv4(),
+        date: $("#orderDate").val(),
+        maindish: $("#orderMainDish").val(),
+        orderFor: $('#orderFor').val(),
+        sidedish: $("#orderSideDish").val(),
+        condiment: $("#orderCondiment").val(),
     }
+    orderForState === 0 ? formdata.name = $('#orderForStaff').val() : formdata.name = $("#name").val()
 
-    //let findOrder = (id) => {
-    //    let getOrder = $.grep(orderData, (order) => {
-    //        return order.id == id;
-    //    });
-    //    console.log(getOrder)
-    //    return getOrder[0] ? getOrder[0] : null;
-    //}
 
-    function uuidv4() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
+    console.log(formdata)
+
+    orderData.push(formdata)
+    loadOrderData()
+    $('#orderModal').modal('hide');
+    clearFields();
+}
+
+
+
+
+var userSelection = document.getElementsByClassName('required');
+
+for (var i = 0; i < userSelection.length; i++) {
+    (function (index) {
+        userSelection[index].addEventListener("input", function () {
+            let el = userSelection[index].id;
+
+            let inputel = document.getElementById(el);
+            inputel.value ? (inputel.style.border = "1px solid #ced4da", validation()) : (inputel.style.border = "1px solid red", validation(), inputel.focus())
+        })
+    })(i);
+}
+
+function bindButtonsToDOM() {
+    let elements = document.getElementsByClassName('editButton');
+
+    for (let x = 0; x < elements.length; x++) {
+        elements[x].addEventListener('click', function (e) {
+            getRowData(this.id)
+            btnState = 1
+            $("#saveOrder").html(`Update`)
+            $('#orderModal').modal('show');
+
         });
     }
+}
 
-    $("searchIcon").click(function () {
-        myFunction();
-        console.log(input)
-    })
 
-    function myFunction() {
-        var td, i, txtValue;
-        let input = document.getElementById("myInput");
-        let filter = input.value.toUpperCase();
-        let table = document.getElementById("myTable");
-        let tr = table.getElementsByTagName("tr");
+function getRowData(rowId) {
+    let data = orderData.filter(ele => ele.id.toString() === rowId)[0];
+    populateInputFields(data);
+    // saveOrUpdate = 1;
+}
 
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
+function populateInputFields(data) {
+    let { name, date, maindish, sidedish, condiment, orderFor, orderForStaff } = data;
+
+    $('#orderDate').val(date)
+    $('#name').val(name)
+    $('#orderMainDish').val(maindish)
+    $('#orderSideDish').val(sidedish)
+    $('#orderCondiment').val(condiment)
+    $('#orderFor').val(orderFor)
+    $('#orderForStaff').val(orderForStaff)
+
+
+    $('#orderingForField').show()
+    $('#name').prop('disabled', false)
+    $('#orderModal').modal('show');
+};
+
+let clearFields = () => {
+    $('#orderDate').val("")
+    $('#name').val("")
+    $('#orderMainDish').val(0)
+    $('#orderSideDish').val(0)
+    $('#orderCondiment').val(0)
+    $('#orderFor').val(0)
+    $('#orderForStaff').val(0)
+}
+
+let orderForState = 0;
+
+$("#orderFor").change(function () {
+
+    //$("#name").prop('hidden', false)
+
+
+    if ($(this).val() == "staff") {
+        orderForState = 0;
+        $('#orderingForField').show()
+        $("#name").show();
+        $("#orderForStaff").prop('hidden', false)
+        $("#name").prop('disabled', false)
+        //console.log('name')
+    }
+    else if
+        ($(this).val() == "quest") {
+        orderForState = 1;
+        $('#orderingForField').show()
+        $("#orderForStaff").prop('hidden', true)
+        $("#name").prop('hidden', false)
+        $("#name").prop('disabled', false)
+
+    }
+})
+
+$('#orderingForField').hide()
+
+
+$("#saveOrder").css('cursor', 'not-allowed');
+function validation() {
+    if (orderForState === 1) {
+        $("#orderDate").val().length > 0 &&
+            $("#name").val().length !== '' &&
+            $("#orderMainDish").val().length !== '' &&
+            $("#orderFor").val().length !== '' &&
+            $("#orderSideDish").val().length !== '' ?
+            ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
+            ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
+    }
+    else if (orderForState === 0) {
+        $("#orderDate").val().length > 0 &&
+            $("#orderForStaff").val() > 0 &&
+            $("#orderMainDish").val().length !== '' &&
+            $("#orderFor").val().length !== '' &&
+            $("#orderSideDish").val().length !== '' ?
+            ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
+            ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
+    } else {
+        $("#orderDate").val().length > 0 &&
+            $("#name").val().length !== 0 &&
+            $("#orderForStaff").val() > 0 &&
+            $("#orderMainDish").val().length !== '' &&
+            $("#orderFor").val().length !== '' &&
+            $("#orderSideDish").val().length !== '' ?
+            ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
+            ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
+    }
+}
+
+
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+$("searchIcon").click(function () {
+    myFunction();
+    console.log(input)
+})
+
+function myFunction() {
+    var td, i, txtValue;
+    let input = document.getElementById("myInput");
+    let filter = input.value.toUpperCase();
+    let table = document.getElementById("myTable");
+    let tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
             }
         }
     }
-
-    //function printDiv() {
-    //    var divContents = document.getElementById("orderTable").innerHTML;
-    //    var a = window.open('', '', 'height=500, width=500');
-    //    a.document.write('<html>');
-    //    a.document.write('<body > <h1>Div contents are <br>');
-    //    a.document.write(divContents);
-    //    a.document.write('</body></html>');
-    //    a.document.close();
-    //    a.print();
-    //} 
+}
 
 
-    $('#btnPrintOrders').click(function () {
-        //printDiv();
-    })
+$('#btnPrintOrders').click(function () {
+    //printDiv();
+})
 
-    //var id = 0;
-    //$(".searchIcon").click(function (e) {
-
-    //    var id = e.target.id;
-    //    var order = findOrder(id);
-    //   //$('#orderDate').text(order.date)
-    //    $('#name').text(order.name)
-    //    $('#orderMainDish').text(order.maindish)
-    //    $('#orderSideDish').text(order.sidedish)
-    //    $('#orderCondiment').text(order.condiment)
-    //    $("#orderModal").modal("show");
-    //})
-
-    //$("#searchIcon").click(function () {
-
-    //    let searchItem = $("#searchField").val();
-    //    let searchOrder = orderData.filter(i => i.name.toLowerCase().includes(searchItem));
-
-    //    console.log(searchOrder)
-    //    if (searchOrder.length === 0) {
-    //        message('error', 'Order not found')
-    //    }
-    //    console.log(searchOrder)
-
-    //    if (searchOrder) {
-    //        $("#orderTable").html("");
-    //        let searchFromOrderList = searchOrder.map(item => {
-
-    //            return ` 
-    //                <tr id=${item.id}>
-    //                <td>
-    //                    ${fmtDate(item.date)}
-    //                </td>
-    //                <td>${item.name}</td>
-    //                <td>${item.maindish}</td>
-    //                <td>${item.sidedish}</td>
-    //                <td>${item.condiment}</td>
-    //            </tr>
-    //        `
-    //        });
-    //        //console.log(searchFromMovieList)
-
-    //        $("#orderTable").html(searchFromOrderList);
-    //    } else {
-    //        message('error', 'M not found')
-    //    }
-    //})
-});
 

@@ -7,17 +7,24 @@ namespace Lunch_App.Models
 {
     public class OrderModel
     {
-        public string companyId { get; set; }
-        public string mainDishId { get; set; }
-        public string sideDishId { get; set; }
-        public string condiDishId { get; set; }
-        public string mainDish { get; set; }
-        public string sideDish { get; set; }
-        public string condiDish { get; set; }
-        public string startAt { get; set; }
-        public string endAt { get; set; }
-        public string price { get; set; }
-        public int isActive { get; set; }
-        public string pkId { get; set; }
+        public Guid CompanyId { get; set; }
+
+        public Guid MainDishId { get; set; }
+
+        public string SideDishId { get; set; }
+
+        public string CondiDishId { get; set; }
+
+        public string MainDish { get; set; }
+
+        public string SideDish { get; set; }
+
+        public string CondiDish { get; set; }
+       
+        public DateTime Orderdate { get; set; }
+
+        public int Price { get; set; }
+
+        public string PkId { get; set; }
     }
 }

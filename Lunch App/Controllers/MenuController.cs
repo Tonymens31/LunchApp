@@ -27,7 +27,7 @@ namespace Lunch_App.Controllers
         public async Task<IActionResult> GetAllMenus([FromBody] IdData model)
         {
             var url = $"{IDPSettings.Current.LunchAppUrl}GetAllMenu/{model.Id}";
-            var results = await _services.GetAsync<IEnumerable<GetMenu>>(url);
+            var results = await _services.GetAsync<IEnumerable<GetOrders>>(url);
             return new JsonResult(results);
         }
 
