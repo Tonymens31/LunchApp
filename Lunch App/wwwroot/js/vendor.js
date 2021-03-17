@@ -320,7 +320,7 @@
     $("#saveVendor").click(() => {
         let postDatasArr = [];
         let formdata = {
-            "pkId": selectedRow,
+            "pkId": "00000000-0000-0000-0000-000000000000",
             "name": $("#vendorName").val(),
             "email": $("#vendorEmail").val(),
             "phone": $("#phone1").val(),
@@ -333,6 +333,7 @@
             postDatasArr.push(formdata);
             createVendor(`${_path_url}APICalls/PostVendor`, postDatasArr)
         } else {
+            formdata.pkId = selectedRow;
             updateVendor(`${_path_url}APICalls/PutVendor`, formdata)
         }
 

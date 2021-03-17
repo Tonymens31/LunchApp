@@ -63,7 +63,11 @@ let getDataTable = () => {
         columns: [
             {
                 title: "Date",
-                data: "orderDate"
+                data: "orderDate",
+                render: function (data) {
+                    return getFormattedDate(data);
+                },
+                
             },
             {
                 title: "Main Dish",
@@ -79,7 +83,6 @@ let getDataTable = () => {
             },
             {
                 title: "Price",
-                data: "price",
                  data: "price",
                 render: function (data) {
                     return moneyInTxt(data, "en", 2);
