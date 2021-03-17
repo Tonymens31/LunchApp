@@ -116,6 +116,9 @@ let getOrders = () => {
                 Orders = response.body;
             }
             console.log({ Orders })
+
+            $("#count").text(Orders.length)
+
             getDataTable();
         },
         error => {
