@@ -30,8 +30,6 @@ function pageLoader(str = 'show') {
     str === 'show' ? $('.pace-activity').show() : $('.pace-activity').hide();
     $('#page-loader').removeClass(str === 'show' ? 'hide' : 'show').addClass(str);
 
-
-
     $.when($('#page-loader').addClass(str)).done(function () {
         $('#page-container').addClass('in');
     });
