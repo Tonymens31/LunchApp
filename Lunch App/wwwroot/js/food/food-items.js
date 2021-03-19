@@ -131,8 +131,10 @@ let clearFields = () => {
 }
 
 let getFoodItems = () => {
+    pageLoader("show");
     let model = JSON.stringify({ Id: companyId });
     let url = `${_path_url}api/Foods/GetFoodItems`;
+    pageLoader("hide");
     $.post(url, model).then(
         response => {
             // Process Response
