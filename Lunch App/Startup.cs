@@ -101,12 +101,8 @@ namespace Lunch_App
                 options.GetClaimsFromUserInfoEndpoint = true;
                 options.Scope.Add("openid");
                 options.Scope.Add("email");
-                options.Scope.Add("gatewayapi");
-                options.Scope.Add("payrollapi");
+                options.Scope.Add("lunchapi");
                 options.Scope.Add("profile");
-                options.Scope.Add("hcmmanagerapi");
-                options.Scope.Add("globalapi");
-                options.Scope.Add("hrapi");
                 options.SaveTokens = true;
                 options.Events = new OpenIdConnectEvents
                 {
