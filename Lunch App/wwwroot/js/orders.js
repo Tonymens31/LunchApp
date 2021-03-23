@@ -331,7 +331,7 @@ function uuidv4() {
 
 $("searchIcon").click(function () {
     myFunction();
-    console.log(input)
+   
 })
 
 function myFunction() {
