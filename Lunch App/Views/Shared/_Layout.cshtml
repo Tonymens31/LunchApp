@@ -1,4 +1,7 @@
 ﻿@using Lunch_App.Data;
+@{
+    var loggedInUser = Context.User?.FindFirst("sub")?.Value;
+ }
 <!Doctype html>
 <html lang="en">
 
@@ -93,6 +96,7 @@
                                 <div class="widget-content-left">
                                     <div class="row">
                                         <div class="">
+                                            <h1>name: @loggedInUser</h1>
                                             <button class="btn btn-md btn-outline-primary pull-right" style="float:right!important; margin-bottom: 15px;height: 40px;margin-top: 10px" id="btnAddStaff"><span><i class="fa fa-bell"></i></span></button>
                                             <span>
                                                 <button type="button" class="btn btn-outline-primary btn-sm pull-right" style="height: 40px;margin-top: 10px; float: right !important">

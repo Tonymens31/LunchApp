@@ -24,23 +24,23 @@ let init = () => {
     getOrders();
 }
 
-let createOrder = () => {
-    Order = {};
+//let createOrder = () => {
+//    Order = {};
 
-    $('#orderModal').modal('show');
-    $("#saveOrder").css('cursor', 'not-allowed');
-    $("#saveOrder").html(`<i class="fa fa-save"></i> Save`);
+//    $('#orderModal').modal('show');
+//    $("#saveOrder").css('cursor', 'not-allowed');
+//    $("#saveOrder").html(`<i class="fa fa-save"></i> Save`);
 
-    $('#closeBtn').click(() => {
-        clearFields();
-        $('#orderModal').modal('hide');
-    })
+//    $('#closeBtn').click(() => {
+//        clearFields();
+//        $('#orderModal').modal('hide');
+//    })
 
-    $("#orderDate, #orderMainDish, #orderSideDish, #orderCondiment' #orderFor, #name",).bind('change', () => {
-        validateFoodItem();
-    });
+//    $("#orderDate, #orderMainDish, #orderSideDish, #orderCondiment' #orderFor, #name",).bind('change', () => {
+//        validateFoodItem();
+//    });
 
-}
+//}
 
 let dt = new DateHandler();
 btnState = 0;
@@ -305,27 +305,21 @@ $("#orderFor").change(function () {
 $('#orderingForField').hide()
 
 
-$("#saveOrder").css('cursor', 'not-allowed');
-let ValidateOrder = () => {
-    let _order = {
-        orderDate: $("#orderDate").val(),
-        mainDishId$: $("#orderMainDish").val(),
-        sideDishId: $("#orderSideDish").val(),
-        condiDishId: $("#orderFor").val(),
-        price: $("#price").val(),
-    }
+//$("#saveOrder").css('cursor', 'not-allowed');
+//let ValidateOrder = () => {
+//    let _order = {
+//        orderDate: $("#orderDate").val(),
+//        mainDishId$: $("#orderMainDish").val(),
+//        sideDishId: $("#orderSideDish").val(),
+//        condiDishId: $("#orderFor").val(),
+//        price: $("#price").val(),
+//    }
 
-}
+//}
 
-($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
-($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
+//($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
+//($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
 
-"mainDishId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "sideDishId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "condiDishId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "orderDate": "2021-03-24T12:34:07.340Z",
-                "price": 0,
-                    "menuId":
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
