@@ -24,6 +24,10 @@ let init = () => {
     getOrders();
 }
 
+let createOrder = () => {
+
+}
+
 let dt = new DateHandler();
 btnState = 0;
 fmtDate = (s) => {

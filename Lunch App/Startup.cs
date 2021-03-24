@@ -93,9 +93,9 @@ namespace Lunch_App
                 options.Authority = IDPSettings.Current.Authority;
                 options.RequireHttpsMetadata = IDPSettings.Current.RequireHttpsMetadata;
                 options.ClientId = IDPSettings.Current.ClientId;
-                options.ClientSecret = IDPSettings.Current.Secret;
+                //options.ClientSecret = IDPSettings.Current.Secret;
                 options.ResponseType = "code";
-                options.CallbackPath = new PathString("/Forward");
+                //options.CallbackPath = new PathString("/Forward");
                 //options.SignedOutCallbackPath = IDPSettings.Current.SignOutURL;
                 options.SignedOutRedirectUri = IDPSettings.Current.SignOutURL;
                 options.GetClaimsFromUserInfoEndpoint = true;
@@ -104,20 +104,20 @@ namespace Lunch_App
                 options.Scope.Add("lunchapi");
                 options.Scope.Add("profile");
                 options.SaveTokens = true;
-                options.Events = new OpenIdConnectEvents
-                {
-                    OnRedirectToIdentityProvider = context =>
-                    {
-                        context.ProtocolMessage.SetParameter("acr_values", "53c5f3b6-f105-4720-829e-08ed84b75233");
+                //options.Events = new OpenIdConnectEvents
+                //{
+                //    OnRedirectToIdentityProvider = context =>
+                //    {
+                //        context.ProtocolMessage.SetParameter("acr_values", "53c5f3b6-f105-4720-829e-08ed84b75233");
 
-                        return Task.FromResult(0);
-                    }
-                };
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = JwtClaimTypes.Name,
-                    RoleClaimType = JwtClaimTypes.Role,
-                };
+                //        return Task.FromResult(0);
+                //    }
+                //};
+                //options.TokenValidationParameters = new TokenValidationParameters
+                //{
+                //    NameClaimType = JwtClaimTypes.Name,
+                //    RoleClaimType = JwtClaimTypes.Role,
+                //};
             });
         }
 
