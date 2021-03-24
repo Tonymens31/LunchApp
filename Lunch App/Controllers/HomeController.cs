@@ -6,6 +6,7 @@ using System.Diagnostics;
 
 namespace Lunch_App.Controllers
 {
+
     [Authorize]
     public class HomeController : Controller
     {
@@ -16,46 +17,48 @@ namespace Lunch_App.Controllers
             _logger = logger;
         }
 
+        [AllowAnonymous]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         public IActionResult Dashboard()
         {
             return View();
         }
 
-        public IActionResult Index()
+
+        public IActionResult FoodItem()
         {
             return View();
         }
-       
-         public IActionResult FoodItem()
+        public IActionResult Holiday()
         {
             return View();
         }
-          public IActionResult Holiday()
-        {
-            return View();
-        }
-          public IActionResult Example()
+        public IActionResult Example()
         {
             return View();
         }
 
-          public IActionResult Menu()
+        public IActionResult Menu()
         {
             return View();
         }
-          public IActionResult Vendor()
+        public IActionResult Vendor()
         {
             return View();
         }
-            public IActionResult Staff()
+        public IActionResult Staff()
         {
             return View();
         }
-            public IActionResult Orders()
+        public IActionResult Orders()
         {
             return View();
         }
-        
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

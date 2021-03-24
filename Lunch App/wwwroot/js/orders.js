@@ -25,6 +25,20 @@ let init = () => {
 }
 
 let createOrder = () => {
+    Order = {};
+
+    $('#orderModal').modal('show');
+    $("#saveOrder").css('cursor', 'not-allowed');
+    $("#saveOrder").html(`<i class="fa fa-save"></i> Save`);
+
+    $('#closeBtn').click(() => {
+        clearFields();
+        $('#orderModal').modal('hide');
+    })
+
+    $("#orderDate, #orderMainDish, #orderSideDish, #orderCondiment' #orderFor, #name",).bind('change', () => {
+        validateFoodItem();
+    });
 
 }
 
@@ -71,7 +85,7 @@ let getDataTable = () => {
                 render: function (data) {
                     return getFormattedDate(data);
                 },
-                
+
             },
             {
                 title: "Main Dish",
@@ -87,13 +101,13 @@ let getDataTable = () => {
             },
             {
                 title: "Price",
-                 data: "price",
+                data: "price",
                 render: function (data) {
                     return moneyInTxt(data, "en", 2);
                 },
                 width: "2%"
             },
-           
+
             {
                 data: "id",
                 title: "Actions", render: function (data) {
@@ -170,7 +184,7 @@ flatpickr('#orderdate', {
 
 $("#saveOrder").click(() => {
     orderFood();
-    validation();
+    ValidateOrder();
     iziToast.success({
         position: 'topRight',
         message: 'Order saved successfully',
@@ -201,9 +215,6 @@ function orderFood() {
     clearFields();
 }
 
-
-
-
 var userSelection = document.getElementsByClassName('required');
 
 for (var i = 0; i < userSelection.length; i++) {
@@ -212,7 +223,7 @@ for (var i = 0; i < userSelection.length; i++) {
             let el = userSelection[index].id;
 
             let inputel = document.getElementById(el);
-            inputel.value ? (inputel.style.border = "1px solid #ced4da", validation()) : (inputel.style.border = "1px solid red", validation(), inputel.focus())
+            inputel.value ? (inputel.style.border = "1px solid #ced4da", ValidateOrder()) : (inputel.style.border = "1px solid red", ValidateOrder(), inputel.focus())
         })
     })(i);
 }
@@ -295,36 +306,26 @@ $('#orderingForField').hide()
 
 
 $("#saveOrder").css('cursor', 'not-allowed');
-function validation() {
-    if (orderForState === 1) {
-        $("#orderDate").val().length > 0 &&
-            $("#name").val().length !== '' &&
-            $("#orderMainDish").val().length !== '' &&
-            $("#orderFor").val().length !== '' &&
-            $("#orderSideDish").val().length !== '' ?
-            ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
-            ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
+let ValidateOrder = () => {
+    let _order = {
+        orderDate: $("#orderDate").val(),
+        mainDishId$: $("#orderMainDish").val(),
+        sideDishId: $("#orderSideDish").val(),
+        condiDishId: $("#orderFor").val(),
+        price: $("#price").val(),
     }
-    else if (orderForState === 0) {
-        $("#orderDate").val().length > 0 &&
-            $("#orderForStaff").val() > 0 &&
-            $("#orderMainDish").val().length !== '' &&
-            $("#orderFor").val().length !== '' &&
-            $("#orderSideDish").val().length !== '' ?
-            ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
-            ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
-    } else {
-        $("#orderDate").val().length > 0 &&
-            $("#name").val().length !== 0 &&
-            $("#orderForStaff").val() > 0 &&
-            $("#orderMainDish").val().length !== '' &&
-            $("#orderFor").val().length !== '' &&
-            $("#orderSideDish").val().length !== '' ?
-            ($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
-            ($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
-    }
+
 }
 
+($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
+($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
+
+"mainDishId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "sideDishId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "condiDishId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "orderDate": "2021-03-24T12:34:07.340Z",
+                "price": 0,
+                    "menuId":
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -335,7 +336,7 @@ function uuidv4() {
 
 $("searchIcon").click(function () {
     myFunction();
-   
+
 })
 
 function myFunction() {

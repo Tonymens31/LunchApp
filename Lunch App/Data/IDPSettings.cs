@@ -21,6 +21,7 @@
         public bool RequireHttpsMetadata { get; set; }
         public string SignOutURL { get; set; }
         public string AppName { get; set; }
+        public string Callback { get; set; }
 
     }
 }

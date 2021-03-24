@@ -81,6 +81,8 @@ namespace Lunch_App
         private void ConfigureIdentityServer(IServiceCollection services)
         {
 
+
+
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
@@ -89,35 +91,21 @@ namespace Lunch_App
             .AddCookie("Cookies")
             .AddOpenIdConnect("oidc", options =>
             {
-                //options.SignInScheme = "Cookies";
-                options.Authority = IDPSettings.Current.Authority;
-                options.RequireHttpsMetadata = IDPSettings.Current.RequireHttpsMetadata;
-                options.ClientId = IDPSettings.Current.ClientId;
-                //options.ClientSecret = IDPSettings.Current.Secret;
-                options.ResponseType = "code";
-                //options.CallbackPath = new PathString("/Forward");
-                //options.SignedOutCallbackPath = IDPSettings.Current.SignOutURL;
-                options.SignedOutRedirectUri = IDPSettings.Current.SignOutURL;
-                options.GetClaimsFromUserInfoEndpoint = true;
-                options.Scope.Add("openid");
-                options.Scope.Add("email");
-                options.Scope.Add("lunchapi");
-                options.Scope.Add("profile");
-                options.SaveTokens = true;
-                //options.Events = new OpenIdConnectEvents
-                //{
-                //    OnRedirectToIdentityProvider = context =>
-                //    {
-                //        context.ProtocolMessage.SetParameter("acr_values", "53c5f3b6-f105-4720-829e-08ed84b75233");
+                options.Authority = Configuration["IDPSETTINGS:Authority"];
 
-                //        return Task.FromResult(0);
-                //    }
-                //};
-                //options.TokenValidationParameters = new TokenValidationParameters
-                //{
-                //    NameClaimType = JwtClaimTypes.Name,
-                //    RoleClaimType = JwtClaimTypes.Role,
-                //};
+
+
+                options.SignedOutRedirectUri = Configuration["IDPSETTINGS:SginOutUrl"];
+                options.ClientId = Configuration["IDPSETTINGS:ClientId"];
+                options.RequireHttpsMetadata = false;
+                options.Scope.Clear();
+                options.Scope.Add("email");
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
+                options.Scope.Add("lunchapi");
+                options.ResponseType = "code";
+                options.CallbackPath = Configuration["IDPSETTINGS:Callback"];
+                options.SaveTokens = true;
             });
         }
 
@@ -141,7 +129,7 @@ namespace Lunch_App
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Dashboard}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
