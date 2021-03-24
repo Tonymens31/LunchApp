@@ -106,7 +106,7 @@
 
     //get GetAllVendorWithFoodItems/{companyId}
 
-    function VendorsWithFoodItems() {
+    let  VendorsWithFoodItems = () => {
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}GetAllVendorWithFoodItems`, data)
             .done(function (data) {
@@ -121,7 +121,7 @@
 
 
     //GetSingleVendors/{pkId}/{companyId}
-    function loadSingleVendor() {
+    let loadSingleVendor = () => {
         let data = { companyId: companyId, pkId: pkId };
         makeAPIRequest(`${_path_url}GetSingleVendors`, data)
             .done(function (data) {
