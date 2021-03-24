@@ -152,7 +152,7 @@
 
    
 
-    function bindButtonsToDOM(data) {
+    let bindButtonsToDOM = (data) => {
         let elements = document.getElementsByClassName('editButton');
 
         for (let x = 0; x < elements.length; x++) {
