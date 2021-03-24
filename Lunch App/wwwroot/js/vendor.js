@@ -22,7 +22,7 @@
 
     //get all vendors
   
-    function loadVendors() {
+   let loadVendors = () => {
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
             .done(function (data) {
