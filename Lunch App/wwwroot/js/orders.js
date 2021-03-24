@@ -104,7 +104,6 @@ let getDataTable = () => {
                 render: function (data) {
                     return moneyInTxt(data, "en", 2);
                 },
-                width: "5%"
             },
 
             {
