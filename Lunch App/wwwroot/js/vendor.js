@@ -232,7 +232,7 @@
     }
 
     $("#saveVendor").css('cursor', 'not-allowed');
-    function validation() {
+    let validation = ()  => {
         $("#vendorName").val().length !== 0 &&
             $("#phone1").val().length !== 0 &&
             $("#vendorEmail").val().length !== 0 &&
