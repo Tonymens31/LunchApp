@@ -353,7 +353,7 @@
             });
     }
 
-    function updateVendor(url, data) {
+   let  updateVendor = (url, data) => {
         makeAPIRequest(url, data)
             .done(function (response) {
             });
