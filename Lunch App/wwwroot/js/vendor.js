@@ -241,7 +241,7 @@
             ($("#saveVendor").prop('disabled', true).css('cursor', 'not-allowed'))
     }
 
-    function NoEmptyField(data) {
+   let NoEmptyField = (data) => {
         if (data != "") {
             return !null;
         }
@@ -347,7 +347,7 @@
     })
 
 
-    function createVendor(url, data) {
+   let createVendor = (url, data) => {
         makeAPIRequest(url, data)
             .done(function (response) {
             });
