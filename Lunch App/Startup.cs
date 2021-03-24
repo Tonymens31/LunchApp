@@ -1,6 +1,7 @@
 using IdentityModel;
 using Lunch_App.Data;
 using Lunch_App.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -68,6 +69,7 @@ namespace Lunch_App
             services.AddScoped<HCMAdminHTTPClient, HCMAdminHTTPClientIdentity>();
             services.AddScoped<IHelperInterface, ApiHelper>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -75,36 +77,32 @@ namespace Lunch_App
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            ConfigureIdentityServer(services);
-        }
-
-        private void ConfigureIdentityServer(IServiceCollection services)
-        {
-
-
-
             services.AddAuthentication(options =>
             {
-                options.DefaultScheme = "Cookies";
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = "oidc";
             })
-            .AddCookie("Cookies")
+             .AddCookie(options =>
+             {
+                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                 options.Cookie.Name = "lunchAppCookies";
+                 //options.Cookie.SameSite = SameSiteMode.Strict;
+                 // options.Cookie.HttpOnly = true;
+             })
             .AddOpenIdConnect("oidc", options =>
             {
-                options.Authority = Configuration["IDPSETTINGS:Authority"];
-
-
-
-                options.SignedOutRedirectUri = Configuration["IDPSETTINGS:SginOutUrl"];
-                options.ClientId = Configuration["IDPSETTINGS:ClientId"];
+                options.Authority = IDPSettings.Authority;
+                options.SignedOutRedirectUri = IDPSettings.SignOutURL;
+                options.ClientId = IDPSettings.ClientId;
                 options.RequireHttpsMetadata = false;
+                options.CallbackPath = IDPSettings.Callback;
+
                 options.Scope.Clear();
                 options.Scope.Add("email");
                 options.Scope.Add("openid");
                 options.Scope.Add("profile");
-                options.Scope.Add("lunchapi");
+                options.Scope.Add(IDPSettings.ApiId);
                 options.ResponseType = "code";
-                options.CallbackPath = Configuration["IDPSETTINGS:Callback"];
                 options.SaveTokens = true;
             });
         }
@@ -122,9 +120,17 @@ namespace Lunch_App
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
             app.UseRouting();
+
+            app.UseCookiePolicy();
+
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
