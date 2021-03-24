@@ -50,7 +50,7 @@
 
 
     //$('#table').DataTable();
-    function loadDataTable(data) {
+   let loadDataTable = (data) => {
         $('#table').DataTable({
             data: data,
             searching: true,
