@@ -85,7 +85,6 @@ let getDataTable = () => {
                 render: function (data) {
                     return getFormattedDate(data);
                 },
-
             },
             {
                 title: "Main Dish",
@@ -105,7 +104,7 @@ let getDataTable = () => {
                 render: function (data) {
                     return moneyInTxt(data, "en", 2);
                 },
-                width: "2%"
+                width: "5%"
             },
 
             {
