@@ -21,7 +21,7 @@
     });
 
     //get all vendors
-    loadVendors();
+    loadVendors(); 
    let loadVendors = () => {
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
