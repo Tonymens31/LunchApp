@@ -8,11 +8,8 @@
 
 let companyId = '00000000-0000-0000-0000-000000000000';
 
-function readExternalFile(file, mime, callback) {
+let readExternalFile = (file, mime, callback) => {
     let overrideMime = ''
-
-
-
     mime === 'json' ? overrideMime = "application/json" : mime === 'html' ? overrideMime = "text/html" : overrideMime = "text/plain"
 
     let dataFile = new XMLHttpRequest();
