@@ -46,7 +46,7 @@ let formatter = () => {
     })
 }
 
-function makeAPIRequest(URL, data = "") {
+let makeAPIRequest = (URL, data = "")  => {
     return $.ajax({
         url: URL,
         method: 'POST',
