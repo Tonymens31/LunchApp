@@ -182,7 +182,7 @@ let validateEmail = (email) => {
 };
 
 
-function validatePhone(data) {
+let  validatePhone = (data) => {
     if (data.length === 10) {
         return (/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g).test(data)
     }
@@ -192,7 +192,7 @@ function validatePhone(data) {
     return false
 }
 
-function message(type, mess) {
+let message = (type, mess) => {
     toastr[type](mess)
 }
 
@@ -215,7 +215,7 @@ toastr.options = {
 }
 
 
-function moneyInTxt(value, standard, dec = 0) {
+let moneyInTxt = (value, standard, dec = 0) => {
     nf = new Intl.NumberFormat(standard, {
         minimumFractionDigits: dec,
         maximumFractionDigits: 2
