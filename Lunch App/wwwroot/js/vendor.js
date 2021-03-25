@@ -21,7 +21,7 @@
     });
 
     //get all vendors
-    loadVendors(); 
+   
    let loadVendors = () => {
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
@@ -36,7 +36,7 @@
             });
     };
     
-
+    loadVendors();
 
 
     $(document).on("click", ".editButton", function () {

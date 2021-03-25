@@ -337,7 +337,7 @@ let updateFoodItem = () => {
     let url = `${_path_url}api/Foods/UpdateFoodItem/${companyId}`
     $.post(url, model).then(
         response => {
-            console.log({ response });
+            //console.log({ response });
             if (response.status == "Success") {
                 iziToast.success({
                     position: 'topRight',
@@ -352,7 +352,7 @@ let updateFoodItem = () => {
             }
         },
         error => {
-            console.log({ error });
+           // console.log({ error });
             iziToast.error({
                 position: 'topRight',
                 message: 'Operation failed',
@@ -366,7 +366,7 @@ let deleteFoodItem = () => {
     let url = `${_path_url}api/Foods/DeleteFoodItem/${FoodItem.id}/${companyId}`
     $.post(url).then(
         response => {
-            console.log({ response });
+            //console.log({ response });
             if (response.status == "Success") {
                 iziToast.success({
                     position: 'topRight',

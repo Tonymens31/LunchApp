@@ -104,20 +104,20 @@ let getDataTable = () => {
                 render: function (data) {
                     return moneyInTxt(data, "en", 2);
                 },
-            },
+            //},
 
-            {
-                data: "id",
-                title: "Actions", render: function (data) {
-                    return `
-                        <button style="border:none; background:transparent" class="editButton" data-id="${data}">
-                            <i class="fas fa-edit text-info" data-id=${data}></i>
-                        </button> 
-                        <button style="border:none; background:transparent" class="deleteButton" data-id=${data}>
-                            <i class="fas fa-trash text-danger" data-id=${data}></i>
-                        </a>
-                        `;
-                }
+            //{
+            //    data: "id",
+            //    title: "Actions", render: function (data) {
+            //        return `
+            //            <button style="border:none; background:transparent" class="editButton" data-id="${data}">
+            //                <i class="fas fa-edit text-info" data-id=${data}></i>
+            //            </button> 
+            //            <button style="border:none; background:transparent" class="deleteButton" data-id=${data}>
+            //                <i class="fas fa-trash text-danger" data-id=${data}></i>
+            //            </a>
+            //            `;
+            //    }
             },
         ]
     });
