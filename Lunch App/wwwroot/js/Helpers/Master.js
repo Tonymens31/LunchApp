@@ -107,7 +107,7 @@ let  uuidv4 = () => {
     });
 }
 
-function setColorToToastr(state) {
+let setColorToToastr = (state) => {
     if (state == true) {
         $('.iziToast-theme-light').addClass('success-color');
     } else {
@@ -115,7 +115,7 @@ function setColorToToastr(state) {
     }
 }
 
-function messenger(message) {
+let messenger = (message) => {
     switch (message.toLowerCase()) {
         case 'success':
             setColorToToastr(true);
