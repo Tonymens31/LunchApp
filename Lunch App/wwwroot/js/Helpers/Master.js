@@ -32,7 +32,7 @@ let  pageLoader = (str = 'show') => {
     });
 };
 
-getFormattedDate = (str) => {
+let getFormattedDate = (str) => {
     let dateString = new Date(str).toUTCString();
     dateString = dateString.split(' ').slice(0, 4).join(' ');
     return `${dateString}`;
