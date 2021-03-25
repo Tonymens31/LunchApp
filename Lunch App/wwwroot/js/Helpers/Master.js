@@ -156,14 +156,14 @@ let messenger = (message) => {
     }
 }
 
-function GetCurrentPageName() {
+let GetCurrentPageName = () => {
     var url = window.location.pathname;
     return url.substring(url.lastIndexOf('/') + 1);
 }
 
 lightMenu(GetCurrentPageName().toLowerCase());
 
-function lightMenu(page) {
+let  lightMenu = (page) => {
     page ? page : page = 'dashboard'
     $('#' + page).addClass('active');
     $('#' + page + ' > a').addClass('active');
