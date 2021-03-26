@@ -100,7 +100,6 @@
 
     }
 
-    
 
     //get GetAllVendorWithFoodItems/{companyId}
 
