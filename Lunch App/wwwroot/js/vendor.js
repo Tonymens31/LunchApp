@@ -45,7 +45,7 @@
         selectedRow = rowData.id;
         populateInputFields(rowData);
         $("#saveVendor").html(`Update`)
-    })
+    });
 
 
     //$('#table').DataTable();
