@@ -241,7 +241,6 @@
         if (data != "") {
             return !null;
         }
-
     }
     emailAddress = document.getElementById("vendorEmail")
 
@@ -262,7 +261,6 @@
 
 
     let phoneNumber = document.getElementById("phone1")
-
     phoneNumber.addEventListener('input', () => {
         NoEmptyField(phoneNumber.value) ? validatePhone(phoneNumber.value) ?
             (phoneNumber.style.border = "1px solid #e1e5ef") :
