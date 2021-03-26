@@ -21,8 +21,8 @@
     });
 
     //get all vendors
-   
-   let loadVendors = () => {
+
+    let loadVendors = () => {
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
             .done(function (data) {
@@ -49,7 +49,7 @@
 
 
     //$('#table').DataTable();
-   let loadDataTable = (data) => {
+    let loadDataTable = (data) => {
         $('#table').DataTable({
             data: data,
             searching: true,
@@ -101,7 +101,7 @@
 
 
     //get GetAllVendorWithFoodItems/{companyId}
-    let  VendorsWithFoodItems = () => {
+    let VendorsWithFoodItems = () => {
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}GetAllVendorWithFoodItems`, data)
             .done(function (data) {
@@ -111,7 +111,8 @@
                 //if (data) {
                 //    createVendorTable(data, '#vendorTable');
                 //}
-            });
+            }
+            );
     }
 
 
@@ -145,7 +146,7 @@
         validation();
     })
 
-   
+
 
     let bindButtonsToDOM = (data) => {
         let elements = document.getElementsByClassName('editButton');
@@ -161,9 +162,9 @@
         }
     }
 
-  
+
     //function getRowData(data, rowId) {
-      
+
     //    let data1 = data.filter(ele => ele.id.toString() === rowId)[0];
 
     //    // console.log(data1);
@@ -171,13 +172,13 @@
     //    saveOrUpdate = 1;
     //}
 
-   
+
 
     let populateInputFields = (data1) => {
         let = { name, phone, tel, email, isActive } = data1;
         //console.log(data1);
         //console.log(name); console.log(type); console.log(status)
-       
+
         $('#vendorName').val(name)
         $('#phone1').val(phone)
         $('#phone2').val(tel)
@@ -188,7 +189,7 @@
 
     };
 
-    let  clearFields = () => {
+    let clearFields = () => {
         $('#vendorName').val("")
         $('#phone1').val("")
         $('#phone2').val("")
@@ -205,7 +206,7 @@
         $('#status').val(-1)
     });
 
-    let  uuidv4 = () => {
+    let uuidv4 = () => {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
@@ -227,7 +228,7 @@
     }
 
     $("#saveVendor").css('cursor', 'not-allowed');
-    let validation = ()  => {
+    let validation = () => {
         $("#vendorName").val().length !== 0 &&
             $("#phone1").val().length !== 0 &&
             $("#vendorEmail").val().length !== 0 &&
@@ -236,7 +237,7 @@
             ($("#saveVendor").prop('disabled', true).css('cursor', 'not-allowed'))
     }
 
-   let NoEmptyField = (data) => {
+    let NoEmptyField = (data) => {
         if (data != "") {
             return !null;
         }
@@ -323,7 +324,7 @@
             "isActive": parseInt($("#status").val()),
             "companyId": '00000000-0000-0000-0000-000000000000'
         }
-        
+
         if (saveOrUpdate === 0) {
             postDatasArr.push(formdata);
             createVendor(`${_path_url}APICalls/PostVendor`, postDatasArr)
@@ -337,18 +338,18 @@
             position: 'topRight',
             message: 'Saved successfully',
         });
-        
+
         $('#vendorModal').modal('hide');
     })
 
 
-   let createVendor = (url, data) => {
+    let createVendor = (url, data) => {
         makeAPIRequest(url, data)
             .done(function (response) {
             });
     }
 
-   let  updateVendor = (url, data) => {
+    let updateVendor = (url, data) => {
         makeAPIRequest(url, data)
             .done(function (response) {
             });
