@@ -243,7 +243,6 @@
         }
     }
     emailAddress = document.getElementById("vendorEmail")
-
     emailAddress.addEventListener('input', () => {
         NoEmptyField(emailAddress.value) ? validateEmail(emailAddress.value) ?
             (emailAddress.style.border = "1px solid #e1e5ef") :
