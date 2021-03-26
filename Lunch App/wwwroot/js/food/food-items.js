@@ -66,7 +66,6 @@ let editFoodItem = () => {
         clearFields();
         $('#foodItemModal').modal('hide');
     })
-
     $("#vendor, #foodItem, #foodType, #status").bind('change', () => {
         validateFoodItem();
     });
