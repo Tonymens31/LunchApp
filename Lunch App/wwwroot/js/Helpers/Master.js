@@ -26,6 +26,8 @@ function readExternalFile(file, mime, callback) {
     dataFile.send(null);
 }
 
+
+
 function pageLoader(str = 'show') {
     str === 'show' ? $('.pace-activity').show() : $('.pace-activity').hide();
     $('#page-loader').removeClass(str === 'show' ? 'hide' : 'show').addClass(str);

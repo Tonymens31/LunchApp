@@ -87,6 +87,10 @@ let getDataTable = () => {
                 },
             },
             {
+                title: "Name ",
+               // data: "mainDish"
+            },
+            {
                 title: "Main Dish",
                 data: "mainDish"
             },

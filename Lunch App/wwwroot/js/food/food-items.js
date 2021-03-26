@@ -61,8 +61,7 @@ let editFoodItem = () => {
     $("#save-food-item").prop('disabled', false);
     $("#save-food-item").css('cursor', 'pointer');
 
-
-    $('#closeBtn').click(() => {
+        $('#closeBtn').click(() => {
         FoodItem = {};
         clearFields();
         $('#foodItemModal').modal('hide');
