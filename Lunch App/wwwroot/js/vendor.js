@@ -102,7 +102,6 @@
 
 
     //get GetAllVendorWithFoodItems/{companyId}
-
     let  VendorsWithFoodItems = () => {
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}GetAllVendorWithFoodItems`, data)
