@@ -8,6 +8,7 @@
         0: { color: 'danger', state: 'Inactive' }
     };
 
+
     $.LoadingOverlay("show", {
        
         fontawesome: "fa fa-cog fa-spin"
@@ -16,6 +17,7 @@
     setTimeout(function () {
         $.LoadingOverlay("hide");
     }, 3000);
+
 
     $('#btnAddVendor').click(function () {
         btnState = 0
