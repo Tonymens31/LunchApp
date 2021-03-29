@@ -13,6 +13,7 @@
        
         fontawesome: "fa fa-cog fa-spin"
     });
+
     // Hide it after 3 seconds
     setTimeout(function () {
         $.LoadingOverlay("hide");
