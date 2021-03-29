@@ -41,11 +41,7 @@
                 data = JSON.parse(data.Body)
                 Vendors = data;
                 loadDataTable(data);
-                //if (data) {
-                //    createVendorTable(data, '#vendorTable');
-                //}
             }
-
         );
         pageLoader("hide");
     };
