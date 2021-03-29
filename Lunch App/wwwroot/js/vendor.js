@@ -159,9 +159,7 @@
 
     let populateInputFields = (data1) => {
         let = { name, phone, tel, email, isActive } = data1;
-        //console.log(data1);
-        //console.log(name); console.log(type); console.log(status)
-
+        
         $('#vendorName').val(name)
         $('#phone1').val(phone)
         $('#phone2').val(tel)
@@ -334,6 +332,5 @@
             .done(function (response) {
             });
     }
-
 });
 
