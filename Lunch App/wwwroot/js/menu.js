@@ -187,7 +187,6 @@ let getAllFoodInCat = () => {
                 setMenuTypes(response.body.sideDish, "Select side dish", "#menuSideDish");
                 setMenuTypes(response.body.condiDish, "Select condiment", "#menuCondiment");
             }
-
             setMenuTypes();
         },
         error => {
@@ -232,8 +231,6 @@ let setMenuTypes = (data, title, htmlElementId) => {
     ))
     $(htmlElementId).html(template);
 }
-
-
 
 let getDataTable = () => {
     mtTab = $('#table').DataTable({
@@ -352,8 +349,6 @@ let orderEnds = () => {
 }
 
 
-
-
 let resetMenus = () => {
     $('#menuModal').modal('hide');
     clearFields();
@@ -391,7 +386,7 @@ let updateMenu = () => {
 
 let saveMenu = () => {
 
-    console.log({ Menu });
+    //console.log({ Menu });
 
     let theMenu = [];
     theMenu.push(Menu)

@@ -23,6 +23,7 @@
     //get all vendors
 
     let loadVendors = () => {
+        pageLoader("show");
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
             .done(function (data) {
@@ -33,7 +34,10 @@
                 //if (data) {
                 //    createVendorTable(data, '#vendorTable');
                 //}
-            });
+            }
+
+        );
+        pageLoader("hide");
     };
     loadVendors();
 
