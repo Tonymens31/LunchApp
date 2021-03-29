@@ -10,7 +10,7 @@
 
 
     $.LoadingOverlay("show", {
-       
+
         fontawesome: "fa fa-cog fa-spin"
     });
 
@@ -42,7 +42,7 @@
                 Vendors = data;
                 loadDataTable(data);
             }
-        );
+            );
         pageLoader("hide");
     };
     loadVendors();
@@ -118,11 +118,9 @@
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
                 console.log(data);
-                //if (data) {
-                //    createVendorTable(data, '#vendorTable');
-                //}
+
             }
-            );
+        );
     }
 
 
@@ -134,10 +132,8 @@
                 data = JSON.parse(data)
                 data = JSON.parse(data.Body)
                 console.log(data);
-                ////if (data) {
-                ////    createVendorTable(data, '#vendorTable');
-                ////}
-            });
+            }
+        );
     }
 
 
