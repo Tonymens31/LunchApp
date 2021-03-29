@@ -8,6 +8,15 @@
         0: { color: 'danger', state: 'Inactive' }
     };
 
+    $.LoadingOverlay("show", {
+       
+        fontawesome: "fa fa-cog fa-spin"
+    });
+    // Hide it after 3 seconds
+    setTimeout(function () {
+        $.LoadingOverlay("hide");
+    }, 3000);
+
     $('#btnAddVendor').click(function () {
         btnState = 0
         $("#saveVendor").html(`<i class="fa fa-save"></i> Save`)

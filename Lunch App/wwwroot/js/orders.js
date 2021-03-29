@@ -86,10 +86,10 @@ let getDataTable = () => {
                     return getFormattedDate(data);
                 },
             },
-            {
-                title: "Name ",
-               // data: "mainDish"
-            },
+            //{
+            //    title: "Name ",
+            //   // data: "mainDish"
+            //},
             {
                 title: "Main Dish",
                 data: "mainDish"
