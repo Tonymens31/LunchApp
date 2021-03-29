@@ -24,7 +24,6 @@
         btnState = 0
         $("#saveVendor").html(`<i class="fa fa-save"></i> Save`)
         $('#vendorModal').modal('show');
-
     });
 
 
@@ -33,7 +32,6 @@
     });
 
     //get all vendors
-
     let loadVendors = () => {
         pageLoader("show");
         let data = { companyId: companyId };
