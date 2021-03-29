@@ -133,19 +133,8 @@
                 data = JSON.parse(data.Body)
                 console.log(data);
             }
-        );
-    }
-
-
-    //function loadAPIData(data) {
-    //    if (data) {
-    //        data = JSON.parse(data);
-    //        createVendorTable(data, '#vendorTable');
-    //    }
-    //}
-
-
-
+            );
+    };
 
     $('#closeBtn').click(function () {
         clearFields();
@@ -166,19 +155,7 @@
 
             });
         }
-    }
-
-
-    //function getRowData(data, rowId) {
-
-    //    let data1 = data.filter(ele => ele.id.toString() === rowId)[0];
-
-    //    // console.log(data1);
-    //    populateInputFields(data1);
-    //    saveOrUpdate = 1;
-    //}
-
-
+    };
 
     let populateInputFields = (data1) => {
         let = { name, phone, tel, email, isActive } = data1;
