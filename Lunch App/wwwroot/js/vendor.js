@@ -11,7 +11,8 @@
 
     $.LoadingOverlay("show", {
 
-        fontawesome: "fa fa-cog fa-spin"
+        progressFixedPosition: screenTop,
+        progress: true
     });
 
     // Hide it after 3 seconds
@@ -37,10 +38,10 @@
         let data = { companyId: companyId };
         makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
             .done(function (data) {
-                data = JSON.parse(data)
-                data = JSON.parse(data.Body)
-                Vendors = data;
-                loadDataTable(data);
+               let JsonArray = JSON.parse(data)
+                //data = JSON.parse(data.Body)
+                Vendors = JsonArray.Body;
+                loadDataTable(Vendors);
             }
             );
         pageLoader("hide");

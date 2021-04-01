@@ -21,7 +21,7 @@ namespace Lunch_App.Controllers
         [HttpPost("GetAllVendors", Name = "GetAllVendors")]
         public async Task<IActionResult> GetAllVendors([FromBody] IdData model)
         {
-            var url = $"{IDPSettings.Current.LunchAppUrl}GetAllVendor/{model.Id}";
+            var url = $"{IDPSettings.Current.LunchAppUrl}Vendor/GetAllVendor/{model.Id}";
             var results = await _services.GetAsync<IEnumerable<VendorData>>(url);
             return new JsonResult(results);
         }

@@ -27,7 +27,7 @@ namespace Lunch_App.Controllers
         [HttpPost]
         public async Task<string> GetAllVendors([FromBody] LunchModel mdl)
         {
-            var url = $"{LunchAppUrl}GetAllVendor/{mdl.CompanyId}";
+            var url = $"{LunchAppUrl}Vendor/GetAllVendor/{mdl.CompanyId}";
             return await _hcmAdminClient.SendDataToAPI(url, "GET", false);
         }
 
