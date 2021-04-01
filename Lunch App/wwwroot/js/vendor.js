@@ -36,7 +36,7 @@
     let loadVendors = () => {
         pageLoader("show");
         let data = { companyId: companyId };
-        makeAPIRequest(`${_path_url}APICalls/GetAllVendors`, data)
+        makeAPIRequest(`${_path_url}api/Vendors/GetAllVendors`, data)
             .done(function (data) {
                let JsonArray = JSON.parse(data)
                 //data = JSON.parse(data.Body)
@@ -60,9 +60,9 @@
 
 
     //$('#table').DataTable();
-    let loadDataTable = (data) => {
+    let loadDataTable = () => {
         $('#table').DataTable({
-            data: data,
+            data: Vendors,
             searching: true,
             destroy: true,
             scrollY: '50vh',
