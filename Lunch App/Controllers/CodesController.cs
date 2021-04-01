@@ -20,7 +20,7 @@ namespace Lunch_App.Controllers
         [HttpPost("GetAllCodes", Name = "GetAllCodes")]
         public async Task<IActionResult> GetAllCodes([FromBody] FieldData model)
         {
-            var url = $"{IDPSettings.Current.LunchAppUrl}GetAllCodes/{model.Code}";
+            var url = $"{IDPSettings.Current.LunchAppUrl}Codes/GetAllCodes/{model.Code}";
             var results = await _services.GetAsync<IEnumerable<CodeData>>(url);
             return new JsonResult(results);
         }
