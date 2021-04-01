@@ -32,7 +32,7 @@ namespace Lunch_App.Controllers
          [HttpPost("GetAllFoodInCats", Name = "GetAllFoodInCats")]
         public async Task<IActionResult> GetAllFoodInCats([FromBody] IdData model)
         {
-            var url = $"{IDPSettings.Current.LunchAppUrl}GetAllFoodItemsInCat/{model.Id}";
+            var url = $"{IDPSettings.Current.LunchAppUrl}Menus/GetAllFoodItemsInCat/{model.Id}";
             var results = await _services.GetAsync<GetAllFoodInCat> (url);
             return new JsonResult(results);
         }
@@ -41,7 +41,7 @@ namespace Lunch_App.Controllers
         [HttpPost("CreateMenu/{CompanyId}", Name = "CreateMenu")]
         public async Task<IActionResult> CreateMenu([FromBody] IEnumerable<SendMenu> model, Guid CompanyId)
         {
-            var url = $"{IDPSettings.Current.LunchAppUrl}CreateMenus/{CompanyId}";
+            var url = $"{IDPSettings.Current.LunchAppUrl}Menus/CreateMenus/{CompanyId}";
             var results = await _services.PostAsync<IEnumerable<Guid>>(url, model);
             return new JsonResult(results);
         }
@@ -50,12 +50,10 @@ namespace Lunch_App.Controllers
         [HttpPost("UpdateMenu/{CompanyId}", Name = "UpdateMenu")]
         public async Task<IActionResult> UpdateMenu([FromBody] EditMenu model, Guid CompanyId)
         {
-            var url = $"{IDPSettings.Current.LunchAppUrl}UpdateMenus/{model.Id}/{CompanyId}";
+            var url = $"{IDPSettings.Current.LunchAppUrl}Menus/UpdateMenus/{model.Id}/{CompanyId}";
             var results = await _services.PutAsync<string>(url, model);
             return new JsonResult(results);
         }
-        
-
     }
 }
 
