@@ -181,7 +181,6 @@ let getAllFoodInCat = () => {
     $.post(url, model).then(
         response => {
             if (response.status == "Success") {
-
                 Menus = response.body.mainDish;
                 setMenuTypes(response.body.mainDish, "Select main dish", "#menuMainDish");
                 setMenuTypes(response.body.sideDish, "Select side dish", "#menuSideDish");
@@ -302,8 +301,6 @@ let getDataTable = () => {
             },
         ]
     });
-
-
     ControlButtons();
 
     $(".paginate_button").click(() => {
@@ -422,7 +419,7 @@ let saveMenu = () => {
 
 
 
-let deleteMenus = () => {
+let deleteMenu = () => {
     let url = `${_path_url}api/Menu/DeleteMenu/${Menu.id}/${companyId}`
     $.post(url).then(
         response => {

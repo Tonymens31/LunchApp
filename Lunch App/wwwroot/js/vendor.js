@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     btnState = 0;
-    let Vendors = [];
+   // let Vendors = [];
     let selectedRow = "";
     let saveOrUpdate = 0;
     let sub = {

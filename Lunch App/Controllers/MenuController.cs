@@ -32,7 +32,7 @@ namespace Lunch_App.Controllers
          [HttpPost("GetAllFoodInCats", Name = "GetAllFoodInCats")]
         public async Task<IActionResult> GetAllFoodInCats([FromBody] IdData model)
         {
-            var url = $"{IDPSettings.Current.LunchAppUrl}Menus/GetAllFoodItemsInCat/{model.Id}";
+            var url = $"{IDPSettings.Current.LunchAppUrl}FoodItems/GetAllFoodItemsInCat/{model.Id}";
             var results = await _services.GetAsync<GetAllFoodInCat> (url);
             return new JsonResult(results);
         }
