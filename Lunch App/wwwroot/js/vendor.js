@@ -41,7 +41,8 @@
                let JsonArray = JSON.parse(data)
                 //data = JSON.parse(data.Body)
                 Vendors = JsonArray.Body;
-                loadDataTable(.);
+                console.log(Vendors)
+                loadDataTable();
             }
             );
         pageLoader("hide");
