@@ -58,6 +58,26 @@ $('#btnAddOrder').click(function () {
 
 })
 
+$.LoadingOverlay("show", {
+    background: "white",
+    progress: true,
+    progressFixedPosition: "top"
+});
+var count = 0;
+var interval = setInterval(function () {
+    if (count >= 100) {
+        clearInterval(interval);
+        $.LoadingOverlay("hide");
+        return;
+    }
+    count += 10;
+    $.LoadingOverlay("progress", count);
+}, 300);
+
+// Hide it after 3 seconds
+setTimeout(function () {
+    $.LoadingOverlay("hide");
+}, 3000);
 
 
 //$('#table').DataTable();
