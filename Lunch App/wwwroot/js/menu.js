@@ -423,7 +423,7 @@ let saveMenu = () => {
 
 
 let deleteMenus = () => {
-    let url = `${_path_url}api/Menu/DeleteFoodItem/${FoodItem.id}/${companyId}`
+    let url = `${_path_url}api/Menu/DeleteMenu/${Menu.id}/${companyId}`
     $.post(url).then(
         response => {
             console.log({ response });

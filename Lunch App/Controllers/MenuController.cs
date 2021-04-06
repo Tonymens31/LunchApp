@@ -54,6 +54,15 @@ namespace Lunch_App.Controllers
             var results = await _services.PutAsync<string>(url, model);
             return new JsonResult(results);
         }
+
+        [HttpPost("DeleteMenu/{Id}/{CompanyId}", Name = "DeleteMenu")]
+        public async Task<IActionResult> DeleteMenu(Guid Id, Guid CompanyId)
+        {
+            var url = $"{IDPSettings.Current.LunchAppUrl}Menus/DeleteMenus/{Id}/{CompanyId}";
+            var results = await _services.DelAsync<string>(url, null);
+            return new JsonResult(results);
+        }
     }
 }
+
 

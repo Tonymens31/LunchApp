@@ -34,11 +34,8 @@ namespace Lunch_App.Services
                             StatusCode = 400
                         };
                     }
-
-
                 }
             }
-
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
@@ -64,10 +61,8 @@ namespace Lunch_App.Services
 
                     if (Regex.IsMatch(System.Web.HttpUtility.UrlDecode(item.Value.ToString()), pattren.ToString(), RegexOptions.IgnoreCase | RegexOptions.Compiled))
                         return false;
-
                 }
             }
-
             return true;
         }
 
@@ -103,7 +98,6 @@ namespace Lunch_App.Services
 
             return propertyInformation;
         }
-
     }
 
     public class PropertyInformation

@@ -21,6 +21,6 @@ namespace Lunch_App.Models.Orders
          public string SideDish { get; set; }
 
          public string CondiDish { get; set; }
-        
+         public string OrderedBy { get; set; }
     }
 }
