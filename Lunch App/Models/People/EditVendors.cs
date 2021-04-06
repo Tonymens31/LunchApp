@@ -14,7 +14,9 @@ namespace Lunch_App.Models.People
         public string Email { get; set; }
 
         public string Phone { get; set; }
+
         public string Tel { get; set; }
+
         public int IsActive { get; set; }
     }
 }

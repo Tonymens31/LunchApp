@@ -1,4 +1,8 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(() => {
+
+});
     btnState = 0;
    // let Vendors = [];
     let selectedRow = "";
@@ -334,5 +338,4 @@
             .done(function (response) {
             });
     }
-});
 
