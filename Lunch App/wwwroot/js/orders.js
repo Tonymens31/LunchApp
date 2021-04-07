@@ -24,23 +24,6 @@ let init = () => {
     getOrders();
 }
 
-//let createOrder = () => {
-//    Order = {};
-
-//    $('#orderModal').modal('show');
-//    $("#saveOrder").css('cursor', 'not-allowed');
-//    $("#saveOrder").html(`<i class="fa fa-save"></i> Save`);
-
-//    $('#closeBtn').click(() => {
-//        clearFields();
-//        $('#orderModal').modal('hide');
-//    })
-
-//    $("#orderDate, #orderMainDish, #orderSideDish, #orderCondiment' #orderFor, #name",).bind('change', () => {
-//        validateFoodItem();
-//    });
-
-//}
 
 let dt = new DateHandler();
 btnState = 0;
