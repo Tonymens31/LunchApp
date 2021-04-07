@@ -21,6 +21,28 @@ let inIt = () => {
     getAllFoodInCat();
 }
 
+$.LoadingOverlay("show", {
+    background: "white",
+    progress: true,
+    progressFixedPosition: "top"
+});
+var count = 0;
+var interval = setInterval(function () {
+    if (count >= 100) {
+        clearInterval(interval);
+        $.LoadingOverlay("hide");
+        return;
+    }
+    count += 10;
+    $.LoadingOverlay("progress", count);
+}, 300);
+
+// Hide it after 3 seconds
+setTimeout(function () {
+    $.LoadingOverlay("hide");
+}, 3000);
+
+
 let createMenu = () => {
     Menu = {};
 
@@ -312,7 +334,7 @@ let getDataTable = () => {
 
 let menuTime = () => {
     flatpickr('#menuDate', {
-        "minDate": new Date().fp_incr(1),
+        "minDate": new Date().fp_incr(0),
         "altFormat": "F j, Y",
         "dateFormat": "d-m-Y",
         "disable": [
@@ -329,7 +351,7 @@ let menuTime = () => {
 
 let orderEnds = () => {
     flatpickr('#expiryDate', {
-        "minDate": new Date().fp_incr(1),
+        "minDate": new Date().fp_incr(0),
         "enableTime": true,
         "dateFormat": "d-m-Y H:i",
         "disable": [
