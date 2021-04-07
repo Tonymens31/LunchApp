@@ -167,8 +167,9 @@ let getVendors = () => {
             // Process Response
             if (response.status == "Success") {
                 FoodVendors = response.body;
+                console.log(FoodVendors)
             }
-            getDataTable();
+            loadDataTable();
         },
         error => {
             // debug error
@@ -284,7 +285,7 @@ let saveFoodVendor = () => {
 
 let updateFoodVendor = () => {
     let model = JSON.stringify(FoodVendor);
-    let url = `${_path_url}api/Foods/UpdateFoodVendor/${companyId}`
+    let url = `${_path_url}api/Vendors/UpdateFoodVendor/${companyId}`
     $.post(url, model).then(
         response => {
             //console.log({ response });
@@ -312,7 +313,7 @@ let updateFoodVendor = () => {
 }
 
 let deleteVendor = () => {
-    let url = `${_path_url}api/Foods/DeleteFoodVendor/${FoodVendor.id}/${companyId}`
+    let url = `${_path_url}api/Vendors/DeleteFoodVendor/${FoodVendor.id}/${companyId}`
     $.post(url).then(
         response => {
             //console.log({ response });
