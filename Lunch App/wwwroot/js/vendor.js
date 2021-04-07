@@ -1,17 +1,45 @@
 ﻿
-
+let saveOrUpdate = 0,
+    selectedRow = "",
+    btnState = 0,
+    FoodVendors = [],
+    FoodVendor = {},
+    sub = {
+        1: { color: 'success', state: 'Active' },
+        0: { color: 'danger', state: 'Inactive' }
+    },
+    mtTab;
 $(document).ready(() => {
-
+    inInt();
 });
-btnState = 0;
-// let Vendors = [];
-let selectedRow = "";
-let saveOrUpdate = 0;
-let sub = {
-    1: { color: 'success', state: 'Active' },
-    0: { color: 'danger', state: 'Inactive' }
-};
 
+let inInt = () => {
+    // Button click
+    $('#vendorModal').click(() => {
+        createVendor();
+    })
+    // Load Vendors
+    getVendors();
+
+}
+
+
+let createVendor = () => {
+    FoodVendor = {};
+    $('#vendorModal').modal('show');
+
+    $("#saveVendor").css('cursor', 'not-allowed');
+    $("#saveVendor").html(`<i class="fa fa-save"></i> Save`);
+
+    $('#closeBtn').click(() => {
+        clearFields();
+        $('#vendorModal').modal('hide');
+    })
+
+    $("#vendorName, #phone1, #vendorEmail, #status").bind('change', () => {
+        validateFoodVendor();
+    });
+}
 
 $.LoadingOverlay("show", {
     background: "white",
@@ -34,6 +62,89 @@ setTimeout(function () {
     $.LoadingOverlay("hide");
 }, 3000);
 
+$("#saveVendor").click(() => {
+
+    //console.log({ FoodVendor });
+
+    if (FoodVendor && FoodVendor.id) {
+
+        //Edit Existing
+        FoodVendor.name = $("#vendorName").val();
+        FoodVendor.email = $("#vendorEmail").val();
+        FoodVendor.phone = $("#phone1").val();
+        FoodVendor.isActive = $("#status").val();
+
+        // Update Existing
+        updateFoodVendor();
+
+    } else {
+
+        // Create New
+        FoodVendor = {
+            name: $("#vendorName").val(),
+            typeId: $("#vendorEmail").val(),
+            vendorId: $("#phone1").val(),
+            isActive: $("#status").val(),
+        };
+        // Create New
+        saveFoodVendor();
+    }
+});
+
+let ControlButtons = () => {
+
+    // Edit button
+    $(".editButton").click((el) => {
+        let id = el.target.dataset.id;
+        FoodVendor = FoodVendors.filter(x => x.id === id)[0]
+
+        // Show Modal
+        if (FoodVendor && FoodVendor.id) {
+            // Show Modal
+            editFoodVendor();
+        }
+    })
+}
+
+
+let editFoodVendor = () => {
+    $('#vendorModal').modal('show');
+
+    $('#vendorName').val(FoodVendor.name);
+    $('#vendorEmail').val(FoodVendor.email);
+    $('#phone1').val(FoodVendor.phone);
+    $('#isActive').val(FoodVendor.isActive);
+
+    $("#saveVendor").html(`<i class="fa fa-save"></i> Update`);
+    $("#saveVendor").prop('disabled', false);
+    $("#saveVendor").css('cursor', 'pointer');
+
+    $('#closeBtn').click(() => {
+        FoodVendor = {};
+        clearFields();
+        $('#vendorModal').modal('hide');
+    })
+    $("#vendorName, #vendorEmail, #phone1, #isActive").bind('change', () => {
+        validateFoodVendor();
+    });
+}
+
+let validateFoodVendor = () => {
+    let _vendor = {
+        name: $("#vendorName").val(),
+        email: $("#vendorEmail").val(),
+        phone: $("#phone1").val(),
+        isActive: $("#status").val(),
+    };
+    if (_vendor && _vendor.name && _vendor.typeId && _vendor.vendorId && _vendor.isActive) {
+        $("#saveVendor").prop('disabled', false);
+        $("#saveVendor").css('cursor', 'pointer')
+    } else {
+        $("#saveVendor").prop('disabled', true);
+        $("#saveVendor").css('cursor', 'not-allowed')
+    }
+}
+
 $('#btnAddVendor').click(function () {
     btnState = 0
     $("#saveVendor").html(`<i class="fa fa-save"></i> Save`)
@@ -46,37 +157,30 @@ $("#table").on('click', '.deleteButton', '.transfer-input-check', function (even
 });
 
 //get all vendors
-let loadVendors = () => {
+let getVendors = () => {
     pageLoader("show");
-    let data = { companyId: companyId };
-    makeAPIRequest(`${_path_url}api/Vendors/GetAllVendors`, data)
-        .done(function (data) {
-            let JsonArray = JSON.parse(data)
-            //data = JSON.parse(data.Body)
-            Vendors = JsonArray.Body;
-            console.log(Vendors)
-            loadDataTable();
-        }
-        );
+    let model = JSON.stringify({ Id: companyId });
+    let url = `${_path_url}api/Vendors/GetAllVendors`;
     pageLoader("hide");
-};
-loadVendors();
-
-
-$(document).on("click", ".editButton", function () {
-    saveOrUpdate = 1;
-    let rowid = $(this).val();
-    let rowData = Vendors.filter(x => x.id === rowid)[0]
-    selectedRow = rowData.id;
-    populateInputFields(rowData);
-    $("#saveVendor").html(`Update`)
-});
-
+    $.post(url, model).then(
+        response => {
+            // Process Response
+            if (response.status == "Success") {
+                FoodVendors = response.body;
+            }
+            getDataTable();
+        },
+        error => {
+            // debug error
+            console.log({ error });
+        }
+    )
+}
 
 //$('#table').DataTable();
 let loadDataTable = () => {
-    $('#table').DataTable({
-        data: Vendors,
+    mtTab = $('#table').DataTable({
+        data: FoodVendors,
         searching: true,
         destroy: true,
         scrollY: '50vh',
@@ -114,47 +218,20 @@ let loadDataTable = () => {
             {
                 data: "id",
                 title: "Actions", render: function (data) {
-                    return `<button style="border:none; background:transparent" class="editButton" value="${data}"><i class="fas fa-edit text-info"></i></button> 
-                                <a href="#" class="text-danger deleteButton" title="Delete"><i class="fas fa-trash"></i></a>
+                    return `
+                        <button style="border:none; background:transparent" class="editButton" data-id="${data}">
+                            <i class="fas fa-edit text-info" data-id=${data}></i>
+                        </button> 
+                        <button style="border:none; background:transparent" class="deleteButton" data-id=${data}>
+                            <i class="fas fa-trash text-danger" data-id=${data}></i>
+                        </a>
                         `;
                 },
                 width: "5%"
-            }
+            },
         ]
     });
 }
-
-
-//get GetAllVendorWithFoodItems/{companyId}
-let VendorsWithFoodItems = () => {
-    let data = { companyId: companyId };
-    makeAPIRequest(`${_path_url}GetAllVendorWithFoodItems`, data)
-        .done(function (data) {
-            data = JSON.parse(data)
-            data = JSON.parse(data.Body)
-            console.log(data);
-
-        }
-        );
-}
-
-
-//GetSingleVendors/{pkId}/{companyId}
-let loadSingleVendor = () => {
-    let data = { companyId: companyId, pkId: pkId };
-    makeAPIRequest(`${_path_url}GetSingleVendors`, data)
-        .done(function (data) {
-            data = JSON.parse(data)
-            data = JSON.parse(data.Body)
-            console.log(data);
-        }
-        );
-};
-
-$('#closeBtn').click(function () {
-    clearFields();
-    validation();
-})
 
 
 
@@ -172,23 +249,107 @@ let bindButtonsToDOM = (data) => {
     }
 };
 
-let populateInputFields = (data1) => {
-    let = { name, phone, tel, email, isActive } = data1;
+let saveFoodVendor = () => {
+    //console.log({ FoodItem });
 
-    $('#vendorName').val(name)
-    $('#phone1').val(phone)
-    $('#phone2').val(tel)
-    $('#vendorEmail').val(email)
-    $('#status').val(isActive)
-    $('#vendorModal').modal('show');
-    $("btnAddVendor").html(`Update`)
+    let vendors = [];
+    vendors.push(FoodVendor)
+    let model = JSON.stringify(vendors);
+    let url = `${_path_url}api/Vendors/CreateFoodVendor/${companyId}`
+    $.post(url, model).then(
+        response => {
+            console.log({ response });
+            if (response.status == "Success") {
+                iziToast.success({
+                    position: 'topRight',
+                    message: 'Saved successfully',
+                });
+                resetFoodVendors();
+            } else {
+                iziToast.success({
+                    position: 'topRight',
+                    message: `Failure: ${response.caption}`,
+                });
+            }
+        },
+        error => {
+            console.log({ error });
+            iziToast.error({
+                position: 'topRight',
+                message: 'Operation failed',
+            });
+        }
+    )
+}
 
-};
+let updateFoodVendor = () => {
+    let model = JSON.stringify(FoodVendor);
+    let url = `${_path_url}api/Foods/UpdateFoodVendor/${companyId}`
+    $.post(url, model).then(
+        response => {
+            //console.log({ response });
+            if (response.status == "Success") {
+                iziToast.success({
+                    position: 'topRight',
+                    message: 'Updated successfully',
+                });
+                resetFoodVendors();
+            } else {
+                iziToast.success({
+                    position: 'topRight',
+                    message: `Failure: ${response.caption}`,
+                });
+            }
+        },
+        error => {
+            // console.log({ error });
+            iziToast.error({
+                position: 'topRight',
+                message: 'Operation failed',
+            });
+        }
+    )
+}
+
+let deleteVendor = () => {
+    let url = `${_path_url}api/Foods/DeleteFoodVendor/${FoodVendor.id}/${companyId}`
+    $.post(url).then(
+        response => {
+            //console.log({ response });
+            if (response.status == "Success") {
+                iziToast.success({
+                    position: 'topRight',
+                    message: 'Deleted successfully',
+                });
+                resetFoodVendors();
+            } else {
+                iziToast.success({
+                    position: 'topRight',
+                    message: `Failure: ${response.caption}`,
+                });
+            }
+        },
+        error => {
+            console.log({ error });
+            iziToast.error({
+                position: 'topRight',
+                message: 'Operation failed',
+            });
+        }
+    )
+}
+
+let resetFoodVendors = () => {
+    $('#vendorModal').modal('hide');
+    FoodVendor = {};
+    clearFields();
+    getVendors();
+}
+
 
 let clearFields = () => {
     $('#vendorName').val("")
     $('#phone1').val("")
-    $('#phone2').val("")
     $('#vendorEmail').val("")
     $('#status').val(-1)
 }
@@ -223,15 +384,7 @@ for (var i = 0; i < userSelection.length; i++) {
     })(i);
 }
 
-$("#saveVendor").css('cursor', 'not-allowed');
-let validation = () => {
-    $("#vendorName").val().length !== 0 &&
-        $("#phone1").val().length !== 0 &&
-        $("#vendorEmail").val().length !== 0 &&
-        $("#status").val().length > -1 ?
-        ($("#saveVendor").prop('disabled', false).css('cursor', 'pointer')) :
-        ($("#saveVendor").prop('disabled', true).css('cursor', 'not-allowed'))
-}
+
 
 let NoEmptyField = (data) => {
     if (data != "") {
@@ -305,46 +458,4 @@ $("#phone2").on("keypress", function (evt) {
 });
 
 
-
-$("#saveVendor").click(() => {
-    let postDatasArr = [];
-    let formdata = {
-        "pkId": "00000000-0000-0000-0000-000000000000",
-        "name": $("#vendorName").val(),
-        "email": $("#vendorEmail").val(),
-        "phone": $("#phone1").val(),
-        "tel": $("#phone2").val(),
-        "isActive": parseInt($("#status").val()),
-        "companyId": '00000000-0000-0000-0000-000000000000'
-    }
-
-    if (saveOrUpdate === 0) {
-        postDatasArr.push(formdata);
-        createVendor(`${_path_url}APICalls/PostVendor`, postDatasArr)
-    } else {
-        formdata.pkId = selectedRow;
-        updateVendor(`${_path_url}APICalls/PutVendor`, formdata)
-    }
-
-    loadVendors();
-    iziToast.success({
-        position: 'topRight',
-        message: 'Saved successfully',
-    });
-
-    $('#vendorModal').modal('hide');
-})
-
-
-let createVendor = (url, data) => {
-    makeAPIRequest(url, data)
-        .done(function (response) {
-        });
-}
-
-let updateVendor = (url, data) => {
-    makeAPIRequest(url, data)
-        .done(function (response) {
-        });
-}
 

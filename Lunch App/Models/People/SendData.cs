@@ -7,8 +7,6 @@ namespace Lunch_App.Models.People
 {
     public class SendData
     {
-        public Guid Id { get; set; }
-
         public string Name { get; set; }
 
         public string Email { get; set; }
