@@ -136,7 +136,7 @@ let validateFoodVendor = () => {
         phone: $("#phone1").val(),
         isActive: $("#status").val(),
     };
-    if (_vendor && _vendor.name && _vendor.typeId && _vendor.vendorId && _vendor.isActive) {
+    if (_vendor && _vendor.name && _vendor.email && _vendor.phone && _vendor.isActive) {
         $("#saveVendor").prop('disabled', false);
         $("#saveVendor").css('cursor', 'pointer')
     } else {
