@@ -82,8 +82,8 @@ $("#saveVendor").click(() => {
         // Create New
         FoodVendor = {
             name: $("#vendorName").val(),
-            typeId: $("#vendorEmail").val(),
-            vendorId: $("#phone1").val(),
+            email: $("#vendorEmail").val(),
+            phone: $("#phone1").val(),
             isActive: $("#status").val(),
         };
         // Create New
