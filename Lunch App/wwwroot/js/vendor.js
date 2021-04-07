@@ -235,20 +235,6 @@ let loadDataTable = () => {
 }
 
 
-
-let bindButtonsToDOM = (data) => {
-    let elements = document.getElementsByClassName('editButton');
-
-    for (let x = 0; x < elements.length; x++) {
-        elements[x].addEventListener('click', function (e) {
-            getRowData(data, this.id)
-            btnState = 1
-            $("#saveVendor").html(`Update`)
-            $('#vendorModal').modal('show');
-        });
-    }
-};
-
 let saveFoodVendor = () => {
     let vendors = [];
     vendors.push(FoodVendor)
@@ -352,7 +338,7 @@ let clearFields = () => {
     $('#status').val(-1)
 }
 
-$('#close').on('click', function () {
+$('#closeBtn').on('click', function () {
 
     $('#vendorName').val("")
     $('#phone1').val("")
