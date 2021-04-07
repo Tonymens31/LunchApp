@@ -245,14 +245,11 @@ let bindButtonsToDOM = (data) => {
             btnState = 1
             $("#saveVendor").html(`Update`)
             $('#vendorModal').modal('show');
-
         });
     }
 };
 
 let saveFoodVendor = () => {
-    //console.log({ FoodItem });
-
     let vendors = [];
     vendors.push(FoodVendor)
     let model = JSON.stringify(vendors);
