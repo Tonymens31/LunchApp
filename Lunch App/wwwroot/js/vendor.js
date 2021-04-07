@@ -26,8 +26,8 @@ let inInt = () => {
 
 let createVendor = () => {
     FoodVendor = {};
-    $('#vendorModal').modal('show');
 
+    $('#vendorModal').modal('show');
     $("#saveVendor").css('cursor', 'not-allowed');
     $("#saveVendor").html(`<i class="fa fa-save"></i> Save`);
 
