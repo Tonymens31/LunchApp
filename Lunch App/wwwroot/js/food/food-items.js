@@ -254,7 +254,7 @@ let ControlButtons = () => {
     // Edit button
     $(".editButton").click((el) => {
         let id = el.target.dataset.id;
-        FoodItem = FoodItems.filter(x => x.id === id)[0]
+        FoodItem = FoodItems.filter(x => x.id == id)[0]
 
         // Show Modal
         if (FoodItem && FoodItem.id) {
