@@ -167,6 +167,7 @@ let validateMenu = () => {
 let clearFields = () => {
     $('#menuDate').val(-1)
     $('#menuMainDish').val(-1)
+    $("#menuSideDish").val(-1),
     $('#menuCondiment').val(-1)
     $('#expiryDate').val("")
     $('#price').val("")
