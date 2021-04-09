@@ -70,6 +70,7 @@ let createMenu = () => {
 }
 
 let editMenu = () => {
+    let dateTime = Menu.startAt.split("T")[0];
     $('#menuDate').val(Menu.startAt.split("T")[0]);
     $('#menuMainDish').val(Menu.mainDishId);
     $('#menuSideDish').val(Menu.sideDishId);
@@ -186,7 +187,7 @@ let getMenus = () => {
             // Process Response
             if (response.status == "Success") {
                 Menus = response.body;
-                console.log({ Menus })
+               //console.log({ Menus })
             }
             getDataTable();
         },
@@ -221,21 +222,23 @@ let getAllFoodInCat = () => {
 let ControlButtons = () => {
     // Edit button
     $(".editButton").click((el) => {
+
         //alert('hiiiii')
         let id = el.target.dataset.id;
-        console.log({ Menus });
-        console.log({ id });
+        //console.log({ Menus });
+        //console.log({ id });
 
-        Menu = Menus.filter(x => x.id === id)[0]
-        console.log(Menu)
+        Menu = Menus.filter(x => x.id == id)[0]
+        //console.log(Menu)
         if (Menu && Menu.id) {
-            createMenu();
+            editMenu();
+           
         }
     })
 
     // Delete Button
     $(".deleteButton").click((el) => {
-        console.log({ el });
+        //console.log({ el });
         let id = el.target.dataset.id;
         Menu = Menus.filter(menu => menu.id === id)[0]
         // Show Modal
@@ -303,7 +306,7 @@ let getDataTable = () => {
                 title: "Order Ending",
                 data: "endAt",
                 render: function (data) {
-                    return getFormattedDate(data);
+                    return getFormattedDateTime(data);
                 },
                 width: "22%"
             },

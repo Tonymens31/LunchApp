@@ -62,123 +62,6 @@ setTimeout(function () {
     $.LoadingOverlay("hide");
 }, 3000);
 
-$("#saveVendor").click(() => {
-
-    //console.log({ FoodVendor });
-
-    if (FoodVendor && FoodVendor.id) {
-
-        //Edit Existing
-        FoodVendor.name = $("#vendorName").val();
-        FoodVendor.email = $("#vendorEmail").val();
-        FoodVendor.phone = $("#phone1").val();
-        FoodVendor.isActive = $("#status").val();
-
-        // Update Existing
-        updateFoodVendor();
-
-    } else {
-
-        // Create New
-        FoodVendor = {
-            name: $("#vendorName").val(),
-            email: $("#vendorEmail").val(),
-            phone: $("#phone1").val(),
-            isActive: $("#status").val(),
-        };
-        // Create New
-        saveFoodVendor();
-    }
-});
-
-let ControlButtons = () => {
-
-    // Edit button
-    $(".editButton").click((el) => {
-        let id = el.target.dataset.id;
-        FoodVendor = FoodVendors.filter(x => x.id === id)[0]
-
-        // Show Modal
-        if (FoodVendor && FoodVendor.id) {
-            // Show Modal
-            editFoodVendor();
-        }
-    })
-}
-
-
-let editFoodVendor = () => {
-    $('#vendorModal').modal('show');
-
-    $('#vendorName').val(FoodVendor.name);
-    $('#vendorEmail').val(FoodVendor.email);
-    $('#phone1').val(FoodVendor.phone);
-    $('#isActive').val(FoodVendor.isActive);
-
-    $("#saveVendor").html(`<i class="fa fa-save"></i> Update`);
-    $("#saveVendor").prop('disabled', false);
-    $("#saveVendor").css('cursor', 'pointer');
-
-    $('#closeBtn').click(() => {
-        FoodVendor = {};
-        clearFields();
-        $('#vendorModal').modal('hide');
-    })
-    $("#vendorName, #vendorEmail, #phone1, #isActive").bind('change', () => {
-        validateFoodVendor();
-    });
-}
-
-let validateFoodVendor = () => {
-    let _vendor = {
-        name: $("#vendorName").val(),
-        email: $("#vendorEmail").val(),
-        phone: $("#phone1").val(),
-        isActive: $("#status").val(),
-    };
-    if (_vendor && _vendor.name && _vendor.email && _vendor.phone && _vendor.isActive) {
-        $("#saveVendor").prop('disabled', false);
-        $("#saveVendor").css('cursor', 'pointer')
-    } else {
-        $("#saveVendor").prop('disabled', true);
-        $("#saveVendor").css('cursor', 'not-allowed')
-    }
-}
-
-$('#btnAddVendor').click(function () {
-    btnState = 0
-    $("#saveVendor").html(`<i class="fa fa-save"></i> Save`)
-    $('#vendorModal').modal('show');
-});
-
-
-$("#table").on('click', '.deleteButton', '.transfer-input-check', function (event) {
-    $(this).parents('tr').detach();
-});
-
-//get all vendors
-let getVendors = () => {
-    pageLoader("show");
-    let model = JSON.stringify({ Id: companyId });
-    let url = `${_path_url}api/Vendors/GetAllVendors`;
-    pageLoader("hide");
-    $.post(url, model).then(
-        response => {
-            // Process Response
-            if (response.status == "Success") {
-                FoodVendors = response.body;
-                console.log(FoodVendors)
-            }
-            loadDataTable();
-        },
-        error => {
-            // debug error
-            console.log({ error });
-        }
-    )
-}
-
-//$('#table').DataTable();
 let loadDataTable = () => {
     mtTab = $('#table').DataTable({
         data: FoodVendors,
@@ -232,7 +115,133 @@ let loadDataTable = () => {
             },
         ]
     });
+
+    ControlButtons();
+    $(".paginate_button").click(() => {
+        ControlButtons();
+    })
+
+
+    // Delete Button
+    $(".deleteButton").click((el) => {
+        //console.log({ el });
+        let id = el.target.dataset.id;
+        FoodVendor = FoodVendors.filter(x => x.id === id)[0]
+        // Show Modal
+        if (FoodVendor && FoodVendor.id) {
+            deleteVendor();
+        }
+    })
 }
+
+
+
+$("#saveVendor").click(() => {
+
+    if (FoodVendor && FoodVendor.id) {
+
+        //Edit Existing
+        FoodVendor.name = $("#vendorName").val();
+        FoodVendor.email = $("#vendorEmail").val();
+        FoodVendor.phone = $("#phone1").val();
+        FoodVendor.isActive = $("#status").val();
+
+        // Update Existing
+        updateFoodVendor();
+
+    } else {
+
+        // Create New
+        FoodVendor = {
+            name: $("#vendorName").val(),
+            email: $("#vendorEmail").val(),
+            phone: $("#phone1").val(),
+            isActive: $("#status").val(),
+        };
+        // Create New
+        saveFoodVendor();
+    }
+});
+
+let validateFoodVendor = () => {
+    let _vendor = {
+        name: $("#vendorName").val(),
+        email: $("#vendorEmail").val(),
+        phone: $("#phone1").val(),
+        isActive: $("#status").val(),
+    };
+    if (_vendor && _vendor.name && _vendor.email && _vendor.phone && _vendor.isActive) {
+        $("#saveVendor").prop('disabled', false);
+        $("#saveVendor").css('cursor', 'pointer')
+    } else {
+        $("#saveVendor").prop('disabled', true);
+        $("#saveVendor").css('cursor', 'not-allowed')
+    }
+}
+
+
+let ControlButtons = () => {
+
+    // Edit button
+    $(".editButton").click((el) => {
+        let id = el.target.dataset.id;
+        FoodVendor = FoodVendors.filter(x => x.id === id)[0]
+
+        // Show Modal
+        if (FoodVendor && FoodVendor.id) {
+            // Show Modal
+            editFoodVendor();
+        }
+    })
+}
+
+
+let editFoodVendor = () => {
+    $('#vendorModal').modal('show');
+
+    $('#vendorName').val(FoodVendor.name);
+    $('#vendorEmail').val(FoodVendor.email);
+    $('#phone1').val(FoodVendor.phone);
+    $('#status').val(FoodVendor.isActive);
+
+    $("#saveVendor").html(`<i class="fa fa-save"></i> Update`);
+    $("#saveVendor").prop('disabled', false);
+    $("#saveVendor").css('cursor', 'pointer');
+
+    $('#closeBtn').click(() => {
+        FoodVendor = {};
+        clearFields();
+        $('#vendorModal').modal('hide');
+    })
+    $("#vendorName, #vendorEmail, #phone1, #status").bind('change', () => {
+        validateFoodVendor();
+    });
+}
+
+
+
+let getVendors = () => {
+    pageLoader("show");
+    let model = JSON.stringify({ Id: companyId });
+    let url = `${_path_url}api/Vendors/GetAllVendors`;
+    pageLoader("hide");
+    $.post(url, model).then(
+        response => {
+            // Process Response
+            if (response.status == "Success") {
+                FoodVendors = response.body;
+                console.log(FoodVendors)
+            }
+            loadDataTable();
+        },
+        error => {
+            // debug error
+            console.log({ error });
+        }
+    )
+}
+
+//$('#table').DataTable();
 
 
 let saveFoodVendor = () => {
@@ -257,7 +266,7 @@ let saveFoodVendor = () => {
             }
         },
         error => {
-            console.log({ error });
+            //console.log({ error });
             iziToast.error({
                 position: 'topRight',
                 message: 'Operation failed',
@@ -336,30 +345,8 @@ let clearFields = () => {
     $('#phone1').val("")
     $('#vendorEmail').val("")
     $('#status').val(-1)
-}
-
-$('#closeBtn').on('click', function () {
-
-    $('#vendorName').val("")
-    $('#phone1').val("")
-    $('#phone2').val("")
-    $('#vendorEmail').val("")
-    $('#status').val(-1)
-});
-
-
-
-var userSelection = document.getElementsByClassName('required');
-
-for (var i = 0; i < userSelection.length; i++) {
-    (function (index) {
-        userSelection[index].addEventListener("input", function () {
-            let el = userSelection[index].id;
-
-            let inputel = document.getElementById(el);
-            inputel.value ? (inputel.style.border = "1px solid #ced4da", validation()) : (inputel.style.border = "1px solid red", validation(), inputel.focus())
-        })
-    })(i);
+    $("#saveVendor").prop('disabled', true);
+    $("#saveVendor").css('cursor', 'not-allowed');
 }
 
 

@@ -111,22 +111,27 @@ let getDataTable = () => {
                 render: function (data) {
                     return moneyInTxt(data, "en", 2);
                 },
-            //},
+            },
 
-            //{
-            //    data: "id",
-            //    title: "Actions", render: function (data) {
-            //        return `
-            //            <button style="border:none; background:transparent" class="editButton" data-id="${data}">
-            //                <i class="fas fa-edit text-info" data-id=${data}></i>
-            //            </button> 
-            //            <button style="border:none; background:transparent" class="deleteButton" data-id=${data}>
-            //                <i class="fas fa-trash text-danger" data-id=${data}></i>
-            //            </a>
-            //            `;
-            //    }
+            {
+                data: "id",
+                title: "Actions", render: function (data) {
+                    return `
+                        <button style="border:none; background:transparent" class="editButton" data-id="${data}">
+                            <i class="fas fa-edit text-info" data-id=${data}></i>
+                        </button> 
+                    `
+                        //<button style="border:none; background:transparent" class="deleteButton" data-id=${data}>
+                        //    <i class="fas fa-trash text-danger" data-id=${data}></i>
+                        //</a>
+                        ;
+                }
             },
         ]
+    });
+    ControlButtons();
+    $(".paginate_button").click(() => {
+        ControlButtons();
     });
 }
 
@@ -199,77 +204,7 @@ $("#saveOrder").click(() => {
     // message('success', 'Order added sucessfully ');
 })
 
-function orderFood() {
 
-    let formdata = {
-        id: uuidv4(),
-        date: $("#orderDate").val(),
-        maindish: $("#orderMainDish").val(),
-        orderFor: $('#orderFor').val(),
-        sidedish: $("#orderSideDish").val(),
-        condiment: $("#orderCondiment").val(),
-    }
-    orderForState === 0 ? formdata.name = $('#orderForStaff').val() : formdata.name = $("#name").val()
-
-
-    console.log(formdata)
-
-    orderData.push(formdata)
-    loadOrderData()
-    $('#orderModal').modal('hide');
-    clearFields();
-}
-
-var userSelection = document.getElementsByClassName('required');
-
-for (var i = 0; i < userSelection.length; i++) {
-    (function (index) {
-        userSelection[index].addEventListener("input", function () {
-            let el = userSelection[index].id;
-
-            let inputel = document.getElementById(el);
-            inputel.value ? (inputel.style.border = "1px solid #ced4da", ValidateOrder()) : (inputel.style.border = "1px solid red", ValidateOrder(), inputel.focus())
-        })
-    })(i);
-}
-
-function bindButtonsToDOM() {
-    let elements = document.getElementsByClassName('editButton');
-
-    for (let x = 0; x < elements.length; x++) {
-        elements[x].addEventListener('click', function (e) {
-            getRowData(this.id)
-            btnState = 1
-            $("#saveOrder").html(`Update`)
-            $('#orderModal').modal('show');
-
-        });
-    }
-}
-
-
-function getRowData(rowId) {
-    let data = orderData.filter(ele => ele.id.toString() === rowId)[0];
-    populateInputFields(data);
-    // saveOrUpdate = 1;
-}
-
-function populateInputFields(data) {
-    let { name, date, maindish, sidedish, condiment, orderFor, orderForStaff } = data;
-
-    $('#orderDate').val(date)
-    $('#name').val(name)
-    $('#orderMainDish').val(maindish)
-    $('#orderSideDish').val(sidedish)
-    $('#orderCondiment').val(condiment)
-    $('#orderFor').val(orderFor)
-    $('#orderForStaff').val(orderForStaff)
-
-
-    $('#orderingForField').show()
-    $('#name').prop('disabled', false)
-    $('#orderModal').modal('show');
-};
 
 let clearFields = () => {
     $('#orderDate').val("")
@@ -281,86 +216,5 @@ let clearFields = () => {
     $('#orderForStaff').val(0)
 }
 
-let orderForState = 0;
-
-$("#orderFor").change(function () {
-
-    //$("#name").prop('hidden', false)
-
-
-    if ($(this).val() == "staff") {
-        orderForState = 0;
-        $('#orderingForField').show()
-        $("#name").show();
-        $("#orderForStaff").prop('hidden', false)
-        $("#name").prop('disabled', false)
-        //console.log('name')
-    }
-    else if
-        ($(this).val() == "quest") {
-        orderForState = 1;
-        $('#orderingForField').show()
-        $("#orderForStaff").prop('hidden', true)
-        $("#name").prop('hidden', false)
-        $("#name").prop('disabled', false)
-
-    }
-})
-
-$('#orderingForField').hide()
-
-
-//$("#saveOrder").css('cursor', 'not-allowed');
-//let ValidateOrder = () => {
-//    let _order = {
-//        orderDate: $("#orderDate").val(),
-//        mainDishId$: $("#orderMainDish").val(),
-//        sideDishId: $("#orderSideDish").val(),
-//        condiDishId: $("#orderFor").val(),
-//        price: $("#price").val(),
-//    }
-
-//}
-
-//($("#saveOrder").prop('disabled', false), $("#saveOrder").css('cursor', 'pointer')) :
-//($("#saveOrder").prop('disabled', true), $("#saveOrder").css('cursor', 'not-allowed'))
-
-
-function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
-
-$("searchIcon").click(function () {
-    myFunction();
-
-})
-
-function myFunction() {
-    var td, i, txtValue;
-    let input = document.getElementById("myInput");
-    let filter = input.value.toUpperCase();
-    let table = document.getElementById("myTable");
-    let tr = table.getElementsByTagName("tr");
-
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
-
-
-$('#btnPrintOrders').click(function () {
-    //printDiv();
-})
 
 

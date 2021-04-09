@@ -37,8 +37,8 @@ $.LoadingOverlay("show", {
     progress: true,
     progressFixedPosition: "top"
 });
-var count     = 0;
-var interval  = setInterval(function(){
+var count = 0;
+var interval = setInterval(function () {
     if (count >= 100) {
         clearInterval(interval);
         $.LoadingOverlay("hide");
@@ -83,7 +83,7 @@ let editFoodItem = () => {
     $("#save-food-item").prop('disabled', false);
     $("#save-food-item").css('cursor', 'pointer');
 
-        $('#closeBtn').click(() => {
+    $('#closeBtn').click(() => {
         FoodItem = {};
         clearFields();
         $('#foodItemModal').modal('hide');
@@ -95,8 +95,6 @@ let editFoodItem = () => {
 
 
 $("#save-food-item").click(() => {
-
-    //console.log({ FoodItem });
 
     if (FoodItem && FoodItem.id) {
 
@@ -229,8 +227,8 @@ let getDataTable = () => {
     ControlButtons();
     $(".paginate_button").click(() => {
         ControlButtons();
-    })
-    
+    });
+
     // Delete Button
     $(".deleteButton").click((el) => {
         //console.log({ el });
@@ -372,7 +370,7 @@ let updateFoodItem = () => {
             }
         },
         error => {
-           // console.log({ error });
+            // console.log({ error });
             iziToast.error({
                 position: 'topRight',
                 message: 'Operation failed',

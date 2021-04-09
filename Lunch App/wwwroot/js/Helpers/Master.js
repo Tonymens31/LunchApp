@@ -40,6 +40,12 @@ getFormattedDate = (str) => {
     return `${dateString}`;
 }
 
+getFormattedDateTime = (str) => {
+    let dateString = new Date(str).toUTCString();
+   // dateString = dateString.split(' ').slice(0, 4).join(' ');
+    return `${dateString}`;
+}
+
 let formatter = () => {
     new Intl.NumberFormat('en-US', {
         style: 'currency',

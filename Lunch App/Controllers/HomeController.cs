@@ -50,7 +50,7 @@ namespace Lunch_App.Controllers
         {
             return View();
         }
-        public IActionResult Staff()
+        public IActionResult Report()
         {
             return View();
         }
