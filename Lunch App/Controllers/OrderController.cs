@@ -34,6 +34,7 @@ namespace Lunch_App.Controllers
             var results = await _services.PostAsync<IEnumerable<Guid>>(url, model);
             return new JsonResult(results);
         }
+
         
         [HttpPost("GetAllByDate", Name = "GetAllByDate")]
         public async Task<IActionResult> GetAllByDate([FromBody] IdData model)
