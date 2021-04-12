@@ -230,7 +230,7 @@ let ControlButtons = () => {
         //console.log(Menu)
         if (Menu && Menu.id) {
             editMenu();
-           
+
         }
     })
 
@@ -244,8 +244,7 @@ let ControlButtons = () => {
             deleteMenu();
         }
     })
-}
-
+};
 
 
 let getDataTable = () => {
