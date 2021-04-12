@@ -227,7 +227,7 @@ let validateOrders = () => {
         sideDishId: $("#orderSideDish").val(),
         orderDate: $("#orderDate").val(),
     };
-    if (_Order && _Order.name && _Order.mainDishId && _Order.orderSideDish && _Order.orderDate) {
+    if (_Order && _Order.name && _Order.orderMainDish && _Order.orderSideDish && _Order.orderDate) {
         $("#saveOrder").prop('disabled', false);
         $("#saveOrder").css('cursor', 'pointer')
     } else {
