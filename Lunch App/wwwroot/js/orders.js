@@ -165,6 +165,10 @@ $("#orderDate").change(function () {
   
     SelectedDate = $("#orderDate").val();
     getAllMenuByDate();
+    $("#name").prop("disabled", false);
+    $("#orderMainDish").prop("disabled", false);
+    $("#orderSideDish").prop("disabled", false);
+    $("#orderCondiment").prop("disabled", false);
 });
 
 let getMenus = () => {
