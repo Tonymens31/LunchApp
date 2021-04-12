@@ -19,6 +19,7 @@ namespace Lunch_App.Controllers
             _services = services;
         }
 
+
         [HttpPost("GetOrders", Name = "GetOrders")]
         public async Task<IActionResult> GetOrders([FromBody] IdData model)
         {
@@ -26,6 +27,7 @@ namespace Lunch_App.Controllers
             var results = await _services.GetAsync<IEnumerable<GetOrders>>(url);
             return new JsonResult(results);
         }
+
 
         [HttpPost("CreateOrder/{CompanyId}", Name = "CreateOrder")]
         public async Task<IActionResult> CreateOrder([FromBody] IEnumerable<SendOrders> model, Guid CompanyId)
@@ -43,6 +45,7 @@ namespace Lunch_App.Controllers
             var results = await _services.GetAsync<GetMenusByDate>(url);
             return new JsonResult(results);
         }
+
 
         [HttpPost("UpdateOrder/{CompanyId}", Name = "UpdateOrder")]
         public async Task<IActionResult> UpdateOrder([FromBody] EditOrders model, Guid CompanyId)
