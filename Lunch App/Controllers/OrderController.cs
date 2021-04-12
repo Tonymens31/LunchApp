@@ -34,5 +34,21 @@ namespace Lunch_App.Controllers
             var results = await _services.PostAsync<IEnumerable<Guid>>(url, model);
             return new JsonResult(results);
         }
+        
+        [HttpPost("GetAllByDate", Name = "GetAllByDate")]
+        public async Task<IActionResult> GetAllByDate([FromBody] IdData model)
+        {
+            var url = $"{IDPSettings.Current.LunchAppUrl}Menus/GetAllMenuByDate/{model.CompanyId}/{model.Date}/";
+            var results = await _services.GetAsync<GetMenusByDate>(url);
+            return new JsonResult(results);
+        }
+
+        [HttpPost("UpdateOrder/{CompanyId}", Name = "UpdateOrder")]
+        public async Task<IActionResult> UpdateOrder([FromBody] EditOrders model, Guid CompanyId)
+        {
+            var url = $"{IDPSettings.Current.LunchAppUrl}OrderTrans/UpdateOrders/{model.Id}/{CompanyId}";
+            var results = await _services.PutAsync<string>(url, model);
+            return new JsonResult(results);
+        }
     }
 }

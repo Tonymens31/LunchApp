@@ -54,6 +54,16 @@ let formatter = () => {
     })
 }
 
+let setMenuTypes = (data, title, htmlElementId) => {
+    console.log({ data })
+
+    let template = `<option value="">${title}</option>`
+    template += data.map(menu => (
+        `<option value = "${menu.id}">${menu.name}</option>`
+    ))
+    $(htmlElementId).html(template);
+}
+
 function makeAPIRequest(URL, data = "") {
     return $.ajax({
         url: URL,
