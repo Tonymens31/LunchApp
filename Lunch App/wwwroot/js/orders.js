@@ -283,25 +283,6 @@ let setMenuType = (data, title, htmlElementId) => {
     $(htmlElementId).html(template);
 }
 
-//let getAllFoodInCat = () => {
-//    let model = JSON.stringify({ Id: companyId });
-//    let url = `${_path_url}api/Menu/GetAllFoodInCats`;
-//    $.post(url, model).then(
-//        response => {
-//            console.log({response})
-//            if (response.status == "Success") {
-//                Menus = response.body.mainDish;
-//                setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
-//                setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
-//                setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
-//            };
-//        },
-//        error => {
-//            // debug error
-//            console.log({ error });
-//        }
-//    )
-//}
 
 
 let getAllMenuByDate = () => {
