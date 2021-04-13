@@ -4,6 +4,18 @@
         th {
             color: white !important
         }
+
+        .dataTables_wrapper.no-footer .dataTables_scrollBody {
+            height: 50vh !important;
+            max-height: 50vh !important;
+        }
+
+        #foodPage {
+            margin-top: 20px;
+            background-color: transparent !important;
+            padding-left: 20px;
+            margin-bottom: 0px
+        }
     </style>
 }
 <div class="app-main__outer">
@@ -37,11 +49,11 @@
                             </div>
                             <div class="col-md-3"></div>
                             <div class="col-md-1" style="margin-top:5px">
-                                <button class="btn btn-md btn-outline-primary pull-right" style="margin-bottom: 15px" id="btnAddStaff">Add Staff</button>
+                                <button class="btn btn-md btn-outline-primary pull-right" style="margin-bottom: 15px" id="btnViewReport">View Reports</button>
                             </div>
                         </div>
                         <table id="staffTable" class="mb-0 table table-striped table-hover" width="100%"></table>
-              
+
                     </div>
                 </div>
             </div>
@@ -50,50 +62,21 @@
 </div>
 
 @section Modals{
-    <div class="modal" id="staffModal" tabindex="-1">
+    <div class="modal" id="ReportModal" tabindex="-1">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Staff</h5>
+                    <h5 class="modal-title">Reports</h5>
+
                     @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="far fa-times-circle text-danger"></i> </button>*@
                 </div>
                 <form class="form-horizontal" id="appForm">
+                    <h3>Select Date Range to View Report</h3>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="staffId" style="margin-bottom: 0px; margin-top: 10px" class="form-label">StaffID   <span class="text-danger">*</span> </label>
-                                <input type="text" class="form-control required" id="staffMemID">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="name" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Name   <span class="text-danger">*</span> </label>
-                                <input type="text" class="form-control required" id="name">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="email" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Email   <span class="text-danger">*</span> </label>
-                                <input type="text" class="form-control required" id="email">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="phone" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Phone №   <span class="text-danger">*</span> </label>
-                                <input type="tel" class="form-control required " id="phone">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="control-label">Status   <span class="text-danger">*</span> </label>
-                                <select class="form-control required" id="status">
-                                    <option value="-1" selected disabled>Select Status</option>
-                                    <option value="1">Active</option>
-                                    <option value="2">Inactive</option>
-                                </select>
-                            </div>
-                        </div>
+
+                        <h1>Reports</h1>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="saveStaff" disabled>Save  <i class="fa fa-save"></i></button>
                         <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
                     </div>
                 </form>

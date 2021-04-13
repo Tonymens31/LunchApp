@@ -260,10 +260,6 @@ let validateOrders = () => {
 
 
 
-
-
-
-
 let clearFields = () => {
     $('#name').val("");
     $('#orderMainDish').val(-1);
@@ -292,7 +288,7 @@ let getOrders = () => {
             if (response.status == "Success") {
                 Orders = response.body;
             }
-            console.log({ Orders })
+           // console.log({ Orders })
 
             $("#count").text(Orders.length)
 
