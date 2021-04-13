@@ -241,9 +241,6 @@ let getVendors = () => {
     )
 }
 
-//$('#table').DataTable();
-
-
 let saveFoodVendor = () => {
     let vendors = [];
     vendors.push(FoodVendor)
@@ -266,7 +263,7 @@ let saveFoodVendor = () => {
             }
         },
         error => {
-            //console.log({ error });
+
             iziToast.error({
                 position: 'topRight',
                 message: 'Operation failed',

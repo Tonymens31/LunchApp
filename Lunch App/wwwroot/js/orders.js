@@ -156,7 +156,7 @@ let createOrders = () => {
    
 
     $("#name, #orderMainDish, #orderSideDish, #orderDate").bind('change', () => {
-        validateOrder();
+        validateOrders();
     });
 }
 

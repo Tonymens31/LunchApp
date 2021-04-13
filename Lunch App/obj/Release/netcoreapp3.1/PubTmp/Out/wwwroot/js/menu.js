@@ -35,12 +35,12 @@ var interval = setInterval(function () {
     }
     count += 10;
     $.LoadingOverlay("progress", count);
-}, 300);
+}, 200);
 
 // Hide it after 3 seconds
 setTimeout(function () {
     $.LoadingOverlay("hide");
-}, 3000);
+}, 2000);
 
 
 let createMenu = () => {
@@ -204,13 +204,15 @@ let getAllFoodInCat = () => {
     let url = `${_path_url}api/Menu/GetAllFoodInCats`;
     $.post(url, model).then(
         response => {
+          
             if (response.status == "Success") {
-                Menus = response.body.mainDish;
+                Menus = response.body.mainDish; 
+               
                 setMenuTypes(response.body.mainDish, "Select main dish", "#menuMainDish");
                 setMenuTypes(response.body.sideDish, "Select side dish", "#menuSideDish");
                 setMenuTypes(response.body.condiDish, "Select condiment", "#menuCondiment");
             }
-            setMenuTypes();
+          
         },
         error => {
             // debug error
@@ -228,7 +230,7 @@ let ControlButtons = () => {
         //console.log(Menu)
         if (Menu && Menu.id) {
             editMenu();
-           
+
         }
     })
 
@@ -242,15 +244,8 @@ let ControlButtons = () => {
             deleteMenu();
         }
     })
-}
+};
 
-let setMenuTypes = (data, title, htmlElementId) => {
-    let template = `<option value="">${title}</option>`
-    template += data.map(menu => (
-        `<option value = "${menu.id}">${menu.name}</option>`
-    ))
-    $(htmlElementId).html(template);
-}
 
 let getDataTable = () => {
     mtTab = $('#table').DataTable({
