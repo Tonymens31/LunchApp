@@ -2,7 +2,29 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout_index.cshtml";
 }
-<div class="card" style="width: 130%">
+<style>
+    .overlay-dark {
+        background-color: rgba(black, 0.4);
+    }
+
+    .overlay-grey {
+        background-color: rgba(#596164, 0.4);
+    }
+
+    .overlay-yellow {
+        background-color: rgba(#fee140, 0.4);
+    }
+
+    .overlay-orange {
+        background-color: rgba(#c43a30, 0.4);
+    }
+
+    .overlay-blue-gradient {
+        background-image: linear-gradient(135deg, rgba(#96deda, 0.5) 0%, rgba(#537895, 0.7) 100%);
+    }
+</style>
+
+<div  class="card overlay-dark" style="width: 130%">
     <h3 class="card-header" style="text-align: center">W e l c o m e</h3>
     <div class="card-body login-card-body">
         <h4 class="login-box-msg"><strong>Sign in to start your session</strong></h4>

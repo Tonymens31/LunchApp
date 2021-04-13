@@ -55,12 +55,12 @@ var interval = setInterval(function () {
     }
     count += 10;
     $.LoadingOverlay("progress", count);
-}, 300);
+}, 200);
 
 // Hide it after 3 seconds
 setTimeout(function () {
     $.LoadingOverlay("hide");
-}, 3000);
+}, 2000);
 
 let loadDataTable = () => {
     mtTab = $('#table').DataTable({
