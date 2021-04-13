@@ -71,10 +71,13 @@
                     @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <i class="far fa-times-circle text-danger"></i> </button>*@
                 </div>
                 <form class="form-horizontal" id="appForm">
-                    <h3>Select Date Range to View Report</h3>
+                    <p>Select Date Range to View Report</p>
                     <div class="modal-body">
-
-                        <h1>Reports</h1>
+                        <div class="input-group mb-3">
+                            <input type="date" class="form-control" placeholder="Username" aria-label="Username">
+                            <span class="input-group-text">TO</span>
+                            <input type="date" class="form-control" placeholder="Server" aria-label="Server">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
@@ -87,5 +90,6 @@
     </div>
 }
 @section Scripts{
-    <script src="~/js/staff.js"></script>
+
+    <script src="~/js/Report.js"></script>
 }

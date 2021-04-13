@@ -6,6 +6,7 @@ $(document).ready(() => {
 
 let inIt = () => {
     $('#btnViewReport').click(() => {
+        alert("hello")
         showModal();
     })
 }
