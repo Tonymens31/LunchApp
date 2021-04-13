@@ -61,14 +61,14 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-5">
-                                <label for="Date" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Date  <span class="text-danger">*</span> </label>
+                                <label for="Date" style="margin-bottom: 0px; margin-top: 10px" class="form-label ">Date  <span class="text-danger">*</span> </label>
                                 <input type="date" style="background-color: white" placeholder="Select Date" class="form-control required" id="orderDate">
                             </div>
                             <div class="col-md-7">
                                 <label for="main dish" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Main Dish  <span class="text-danger">*</span> </label>
                                 <br />
-                                <select class="form-control required" id="orderMainDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px" disabled>
-                                    <option selected style="padding-left: 10px" value="0" disabled>Select Main Dish</option>
+                                <select class="form-control required " id="orderMainDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px" disabled>
+                                    <option selected style="padding-left: 10px" value="-1" disabled>Select Main Dish</option>
                                    
                                 </select>
                             </div>
@@ -77,8 +77,8 @@
                             <div class="col-md-5">
                                 <label for="side dish" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Side Dish  <span class="text-danger">*</span> </label>
                                 <br />
-                                <select class="form-control required transfer-input-check" id="orderSideDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px" disabled>
-                                    <option selected style="padding-left: 10px" disabled>Select Side Dish</option>
+                                <select class="form-control required " id="orderSideDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px" disabled>
+                                    <option selected style="padding-left: 10px" value="-1" disabled>Select Side Dish</option>
                                    
                                 </select>
                             </div>
@@ -86,7 +86,7 @@
                                 <label for="condiment" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Condiment</label>
                                 <br />
                                 <select class="form-control" id="orderCondiment" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px" disabled>
-                                    <option selected style="padding-left: 10px" disabled>Select Condiment</option>
+                                    <option selected style="padding-left: 10px" value="-1" disabled>Select Condiment</option>
                                 </select>
                             </div>
                         </div>
@@ -94,13 +94,13 @@
                             <div class="col-md-12">
                                 <div>
                                     <label for="Name" style="margin-bottom: 0px; margin-top: 10px" class="form-label"  >Name   <span class="text-danger">*</span> </label>
-                                    <input type="text" class="form-control  required" placeholder="Enter Name" id="name" disabled>
+                                    <input type="text" class="form-control required" placeholder="Enter Name" id="name" disabled>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="saveOrder" class="btn btn-primary" disabled>Save  <i class="fa fa-save"></i></button>
+                        <button type="button" id="saveOrder" class="btn btn-primary transfer-input-check" disabled>Save  <i class="fa fa-save"></i></button>
                         <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
                     </div>
                 </form>

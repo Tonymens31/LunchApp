@@ -2,28 +2,6 @@
 @{
     var loggedInUser = Context.User?.FindFirst("sub")?.Value;
 }
-<style>
-    .overlay-dark {
-        background-color: rgba(black, 0.4);
-    }
-
-    .overlay-grey {
-        background-color: rgba(#596164, 0.4);
-    }
-
-    .overlay-yellow {
-        background-color: rgba(#fee140, 0.4);
-    }
-
-    .overlay-orange {
-        background-color: rgba(#c43a30, 0.4);
-    }
-
-    .overlay-blue-gradient {
-        background-image: linear-gradient(135deg, rgba(#96deda, 0.5) 0%, rgba(#537895, 0.7) 100%);
-    }
-</style>
-
 <!Doctype html>
 <html lang="en">
 
@@ -73,9 +51,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+
+
+
 </head>
-
-
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
@@ -277,7 +256,7 @@
                         </button>
                     </span>
                 </div>
-                <div class="scrollbar-sidebar card-img-overlay text-white  overlay-dark"  style="margin-top: 20px;background-color: rgba(0, 0, 0, 0) !important;background-image: url('@Url.Content("~/dist/img/1.jpg")');background-size: cover;padding: 0 !important;margin: 0 !important;">
+                <div class="scrollbar-sidebar" style="margin-top: 20px;background-color: rgba(0, 0, 0, 0) !important;background-image: url('@Url.Content("~/dist/img/1.jpg")');background-size: cover;padding: 0 !important;margin: 0 !important;">
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu ">
 

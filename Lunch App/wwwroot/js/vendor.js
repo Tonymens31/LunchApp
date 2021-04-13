@@ -15,7 +15,7 @@ $(document).ready(() => {
 
 let inInt = () => {
     // Button click
-    $('#vendorModal').click(() => {
+    $('#btnAddVendor').click(() => {
         createVendor();
     })
     // Load Vendors
@@ -46,6 +46,7 @@ $.LoadingOverlay("show", {
     progress: true,
     progressFixedPosition: "top"
 });
+
 var count = 0;
 var interval = setInterval(function () {
     if (count >= 100) {

@@ -220,12 +220,14 @@ $("#saveOrder").click(() => {
     }
 });
 
+
+
 let validateOrders = () => {
     let _Order = {
         name: $("#name").val(),
         mainDishId: $("#orderMainDish").val(),
         sideDishId: $("#orderSideDish").val(),
-        orderDate: $("#orderDate").val(),
+       // orderDate: $("#orderDate").val(),
     };
     if (_Order && _Order.name && _Order.orderMainDish && _Order.orderSideDish && _Order.orderDate) {
         $("#saveOrder").prop('disabled', false);
@@ -235,6 +237,31 @@ let validateOrders = () => {
         $("#saveOrder").css('cursor', 'not-allowed')
     }
 }
+
+
+
+//function validateOrders() {
+//    console.log($("#name").val())
+//    if ($("#orderMainDish").val() > -1 &&
+//        $("#orderSideDish").val() > -1 
+//     ) {
+//        console.log('Accra')
+//        $('#saveOrder').prop('disabled', false)
+//    } else {
+//        console.log('Kumasi')
+//        $('#saveOrder').prop('disabled', true);
+//    }
+//}
+
+
+//$('.transfer-input-check').on('keyup change', function () {
+//    validateOrders();
+//});
+
+
+
+
+
 
 
 let clearFields = () => {
@@ -280,7 +307,7 @@ let getOrders = () => {
 
 
 let setMenuType = (data, title, htmlElementId) => {
-    let template = `<option value="">${title}</option>`
+    let template = `<option value="-1">${title}</option>`
     template += data.map(menu => (
         `<option value = "${menu.id}">${menu.name}</option>`
     ))
