@@ -153,9 +153,7 @@ C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Rel
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Lunch App.TagHelpers.output.cache
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Lunch App.RazorCoreGenerate.cache
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Razor\Views\Home\Dashboard.cshtml.g.cs
-C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Razor\Views\Home\Example.cshtml.g.cs
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Razor\Views\Home\FoodItem.cshtml.g.cs
-C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Razor\Views\Home\Holiday.cshtml.g.cs
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Razor\Views\Home\Menu.cshtml.g.cs
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Razor\Views\Home\Orders.cshtml.g.cs
