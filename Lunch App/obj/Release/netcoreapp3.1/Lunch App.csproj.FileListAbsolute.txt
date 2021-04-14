@@ -1,5 +1,3 @@
-C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Release\netcoreapp3.1\appsettings.Development.json
-C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Release\netcoreapp3.1\appsettings.json
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Release\netcoreapp3.1\Lunch App.exe
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Release\netcoreapp3.1\Lunch App.deps.json
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Release\netcoreapp3.1\Lunch App.runtimeconfig.json
@@ -172,3 +170,5 @@ C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Rel
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Lunch App.dll
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Lunch App.pdb
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Release\netcoreapp3.1\Lunch App.genruntimeconfig.cache
+C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Release\netcoreapp3.1\appsettings.Development.json
+C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\bin\Release\netcoreapp3.1\appsettings.json
