@@ -256,11 +256,11 @@
                         </button>
                     </span>
                 </div>
-                <div class="scrollbar-sidebar" style="margin-top: 20px;background-color: rgba(0, 0, 0, 0) !important;background-image: url('@Url.Content("~/dist/img/1.jpg")');background-size: cover;padding: 0 !important;margin: 0 !important;">
-                    <div class="app-sidebar__inner">
-                        <ul class="vertical-nav-menu ">
+                <div class="scrollbar-sidebar" style="overflow-y: hidden;background-color: rgba(0, 0, 0, 0) !important; background-image: url('@Url.Content("~/dist/img/1.jpg")'); background-size: cover; padding: 0 !important; margin: 0 !important;">
+                    <div class="app-sidebar__inner" style="height:100vh; background:black;opacity:0.7; overflow-y:hidden">
+                        <ul class="vertical-nav-menu" style="color: white !important">
 
-                            <li>
+                            <li style="color: white !important">
                                 <a asp-controller="Home" asp-action="Dashboard">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Dashboard

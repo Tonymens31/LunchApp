@@ -227,6 +227,8 @@ let ControlButtons = () => {
     $(".editButton").click((el) => {
         let id = el.target.dataset.id;
         Menu = Menus.filter(x => x.id == id)[0]
+
+
         //console.log(Menu)
         if (Menu && Menu.id) {
             editMenu();
@@ -234,16 +236,7 @@ let ControlButtons = () => {
         }
     })
 
-    // Delete Button
-    $(".deleteButton").click((el) => {
-        //console.log({ el });
-        let id = el.target.dataset.id;
-        Menu = Menus.filter(menu => menu.id === id)[0]
-        // Show Modal
-        if (Menu && Menu.id) {
-            deleteMenu();
-        }
-    })
+  
 };
 
 
@@ -321,6 +314,17 @@ let getDataTable = () => {
 
     $(".paginate_button").click(() => {
         ControlButtons();
+    });
+
+    // Delete Button
+    $(".deleteButton").click((el) => {
+        //console.log({ el });
+        let id = el.target.dataset.id;
+        Menu = Menus.filter(menu => menu.id === id)[0]
+        // Show Modal
+        if (Menu && Menu.id) {
+            deleteMenu();
+        }
     })
 }
 
