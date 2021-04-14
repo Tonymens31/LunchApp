@@ -63,7 +63,7 @@
                                 <br />
                                 <select class="form-control" id="orderMainDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px" disabled>
                                     <option selected style="padding-left: 10px" value="-1" disabled>Select Main Dish</option>
-                                   
+
                                 </select>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                 <br />
                                 <select class="form-control" id="orderSideDish" style="height: 40px;width: 100%; border-color: #ced4da; border-radius: 5px" disabled>
                                     <option selected style="padding-left: 10px" value="-1" disabled>Select Side Dish</option>
-                                   
+
                                 </select>
                             </div>
                             <div class="col-md-7">
@@ -87,15 +87,16 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div>
-                                    <label for="Name" style="margin-bottom: 0px; margin-top: 10px" class="form-label"  >Name   <span class="text-danger">*</span> </label>
+                                    <label for="Name" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Name   <span class="text-danger">*</span> </label>
                                     <input type="text" class="form-control" placeholder="Enter Name" id="name" disabled>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="saveOrder" class="btn btn-primary transfer-input-check" disabled>Save  <i class="fa fa-save"></i></button>
-                        <button type="button" class="btn btn-danger" id="closeBtn" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveOrder" disabled>Save  <i class="fa fa-save"></i></button>
+                        <button type="button" id="closeBtn" class="btn btn-danger" data-dismiss="modal">Close</button>
+
                     </div>
                 </form>
             </div>
@@ -104,7 +105,7 @@
 }
 @section Scripts{
     <script src="~/js/orders.js" asp-append-version="true"></script>
-   
+
 }
 
 

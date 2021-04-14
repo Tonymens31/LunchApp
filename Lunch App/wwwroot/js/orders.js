@@ -154,7 +154,7 @@ let createOrders = () => {
         validateOrders();
     });
 
-    $("#saveMenu").css('cursor', 'not-allowed');
+    $("#saveOrder").css('cursor', 'not-allowed');
 }
 
 
@@ -224,9 +224,9 @@ let validateOrders = () => {
         name: $("#name").val(),
         mainDishId: $("#orderMainDish").val(),
         sideDishId: $("#orderSideDish").val(),
-       // orderDate: $("#orderDate").val(),
+        orderDate: $("#orderDate").val(),
     };
-    if (_Order && _Order.name && _Order.orderMainDish && _Order.orderSideDish && _Order.orderDate) {
+    if (_Order && _Order.name && _Order.mainDishId && _Order.sideDishId && _Order.orderDate) {
         $("#saveOrder").prop('disabled', false);
         $("#saveOrder").css('cursor', 'pointer')
     } else {

@@ -53,7 +53,6 @@ let createMenu = () => {
     menuTime();
 
     $('#menuModal').modal('show');
-
     $('#closeBtn').click(() => {
         Menu = {};
         clearFields();
@@ -66,7 +65,6 @@ let createMenu = () => {
     });
 
     $("#saveMenu").css('cursor', 'not-allowed');
-
 }
 
 let editMenu = () => {
