@@ -20,6 +20,8 @@ namespace Lunch_App.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            //HttpContext.Session.Clear();
+            new SignOutResult(new[] { "Cookies", "oidc" });
             return View();
         }
 

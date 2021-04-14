@@ -18,15 +18,15 @@ let init = () => {
     //Button click
     $('#btnAddOrder').click(function () {
         Order = {};
+        createOrders();
         showModal();
+        Checkings();
     });
-
-   
+       
 
     //load Orders
     getOrders();
 
-    //getAllMenuByDate();
 }
 
 
@@ -146,6 +146,7 @@ let createOrders = () => {
     $('#closeBtn').click(() => {
         Order = {};
         clearFields();
+        Checkings();
         $('#OrderModal').modal('hide');
     })
    
@@ -154,19 +155,38 @@ let createOrders = () => {
         validateOrders();
     });
 
+    $("#name").bind("keyup", () => {
+        validateOrders();
+    })
+
     $("#saveOrder").css('cursor', 'not-allowed');
 }
 
 
-$("#orderDate").change(function () {
+let controlDateValues = () => {
+    // Manipulate [Order.orderDate]
+    let start_dates = Order.orderDate.split("-");
+    Order.orderDate = `${start_dates[2]}-${start_dates[1]}-${start_dates[0]}T00:00:00`;
+
   
-    SelectedDate = $("#orderDate").val();
-    getAllMenuByDate();
-    $("#name").prop("disabled", false);
-    $("#orderMainDish").prop("disabled", false);
-    $("#orderSideDish").prop("disabled", false);
-    $("#orderCondiment").prop("disabled", false);
-});
+    if (!Order.condiDishId) {
+        Order.condiDishId = '00000000-0000-0000-0000-000000000000';
+    }
+    console.log({ Order });
+}
+
+let Checkings = () => {
+    $("#orderDate").change(function () {
+
+        SelectedDate = $("#orderDate").val();
+        getAllMenuByDate();
+        $("#name").prop("disabled", false);
+        $("#orderMainDish").prop("disabled", false);
+        $("#orderSideDish").prop("disabled", false);
+        $("#orderCondiment").prop("disabled", false);
+    });
+
+}
 
 let getMenus = () => {
     let model = JSON.stringify({ Id: companyId });
@@ -191,7 +211,7 @@ $("#saveOrder").click(() => {
 
     if (Order && Order.id) {
 
-        //Edit Existing
+        //collect
         Order.name = $("#name").val();
         Order.mainDishId = $("#orderMainDish").val();
         Order.sideDishId = $("#orderSideDish").val();
@@ -199,6 +219,7 @@ $("#saveOrder").click(() => {
         Order.orderDate = $("#orderDate").val();
 
         // Update Existing
+        controlDateValues();
         updateOrder();
 
     } else {
@@ -212,6 +233,7 @@ $("#saveOrder").click(() => {
             orderDate: $("#orderDate").val(),
         };
         // Create New
+        controlDateValues();
         saveOrder();
 
     }
@@ -220,6 +242,7 @@ $("#saveOrder").click(() => {
 
 
 let validateOrders = () => {
+    //alert("hello")
     let _Order = {
         name: $("#name").val(),
         mainDishId: $("#orderMainDish").val(),
@@ -294,7 +317,7 @@ let getAllMenuByDate = () => {
     let url = `${_path_url}api/Order/GetAllByDate`;
     $.post(url, model).then(
         response => {
-            console.log({ response })
+            //console.log({ response })
             if (response.status == "Success") {
                 Menus = response.body.mainDish;
                 setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
@@ -340,20 +363,6 @@ flatpickr('#orderdate', {
         "firstDayOfWeek": 1 // start week on Monday
     }
 });
-
-
-
-$("#saveOrder").click(() => {
-    orderFood();
-    ValidateOrder();
-    iziToast.success({
-        position: 'topRight',
-        message: 'Order saved successfully',
-    });
-    $("#name").prop('disabled', true)
-    $('#orderingForField').hide()
-    // message('success', 'Order added sucessfully ');
-})
 
 
 let saveOrder = () => {

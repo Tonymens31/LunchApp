@@ -32,7 +32,7 @@ namespace Lunch_App.Controllers
         [HttpPost("CreateOrder/{CompanyId}", Name = "CreateOrder")]
         public async Task<IActionResult> CreateOrder([FromBody] IEnumerable<SendOrders> model, Guid CompanyId)
         {
-            var url = $"{IDPSettings.Current.LunchAppUrl}OrderTrans/CreateOrders/{CompanyId}";
+            var url = $"{IDPSettings.Current.LunchAppUrl}OrderTrans/CreateOrders-Admin/{CompanyId}";
             var results = await _services.PostAsync<IEnumerable<Guid>>(url, model);
             return new JsonResult(results);
         }
