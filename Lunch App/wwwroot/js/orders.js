@@ -47,10 +47,10 @@ $('#btnAddOrder').click(function () {
 
 })
 
+// Progress
 $.LoadingOverlay("show", {
-    background: "white",
-    progress: true,
-    progressFixedPosition: "top"
+    progressFixedPosition: "top",
+    //progress: true
 });
 var count = 0;
 var interval = setInterval(function () {
@@ -62,12 +62,6 @@ var interval = setInterval(function () {
     count += 10;
     $.LoadingOverlay("progress", count);
 }, 200);
-
-// Hide it after 3 seconds
-setTimeout(function () {
-    $.LoadingOverlay("hide");
-}, 2000);
-
 
 //$('#table').DataTable();
 let getDataTable = () => {
@@ -146,10 +140,11 @@ let createOrders = () => {
     Order = {};
 
     $('#OrderModal').modal('show');
-    $("#saveOrder").css('cursor', 'not-allowed');
+  
     $("#saveOrder").html(`<i class="fa fa-save"></i> Save`);
 
     $('#closeBtn').click(() => {
+        Order = {};
         clearFields();
         $('#OrderModal').modal('hide');
     })
@@ -158,6 +153,8 @@ let createOrders = () => {
     $("#name, #orderMainDish, #orderSideDish, #orderDate").bind('change', () => {
         validateOrders();
     });
+
+    $("#saveMenu").css('cursor', 'not-allowed');
 }
 
 
@@ -343,8 +340,9 @@ let showModal = () => {
     $('#orderModal').modal('show');
 
     $('#closeBtn').click(function () {
+        Order = {};
         clearFields();
-        $('#orderingForField').hide();
+       
         $('#orderModal').modal('hide');
     })
 }

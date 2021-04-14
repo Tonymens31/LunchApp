@@ -21,10 +21,10 @@ let inIt = () => {
     getAllFoodInCat();
 }
 
+// Progress
 $.LoadingOverlay("show", {
-    background: "white",
-    progress: true,
-    progressFixedPosition: "top"
+    progressFixedPosition: "top",
+    //progress: true
 });
 var count = 0;
 var interval = setInterval(function () {

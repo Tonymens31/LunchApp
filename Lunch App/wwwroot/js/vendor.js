@@ -40,12 +40,11 @@ let createVendor = () => {
         validateFoodVendor();
     });
 }
-
+// Progress
 $.LoadingOverlay("show", {
-    background: "white",
-   
+    progressFixedPosition: "top",
+    //progress: true
 });
-
 var count = 0;
 var interval = setInterval(function () {
     if (count >= 100) {
@@ -57,10 +56,7 @@ var interval = setInterval(function () {
     $.LoadingOverlay("progress", count);
 }, 200);
 
-// Hide it after 3 seconds
-setTimeout(function () {
-    $.LoadingOverlay("hide");
-}, 2000);
+
 
 let loadDataTable = () => {
     mtTab = $('#table').DataTable({

@@ -32,10 +32,10 @@ let init = () => {
     getVendors();
 }
 
+// Progress
 $.LoadingOverlay("show", {
-    background: "white",
-    progress: true,
-    progressFixedPosition: "top"
+    progressFixedPosition: "top",
+    //progress: true
 });
 var count = 0;
 var interval = setInterval(function () {
@@ -47,12 +47,6 @@ var interval = setInterval(function () {
     count += 10;
     $.LoadingOverlay("progress", count);
 }, 200);
-
-// Hide it after 3 seconds
-setTimeout(function () {
-    $.LoadingOverlay("hide");
-}, 2000);
-
 
 let createFoodItem = () => {
     FoodItem = {};
