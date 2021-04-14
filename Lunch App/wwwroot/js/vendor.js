@@ -43,8 +43,7 @@ let createVendor = () => {
 
 $.LoadingOverlay("show", {
     background: "white",
-    progress: true,
-    progressFixedPosition: "top"
+   
 });
 
 var count = 0;
