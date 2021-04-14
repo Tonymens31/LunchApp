@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\Lunch App.csproj": {}
+    "C:\\Users\\Mensah\\Documents\\Projects\\Lunch_App\\Lunch App\\Lunch App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\Lunch App.csproj": {
+    "C:\\Users\\Mensah\\Documents\\Projects\\Lunch_App\\Lunch App\\Lunch App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\Lunch App.csproj",
+        "projectUniqueName": "C:\\Users\\Mensah\\Documents\\Projects\\Lunch_App\\Lunch App\\Lunch App.csproj",
         "projectName": "Lunch App",
-        "projectPath": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\Lunch App.csproj",
+        "projectPath": "C:\\Users\\Mensah\\Documents\\Projects\\Lunch_App\\Lunch App\\Lunch App.csproj",
         "packagesPath": "C:\\Users\\Mensah\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mensah\\Documents\\Projects\\Trials\\mvc_trials\\Lunch_App\\Lunch App\\obj\\",
+        "outputPath": "C:\\Users\\Mensah\\Documents\\Projects\\Lunch_App\\Lunch App\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Mensah\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -147,7 +148,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

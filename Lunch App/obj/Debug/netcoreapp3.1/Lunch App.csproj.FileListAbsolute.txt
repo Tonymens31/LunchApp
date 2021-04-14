@@ -287,3 +287,175 @@ C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Deb
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.pdb
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.genruntimeconfig.cache
 C:\Users\Mensah\Documents\Projects\Trials\mvc_trials\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Report.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Lunch App.exe
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Lunch App.deps.json
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Lunch App.runtimeconfig.json
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Lunch App.runtimeconfig.dev.json
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Lunch App.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Lunch App.pdb
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Lunch App.Views.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Lunch App.Views.pdb
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Bold.Licensing.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\BoldReports.AspNet.Core.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\BoldReports.Web.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Hellang.Middleware.ProblemDetails.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\IdentityModel.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\IdentityModel.AspNetCore.OAuth2Introspection.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\IdentityServer4.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\IdentityServer4.AccessTokenValidation.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\IdentityServer4.AspNetIdentity.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\IdentityServer4.Storage.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Marvin.StreamExtensions.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.NodeServices.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Razor.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Configuration.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Console.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\dotnet-aspnet-codegenerator-design.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\NWebsec.AspNetCore.Core.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\NWebsec.AspNetCore.Middleware.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\NWebsec.AspNetCore.Mvc.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\NWebsec.AspNetCore.Mvc.TagHelpers.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\RestSharp.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Syncfusion.Compression.Portable.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Syncfusion.DocIO.Portable.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Syncfusion.EJ.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Syncfusion.EJ.AspNet.Core.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Syncfusion.Licensing.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Syncfusion.OfficeChart.Portable.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Syncfusion.Pdf.Portable.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\Syncfusion.XlsIO.Portable.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.Composition.AttributedModel.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.Composition.Convention.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.Composition.Hosting.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.Composition.Runtime.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\WebEssentials.AspNetCore.Pwa.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.csprojAssemblyReference.cache
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.AssemblyInfoInputs.cache
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.AssemblyInfo.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.csproj.CoreCompileInputs.cache
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.RazorAssemblyInfo.cache
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.RazorAssemblyInfo.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\staticwebassets\Lunch App.StaticWebAssets.Manifest.cache
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\staticwebassets\Lunch App.StaticWebAssets.xml
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\scopedcss\bundle\Lunch App.styles.css
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.TagHelpers.input.cache
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.TagHelpers.output.cache
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.RazorCoreGenerate.cache
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Dashboard.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Home\FoodItem.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Menu.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Orders.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Report.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Home\Vendor.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout_index.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.RazorTargetAssemblyInfo.cache
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.RazorTargetAssemblyInfo.cs
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.Views.pdb
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.csproj.CopyComplete
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.dll
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.pdb
+C:\Users\Mensah\Documents\Projects\Lunch_App\Lunch App\obj\Debug\netcoreapp3.1\Lunch App.genruntimeconfig.cache
