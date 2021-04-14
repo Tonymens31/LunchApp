@@ -46,7 +46,7 @@ var interval = setInterval(function () {
     }
     count += 10;
     $.LoadingOverlay("progress", count);
-}, 200);
+}, 150);
 
 let createFoodItem = () => {
     FoodItem = {};

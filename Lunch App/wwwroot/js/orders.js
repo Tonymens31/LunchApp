@@ -61,7 +61,7 @@ var interval = setInterval(function () {
     }
     count += 10;
     $.LoadingOverlay("progress", count);
-}, 200);
+}, 150);
 
 //$('#table').DataTable();
 let getDataTable = () => {
@@ -234,26 +234,6 @@ let validateOrders = () => {
         $("#saveOrder").css('cursor', 'not-allowed')
     }
 }
-
-
-
-//function validateOrders() {
-//    console.log($("#name").val())
-//    if ($("#orderMainDish").val() > -1 &&
-//        $("#orderSideDish").val() > -1 
-//     ) {
-//        console.log('Accra')
-//        $('#saveOrder').prop('disabled', false)
-//    } else {
-//        console.log('Kumasi')
-//        $('#saveOrder').prop('disabled', true);
-//    }
-//}
-
-
-//$('.transfer-input-check').on('keyup change', function () {
-//    validateOrders();
-//});
 
 
 
