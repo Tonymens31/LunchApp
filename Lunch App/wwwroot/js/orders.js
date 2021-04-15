@@ -395,7 +395,7 @@ let saveOrder = () => {
                     position: 'topRight',
                     message: 'Saved successfully',
                 });
-                resetFoodItems();
+                resetOrders();
             } else {
                 iziToast.success({
                     position: 'topRight',
