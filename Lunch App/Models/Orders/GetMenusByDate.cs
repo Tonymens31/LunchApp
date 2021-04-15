@@ -19,5 +19,7 @@ namespace Lunch_App.Models.Orders
         public Guid Id { get; set; }
         public string Name { get; set; }
 
+        public string MenuId { get; set; }
+
     }
 }

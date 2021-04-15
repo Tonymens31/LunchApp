@@ -40,6 +40,7 @@ let createVendor = () => {
         validateFoodVendor();
     });
 }
+
 // Progress
 $.LoadingOverlay("show", {
     progressFixedPosition: "top",

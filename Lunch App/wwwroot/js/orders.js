@@ -4,7 +4,8 @@ let saveOrUpdate = 0,
     btnState = 0,
     Orders = [],
     Order = {},
-    SelectedDate  = "",
+    SelectedDate = "",
+    seletedMenuId ='',
     mtTab;
 
 
@@ -166,7 +167,7 @@ let createOrders = () => {
 let controlDateValues = () => {
     // Manipulate [Order.orderDate]
     let start_dates = Order.orderDate.split("-");
-    Order.orderDate = `${start_dates[2]}-${start_dates[1]}-${start_dates[0]}T00:00:00`;
+   // Order.orderDate = `${start_dates[2]}-${start_dates[1]}-${start_dates[0]}T00:00:00`;
 
   
     if (!Order.condiDishId) {
@@ -177,7 +178,6 @@ let controlDateValues = () => {
 
 let Checkings = () => {
     $("#orderDate").change(function () {
-
         SelectedDate = $("#orderDate").val();
         getAllMenuByDate();
         $("#name").prop("disabled", false);
@@ -185,7 +185,6 @@ let Checkings = () => {
         $("#orderSideDish").prop("disabled", false);
         $("#orderCondiment").prop("disabled", false);
     });
-
 }
 
 let getMenus = () => {
@@ -231,12 +230,14 @@ $("#saveOrder").click(() => {
             sideDishId: $("#orderSideDish").val(),
             condiDishId: $("#orderCondiment").val(),
             orderDate: $("#orderDate").val(),
+            menuId: seletedMenuId
         };
         // Create New
         controlDateValues();
         saveOrder();
 
     }
+
 });
 
 
@@ -317,14 +318,17 @@ let getAllMenuByDate = () => {
     let url = `${_path_url}api/Order/GetAllByDate`;
     $.post(url, model).then(
         response => {
-            //console.log({ response })
+            console.log({ response })
+            seletedMenuId = response.body.mainDish[0].menuId;
             if (response.status == "Success") {
                 Menus = response.body.mainDish;
+                seletedMenuId.Menus.menuId;
                 setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
                 setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
                 setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
             };
         },
+
         error => {
             // debug error
             console.log({ error });
@@ -371,7 +375,7 @@ let saveOrder = () => {
     let foodOrder = [];
     foodOrder.push(Order)
     let model = JSON.stringify(foodOrder);
-    let url = `${_path_url}api/Orders/CreateOrder/${companyId}`
+    let url = `${_path_url}api/Order/CreateOrder/${companyId}`
     $.post(url, model).then(
         response => {
             console.log({ response });
