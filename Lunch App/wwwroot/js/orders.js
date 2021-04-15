@@ -303,7 +303,29 @@ let getOrders = () => {
 }
 
 
+let getAllMenuByDate = () => {
+    let model = JSON.stringify({ companyId: companyId, Date: SelectedDate });
+    let url = `${_path_url}api/Order/GetAllByDate`;
+    $.post(url, model).then(
+        response => {
+
+            setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
+            setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
+            setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
+            seletedMenuId = response.body.mainDish[0].menuId;
+        },
+
+
+        error => {
+            // debug error
+            console.log({ error });
+        }
+    )
+}
+
 let setMenuType = (data, title, htmlElementId) => {
+    console.log({ data})
+
     let template = `<option value="-1">${title}</option>`
     template += data.map(menu => (
         `<option value = "${menu.id}">${menu.name}</option>`
@@ -313,32 +335,6 @@ let setMenuType = (data, title, htmlElementId) => {
 
 
 
-let getAllMenuByDate = () => {
-    let model = JSON.stringify({ companyId: companyId, Date: SelectedDate });
-    let url = `${_path_url}api/Order/GetAllByDate`;
-    $.post(url, model).then(
-        response => {
-            console.log(response.body.mainDish)
-            console.log(response.body.sideDish)
-
-            seletedMenuId = response.body.mainDish[0].menuId;
-            if (response.status == "Success") {
-                Menus = response.body.mainDish;
-                seletedMenuId.Menus.menuId;
-                setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
-                setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
-                setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
-            };
-           
-        },
-       
-
-        error => {
-            // debug error
-            console.log({ error });
-        }
-    )
-}
 
 
 let showModal = () => {
