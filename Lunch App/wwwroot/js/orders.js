@@ -289,8 +289,7 @@ let getOrders = () => {
             // Process Response
             if (response.status == "Success") {
                 Orders = response.body;
-            }
-           // console.log({ Orders })
+            };
 
             $("#count").text(Orders.length)
 
@@ -314,19 +313,8 @@ let getAllMenuByDate = () => {
             setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
             setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
             seletedMenuId = response.body.mainDish[0].menuId;
-            //if (response.status === "Success") {
-            //    console.log({ response })
-            //    seletedMenuId.Menus.menuId;
-            //    Menus = response.body.mainDish;
-
-            //    setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
-            //    setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
-            //    setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
-            //};
-
+          
         },
-
-
         error => {
             // debug error
             console.log({ error });
@@ -343,8 +331,6 @@ let setMenuType = (data, title, htmlElementId) => {
     ))
     $(htmlElementId).html(template);
 }
-
-
 
 
 
