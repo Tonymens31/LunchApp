@@ -308,13 +308,11 @@ let getAllMenuByDate = () => {
     let url = `${_path_url}api/Order/GetAllByDate`;
     $.post(url, model).then(
         response => {
-
             setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
             setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
             setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
             seletedMenuId = response.body.mainDish[0].menuId;
         },
-
 
         error => {
             // debug error
@@ -324,16 +322,14 @@ let getAllMenuByDate = () => {
 }
 
 let setMenuType = (data, title, htmlElementId) => {
-    console.log({ data})
+    console.log({ data })
 
     let template = `<option value="-1">${title}</option>`
     template += data.map(menu => (
         `<option value = "${menu.id}">${menu.name}</option>`
     ))
     $(htmlElementId).html(template);
-}
-
-
+};
 
 
 
@@ -349,10 +345,10 @@ let showModal = () => {
     $('#closeBtn').click(function () {
         Order = {};
         clearFields();
-       
+
         $('#orderModal').modal('hide');
-    })
-}
+    });
+};
 
 flatpickr('#orderdate', {
     "minDate": new Date().fp_incr(1),
@@ -400,7 +396,7 @@ let saveOrder = () => {
             });
         }
     )
-}
+};
 
 let updateOrder = () => {
     let model = JSON.stringify(Order);
@@ -429,4 +425,4 @@ let updateOrder = () => {
             });
         }
     )
-}
+};
