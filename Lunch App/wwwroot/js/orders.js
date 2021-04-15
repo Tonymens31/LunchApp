@@ -23,24 +23,12 @@ let init = () => {
         showModal();
         Checkings();
     });
-       
+
 
     //load Orders
     getOrders();
 
-}
-
-
-let dt = new DateHandler();
-btnState = 0;
-fmtDate = (s) => {
-    let d = new Date(Date.parse(s));
-    let fmt = d.toUTCString().replace("00:00:00", "")
-    return fmt.replace("GMT", "")
-}
-
-
-
+};
 
 $('#btnAddOrder').click(function () {
     btnState = 0
@@ -167,10 +155,6 @@ let createOrders = () => {
 let controlDateValues = () => {
     // Manipulate [Order.orderDate]
     let start_dates = Order.orderDate.split("-");
-   // Order.orderDate = `${start_dates[2]}-${start_dates[1]}-${start_dates[0]}T00:00:00`;
-
-  
- 
 }
 
 let Checkings = () => {
@@ -201,7 +185,7 @@ let getMenus = () => {
             console.log({ error });
         }
     )
-}
+};
 
 $("#saveOrder").click(() => {
 
@@ -238,7 +222,6 @@ $("#saveOrder").click(() => {
         saveOrder();
         $('#OrderModal').modal('hide');
     }
-    
 });
 
 
