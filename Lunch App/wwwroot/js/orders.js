@@ -318,7 +318,9 @@ let getAllMenuByDate = () => {
     let url = `${_path_url}api/Order/GetAllByDate`;
     $.post(url, model).then(
         response => {
-            console.log({ response })
+            console.log(response.body.mainDish)
+            console.log(response.body.sideDish)
+
             seletedMenuId = response.body.mainDish[0].menuId;
             if (response.status == "Success") {
                 Menus = response.body.mainDish;
@@ -327,7 +329,9 @@ let getAllMenuByDate = () => {
                 setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
                 setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
             };
+           
         },
+       
 
         error => {
             // debug error
