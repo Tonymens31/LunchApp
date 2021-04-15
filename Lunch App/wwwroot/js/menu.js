@@ -88,7 +88,6 @@ let editMenu = () => {
         Menu = {};
         clearFields();
         $('#menuModal').modal('hide');
-
     })
 
     $("#menuDate, #menuMainDish, #menuSideDish, #expiryDate, #price").bind('change', () => {
@@ -139,8 +138,7 @@ let controlDateValues = () => {
 
     if (!Menu.condiDishId) {
         Menu.condiDishId = '00000000-0000-0000-0000-000000000000';
-    }
-    console.log({ Menu });
+    };
 }
 
 
@@ -170,13 +168,6 @@ let clearFields = () => {
     $('#expiryDate').val("")
     $('#price').val("")
 }
-
-fmtDate = (s) => {
-    let d = new Date(Date.parse(s));
-    let fmt = d.toUTCString().replace("00:00:00", "")
-    return fmt.replace("GMT", "")
-}
-
 
 let getMenus = () => {
     let model = JSON.stringify({ Id: companyId });
@@ -230,11 +221,8 @@ let ControlButtons = () => {
         //console.log(Menu)
         if (Menu && Menu.id) {
             editMenu();
-
         }
-    })
-
-  
+    });
 };
 
 
