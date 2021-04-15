@@ -170,10 +170,7 @@ let controlDateValues = () => {
    // Order.orderDate = `${start_dates[2]}-${start_dates[1]}-${start_dates[0]}T00:00:00`;
 
   
-    if (!Order.condiDishId) {
-        Order.condiDishId = '00000000-0000-0000-0000-000000000000';
-    }
-    console.log({ Order });
+ 
 }
 
 let Checkings = () => {
@@ -232,12 +229,16 @@ $("#saveOrder").click(() => {
             orderDate: $("#orderDate").val(),
             menuId: seletedMenuId
         };
+
+        if (Order.condiDishId ==='-1') {
+            Order.condiDishId = '00000000-0000-0000-0000-000000000000';
+        }   
         // Create New
         controlDateValues();
         saveOrder();
-
+        $('#OrderModal').modal('hide');
     }
-
+    
 });
 
 
@@ -308,11 +309,23 @@ let getAllMenuByDate = () => {
     let url = `${_path_url}api/Order/GetAllByDate`;
     $.post(url, model).then(
         response => {
+
             setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
             setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
             setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
             seletedMenuId = response.body.mainDish[0].menuId;
+            //if (response.status === "Success") {
+            //    console.log({ response })
+            //    seletedMenuId.Menus.menuId;
+            //    Menus = response.body.mainDish;
+
+            //    setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
+            //    setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
+            //    setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
+            //};
+
         },
+
 
         error => {
             // debug error
@@ -322,14 +335,16 @@ let getAllMenuByDate = () => {
 }
 
 let setMenuType = (data, title, htmlElementId) => {
-    console.log({ data })
+    console.log({ data})
 
     let template = `<option value="-1">${title}</option>`
     template += data.map(menu => (
         `<option value = "${menu.id}">${menu.name}</option>`
     ))
     $(htmlElementId).html(template);
-};
+}
+
+
 
 
 
@@ -345,10 +360,10 @@ let showModal = () => {
     $('#closeBtn').click(function () {
         Order = {};
         clearFields();
-
         $('#orderModal').modal('hide');
-    });
-};
+    })
+}
+
 
 flatpickr('#orderdate', {
     "minDate": new Date().fp_incr(1),
@@ -396,7 +411,7 @@ let saveOrder = () => {
             });
         }
     )
-};
+}
 
 let updateOrder = () => {
     let model = JSON.stringify(Order);
@@ -425,4 +440,4 @@ let updateOrder = () => {
             });
         }
     )
-};
+}
