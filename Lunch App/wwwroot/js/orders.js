@@ -30,12 +30,6 @@ let init = () => {
 
 };
 
-$('#btnAddOrder').click(function () {
-    btnState = 0
-    $("#saveOrder").html(`<i class="fa fa-save"></i> Save`)
-
-})
-
 // Progress
 $.LoadingOverlay("show", {
     progressFixedPosition: "top",
