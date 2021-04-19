@@ -85,7 +85,7 @@ let editMenu = () => {
     $('#menuModal').modal('show');
 
     $('#closeBtn').click(() => {
-        Menu = {};
+        Menu = {};  
         clearFields();
         $('#menuModal').modal('hide');
     })
