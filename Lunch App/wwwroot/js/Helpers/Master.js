@@ -42,7 +42,7 @@ getFormattedDate = (str) => {
 
 getFormattedDateTime = (str) => {
     let dateString = new Date(str).toUTCString();
-   // dateString = dateString.split(' ').slice(0, 4).join(' ');
+   dateString = dateString.split(' ').slice(0, 4).join(' ');
     return `${dateString}`;
 }
 

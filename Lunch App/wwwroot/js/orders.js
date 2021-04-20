@@ -182,7 +182,7 @@ let getMenus = () => {
 };
 
 $("#saveOrder").click(() => {
-
+    alert("hello")
     if (Order && Order.id) {
 
         //collect
@@ -200,12 +200,13 @@ $("#saveOrder").click(() => {
 
         // Create New
         Order = {
-            name: $("#name").val(),
-            mainDishId: $("#orderMainDish").val(),
-            sideDishId: $("#orderSideDish").val(),
-            condiDishId: $("#orderCondiment").val(),
-            orderDate: $("#orderDate").val(),
-            menuId: seletedMenuId
+           
+            //name: $("#name").val(),
+            //mainDishId: $("#orderMainDish").val(),
+            //sideDishId: $("#orderSideDish").val(),
+            //condiDishId: $("#orderCondiment").val(),
+            //orderDate: $("#orderDate").val(),
+            //menuId: seletedMenuId
         };
 
         if (Order.condiDishId ==='-1') {
@@ -214,8 +215,9 @@ $("#saveOrder").click(() => {
         // Create New
         controlDateValues();
         saveOrder();
-        $('#OrderModal').modal('hide');
+        
     }
+    $('#OrderModal').modal('hide');
 });
 
 
