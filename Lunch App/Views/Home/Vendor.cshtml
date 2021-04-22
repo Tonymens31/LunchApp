@@ -6,7 +6,7 @@
             color: white !important
         }
         .dataTables_wrapper.no-footer .dataTables_scrollBody {
-            height: 50vh !important;
+            height: 45vh !important;
             max-height: 50vh !important;
         }
 
@@ -22,8 +22,8 @@
     <div id="foodPage">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb" style="background-color:transparent !important; margin-bottom: 0%; padding-bottom: 0%">
-                <li class="breadcrumb-item"><a href="#"><strong>Setups</strong></a></li>
-                <li class="breadcrumb-item active"><strong>Vendor</strong></li>
+                <li class="breadcrumb-item"><strong>Setups</strong></li>
+                <li class="breadcrumb-item active" style="color: #151B54"><strong>Vendor</strong></li>
             </ol>
         </nav>
     </div>
@@ -88,26 +88,20 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <label for="Name" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Name  <span class="text-danger">*</span> </label>
-                                <input type="text" class="form-control required" id="vendorName">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <label for="phone1" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Phone №1  <span class="text-danger">*</span> </label>
-                                <input type="tel" class="form-control required" id="phone1">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="phone2" class="form-label" style="margin-bottom: 0px; margin-top: 10px">Phone №2(Optional)</label>
-                                <input type="tel" class="form-control" id="phone2">
+                                <input type="text" class="form-control required" placeholder="Enter Name..." id="vendorName">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <label for="Email" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Email   <span class="text-danger">*</span> </label>
-                                <input type="email" class="form-control required rem" id="vendorEmail" required>
+                                <input type="email" class="form-control required rem" placeholder="Enter Vendor Email..." id="vendorEmail" required>
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-6">
+                                <label for="phone1" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Phone №<span class="text-danger">*</span> </label>
+                                <input type="tel" class="form-control required" placeholder="Enter Phone Number..." id="phone1">
+                            </div>
                             <div class="col-md-6">
                                 <label class="control-label">Status   <span class="text-danger">*</span> </label>
                                 <select class="form-control required" id="status">
@@ -117,6 +111,16 @@
                                 </select>
                             </div>
                         </div>
+                        <!--<div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label">Status   <span class="text-danger">*</span> </label>
+                                <select class="form-control required" id="status">
+                                    <option value="-1" selected disabled>Select Status</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </div>-->
+                        @*</div>*@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="saveVendor" disabled>Save  <i class="fa fa-save"></i></button>
