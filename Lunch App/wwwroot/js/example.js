@@ -45,9 +45,7 @@
                     <tr  id="${ele.id}">
                     <td>${ele.food}<td>  
                     <td>${ele.type}<td>  
-                    <td><select>
-                        ${vendors.map(x => (`<option>${x}</option>`))}
-                        </select>
+                    <td><select>${vendors.map(x => (`<option>${x}</option>`))}</select>
                     </td>
                     <td>
                         <span class="badge badge-dot mr-4" style="background-color:transparent;padding: 0px;">

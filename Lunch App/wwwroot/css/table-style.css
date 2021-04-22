@@ -1,0 +1,97 @@
+.license {
+    width: 100%;
+    background: #F2F3F4;
+    padding: 0.2rem !important;
+    margin-bottom: 0.8rem !important;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.price-button{
+    text-align:center;
+}
+
+.license-summary {
+    width: 100%;
+    padding: 0.85rem;
+    background: white;
+    display: grid;
+    grid-template-columns: 90% auto;
+    cursor: pointer;
+    border-left: 5px solid #3260b7;
+}
+
+.summ-btn {
+    text-align: right;
+}
+
+.body-details-text {
+    color: #3260b7;
+}
+
+.license-footer {
+    border-top: 2px solid #ddd;
+    width: 100% !important;
+    display: none;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1.05rem;
+}
+
+.license-body {
+    background: transparent;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    padding-left: 1.05rem;
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.payment-body {
+    background: transparent;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    padding-left: 1.05rem; 
+}
+
+table {
+    width: 100% !important;
+    border-collapse: collapse;
+}
+
+    table td, table th {
+        border: 1px solid #ddd;
+        padding: 4px;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    table tbody tr:hover {
+        background-color: #ddd;
+        cursor: pointer !important;
+    }
+
+.main-tr {
+    background-image: linear-gradient(330deg, rgba(225, 225, 225, 0.05) 0%, rgba(225, 225, 225, 0.05) 33.333%,rgba(114, 114, 114, 0.05) 33.333%, rgba(114, 114, 114, 0.05) 66.666%,rgba(52, 52, 52, 0.05) 66.666%, rgba(52, 52, 52, 0.05) 99.999%),linear-gradient(66deg, rgba(181, 181, 181, 0.05) 0%, rgba(181, 181, 181, 0.05) 33.333%,rgba(27, 27, 27, 0.05) 33.333%, rgba(27, 27, 27, 0.05) 66.666%,rgba(251, 251, 251, 0.05) 66.666%, rgba(251, 251, 251, 0.05) 99.999%),linear-gradient(225deg, rgba(98, 98, 98, 0.05) 0%, rgba(98, 98, 98, 0.05) 33.333%,rgba(222, 222, 222, 0.05) 33.333%, rgba(222, 222, 222, 0.05) 66.666%,rgba(228, 228, 228, 0.05) 66.666%, rgba(228, 228, 228, 0.05) 99.999%),linear-gradient(90deg, rgb(28, 20, 63),rgb(40, 160, 253));
+}
+
+    .main-tr th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: transparent !important;
+        color: white;
+    }
+
+.row-date, .row-price, .row-status {
+    width: 15% !important;
+}
+
+.row-company {
+    width: 35% !important;
+}
+
+.row-edition {
+    width: 20% !important;
+}

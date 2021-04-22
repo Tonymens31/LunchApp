@@ -23,12 +23,27 @@ let init = () => {
         showModal();
         Checkings();
     });
-
+       
 
     //load Orders
     getOrders();
 
-};
+}
+
+
+let dt = new DateHandler();
+btnState = 0;
+fmtDate = (s) => {
+    let d = new Date(Date.parse(s));
+    let fmt = d.toUTCString().replace("00:00:00", "")
+    return fmt.replace("GMT", "")
+}
+
+$('#btnAddOrder').click(function () {
+    btnState = 0
+    $("#saveOrder").html(`<i class="fa fa-save"></i> Save`)
+
+})
 
 // Progress
 $.LoadingOverlay("show", {
@@ -121,16 +136,13 @@ let getDataTable = () => {
 
 let createOrders = () => {
     Order = {};
-
-    $('#OrderModal').modal('show');
-  
     $("#saveOrder").html(`<i class="fa fa-save"></i> Save`);
 
+    $('#OrderModal').modal('show');
     $('#closeBtn').click(() => {
         Order = {};
         clearFields();
         Checkings();
-        $('#OrderModal').modal('hide');
     })
    
 
@@ -149,6 +161,13 @@ let createOrders = () => {
 let controlDateValues = () => {
     // Manipulate [Order.orderDate]
     let start_dates = Order.orderDate.split("-");
+   // Order.orderDate = `${start_dates[2]}-${start_dates[1]}-${start_dates[0]}T00:00:00`;
+
+  
+    if (!Order.condiDishId) {
+        Order.condiDishId = '00000000-0000-0000-0000-000000000000';
+    }
+    console.log({ Order });
 }
 
 let Checkings = () => {
@@ -172,50 +191,30 @@ let getMenus = () => {
                 Menus = response.body;
                 //console.log({ Menus })
             }
-            getDataTable();
+            //getDataTable();
         },
         error => {
             // debug error
             console.log({ error });
         }
     )
-};
+}
 
 $("#saveOrder").click(() => {
-    alert("hello")
-    if (Order && Order.id) {
-
-        //collect
-        Order.name = $("#name").val();
-        Order.mainDishId = $("#orderMainDish").val();
-        Order.sideDishId = $("#orderSideDish").val();
-        Order.condiDishId = $("#orderCondiment").val();
-        Order.orderDate = $("#orderDate").val();
-
+    Order.name = $("#name").val();
+    Order.mainDishId = $("#orderMainDish").val();
+    Order.sideDishId = $("#orderSideDish").val();
+    Order.condiDishId = $("#orderCondiment").val();
+    Order.orderDate = $("#orderDate").val();
+    controlDateValues();
+    console.log({ seletedMenuId})
+    if (Order && Order.id) {       
         // Update Existing
-        controlDateValues();
         updateOrder();
-
     } else {
-
+        Order.menuId = seletedMenuId;        
         // Create New
-        Order = {
-           
-            //name: $("#name").val(),
-            //mainDishId: $("#orderMainDish").val(),
-            //sideDishId: $("#orderSideDish").val(),
-            //condiDishId: $("#orderCondiment").val(),
-            //orderDate: $("#orderDate").val(),
-            //menuId: seletedMenuId
-        };
-
-        if (Order.condiDishId ==='-1') {
-            Order.condiDishId = '00000000-0000-0000-0000-000000000000';
-        }   
-        // Create New
-        controlDateValues();
         saveOrder();
-        
     }
     $('#OrderModal').modal('hide');
 });
@@ -251,11 +250,11 @@ let clearFields = () => {
     $("#saveOrder").css('cursor', 'not-allowed');
 }
 
-let resetOrders = () => {
+let resetOrders = () => { 
     $('#OrderModal').modal('hide');
-    Order = {};
     clearFields();
     getOrders();
+
 }
 
 
@@ -268,7 +267,8 @@ let getOrders = () => {
             // Process Response
             if (response.status == "Success") {
                 Orders = response.body;
-            };
+            }
+           // console.log({ Orders })
 
             $("#count").text(Orders.length)
 
@@ -282,28 +282,7 @@ let getOrders = () => {
 }
 
 
-let getAllMenuByDate = () => {
-    let model = JSON.stringify({ companyId: companyId, Date: SelectedDate });
-    let url = `${_path_url}api/Order/GetAllByDate`;
-    $.post(url, model).then(
-        response => {
-
-            setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
-            setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
-            setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
-            seletedMenuId = response.body.mainDish[0].menuId;
-          
-        },
-        error => {
-            // debug error
-            console.log({ error });
-        }
-    )
-}
-
 let setMenuType = (data, title, htmlElementId) => {
-    console.log({ data})
-
     let template = `<option value="-1">${title}</option>`
     template += data.map(menu => (
         `<option value = "${menu.id}">${menu.name}</option>`
@@ -311,6 +290,48 @@ let setMenuType = (data, title, htmlElementId) => {
     $(htmlElementId).html(template);
 }
 
+
+
+let getAllMenuByDate = () => {
+    
+    let model = JSON.stringify({ companyId: companyId, Date: SelectedDate });
+    let url = `${_path_url}api/Order/GetAllByDate`;
+    $.post(url, model).then(
+        response => {
+           
+            if (response.status === "Success") {
+                if (response.body.mainDish.length > 0) {
+                    setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
+                    setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
+                    setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
+                    seletedMenuId = response.body.mainDish[0].menuId;
+                   
+                } else {
+
+                    setMenuType(response.body.mainDish, "Select main dish", "#orderMainDish");
+                    setMenuType(response.body.sideDish, "Select side dish", "#orderSideDish");
+                    setMenuType(response.body.condiDish, "Select condiment", "#orderCondiment");
+                    iziToast.info({
+                        position: 'topRight',
+                        message: 'No menus for this date',
+                    });
+                }
+                  
+
+            } else {
+                //alert("menu not available")
+                iziToast.info({
+                    position: 'topRight',
+                    message: 'Menus not available',
+                });
+            }
+        },
+        error => {
+            // debug error
+            console.log({ error });
+        }
+    )
+}
 
 
 let showModal = () => {
@@ -325,10 +346,10 @@ let showModal = () => {
     $('#closeBtn').click(function () {
         Order = {};
         clearFields();
+       
         $('#orderModal').modal('hide');
     })
 }
-
 
 flatpickr('#orderdate', {
     "minDate": new Date().fp_incr(1),
@@ -350,6 +371,7 @@ let saveOrder = () => {
 
     let foodOrder = [];
     foodOrder.push(Order)
+    console.log({foodOrder})
     let model = JSON.stringify(foodOrder);
     let url = `${_path_url}api/Order/CreateOrder/${companyId}`
     $.post(url, model).then(
@@ -376,6 +398,8 @@ let saveOrder = () => {
             });
         }
     )
+
+    $("#orderModal").modal("toggle");
 }
 
 let updateOrder = () => {

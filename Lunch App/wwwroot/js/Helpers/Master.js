@@ -24,7 +24,16 @@ function readExternalFile(file, mime, callback) {
     dataFile.send(null);
 }
 
-
+function formatDate() {
+    var hours = getHours();
+    var minutes = getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return (getMonth() + 1) + "/" + getDate() + "/" + getFullYear() + "  " + strTime;
+}
 
 function pageLoader(str = 'show') {
     str === 'show' ? $('.pace-activity').show() : $('.pace-activity').hide();
@@ -40,9 +49,11 @@ getFormattedDate = (str) => {
     return `${dateString}`;
 }
 
+
+
 getFormattedDateTime = (str) => {
     let dateString = new Date(str).toUTCString();
-   dateString = dateString.split(' ').slice(0, 4).join(' ');
+   // dateString = dateString.split(' ').slice(0, 4).join(' ');
     return `${dateString}`;
 }
 

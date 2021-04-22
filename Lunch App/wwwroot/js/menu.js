@@ -85,7 +85,7 @@ let editMenu = () => {
     $('#menuModal').modal('show');
 
     $('#closeBtn').click(() => {
-        Menu = {};  
+        Menu = {};
         clearFields();
         $('#menuModal').modal('hide');
     })
@@ -107,7 +107,9 @@ $("#saveMenu").click(() => {
         Menu.price = $("#price").val();
         Menu.condiDish = $('#menuCondiment').val();
         Menu.endAt = $("#expiryDate").val();
-
+        if (!Menu.condiDishId) {
+            Menu.condiDishId = '00000000-0000-0000-0000-000000000000';
+        };
         // Update Existing
         controlDateValues();
         updateMenu();
@@ -136,9 +138,7 @@ let controlDateValues = () => {
     let end_dates = ends[0].split("-");
     Menu.endAt = `${end_dates[2]}-${end_dates[1]}-${end_dates[0]}T${ends[1]}:00`;
 
-    if (!Menu.condiDishId) {
-        Menu.condiDishId = '00000000-0000-0000-0000-000000000000';
-    };
+   
 }
 
 
@@ -276,7 +276,7 @@ let getDataTable = () => {
                 title: "Order Ending",
                 data: "endAt",
                 render: function (data) {
-                    return getFormattedDateTime(data);
+                  return getFormattedDateTime(data);
                 },
                 width: "22%"
             },
@@ -393,11 +393,22 @@ let saveMenu = () => {
 
     let theMenu = [];
     theMenu.push(Menu)
+
+    theMenu.map(menu => {
+        if (menu.condiDishId === "") {
+            return  menu.condiDishId = "00000000-0000-0000-0000-000000000000"
+        } else {
+            return menu.condiDishId 
+        }
+       
+    })
+
+   
     let model = JSON.stringify(theMenu);
     let url = `${_path_url}api/Menu/CreateMenu/${companyId}`
     $.post(url, model).then(
         response => {
-            //console.log({ response });
+            console.log({ response });
             if (response.status == "Success") {
                 iziToast.success({
                     position: 'topRight',
@@ -420,8 +431,6 @@ let saveMenu = () => {
         }
     )
 }
-
-
 
 
 
