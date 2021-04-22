@@ -8,11 +8,25 @@
 
         .dataTables_wrapper.no-footer .dataTables_scrollBody {
             height: 50vh !important;
-            max-height: 50vh !important;
+            max-height: 45vh !important;
+        }
+        #foodPage {
+            margin-top: 20px;
+            background-color: transparent !important;
+            padding-left: 20px;
+            margin-bottom: 0px
         }
     </style>
 }
 <div class="app-main__outer loader">
+    <div id="foodPage">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color:transparent !important; margin-bottom: 0%; padding-bottom: 0%">
+                
+                <li class="breadcrumb-item active" style="color: #151B54"><strong>Orders</strong></li>
+            </ol>
+        </nav>
+    </div>
     <div class="app-main__inner">
         <div class="row">
             <div class="col-md-12 col-xl-12">
@@ -88,7 +102,7 @@
                             <div class="col-md-12">
                                 <div>
                                     <label for="Name" style="margin-bottom: 0px; margin-top: 10px" class="form-label">Name   <span class="text-danger">*</span> </label>
-                                    <input type="text" class="form-control" placeholder="Enter Name" id="name" disabled>
+                                    <input type="text" class="form-control" placeholder="Enter Name.." id="name" disabled>
                                 </div>
                             </div>
                         </div>
